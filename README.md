@@ -3,8 +3,7 @@
 Prototype de fan-game 2D jouable dans un navigateur, prévu pour être publié sur GitHub Pages.
 
 ## Lancer le jeu
-- Ouvrir `index.html` dans un navigateur moderne, ou publier le dossier sur GitHub Pages.
-- Aucun Node.js ni compilation n'est nécessaire.
+- Ouvrir `index.html` dans un navigateur moderne
 
 ## Commandes
 - Joueur 1 : A/D pour bouger, W pour sauter, F pour frapper, G pour une attaque d'énergie, H pour une technique spéciale.
