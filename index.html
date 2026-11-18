@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="description" content="Dragon Ball Fusion Arena — jeu de combat 2D"><title>Dragon Ball Fusion Arena</title><link rel="stylesheet" href="css/style.css"></head><body><div id="w"><canvas id="c" width="960" height="540"></canvas><div id="m"></div></div>
+<script>
+(function(){function showError(message){let box=document.getElementById('runtime-error');if(!box){box=document.createElement('pre');box.id='runtime-error';box.style.cssText='position:fixed;z-index:99999;left:8px;right:8px;bottom:8px;max-height:35vh;overflow:auto;padding:12px;background:#240b0b;color:#fff;border:2px solid #f55;border-radius:8px;white-space:pre-wrap;font:13px monospace';document.body.appendChild(box)}box.textContent='ERREUR DU JEU :\n'+message;}window.addEventListener('error',function(e){showError((e.message||'Erreur inconnue')+'\n'+(e.filename||'')+':'+(e.lineno||''))});window.addEventListener('unhandledrejection',function(e){showError(String(e.reason&&e.reason.stack||e.reason||'Promesse rejetée'))});})();
+</script>
+<script src="js/game.js"></script>
+</body></html>
