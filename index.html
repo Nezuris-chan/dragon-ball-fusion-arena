@@ -461,6 +461,128 @@ SAGAS.push({id:'custom',name:'Histoires personnalisées',ch:[
  {id:'cus2',sub:'Arc 2 — Puissance déchaînée',t:'Épisode personnalisé 2 : Puissance déchaînée',req:'cus1',en:'Broly',ar:2,df:2,xp:300,pre:[['Narration','Une énergie incontrôlable menace l’arène.'],['Goku','Je dois calmer ce combat avant qu’il ne soit trop tard.']]},
  {id:'cus3',sub:'Arc 3 — Défi des dieux',t:'Épisode personnalisé 3 : Le défi des dieux',req:'cus2',en:'Beerus',ar:4,df:2,xp:420,pre:[['Beerus','Voyons si tu mérites encore de progresser.'],['Goku','Je vais te montrer !']]}
 ]});
+
+const STORY_ROSTERS={
+s1:['Goku','Piccolo','Vegeta','Gohan Beast','Krillin','Yamcha','Tenshinhan','Bardock'],
+s2:['Goku','Vegeta','Piccolo','Gohan Beast','Krillin'],
+s0:['Goku','Yamcha','Krillin','Tenshinhan','Muten Roshi','Piccolo'],
+s3:['Goku','Vegeta','Trunks','Gohan Beast','Piccolo','Android 16','Android 17','Android 18'],
+s4:['Goku','Vegeta','Gohan Beast','Gotenks','Piccolo','Majin Buu'],
+daima:['Goku','Vegeta','Glorio','Gomah','Tamagami'],
+super:['Goku','Vegeta','Gohan Beast','Beerus','Hit','Jiren','Broly','Android 17','Kefla','Toppo','Dyspo','Zamasu fusionné'],
+heroes:['Xeno Goku','Goku','Vegeta','Cumber','Hearts','Gogeta','Vegetto'],
+gt:['Goku','Vegeta','Baby Vegeta','Omega Shenron','Pan','Uub'],
+af:['Goku','Vegeta','Gohan Beast','Gogeta','Vegetto','Shallot','Omega Shenron','Broly'],
+kakumei:['Goku','Vegeta','Jiren','Beerus','Gohan Beast','Piccolo','Android 17','Broly'],
+custom:['Goku','Vegeta','Gohan Beast','Piccolo','Trunks','Broly','Gogeta','Vegetto','Freezer','Cell','Beerus','Jiren','Gotenks','Hit','Android 17','Kefla','Shallot']
+};
+const STORY_EXTRA={
+s1:[
+{sub:'Arc 2 — Les Saiyans',title:'Les derniers combattants',en:'Yamcha',ar:2,df:1,xp:230,k:'hp',v:.45,txt:'Finir avec au moins 45 % de vie',intro:'Les défenseurs de la Terre se regroupent pour contenir les Saiyans.'},
+{sub:'Arc 2 — Les Saiyans',title:'Le défi du prince',en:'Vegeta',ar:2,df:2,xp:300,k:'time',v:25,txt:'Gagner avec au moins 25 secondes restantes',intro:'Le prince des Saiyans exige un nouveau duel.'},
+{sub:'Arc 2 — Les Saiyans',title:'La dernière offensive',en:'Nappa',ar:2,df:2,xp:340,k:'nohit',v:.99,txt:'Gagner sans perdre de vie',intro:'La bataille atteint son point le plus dangereux.'}
+],
+s2:[
+{sub:'Arc 2 — Forces de Freezer',title:'Le duel contre le capitaine',en:'Ginyu',ar:0,df:1,xp:250,k:'ki',v:25,txt:'Terminer avec au moins 25 Ki',intro:'Le capitaine Ginyu bloque la route vers le vaisseau de Freezer.'},
+{sub:'Arc 3 — Freezer',title:'La puissance de Zarbon',en:'Freezer',ar:0,df:2,xp:330,k:'hp',v:.35,txt:'Finir avec au moins 35 % de vie',intro:'Un nouvel affrontement éclate au milieu des ruines de Namek.'},
+{sub:'Arc 3 — Freezer',title:'Le dernier rempart',en:'Vegeta',ar:0,df:2,xp:380,k:'time',v:30,txt:'Gagner avec au moins 30 secondes restantes',intro:'Vegeta veut régler ses comptes avant l’arrivée de Freezer.'},
+{sub:'Arc 3 — Freezer',title:'La planète en péril',en:'Freezer',ar:0,df:2,xp:450,k:'all',v:0,txt:'Finir avec au moins 25 % de vie et 20 Ki',intro:'Namek se désagrège. Il faut conclure le combat sans perdre le contrôle.'}
+],
+s0:[
+{sub:'Arc 1 — Les premières aventures',title:'Le défi de Krillin',en:'Krillin',ar:1,df:0,xp:190,k:'time',v:35,txt:'Gagner avec au moins 35 secondes restantes',intro:'Un rival du tournoi veut mesurer ses progrès.'},
+{sub:'Arc 2 — Le 22e tournoi',title:'La technique de maître',en:'Muten Roshi',ar:1,df:1,xp:250,k:'ki',v:20,txt:'Terminer avec au moins 20 Ki',intro:'Un maître d’arts martiaux met à l’épreuve la discipline du combattant.'},
+{sub:'Arc 3 — Le roi démon Piccolo',title:'Le dernier affrontement',en:'Piccolo',ar:2,df:2,xp:380,k:'hp',v:.3,txt:'Finir avec au moins 30 % de vie',intro:'Le sort de la Terre se joue dans un dernier duel.'}
+],
+s3:[
+{sub:'Arc 1 — Les cyborgs',title:'Le réveil des cyborgs',en:'Android 17',ar:2,df:1,xp:240,k:'hp',v:.4,txt:'Finir avec au moins 40 % de vie',intro:'Les cyborgs passent à l’offensive.'},
+{sub:'Arc 1 — Les cyborgs',title:'La puissance jumelle',en:'Android 18',ar:2,df:2,xp:290,k:'time',v:25,txt:'Gagner avec au moins 25 secondes restantes',intro:'Un second cyborg entre dans l’arène.'},
+{sub:'Arc 2 — Cell',title:'Le sacrifice du protecteur',en:'Android 16',ar:2,df:2,xp:330,k:'ki',v:30,txt:'Terminer avec au moins 30 Ki',intro:'Un combattant silencieux défend la vie sur Terre.'},
+{sub:'Arc 2 — Cell',title:'La forme parfaite',en:'Cell',ar:2,df:2,xp:390,k:'nohit',v:.99,txt:'Gagner sans perdre de vie',intro:'Cell révèle une puissance encore plus grande.'},
+{sub:'Arc 2 — Cell',title:'L’héritier du combat',en:'Gohan Beast',ar:2,df:2,xp:460,k:'all',v:0,txt:'Finir avec au moins 30 % de vie et 20 Ki',intro:'Le dernier duel décide de l’avenir de la planète.'}
+],
+s4:[
+{sub:'Arc 1 — L’éveil de Buu',title:'Le sorcier du mal',en:'Dabura',ar:2,df:1,xp:240,k:'hp',v:.4,txt:'Finir avec au moins 40 % de vie',intro:'Le sorcier de Babidi tente de stopper les combattants.'},
+{sub:'Arc 1 — L’éveil de Buu',title:'La colère de Buu',en:'Majin Buu',ar:2,df:2,xp:300,k:'time',v:25,txt:'Gagner avec au moins 25 secondes restantes',intro:'Buu libère une partie de sa puissance.'},
+{sub:'Arc 2 — Les fusions',title:'Le défi de Gotenks',en:'Gotenks',ar:1,df:2,xp:340,k:'ki',v:30,txt:'Terminer avec au moins 30 Ki',intro:'La fusion veut prouver qu’elle peut protéger la Terre.'},
+{sub:'Arc 2 — Les fusions',title:'Le guerrier ultime',en:'Vegetto',ar:2,df:2,xp:400,k:'nohit',v:.99,txt:'Gagner sans perdre de vie',intro:'Une fusion exceptionnelle apparaît face à la menace.'},
+{sub:'Arc 3 — Le dernier espoir',title:'Le dernier souhait',en:'Majin Buu',ar:2,df:2,xp:470,k:'all',v:0,txt:'Finir avec au moins 25 % de vie et 20 Ki',intro:'Le dernier combat commence. Chaque seconde compte.'}
+],
+daima:[
+{sub:'Arc 1 — Le royaume démoniaque',title:'Le second gardien',en:'Tamagami',ar:4,df:1,xp:240,k:'hp',v:.4,txt:'Finir avec au moins 40 % de vie',intro:'Un autre gardien bloque le passage vers le royaume démoniaque.'},
+{sub:'Arc 2 — Les gardiens',title:'L’allié mystérieux',en:'Glorio',ar:4,df:1,xp:270,k:'ki',v:20,txt:'Terminer avec au moins 20 Ki',intro:'Les intentions de Glorio doivent être éclaircies.'},
+{sub:'Arc 2 — Les gardiens',title:'La puissance des Tamagami',en:'Tamagami',ar:4,df:2,xp:330,k:'time',v:25,txt:'Gagner avec au moins 25 secondes restantes',intro:'Le gardien met à l’épreuve la détermination du héros.'},
+{sub:'Arc 3 — Le roi démoniaque',title:'Le pouvoir de Gomah',en:'Gomah',ar:2,df:2,xp:390,k:'nohit',v:.99,txt:'Gagner sans perdre de vie',intro:'Gomah dévoile une nouvelle facette de son pouvoir.'},
+{sub:'Arc 3 — Le roi démoniaque',title:'La bataille du royaume',en:'Gomah',ar:4,df:2,xp:460,k:'all',v:0,txt:'Finir avec au moins 30 % de vie et 20 Ki',intro:'Le destin du royaume démoniaque se décide maintenant.'}
+],
+super:[
+{sub:'Arc 3 — Goku Black',title:'Le dieu immortel',en:'Zamasu fusionné',ar:2,df:2,xp:340,k:'hp',v:.35,txt:'Finir avec au moins 35 % de vie',intro:'La fusion de Zamasu menace les deux futurs.'},
+{sub:'Arc 4 — Le tournoi du pouvoir',title:'La guerrière de l’univers 6',en:'Kefla',ar:1,df:2,xp:380,k:'time',v:25,txt:'Gagner avec au moins 25 secondes restantes',intro:'Une fusion redoutable entre dans le tournoi.'},
+{sub:'Arc 4 — Le tournoi du pouvoir',title:'Le combattant de la justice',en:'Toppo',ar:1,df:2,xp:420,k:'all',v:0,txt:'Finir avec au moins 30 % de vie et 20 Ki',intro:'Le représentant de la justice pousse le combat à son maximum.'}
+],
+heroes:[
+{sub:'Arc 2 — Cumber',title:'Le Saiyan incontrôlable',en:'Cumber',ar:2,df:2,xp:350,k:'hp',v:.35,txt:'Finir avec au moins 35 % de vie',intro:'L’énergie maléfique de Cumber bouleverse l’arène.'},
+{sub:'Arc 3 — Hearts',title:'Le plan de Hearts',en:'Hearts',ar:4,df:2,xp:390,k:'ki',v:30,txt:'Terminer avec au moins 30 Ki',intro:'Hearts accélère son plan contre les dieux.'},
+{sub:'Arc 3 — Hearts',title:'Le héros du temps',en:'Xeno Goku',ar:3,df:2,xp:420,k:'nohit',v:.99,txt:'Gagner sans perdre de vie',intro:'Un autre Goku veut vérifier la stabilité de cette ligne temporelle.'},
+{sub:'Arc 4 — La bataille finale',title:'La fusion des héros',en:'Gogeta',ar:3,df:2,xp:450,k:'time',v:25,txt:'Gagner avec au moins 25 secondes restantes',intro:'Deux puissances fusionnées se rencontrent dans une bataille décisive.'},
+{sub:'Arc 4 — La bataille finale',title:'Le dernier rempart',en:'Vegetto',ar:3,df:2,xp:480,k:'all',v:0,txt:'Finir avec au moins 25 % de vie et 20 Ki',intro:'Le dernier duel décidera de l’avenir de la faille temporelle.'}
+],
+gt:[
+{sub:'Arc 1 — Baby',title:'La revanche des Tsufuls',en:'Baby Vegeta',ar:2,df:1,xp:280,k:'hp',v:.4,txt:'Finir avec au moins 40 % de vie',intro:'Baby cherche à étendre son contrôle.'},
+{sub:'Arc 1 — Baby',title:'La protectrice de la Terre',en:'Pan',ar:2,df:1,xp:300,k:'ki',v:20,txt:'Terminer avec au moins 20 Ki',intro:'Pan veut vérifier que le danger est réellement écarté.'},
+{sub:'Arc 2 — Les dragons maléfiques',title:'Le dragon aux sept étoiles',en:'Omega Shenron',ar:2,df:2,xp:370,k:'time',v:25,txt:'Gagner avec au moins 25 secondes restantes',intro:'L’énergie négative se rassemble autour du dragon.'},
+{sub:'Arc 2 — Les dragons maléfiques',title:'Le retour du protecteur',en:'Uub',ar:2,df:2,xp:390,k:'hp',v:.35,txt:'Finir avec au moins 35 % de vie',intro:'Un allié puissant demande un dernier test.'},
+{sub:'Arc 2 — Les dragons maléfiques',title:'Le dernier dragon',en:'Omega Shenron',ar:2,df:2,xp:440,k:'nohit',v:.99,txt:'Gagner sans perdre de vie',intro:'Le dragon concentre toute son énergie négative.'},
+{sub:'Arc 2 — Les dragons maléfiques',title:'L’ultime espoir',en:'Vegeta',ar:2,df:2,xp:480,k:'all',v:0,txt:'Finir avec au moins 25 % de vie et 20 Ki',intro:'Le dernier combat rassemble les forces des Saiyans.'}
+],
+af:[
+{sub:'Arc 1 — La nouvelle menace',title:'L’éveil du pouvoir',en:'Gohan Beast',ar:4,df:2,xp:340,k:'hp',v:.4,txt:'Finir avec au moins 40 % de vie',intro:'Une puissance inconnue apparaît dans cette continuité de fans.'},
+{sub:'Arc 2 — Le pouvoir ultime',title:'Le guerrier venu d’ailleurs',en:'Shallot',ar:4,df:2,xp:370,k:'ki',v:25,txt:'Terminer avec au moins 25 Ki',intro:'Un Saiyan mystérieux veut mesurer la force du héros.'},
+{sub:'Arc 2 — Le pouvoir ultime',title:'La fusion suprême',en:'Vegetto',ar:4,df:2,xp:410,k:'time',v:25,txt:'Gagner avec au moins 25 secondes restantes',intro:'Une fusion puissante entre dans l’arène.'},
+{sub:'Arc 3 — La menace finale',title:'Le rival fusionné',en:'Gogeta',ar:4,df:2,xp:440,k:'nohit',v:.99,txt:'Gagner sans perdre de vie',intro:'Un rival à la puissance exceptionnelle impose un défi.'},
+{sub:'Arc 3 — La menace finale',title:'Le dragon de l’ombre',en:'Omega Shenron',ar:4,df:2,xp:470,k:'hp',v:.3,txt:'Finir avec au moins 30 % de vie',intro:'L’énergie négative menace d’engloutir le monde.'},
+{sub:'Arc 3 — La menace finale',title:'Le dernier dépassement',en:'Broly',ar:4,df:2,xp:500,k:'all',v:0,txt:'Finir avec au moins 25 % de vie et 20 Ki',intro:'Le dernier affrontement pousse le héros au-delà de ses limites.'}
+],
+kakumei:[
+{sub:'Arc 1 — Au-delà du tournoi',title:'La force de Jiren',en:'Jiren',ar:1,df:2,xp:350,k:'hp',v:.35,txt:'Finir avec au moins 35 % de vie',intro:'Jiren exige une preuve de détermination.'},
+{sub:'Arc 2 — Le jugement divin',title:'Le regard de Beerus',en:'Beerus',ar:4,df:2,xp:390,k:'ki',v:30,txt:'Terminer avec au moins 30 Ki',intro:'Le dieu de la destruction observe les progrès du héros.'},
+{sub:'Arc 2 — Le jugement divin',title:'La fusion divine',en:'Zamasu fusionné',ar:4,df:2,xp:430,k:'time',v:25,txt:'Gagner avec au moins 25 secondes restantes',intro:'Une menace divine revient bouleverser l’équilibre.'},
+{sub:'Arc 3 — La dernière épreuve',title:'Le potentiel libéré',en:'Gohan Beast',ar:4,df:2,xp:460,k:'nohit',v:.99,txt:'Gagner sans perdre de vie',intro:'Le potentiel ultime devient le dernier obstacle.'},
+{sub:'Arc 3 — La dernière épreuve',title:'La puissance incontrôlable',en:'Broly',ar:2,df:2,xp:490,k:'hp',v:.3,txt:'Finir avec au moins 30 % de vie',intro:'Une puissance incontrôlable menace l’arène.'},
+{sub:'Arc 3 — La dernière épreuve',title:'Le dernier jugement',en:'Gogeta',ar:4,df:2,xp:520,k:'all',v:0,txt:'Finir avec au moins 25 % de vie et 20 Ki',intro:'Le dernier duel décide du sort de cette histoire de fans.'}
+],
+custom:[
+{sub:'Arc 2 — Puissance déchaînée',title:'Le retour de Cell',en:'Cell',ar:2,df:1,xp:250,k:'hp',v:.4,txt:'Finir avec au moins 40 % de vie',intro:'Une ancienne menace revient dans cette histoire personnalisée.'},
+{sub:'Arc 2 — Puissance déchaînée',title:'Le tyran galactique',en:'Freezer',ar:0,df:2,xp:300,k:'time',v:25,txt:'Gagner avec au moins 25 secondes restantes',intro:'Un tyran veut prendre le contrôle de l’arène.'},
+{sub:'Arc 3 — Défi des dieux',title:'La fureur du Saiyan',en:'Broly',ar:2,df:2,xp:350,k:'ki',v:30,txt:'Terminer avec au moins 30 Ki',intro:'La puissance de Broly devient de plus en plus difficile à contenir.'},
+{sub:'Arc 3 — Défi des dieux',title:'Le jugement de Beerus',en:'Beerus',ar:4,df:2,xp:400,k:'nohit',v:.99,txt:'Gagner sans perdre de vie',intro:'Beerus exige un combat irréprochable.'},
+{sub:'Arc 4 — Le combat ultime',title:'La fusion décisive',en:'Gogeta',ar:4,df:2,xp:470,k:'all',v:0,txt:'Finir avec au moins 25 % de vie et 20 Ki',intro:'La dernière épreuve rassemble les plus grands combattants.'}
+]
+};
+for(const sg of SAGAS){
+ const roster=STORY_ROSTERS[sg.id]||['Goku'];
+ for(const c of sg.ch){
+  if(!c.players)c.players=roster.filter(n=>CH.some(x=>x.n===n));
+  if(!c.scene&&!c.ob){
+   const kinds=[{k:'hp',v:.35,txt:'Finir avec au moins 35 % de vie'},{k:'time',v:30,txt:'Gagner avec au moins 30 secondes restantes'},{k:'ki',v:25,txt:'Terminer avec au moins 25 Ki'},{k:'nohit',v:.99,txt:'Gagner sans perdre de vie'}];
+   c.ob=kinds[sg.ch.indexOf(c)%kinds.length];
+  }
+ }
+ const extras=STORY_EXTRA[sg.id]||[];
+ while(sg.ch.length<8){
+  const n=sg.ch.length+1,item=extras[sg.ch.length-(sg.ch.length-extras.length>=0?0:0)]||extras[extras.length-1];
+  if(!item)break;
+  const entry={
+   id:sg.id+'c'+n,sub:item.sub,t:'Chapitre '+n+' : '+item.title,
+   req:sg.ch[sg.ch.length-1].id,en:item.en,ar:item.ar,df:item.df,xp:item.xp,
+   players:roster.filter(name=>CH.some(x=>x.n===name)),
+   ob:item.k==='all'?{all:[{k:'hp',v:.25},{k:'ki',v:20}],txt:item.txt}:{k:item.k,v:item.v,txt:item.txt},
+   pre:[['Narration',item.intro], [item.en,'Tu ne passeras pas ! Montre-moi ce que tu sais faire.'], ['Goku','Je ne reculerai pas. Ce combat doit avoir un sens !']],
+   post:[[item.en,'Je reconnais ta détermination. Ce combat n’est pas terminé pour autant.'],['Narration','Une nouvelle étape de cette aventure attend le combattant.']]
+  };
+  sg.ch.push(entry);
+ }
+}
+
 SAGAS.unshift(SAGAS.splice(SAGAS.findIndex(s=>s.id==='s0'),1)[0]);
 const SOON=[];
 let curCh=null,dlgNext=null;
@@ -473,13 +595,16 @@ function objectsRoster(){dlgNext=null;M.style.display='flex';M.style.background=
 function storyMenu(msg){dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>MODE HISTOIRE</h1><small>Niv. '+lvl()+' · XP '+sv.xp+(SS().fl.kk?' · Kaioken':'')+(SS().fl.ssj?' · Super Saiyan':'')+'</small>'+(msg?'<small style="color:#fd0">'+msg+'</small>':'');
 for(const sg of SAGAS){const t=document.createElement('small');t.innerHTML='<b>'+sg.name+'</b>';M.appendChild(t);let lastSub='';for(const c of sg.ch){if(c.sub&&c.sub!==lastSub){const sub=document.createElement('small');sub.style.cssText='color:#8fe8ff;margin-top:5px;font-weight:700';sub.textContent=c.sub;M.appendChild(sub);lastSub=c.sub}const d=SS().done[c.id],ok=chOpen(c);M.appendChild(btn((d?'\u2714 ':ok?'\u25b6 ':'\u{1F512} ')+c.t+(d?'  '+'\u2605'.repeat(d.s||1):''),()=>{if(ok)playCh(c)},0,'min-width:280px;'+(ok?'':'opacity:.4')))}}
 const so=document.createElement('small');so.innerHTML=SOON.map(x=>x+' (bientôt)').join('<br>');M.appendChild(so);M.appendChild(btn('OBJETS',objectsMenu));M.appendChild(btn('\u2190 Retour',menu))}
-function dialogue(L,done){let i=0;const A=AR[(curCh&&curCh.ar)||0];const show=()=>{if(i>=L.length){dlgNext=null;M.style.background='';done();return}const w=L[i][0],t=L[i][1],ch=CH.find(x=>x.n===w),col=ch?(ch.fm[0].hair==='#000'?ch.fm[0].au:ch.fm[0].hair):w==='Narration'?'#ccd':w==='Roi Kaï'?'#fd6':w==='Piccolo'?'#6fbf3f':'#8cf';M.style.display='flex';M.style.background='linear-gradient(#0009,#0009),linear-gradient(180deg,'+A[1][0]+','+A[1][1]+')';M.innerHTML='';const b=document.createElement('div');b.style.cssText='width:min(92%,640px);background:#000c;border:2px solid '+col+';padding:14px;text-align:left;border-radius:6px';b.innerHTML='<div style="display:flex;gap:12px;align-items:center"><div style="min-width:54px;height:54px;border-radius:50%;background:'+col+';display:flex;align-items:center;justify-content:center;font:900 26px sans-serif;color:#000">'+w[0]+'</div><div><b style="color:'+col+'">'+w+'</b><div style="margin-top:6px;font-size:16px">'+t+'</div></div></div>';M.appendChild(b);M.appendChild(row([btn('Suivant \u25b6',()=>{i++;show()}),btn('Passer',()=>{i=L.length;show()})]));dlgNext=()=>{i++;show()}};show()}
+function dialogue(L,done){let i=0;const A=AR[(curCh&&curCh.ar)||0];const show=()=>{if(i>=L.length){dlgNext=null;M.style.background='';done();return}const hero=CH[cfg.p1]?.n||'Goku',dynamic=curCh&&!curCh.scene&&curCh.players?.includes(hero)&&hero!=='Goku',w0=L[i][0],t0=L[i][1],w=dynamic&&w0==='Goku'?hero:w0,t=dynamic?t0.replace(/\bGoku\b/g,hero):t0,ch=CH.find(x=>x.n===w),col=ch?(ch.fm[0].hair==='#000'?ch.fm[0].au:ch.fm[0].hair):w==='Narration'?'#ccd':w==='Roi Kaï'?'#fd6':w==='Piccolo'?'#6fbf3f':'#8cf';M.style.display='flex';M.style.background='linear-gradient(#0009,#0009),linear-gradient(180deg,'+A[1][0]+','+A[1][1]+')';M.innerHTML='';const b=document.createElement('div');b.style.cssText='width:min(92%,640px);background:#000c;border:2px solid '+col+';padding:14px;text-align:left;border-radius:6px';b.innerHTML='<div style="display:flex;gap:12px;align-items:center"><div style="min-width:54px;height:54px;border-radius:50%;background:'+col+';display:flex;align-items:center;justify-content:center;font:900 26px sans-serif;color:#000">'+w[0]+'</div><div><b style="color:'+col+'">'+w+'</b><div style="margin-top:6px;font-size:16px">'+t+'</div></div></div>';M.appendChild(b);M.appendChild(row([btn('Suivant \u25b6',()=>{i++;show()}),btn('Passer',()=>{i=L.length;show()})]));dlgNext=()=>{i++;show()}};show()}
 addEventListener('keydown',e=>{if(dlgNext&&(e.code==='Enter'||e.code==='Space')){e.preventDefault();dlgNext()}});
-function reward(c,st,ok){const S=SS(),first=!S.done[c.id],xp=Math.round(c.xp*(st==2?1.5:1));sv.xp+=xp;S.done[c.id]={s:Math.max(st,(S.done[c.id]||{}).s||0)};if(c.fl)for(const k of c.fl)S.fl[k]=1;save();return '+'+xp+' XP'+(c.rw&&first?' \u00b7 '+c.rw:'')+(c.ob?(ok?' \u00b7 Objectif réussi':' \u00b7 Objectif manqué'):'')}
-function playCh(c){curCh=c;dialogue(c.pre||[],()=>{if(c.scene)storyMenu(reward(c,1,true));else startStory(c)})}
-function startStory(c){curCh=c;if(c.fl0)for(const k of c.fl0)SS().fl[k]=1;cfg.mode='story';cfg.p1=CH.findIndex(x=>x.n==='Goku');cfg.p2=Math.max(0,CH.findIndex(x=>x.n===c.en));cfg.ar=c.ar;cfg.diff=c.df;stage=0;start();G.a.mf=SS().fl.ssj?1:0;G.b.mf=c.emf||0;if(!SS().fl.kk)G.a.nokk=1;if(c.ob)G.ann={t:200,s:c.ob.txt,c:'#fd6'}}
-function storyEnd(g){const c=curCh,w=g.win===g.a;if(!c){return}if(!w){g.sr={w:false,st:0,txt:''};return}let ok=true,st=1;if(c.ob){ok=c.ob.k==='hp'?g.a.hp>=g.a.mhp*c.ob.v:g.time>=c.ob.v;if(ok)st=2}g.sr={w:true,st,txt:reward(c,st,ok)}}
-function storyAfter(g){const r=g.sr||{w:false},c=curCh;if(r.w){M.style.display='flex';M.innerHTML='<h1>VICTOIRE</h1><small>'+'\u2605'.repeat(r.st)+' \u2014 '+r.txt+'</small>';M.appendChild(btn('Continuer',()=>dialogue(c.post||[],()=>storyMenu(r.txt))))}else{M.style.display='flex';M.innerHTML='<h1>DÉFAITE</h1><small>Réessaie : change de tactique (garde, esquive, transformation).</small>';M.appendChild(row([btn('Réessayer',()=>startStory(c)),btn('Menu histoire',()=>storyMenu())]))}}
+function reward(c,st,ok){const S=SS(),old=S.done[c.id],first=!old,diff=Math.max(0,Math.min(2,Number(c.df)||0)),mult=[.85,1.1,1.4][diff],base=Math.round((Number(c.xp)||100)*mult*(st===2?1.25:1)),xp=first?base:Math.max(5,Math.round(base*.12));sv.xp+=xp;S.done[c.id]={s:Math.max(st,(old||{}).s||0),clears:((old||{}).clears||0)+1};if(c.fl)for(const k of c.fl)S.fl[k]=1;save();return '+'+xp+' XP'+(first?' (première victoire)':' (rejoué : récompense réduite)')+(c.rw&&first?' · '+c.rw:'')+(c.ob?' · Objectif réussi':'')}
+function launchStoryDialogue(c){dialogue(c.pre||[],()=>{if(c.scene)storyMenu(reward(c,1,true));else startStory(c)})}
+function chooseStoryHero(c){const names=(c.players||STORY_ROSTERS[SAGAS.find(s=>s.ch.includes(c))?.id]||['Goku']).filter(n=>CH.some(x=>x.n===n));M.style.display='flex';M.style.background='';M.innerHTML='<h1>CHOISIS TON PERSONNAGE</h1><small>'+c.t+'</small>';const grid=document.createElement('div');grid.style.cssText='width:min(94%,760px);max-height:58vh;overflow:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:5px';names.forEach(n=>{const i=CH.findIndex(x=>x.n===n);grid.appendChild(btn(n,()=>{cfg.p1=i;launchStoryDialogue(c)},cfg.p1===i,'font-size:12px;padding:8px 5px'))});M.appendChild(grid);M.appendChild(btn('← Retour aux chapitres',storyMenu))}
+function playCh(c){curCh=c;if(c.scene){launchStoryDialogue(c);return}chooseStoryHero(c)}
+function startStory(c){curCh=c;if(c.fl0)for(const k of c.fl0)SS().fl[k]=1;cfg.mode='story';if(!CH[cfg.p1])cfg.p1=CH.findIndex(x=>x.n==='Goku');cfg.p2=Math.max(0,CH.findIndex(x=>x.n===c.en));cfg.ar=c.ar;cfg.diff=c.df;stage=0;start();G.a.mf=SS().fl.ssj?1:0;G.b.mf=c.emf||0;if(!SS().fl.kk)G.a.nokk=1;if(c.ob)G.ann={t:200,s:c.ob.txt,c:'#fd6'}}
+function storyObjectiveCheck(ob,g){if(!ob)return true;const tests=ob.all||[ob];return tests.every(o=>{if(o.k==='hp')return g.a.hp>=g.a.mhp*o.v;if(o.k==='time')return g.time>=o.v;if(o.k==='ki')return g.a.ki>=o.v;if(o.k==='nohit')return g.a.hp>=g.a.mhp*o.v;if(o.k==='form')return (g.a.mf||0)>0;if(o.k==='noform')return (g.a.mf||0)===0;return false})}
+function storyEnd(g){const c=curCh,w=g.win===g.a;if(!c)return;if(!w){g.sr={w:false,st:0,txt:'Le combat est perdu.'};return}if(!storyObjectiveCheck(c.ob,g)){g.sr={w:false,st:0,objectiveFail:true,txt:'Tu as gagné le duel, mais la condition obligatoire n’est pas remplie : '+(c.ob?.txt||'objectif du chapitre')+'.'};return}const st=c.ob?2:1;g.sr={w:true,st,txt:reward(c,st,true)}}
+function storyAfter(g){const r=g.sr||{w:false},c=curCh;if(r.w){M.style.display='flex';M.innerHTML='<h1>VICTOIRE</h1><small>'+'★'.repeat(r.st)+' — '+r.txt+'</small>';M.appendChild(btn('Continuer',()=>dialogue(c.post||[],()=>storyMenu(r.txt))))}else{M.style.display='flex';M.innerHTML='<h1>'+(r.objectiveFail?'OBJECTIF NON REMPLI':'DÉFAITE')+'</h1><small>'+(r.txt||'Réessaie : change de tactique (garde, esquive, transformation).')+'</small>';M.appendChild(row([btn('Réessayer',()=>startStory(c)),btn('Changer de personnage',()=>chooseStoryHero(c)),btn('Menu histoire',()=>storyMenu())]))}}
 // ---- État ----
 let cfg={mode:'versus',diff:1,ar:0,p1:0,p2:1},G=null,fx=[],shake=0,slow=0,flash=0,stage=0,keyDefault=0;
 const ATK={li:{d:6,s:3,a:4,r:7,rg:62,kb:3,ki:4},he:{d:14,s:10,a:5,r:18,rg:78,kb:11,ki:8},hc:{d:30,s:8,a:9,r:28,rg:118,kb:19,ki:14}};
