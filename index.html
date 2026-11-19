@@ -757,7 +757,7 @@ function accountOnlineMenu(){
  if(onlineUser){
   M.appendChild(mk('p','Connecté : '+(sv.pseudo||onlineUser.email||'Joueur')));
   M.appendChild(row([btn('CLASSEMENT MONDIAL',globalRankingMenu),btn('COMBATS EN LIGNE',onlinePlayMenu),btn('SE DÉCONNECTER',async()=>{const {error}=await sbClient.auth.signOut();if(error){alert('Déconnexion impossible : '+error.message);return}onlineUser=null;menu()})]));
-  M.appendChild(mk('small','Ton compte est connecté. Les combats en ligne seront ajoutés dans une prochaine étape.'));
+  M.appendChild(mk('small','Ton compte est connecté. Tu peux accéder aux combats classés et au classement mondial.'));
   M.appendChild(btn('← Retour',menu));return;
  }
  M.appendChild(mk('small','Crée un compte ou connecte-toi avec ton adresse e-mail.'));
@@ -824,7 +824,7 @@ async function findOnlineOpponent(){
   const ids=[onlineUser.id,opponent.user_id].sort(),room='fa-'+ids.join('-');
   if(onlineUser.id!==ids[0])return;
   onlineMatchId=room;onlineOpponentId=opponent.user_id;onlineOpponentName=opponent.pseudo||'Adversaire';onlineOpponentChar=Number.isInteger(opponent.character)?opponent.character:1;
-  await q.send({type:'broadcast',event:'match_found',payload:{to:opponent.user_id,room,host:onlineUser.id,hostName:sv.pseudo||'Joueur',hostChar:cfg.p1,host:onlineUser.id}});
+  await q.send({type:'broadcast',event:'match_found',payload:{to:opponent.user_id,room,host:onlineUser.id,hostName:sv.pseudo||'Joueur',hostChar:cfg.p1,guestChar:opponent.character}});
   await sbClient.removeChannel(q);if(onlineQueue===q)onlineQueue=null;
   joinOnlineRoom(room,onlineOpponentName,onlineOpponentChar,true,opponent.user_id);
  });
@@ -844,10 +844,10 @@ async function joinOnlineRoom(room,opponentName,opponentChar,isHost,opponentId){
  onlineMatchId=room;onlineOpponentId=opponentId||onlineOpponentId;onlineOpponentName=opponentName;onlineOpponentChar=opponentChar;onlineRemoteInput={};
  onlineQueueMenu('Adversaire trouvé : '+opponentName+'. Connexion au salon…');
  const ch=sbClient.channel(room,{config:{presence:{key:onlineUser.id},broadcast:{self:false}}});onlineRoomChannel=ch;let roomStarted=false;
- ch.on('presence',{event:'sync'},async()=>{if(isHost&&!roomStarted&&Object.keys(ch.presenceState()).length>=2){roomStarted=true;onlineMatchRecordId=crypto.randomUUID();const {error}=await sbClient.rpc('register_online_match',{p_match_id:onlineMatchRecordId,p_player1:onlineUser.id,p_player2:onlineOpponentId});if(error)onlineMatchRecordId=null;await ch.send({type:'broadcast',event:'start',payload:{opponentChar,matchId:onlineMatchRecordId}});beginOnlineBattle(opponentChar,onlineMatchRecordId)}});
+ ch.on('presence',{event:'sync'},async()=>{if(isHost&&!roomStarted&&Object.keys(ch.presenceState()).length>=2){roomStarted=true;onlineMatchRecordId=crypto.randomUUID();const {error}=await sbClient.rpc('register_online_match',{p_match_id:onlineMatchRecordId,p_player1:onlineUser.id,p_player2:onlineOpponentId});if(error)onlineMatchRecordId=null;await ch.send({type:'broadcast',event:'start',payload:{hostChar:cfg.p1,guestChar:opponentChar,matchId:onlineMatchRecordId}});beginOnlineBattle(opponentChar,onlineMatchRecordId)}});
  ch.on('broadcast',{event:'input'},({payload})=>{if(payload?.from!==onlineUser.id&&payload?.input)onlineRemoteInput=payload.input});
  ch.on('broadcast',{event:'leave'},()=>{if(G&&cfg.mode==='online'){G.over=1;G.win=G.a;G.ann={t:120,s:'ADVERSAIRE DÉCONNECTÉ',c:'#fd6'}}});
- ch.on('broadcast',{event:'start'},({payload})=>{if(!isHost){onlineMatchRecordId=payload?.matchId||null;beginOnlineBattle(payload?.opponentChar??opponentChar,onlineMatchRecordId)}});
+ ch.on('broadcast',{event:'start'},({payload})=>{if(!isHost){onlineMatchRecordId=payload?.matchId||null;beginOnlineBattle(Number.isInteger(payload?.hostChar)?payload.hostChar:opponentChar,onlineMatchRecordId)}});
  ch.subscribe(async status=>{
   if(status==='SUBSCRIBED'){await ch.track({user_id:onlineUser.id,pseudo:sv.pseudo||'Joueur'});
   }else if(status==='CHANNEL_ERROR'||status==='TIMED_OUT'){onlineQueueMenu('Impossible de rejoindre le salon. Réessaie.')}
