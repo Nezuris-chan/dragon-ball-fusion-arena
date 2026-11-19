@@ -687,7 +687,7 @@ upd(a,b,ca);upd(b,a,cb);sep(a,b);upProj();if(G.tick%60==0&&G.time>0&&cfg.mode!==
 if(cfg.mode==='train'){b.hp=b.mhp||HPB;a.hp=a.mhp||HPB;a.ki=Math.min(100,a.ki+.3)}
 if(a.hp<=0||b.hp<=0||G.time<=0){G.over=1;G.ot=0;G.win=a.hp<=0&&b.hp>0?b:b.hp<=0&&a.hp>0?a:(a.hp/(a.mhp||HPB)>=b.hp/(b.mhp||HPB)?a:b);slow=60;
 if(!G.win.ai&&!G.win.dummy||cfg.mode==='versus'){}
-if(cfg.mode!=='versus'){if(G.win===a){sv.w++;sv.xp+=50+20*cfg.diff;sv.rp=(sv.rp||0)+20+10*cfg.diff}else{sv.l++;sv.xp+=10;sv.rp=Math.max(0,(sv.rp||0)-8)}if(cfg.mode==='story')storyEnd(G);save()}}}
+if(cfg.mode==='online'&&!G.reported){G.reported=true;const winnerId=G.win===a?onlineUser?.id:onlineOpponentId;if(G.onlineMatchRecordId&&winnerId){sbClient.rpc('report_online_match',{p_match_id:G.onlineMatchRecordId,p_winner:winnerId}).then(({error})=>{if(error)console.warn('Résultat classé non validé',error.message)}).catch(e=>console.warn(e))}}else if(cfg.mode!=='versus'&&cfg.mode!=='online'){if(G.win===a){sv.w++;sv.xp+=50+20*cfg.diff;sv.rp=(sv.rp||0)+20+10*cfg.diff}else{sv.l++;sv.xp+=10;sv.rp=Math.max(0,(sv.rp||0)-8)}if(cfg.mode==='story')storyEnd(G);save()}}}
 // ---- Dessin ----
 function bgOld(){const A=AR[G.stage>=0&&cfg.mode!=='arcade'?cfg.ar:cfg.ar],g=X.createLinearGradient(0,0,0,GY);g.addColorStop(0,A[1][0]);g.addColorStop(1,A[1][1]);X.fillStyle=g;X.fillRect(0,0,W,540);
 X.fillStyle='rgba(255,255,255,.5)';for(let i=0;i<40;i++)X.fillRect((i*131+G.tick*.1*(i%3))%W,(i*53)%300,2,2);
@@ -772,7 +772,7 @@ async function globalRankingMenu(){
  }catch(e){M.appendChild(mk('small','Impossible de charger le classement : '+e.message))}
  M.appendChild(btn('← Retour',accountOnlineMenu));
 }
-let onlineQueue=null,onlineRoomChannel=null,onlineRemoteInput={},onlineLastBroadcast=0,onlineOpponentName='Adversaire',onlineOpponentChar=1,onlineMatchId=null;
+let onlineQueue=null,onlineRoomChannel=null,onlineRemoteInput={},onlineLastBroadcast=0,onlineOpponentName='Adversaire',onlineOpponentChar=1,onlineMatchId=null,onlineOpponentId=null,onlineMatchRecordId=null;
 function onlinePlayMenu(){
  if(!onlineUser){accountOnlineMenu();return}
  dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>COMBATS EN LIGNE</h1>';
@@ -799,16 +799,16 @@ async function findOnlineOpponent(){
   const opponent=players.sort((a,b)=>String(a.user_id).localeCompare(String(b.user_id)))[0];
   const ids=[onlineUser.id,opponent.user_id].sort(),room='fa-'+ids.join('-');
   if(onlineUser.id!==ids[0])return;
-  onlineMatchId=room;onlineOpponentName=opponent.pseudo||'Adversaire';onlineOpponentChar=Number.isInteger(opponent.character)?opponent.character:1;
-  await q.send({type:'broadcast',event:'match_found',payload:{to:opponent.user_id,room,host:onlineUser.id,hostName:sv.pseudo||'Joueur',hostChar:cfg.p1}});
+  onlineMatchId=room;onlineOpponentId=opponent.user_id;onlineOpponentName=opponent.pseudo||'Adversaire';onlineOpponentChar=Number.isInteger(opponent.character)?opponent.character:1;
+  await q.send({type:'broadcast',event:'match_found',payload:{to:opponent.user_id,room,host:onlineUser.id,hostName:sv.pseudo||'Joueur',hostChar:cfg.p1,host:onlineUser.id}});
   await sbClient.removeChannel(q);if(onlineQueue===q)onlineQueue=null;
-  joinOnlineRoom(room,onlineOpponentName,onlineOpponentChar,true);
+  joinOnlineRoom(room,onlineOpponentName,onlineOpponentChar,true,opponent.user_id);
  });
  q.on('broadcast',{event:'match_found'},async({payload})=>{
   if(onlineQueue!==q||payload?.to!==onlineUser.id)return;
-  onlineMatchId=payload.room;onlineOpponentName=payload.hostName||'Adversaire';onlineOpponentChar=Number.isInteger(payload.hostChar)?payload.hostChar:1;
+  onlineMatchId=payload.room;onlineOpponentId=payload.host;onlineOpponentName=payload.hostName||'Adversaire';onlineOpponentChar=Number.isInteger(payload.hostChar)?payload.hostChar:1;
   await sbClient.removeChannel(q);if(onlineQueue===q)onlineQueue=null;
-  joinOnlineRoom(payload.room,onlineOpponentName,onlineOpponentChar,false);
+  joinOnlineRoom(payload.room,onlineOpponentName,onlineOpponentChar,false,payload.host);
  });
  const {error}=await q.subscribe(async status=>{
   if(status==='SUBSCRIBED'){await q.track({user_id:onlineUser.id,pseudo:sv.pseudo||'Joueur',character:cfg.p1,online_at:new Date().toISOString()})}
@@ -816,27 +816,27 @@ async function findOnlineOpponent(){
  });
  if(error){onlineQueue=null;onlineQueueMenu('Erreur de connexion : '+error.message)}
 }
-async function joinOnlineRoom(room,opponentName,opponentChar,isHost){
- onlineMatchId=room;onlineOpponentName=opponentName;onlineOpponentChar=opponentChar;onlineRemoteInput={};
+async function joinOnlineRoom(room,opponentName,opponentChar,isHost,opponentId){
+ onlineMatchId=room;onlineOpponentId=opponentId||onlineOpponentId;onlineOpponentName=opponentName;onlineOpponentChar=opponentChar;onlineRemoteInput={};
  onlineQueueMenu('Adversaire trouvé : '+opponentName+'. Connexion au salon…');
  const ch=sbClient.channel(room,{config:{presence:{key:onlineUser.id},broadcast:{self:false}}});onlineRoomChannel=ch;let roomStarted=false;
- ch.on('presence',{event:'sync'},async()=>{if(isHost&&!roomStarted&&Object.keys(ch.presenceState()).length>=2){roomStarted=true;await ch.send({type:'broadcast',event:'start',payload:{opponentChar}});beginOnlineBattle(opponentChar)}});
+ ch.on('presence',{event:'sync'},async()=>{if(isHost&&!roomStarted&&Object.keys(ch.presenceState()).length>=2){roomStarted=true;onlineMatchRecordId=crypto.randomUUID();const {error}=await sbClient.rpc('register_online_match',{p_match_id:onlineMatchRecordId,p_player1:onlineUser.id,p_player2:onlineOpponentId});if(error)onlineMatchRecordId=null;await ch.send({type:'broadcast',event:'start',payload:{opponentChar,matchId:onlineMatchRecordId}});beginOnlineBattle(opponentChar,onlineMatchRecordId)}});
  ch.on('broadcast',{event:'input'},({payload})=>{if(payload?.from!==onlineUser.id&&payload?.input)onlineRemoteInput=payload.input});
  ch.on('broadcast',{event:'leave'},()=>{if(G&&cfg.mode==='online'){G.over=1;G.win=G.a;G.ann={t:120,s:'ADVERSAIRE DÉCONNECTÉ',c:'#fd6'}}});
- ch.on('broadcast',{event:'start'},({payload})=>{if(!isHost)beginOnlineBattle(payload?.opponentChar??opponentChar)});
+ ch.on('broadcast',{event:'start'},({payload})=>{if(!isHost){onlineMatchRecordId=payload?.matchId||null;beginOnlineBattle(payload?.opponentChar??opponentChar,onlineMatchRecordId)}});
  ch.subscribe(async status=>{
   if(status==='SUBSCRIBED'){await ch.track({user_id:onlineUser.id,pseudo:sv.pseudo||'Joueur'});
   }else if(status==='CHANNEL_ERROR'||status==='TIMED_OUT'){onlineQueueMenu('Impossible de rejoindre le salon. Réessaie.')}
  });
 }
-function beginOnlineBattle(opponentChar){
+function beginOnlineBattle(opponentChar,matchId){
  cfg.mode='online';cfg.p2=Number.isInteger(opponentChar)?opponentChar:1;stage=0;start();
- G.onlineRoom=onlineMatchId;G.onlineLocalId=onlineUser.id;
+ G.onlineRoom=onlineMatchId;G.onlineLocalId=onlineUser.id;G.onlineMatchRecordId=matchId||null;
  G.onlineOpponent=onlineOpponentName;
 }
 async function leaveOnlineBattle(){
  if(onlineRoomChannel){try{await onlineRoomChannel.send({type:'broadcast',event:'leave',payload:{from:onlineUser?.id}});await sbClient.removeChannel(onlineRoomChannel)}catch(e){}onlineRoomChannel=null}
- onlineMatchId=null;onlineRemoteInput={};cfg.mode='versus';menu();
+ onlineMatchId=null;onlineMatchRecordId=null;onlineOpponentId=null;onlineRemoteInput={};cfg.mode='versus';menu();
 }
 const PF={};function portrait(i){const cv=document.createElement('canvas');cv.width=cv.height=52;if(!cv.getContext)return cv;const f=PF[i]||(PF[i]=new F(i,0,1,0)),old=X;X=cv.getContext('2d');X.clearRect(0,0,52,52);face(f,26,26,23);X=old;return cv}
 let MG=null;
