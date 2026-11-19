@@ -860,7 +860,7 @@ if(m==='versus'||m==='online-ai'||cfg.cmp)right.appendChild(row([btn('Choix : Jo
 right.appendChild(statPanel());
 right.appendChild(row(AR.map((a,i)=>btn(a[0],()=>{cfg.ar=i;selectScreen()},cfg.ar===i,'background:linear-gradient(135deg,'+a[1][0]+','+a[1][1]+');color:#fff;text-shadow:0 0 4px #000;min-width:96px;height:40px;font-size:12px'+(cfg.ar===i?';outline:3px solid #fff':'')))));
 if(m!=='versus'&&m!=='train')right.appendChild(row(['Facile','Normal','Difficile'].map((n,i)=>btn(n,()=>{cfg.diff=i;selectScreen()},cfg.diff===i))));
-if(m==='online')right.appendChild(btn('TROUVER UN ADVERSAIRE',findOnlineOpponent,0,'font-size:20px;padding:10px 30px'));else right.appendChild(btn('\u25b6 COMBATTRE',()=>{stage=0;start()},0,'font-size:20px;padding:10px 30px'));
+if(m==='online')right.appendChild(btn('TROUVER UN ADVERSAIRE',findOnlineOpponent,0,'font-size:20px;padding:10px 30px'));else right.appendChild(btn(m==='online-ai'?'\u25b6 LANCER LE COMBAT CLASSÉ':'\u25b6 COMBATTRE',()=>{stage=0;start()},0,'font-size:20px;padding:10px 30px'));
 wrap.appendChild(left);wrap.appendChild(right);M.appendChild(wrap);M.appendChild(btn('\u2190 Retour',m==='online'?onlinePlayMenu:menu))}
 
 if(sbClient){sbClient.auth.getSession().then(({data})=>{onlineUser=data?.session?.user||null}).catch(()=>{});sbClient.auth.onAuthStateChange((_event,session)=>{onlineUser=session?.user||null})}
