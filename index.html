@@ -706,7 +706,7 @@ function ultFx(f){slow=70;flash=14;G.fz=60;shake=14;G.cin=80;G.cinc=f.mv?f.mv.c:
 function ctrl(f,o,i){let c;if(cfg.mode==='online'&&f===G.b){c=onlineRemoteInput||{}}else if(f.ai){c=aiIn(f,o)}else c=humIn(f===G.a?0:1);return c}
 function aiIn(f,o){const c={},d=Math.abs(o.x-f.x),df=cfg.diff,rx=[.018,.045,.075][df],iq=Math.max(10,Math.min(100,f.c.st?.in||35))/100;
 if(f.dummy||G.b.dummy&&f===G.b)return c;
-f.ar=f.ar||0;if(--f.ar>0)return f.last||c;
+f.ar=f.ar||0;if(--f.ar>0){const p=f.last||{};return {l:!!p.l,r:!!p.r,d:!!p.d,b:!!p.b,ch:!!p.ch}}
 f.ar=Math.max(5,Math.round([24,17,11][df]*(1.25-iq*.35)));const r=Math.random;
 const reaction=Math.max(.07,Math.min(.42,.07+iq*.28+df*.035));
 if(o.st==='a'&&d<115&&r()<reaction){if(r()<.2+iq*.18)c.b=1;else c.dgP=1}
