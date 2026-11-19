@@ -568,8 +568,9 @@ for(const sg of SAGAS){
   }
  }
  const extras=STORY_EXTRA[sg.id]||[];
+ const initialCount=sg.ch.length;let addedCount=0;
  while(sg.ch.length<8){
-  const n=sg.ch.length+1,item=extras[sg.ch.length-(sg.ch.length-extras.length>=0?0:0)]||extras[extras.length-1];
+  const n=sg.ch.length+1,item=extras[addedCount]||extras[extras.length-1];addedCount++;
   if(!item)break;
   const entry={
    id:sg.id+'c'+n,sub:item.sub,t:'Chapitre '+n+' : '+item.title,
