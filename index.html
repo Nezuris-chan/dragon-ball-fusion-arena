@@ -687,7 +687,7 @@ upd(a,b,ca);upd(b,a,cb);sep(a,b);upProj();if(G.tick%60==0&&G.time>0&&cfg.mode!==
 if(cfg.mode==='train'){b.hp=b.mhp||HPB;a.hp=a.mhp||HPB;a.ki=Math.min(100,a.ki+.3)}
 if(a.hp<=0||b.hp<=0||G.time<=0){G.over=1;G.ot=0;G.win=a.hp<=0&&b.hp>0?b:b.hp<=0&&a.hp>0?a:(a.hp/(a.mhp||HPB)>=b.hp/(b.mhp||HPB)?a:b);slow=60;
 if(!G.win.ai&&!G.win.dummy||cfg.mode==='versus'){}
-if(cfg.mode==='online'&&!G.reported){G.reported=true;const winnerId=G.win===a?onlineUser?.id:onlineOpponentId;if(G.onlineMatchRecordId&&winnerId){sbClient.rpc('report_online_match',{p_match_id:G.onlineMatchRecordId,p_winner:winnerId}).then(({error})=>{if(error)console.warn('Résultat classé non validé',error.message)}).catch(e=>console.warn(e))}}else if(cfg.mode!=='versus'&&cfg.mode!=='online'){if(G.win===a){sv.w++;sv.xp+=50+20*cfg.diff;sv.rp=(sv.rp||0)+20+10*cfg.diff}else{sv.l++;sv.xp+=10;sv.rp=Math.max(0,(sv.rp||0)-8)}if(cfg.mode==='story')storyEnd(G);save()}}}
+if(cfg.mode==='online'&&!G.reported){G.reported=true;const winnerId=G.win===a?onlineUser?.id:onlineOpponentId;if(G.onlineMatchRecordId&&winnerId){sbClient.rpc('report_online_match',{p_match_id:G.onlineMatchRecordId,p_winner:winnerId}).then(({error})=>{if(error)console.warn('Résultat classé non validé',error.message)}).catch(e=>console.warn(e))}}else if(cfg.mode==='online-ai'&&!G.reported){G.reported=true;if(G.win===a&&b.hp<=0&&a.hp>0&&onlineUser){sbClient.rpc('award_ai_victory').then(({data,error})=>{if(error){alert('Victoire contre IA, mais points non attribués : '+error.message);return}alert(data==='daily_limit'?'Victoire ! Limite quotidienne de points IA atteinte.':'Victoire contre IA ! +10 points de classement.');}).catch(e=>alert('Impossible d’attribuer les points : '+e.message))}else{alert('Combat terminé : il faut mettre l’IA à 0 PV pour gagner des points.')}}else if(cfg.mode!=='versus'&&cfg.mode!=='online'&&cfg.mode!=='online-ai'){if(G.win===a){sv.w++;sv.xp+=50+20*cfg.diff;sv.rp=(sv.rp||0)+20+10*cfg.diff}else{sv.l++;sv.xp+=10;sv.rp=Math.max(0,(sv.rp||0)-8)}if(cfg.mode==='story')storyEnd(G);save()}}}
 // ---- Dessin ----
 function bgOld(){const A=AR[G.stage>=0&&cfg.mode!=='arcade'?cfg.ar:cfg.ar],g=X.createLinearGradient(0,0,0,GY);g.addColorStop(0,A[1][0]);g.addColorStop(1,A[1][1]);X.fillStyle=g;X.fillRect(0,0,W,540);
 X.fillStyle='rgba(255,255,255,.5)';for(let i=0;i<40;i++)X.fillRect((i*131+G.tick*.1*(i%3))%W,(i*53)%300,2,2);
@@ -776,8 +776,9 @@ let onlineQueue=null,onlineRoomChannel=null,onlineRemoteInput={},onlineLastBroad
 function onlinePlayMenu(){
  if(!onlineUser){accountOnlineMenu();return}
  dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>COMBATS EN LIGNE</h1>';
- M.appendChild(mk('p','Choisis ton personnage dans l’écran suivant, puis cherche un adversaire.'));
- M.appendChild(btn('TROUVER UN JOUEUR',()=>selectScreen('online')));
+ M.appendChild(mk('p','Choisis ton mode classé : joueur contre joueur ou joueur contre IA.'));
+ M.appendChild(btn('COMBAT CLASSÉ CONTRE IA',()=>selectScreen('online-ai')));
+ M.appendChild(btn('COMBAT CLASSÉ CONTRE JOUEUR',()=>selectScreen('online')));
  M.appendChild(btn('← Retour',accountOnlineMenu));
 }
 function onlineQueueMenu(message){
@@ -853,9 +854,9 @@ function settingsMenu(){dlgNext=null;M.style.display='flex';M.style.background='
 function selectScreen(mode){if(mode&&mode!==cfg.mode){cfg.mode=mode;cfg.sel2=false}dlgNext=null;M.style.display='flex';M.style.background='';const m=cfg.mode,T={versus:'VERSUS LOCAL',train:'ENTRA\u00ceNEMENT'};M.innerHTML='<h1>'+(T[m]||'PERSONNAGES')+'</h1>';
 const wrap=mk('div');wrap.style.cssText='display:flex;flex-wrap:wrap;gap:14px;justify-content:center;width:96%;align-items:flex-start';
 const left=mk('div');left.style.cssText='display:flex;flex-wrap:wrap;gap:5px;max-width:340px;justify-content:center';
-CH.forEach((c,i)=>{const b=document.createElement('button');b.style.cssText='padding:2px;width:62px;height:80px;font-size:10px;line-height:1.1;'+(cfg.p1===i?'outline:3px solid #0cf;':'')+((m==='versus'||cfg.cmp)&&cfg.p2===i?'outline:3px solid #fa4;':'');b.appendChild(portrait(i));b.appendChild(document.createElement('br'));b.appendChild(document.createTextNode(c.n));b.onmouseenter=()=>snd(900,.03,'sine',.015);b.onclick=()=>{snd(600,.06,'square',.03);if((m==='versus'||cfg.cmp)&&cfg.sel2)cfg.p2=i;else cfg.p1=i;cfg.sf=0;selectScreen()};left.appendChild(b)});
+CH.forEach((c,i)=>{const b=document.createElement('button');b.style.cssText='padding:2px;width:62px;height:80px;font-size:10px;line-height:1.1;'+(cfg.p1===i?'outline:3px solid #0cf;':'')+((m==='versus'||cfg.cmp)&&cfg.p2===i?'outline:3px solid #fa4;':'');b.appendChild(portrait(i));b.appendChild(document.createElement('br'));b.appendChild(document.createTextNode(c.n));b.onmouseenter=()=>snd(900,.03,'sine',.015);b.onclick=()=>{snd(600,.06,'square',.03);if((m==='versus'||m==='online-ai'||cfg.cmp)&&cfg.sel2)cfg.p2=i;else cfg.p1=i;cfg.sf=0;selectScreen()};left.appendChild(b)});
 const right=mk('div');right.style.cssText='display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;min-width:300px;max-width:540px';
-if(m==='versus'||cfg.cmp)right.appendChild(row([btn('Choix : Joueur 1',()=>{cfg.sel2=false;selectScreen()},!cfg.sel2),btn('Choix : '+(m==='versus'?'Joueur 2':'Adversaire'),()=>{cfg.sel2=true;selectScreen()},!!cfg.sel2)]));
+if(m==='versus'||m==='online-ai'||cfg.cmp)right.appendChild(row([btn('Choix : Joueur 1',()=>{cfg.sel2=false;selectScreen()},!cfg.sel2),btn('Choix : '+(m==='versus'?'Joueur 2':'Adversaire'),()=>{cfg.sel2=true;selectScreen()},!!cfg.sel2)]));
 right.appendChild(statPanel());
 right.appendChild(row(AR.map((a,i)=>btn(a[0],()=>{cfg.ar=i;selectScreen()},cfg.ar===i,'background:linear-gradient(135deg,'+a[1][0]+','+a[1][1]+');color:#fff;text-shadow:0 0 4px #000;min-width:96px;height:40px;font-size:12px'+(cfg.ar===i?';outline:3px solid #fff':'')))));
 if(m!=='versus'&&m!=='train')right.appendChild(row(['Facile','Normal','Difficile'].map((n,i)=>btn(n,()=>{cfg.diff=i;selectScreen()},cfg.diff===i))));
