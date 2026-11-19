@@ -729,7 +729,7 @@ X.restore()}
 let last=0,acc=0;function loop(t){requestAnimationFrame(loop);acc+=Math.min(50,t-last);last=t;while(acc>=16.7){acc-=16.7;if(G&&M.style.display==='none'){if(G.paused){}else if(G.hst>0)G.hst--;else if(slow>0){slow--;if(slow%3==0)step()}else step();
 if(P.Escape&&!G.over){const sm=cfg.mode==='story';G=null;sm?storyMenu():menu()}}for(const k in P)delete P[k];}
 if(G&&G.over&&P.Enter){}draw()}
-addEventListener('keydown',e=>{if(!G)return;if(cfg.mode==='train'&&e.code==='Backspace'){G.tr=null;G.dn=[];e.preventDefault()}if(e.code==='Enter'&&G.over){if(cfg.mode==='story'){const g=G;G=null;storyAfter(g)}else{stage=0;G=null;menu()}}if(e.code==='Escape'&&G.over){stage=0;const sm=cfg.mode==='story';G=null;sm?storyMenu():menu()}if(e.code==='KeyP'&&M.style.display==='none'&&!G.over){G.paused=!G.paused}});
+addEventListener('keydown',e=>{if(!G)return;if(cfg.mode==='train'&&e.code==='Backspace'){G.tr=null;G.dn=[];e.preventDefault()}if(e.code==='Enter'&&G.over){if(cfg.mode==='online'){G=null;leaveOnlineBattle()}else if(cfg.mode==='story'){const g=G;G=null;storyAfter(g)}else{stage=0;G=null;menu()}}if(e.code==='Escape'&&G.over){if(cfg.mode==='online'){G=null;leaveOnlineBattle()}else{stage=0;const sm=cfg.mode==='story';G=null;sm?storyMenu():menu()}}if(e.code==='KeyP'&&M.style.display==='none'&&!G.over){G.paused=!G.paused}});
 // ---- Menus ----
 const lvl=()=>1+Math.floor(sv.xp/100);const RANKS=[['Bronze',0],['Argent',100],['Or',250],['Platine',450],['Diamant',700],['Rang Zeno',1000]];const rankInfo=()=>{let i=0;for(let n=0;n<RANKS.length;n++)if(sv.rp>=RANKS[n][1])i=n;const cur=RANKS[i],next=RANKS[i+1];return{name:cur[0],points:sv.rp,next:next?next[1]:null,progress:next?Math.min(100,(sv.rp-cur[1])/(next[1]-cur[1])*100):100}};
 function btn(t,fn,on,st){const b=document.createElement('button');b.textContent=t;if(on)b.className='on';b.onmouseenter=()=>snd(900,.03,'sine',.015);b.onclick=()=>{snd(600,.06,'square',.03);if(MU&&!mus)music(1);fn()};if(st)b.style.cssText=st;return b}
@@ -819,13 +819,13 @@ async function findOnlineOpponent(){
 async function joinOnlineRoom(room,opponentName,opponentChar,isHost){
  onlineMatchId=room;onlineOpponentName=opponentName;onlineOpponentChar=opponentChar;onlineRemoteInput={};
  onlineQueueMenu('Adversaire trouvé : '+opponentName+'. Connexion au salon…');
- const ch=sbClient.channel(room,{config:{broadcast:{self:false}}});onlineRoomChannel=ch;
+ const ch=sbClient.channel(room,{config:{presence:{key:onlineUser.id},broadcast:{self:false}}});onlineRoomChannel=ch;let roomStarted=false;
+ ch.on('presence',{event:'sync'},async()=>{if(isHost&&!roomStarted&&Object.keys(ch.presenceState()).length>=2){roomStarted=true;await ch.send({type:'broadcast',event:'start',payload:{opponentChar}});beginOnlineBattle(opponentChar)}});
  ch.on('broadcast',{event:'input'},({payload})=>{if(payload?.from!==onlineUser.id&&payload?.input)onlineRemoteInput=payload.input});
  ch.on('broadcast',{event:'leave'},()=>{if(G&&cfg.mode==='online'){G.over=1;G.win=G.a;G.ann={t:120,s:'ADVERSAIRE DÉCONNECTÉ',c:'#fd6'}}});
  ch.on('broadcast',{event:'start'},({payload})=>{if(!isHost)beginOnlineBattle(payload?.opponentChar??opponentChar)});
  ch.subscribe(async status=>{
-  if(status==='SUBSCRIBED'){
-   if(isHost){await ch.send({type:'broadcast',event:'start',payload:{opponentChar}});beginOnlineBattle(opponentChar)}
+  if(status==='SUBSCRIBED'){await ch.track({user_id:onlineUser.id,pseudo:sv.pseudo||'Joueur'});
   }else if(status==='CHANNEL_ERROR'||status==='TIMED_OUT'){onlineQueueMenu('Impossible de rejoindre le salon. Réessaie.')}
  });
 }
