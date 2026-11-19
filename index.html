@@ -704,17 +704,39 @@ if(!G.b.dummy||v!==G.b||!cfgNoDmg)v.hp=Math.max(0,v.hp-d);if(cfg.mode==='train'&
 let cfgNoDmg=false;
 function ultFx(f){slow=70;flash=14;G.fz=60;shake=14;G.cin=80;G.cinc=f.mv?f.mv.c:'#ffffff';G.cinx=f.x}
 function ctrl(f,o,i){let c;if(cfg.mode==='online'&&f===G.b){c={...(onlineRemoteInput||{})}}else if(f.ai){c=aiIn(f,o)}else c=humIn(f===G.a?0:1);return c}
-function aiIn(f,o){const c={},d=Math.abs(o.x-f.x),df=cfg.diff,rx=[.018,.045,.075][df],iq=Math.max(10,Math.min(100,f.c.st?.in||35))/100;
+function aiIn(f,o){
+const c={},d=Math.abs(o.x-f.x),df=cfg.diff,iq=Math.max(10,Math.min(100,f.c.st?.in||35))/100;
 if(f.dummy||G.b.dummy&&f===G.b)return c;
-f.ar=f.ar||0;if(--f.ar>0){const p=f.last||{};return {l:!!p.l,r:!!p.r,d:!!p.d,b:!!p.b,ch:!!p.ch}}
-f.ar=Math.max(5,Math.round([24,17,11][df]*(1.25-iq*.35)));const r=Math.random;
-const reaction=Math.max(.07,Math.min(.42,.07+iq*.28+df*.035));
-if(o.st==='a'&&d<115&&r()<reaction){if(r()<.2+iq*.18)c.b=1;else c.dgP=1}
-else if(f.ki>=mc(f,2)&&d>170&&r()<(.015+.035*df+iq*.04))c.ulP=1;
-else if(f.ki>=50&&(f.fm|0)<mfm(f)&&r()<(.005+.012*df+iq*.025))c.trP=1;
-else if(d>260){c.spP=r()<rx*(.35+iq*.45)?1:0;if(c.spP&&r()<.18+iq*.2)c.d=1;if(!c.spP){c[o.x>f.x?'r':'l']=1}}
-else if(d>85){c[o.x>f.x?'r':'l']=1;if(r()<.008+iq*.04)c.jP=1;if(iq>.68&&f.ki>=mc(f,0)&&r()<iq*.06)c.spP=1}
-else{if(r()<.24+iq*.12)c.liP=1;else if(r()<.12+iq*.08)c.heP=1;if(r()<.015+iq*.04)c.b=1;if(o.st==='r'&&r()<(.12+iq*.25)*df/2)c.heP=1}
+f.ar=f.ar||0;
+if(--f.ar>0){const p=f.last||{};return {l:!!p.l,r:!!p.r,d:!!p.d,b:!!p.b,ch:!!p.ch}}
+f.ar=Math.max(5,Math.round([20,14,9][df]*(1.25-iq*.35)));
+const r=Math.random,reaction=Math.max(.08,Math.min(.48,.08+iq*.3+df*.04)),canDash=f.dashCd<=0;
+const canTransform=f.ki>=50&&(f.fm|0)<mfm(f);
+const canUltimate=f.ki>=mc(f,2);
+const canSpecial=f.ki>=mc(f,0);
+if(o.st==='a'&&d<145&&r()<reaction){
+ if(r()<.25+iq*.25&&f.cd<=0)c.dgP=1;
+ else c.b=1;
+}else if(canTransform&&r()<(.006+.012*df+iq*.025))c.trP=1;
+else if(canUltimate&&d>145&&r()<(.012+.025*df+iq*.045))c.ulP=1;
+else if(d>260){
+ if(f.ki<38&&r()<.5)c.ch=1;
+ else if(canSpecial&&r()<(.025+.035*df+iq*.055))c.spP=1;
+ if(r()<(.08+iq*.13)&&canDash)c.dsP=1;
+ if(!c.dsP&&!c.ch)c[o.x>f.x?'r':'l']=1;
+}else if(d>100){
+ c[o.x>f.x?'r':'l']=1;
+ if(canSpecial&&r()<(.025+iq*.09))c.spP=1;
+ if(canDash&&r()<(.035+iq*.12))c.dsP=1;
+ if(r()<(.012+iq*.045))c.jP=1;
+}else{
+ if(f.chainWindow>0&&f.chainStep>=2&&r()<(.28+iq*.48))c.heP=1;
+ else if(r()<(.27+iq*.18))c.liP=1;
+ else if(r()<(.2+iq*.18))c.heP=1;
+ else if(canSpecial&&r()<(.025+iq*.07))c.spP=1;
+ if(o.st==='r'&&r()<(.1+iq*.22)*df/2)c.heP=1;
+ if(r()<(.02+iq*.05))c.b=1;
+}
 f.last=c;return c}
 function blinkAwayX(f,o){const side=f.x<o.x?1:-1,dist=110;let x=o.x+side*dist;if(x<45||x>W-45)x=o.x-side*dist;return Math.max(45,Math.min(W-45,x))}
 function upd(f,o,c){f.face=o.x>f.x?1:-1;kaio(f,c);anim(f);if(f.dashCd>0)f.dashCd--;if(f.chainWindow>0){f.chainWindow--;if(f.chainWindow===0)f.chainStep=0}if(f.guardParry>0)f.guardParry--;if(c.bP&&f.y>=GY-1&&f.st!=='h'&&f.st!=='a')f.guardParry=7+(f.c.parryBonus||0);if(c.he){f.heHold=Math.min(180,f.heHold+1);if(f.heHold>=120)f.heReady=1;c.heP=0}else if(f.heHold>0){c.heP=1;f.heCharged=!!f.heReady;f.heHold=0;f.heReady=0}else f.heCharged=0;f.ct>0&&--f.ct<=0&&(f.combo=0);f.inv>0&&f.inv--;f.cd>0&&f.cd--;f.cn>0&&f.cn--;// Pas de régénération passive en combat : les PV perdus restent perdus.if(f.tf>0&&--f.tf<=0){const q=(f.stk||(f.stk=[])).pop()||{fm:0,tf:0};applyForm(f,q.fm);f.tf=q.tf;spark(f.x,f.y-60,f.f$.au,12,6);ring(f.x,f.y-60,'#fff',80)}
