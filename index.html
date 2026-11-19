@@ -759,15 +759,16 @@ function accountOnlineMenu(){
  M.appendChild(mk('small','Ne réutilise pas le mot de passe d’un autre compte. Il ne sera pas enregistré dans ta sauvegarde.'));
  M.appendChild(btn('← Retour',menu));
 }
+const onlineRankInfo=points=>{const r=Math.max(0,Number(points)||0),tiers=[['Bronze',1000],['Argent',1200],['Or',1400],['Platine',1600],['Diamant',1800],['Rang Zeno',2000]];let i=0;for(let n=0;n<tiers.length;n++)if(r>=tiers[n][1])i=n;return {name:tiers[i][0],level:1+Math.floor(Math.max(0,r-1000)/100)}};
 async function globalRankingMenu(){
  dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>CLASSEMENT MONDIAL</h1><small>Chargement…</small>';
  if(!sbClient){M.appendChild(btn('← Retour',accountOnlineMenu));return}
- try{const {data,error}=await sbClient.from('profiles').select('username,rating,wins,losses').order('rating',{ascending:false}).limit(20);if(error)throw error;
+ try{const {data,error}=await sbClient.from('profiles').select('id,username,rating,wins,losses').order('rating',{ascending:false}).order('wins',{ascending:false}).limit(50);if(error)throw error;
   M.innerHTML='<h1>CLASSEMENT MONDIAL</h1>';
-  const list=mk('div');list.style.cssText='width:min(92%,520px);text-align:left;line-height:1.8;max-height:330px;overflow:auto';
+  const list=mk('div');list.style.cssText='width:min(94%,650px);text-align:left;line-height:1.65;max-height:350px;overflow:auto';
   if(!data.length)list.textContent='Aucun joueur classé pour le moment.';
-  data.forEach((p,i)=>{const line=mk('div');line.style.cssText='padding:5px;border-bottom:1px solid #28405d';line.textContent=(i+1)+'. '+p.username+' — '+p.rating+' pts · '+p.wins+' V / '+p.losses+' D';list.appendChild(line)});
-  M.appendChild(list);
+  data.forEach((p,i)=>{const rank=onlineRankInfo(p.rating),line=mk('div');line.style.cssText='padding:7px 9px;border-bottom:1px solid #28405d;'+(onlineUser&&p.id===onlineUser.id?'background:rgba(0,200,255,.13);':'');line.textContent='#'+(i+1)+'  '+p.username+' · Niveau '+rank.level+' · '+rank.name+' · '+p.rating+' pts · '+p.wins+' V / '+p.losses+' D';list.appendChild(line)});
+  M.appendChild(list);M.appendChild(mk('small','Le niveau compétitif et le rang sont calculés à partir des points. Les points ne changent pas encore après les combats.'));
  }catch(e){M.appendChild(mk('small','Impossible de charger le classement : '+e.message))}
  M.appendChild(btn('← Retour',accountOnlineMenu));
 }
