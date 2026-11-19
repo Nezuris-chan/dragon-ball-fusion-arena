@@ -599,6 +599,7 @@ SAGAS.unshift(SAGAS.splice(SAGAS.findIndex(s=>s.id==='s0'),1)[0]);
 const STORY_SAGA_REQ={s1:'db10',s2:'s1c4',s3:'s2c3',s4:'cell3',daima:'buu3',super:'da3',gt:'buu3',heroes:'sup5',af:'sup5',kakumei:'sup5',custom:'sup5'};
 const FORM_QUESTS=[
  {character:'Goku',index:1,name:'Super Saiyan',chapter:'s2c3'},
+ {character:'Goku',index:2,name:'Super Saiyan 2',chapter:'cell3'},
  {character:'Goku',index:3,name:'Super Saiyan 3',chapter:'buu3'},
  {character:'Goku',index:4,name:'Super Saiyan God',chapter:'sup1'},
  {character:'Goku',index:5,name:'Super Saiyan Blue',chapter:'sup2'},
@@ -618,8 +619,13 @@ const FORM_QUESTS=[
  {character:'Broly',index:1,name:'Super Saiyan',chapter:'sup5'},
  {character:'Broly',index:2,name:'Super Saiyan Full Power',chapter:'sup5'},
  {character:'Piccolo',index:1,name:'Piccolo Orange',chapter:'sup5'},
- {character:'Freezer',index:4,name:'Golden Freezer',chapter:'sup2'},
- {character:'Freezer',index:5,name:'Black Freezer',chapter:'af2'}
+ {character:'Gogeta',index:1,name:'Super Saiyan',chapter:'buu3'},
+ {character:'Gogeta',index:2,name:'Super Saiyan Blue',chapter:'sup5'},
+ {character:'Vegetto',index:1,name:'Super Saiyan',chapter:'buu3'},
+ {character:'Vegetto',index:2,name:'Super Saiyan Blue',chapter:'sup5'},
+ {character:'Cell',index:1,name:'Cell Max',chapter:'cell3'},
+ {character:'Beerus',index:1,name:'Destruction',chapter:'sup1'},
+ {character:'Jiren',index:1,name:'Full Power',chapter:'sup4'}
 ];
 const chapterById=id=>{for(const sg of SAGAS){const c=sg.ch.find(x=>x.id===id);if(c)return c}return null};
 const storyFormMax=name=>FORM_QUESTS.filter(q=>q.character===name&&Number(SS().forms?.[name]||0)>=q.index).reduce((m,q)=>Math.max(m,q.index),0);
