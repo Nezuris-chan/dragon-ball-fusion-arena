@@ -21,7 +21,7 @@ const sbClient=window.supabase?.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_K
 let onlineUser=null;
 let sv={xp:0,w:0,l:0};try{const raw=localStorage.getItem('fa');if(raw)sv=Object.assign(sv,JSON.parse(raw));}catch(e){try{const bak=localStorage.getItem('fa_backup');if(bak)sv=Object.assign(sv,JSON.parse(bak));}catch(_){}}
 sv._saveVersion=Math.max(1,Number(sv._saveVersion)||1);sv.rp=Math.max(0,Number(sv.rp)||0);
-const save=()=>{try{const old=localStorage.getItem('fa');if(old)localStorage.setItem('fa_backup',old);sv._saveVersion=2;localStorage.setItem('fa',JSON.stringify(sv));}catch(e){console.warn('Sauvegarde locale indisponible',e)}};
+const save=()=>{try{const old=localStorage.getItem('fa');if(old)localStorage.setItem('fa_backup',old);sv._saveVersion=2;localStorage.setItem('fa',JSON.stringify(sv));}catch(e){console.warn('Sauvegarde locale indisponible',e)}if(onlineUser&&sbClient)sbClient.from('profiles').update({xp:Math.max(0,Number(sv.xp)||0),player_level:1+Math.floor(Math.max(0,Number(sv.xp)||0)/100)}).eq('id',onlineUser.id).then(({error})=>{if(error)console.warn('Synchronisation du niveau impossible',error.message)})};
 const al=(h,a)=>{h=h.replace('#','');if(h.length==3)h=h[0]+h[0]+h[1]+h[1]+h[2]+h[2];return 'rgba('+parseInt(h.slice(0,2),16)+','+parseInt(h.slice(2,4),16)+','+parseInt(h.slice(4,6),16)+','+a+')'};
 // ---- Personnages (dessins originaux Canvas, remplaçables par sprites via draw()) ----
 const CH=[
@@ -786,7 +786,7 @@ const onlineRankInfo=points=>{const r=Math.max(0,Number(points)||0),tiers=[['Bro
 async function globalRankingMenu(){
  dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>CLASSEMENT MONDIAL</h1><small>Chargement…</small>';
  if(!sbClient){M.appendChild(btn('← Retour',accountOnlineMenu));return}
- try{const {data,error}=await sbClient.from('profiles').select('id,username,xp,player_level,rating,wins,losses').order('rating',{ascending:false}).order('wins',{ascending:false}).limit(50);if(error)throw error;
+ try{if(onlineUser){const {error:ownError}=await sbClient.from('profiles').update({xp:Math.max(0,Number(sv.xp)||0),player_level:1+Math.floor(Math.max(0,Number(sv.xp)||0)/100)}).eq('id',onlineUser.id);if(ownError)throw ownError}const {data,error}=await sbClient.from('profiles').select('id,username,xp,player_level,rating,wins,losses').order('rating',{ascending:false}).order('wins',{ascending:false}).limit(50);if(error)throw error;
   M.innerHTML='<h1>CLASSEMENT MONDIAL</h1>';
   const list=mk('div');list.style.cssText='width:min(94%,650px);text-align:left;line-height:1.65;max-height:350px;overflow:auto';
   if(!data.length)list.textContent='Aucun joueur classé pour le moment.';
