@@ -735,6 +735,22 @@ const lvl=()=>1+Math.floor(sv.xp/100);const RANKS=[['Bronze',0],['Argent',100],[
 function btn(t,fn,on,st){const b=document.createElement('button');b.textContent=t;if(on)b.className='on';b.onmouseenter=()=>snd(900,.03,'sine',.015);b.onclick=()=>{snd(600,.06,'square',.03);if(MU&&!mus)music(1);fn()};if(st)b.style.cssText=st;return b}
 function row(arr){const d=document.createElement('div');d.className='row';arr.forEach(b=>d.appendChild(b));return d}
 function mk(tag,html){const e=document.createElement(tag);if(html!=null)e.innerHTML=html;return e}
+function passwordRecoveryMenu(){
+ dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>NOUVEAU MOT DE PASSE</h1><p>Choisis un nouveau mot de passe pour ton compte.</p>';
+ const pw=document.createElement('input');pw.type='password';pw.autocomplete='new-password';pw.placeholder='Nouveau mot de passe (8 caractères minimum)';pw.style.cssText='width:min(86%,340px);padding:10px;margin:5px;background:#101a30;color:#fff;border:1px solid #00c8ff';
+ const confirm=document.createElement('input');confirm.type='password';confirm.autocomplete='new-password';confirm.placeholder='Confirmer le mot de passe';confirm.style.cssText=pw.style.cssText;
+ const status=mk('small','');M.append(pw,confirm,status);
+ M.appendChild(btn('ENREGISTRER LE NOUVEAU MOT DE PASSE',async()=>{
+  if(pw.value.length<8){status.textContent='Le mot de passe doit contenir au moins 8 caractères.';return}
+  if(pw.value!==confirm.value){status.textContent='Les deux mots de passe ne correspondent pas.';return}
+  status.textContent='Mise à jour…';
+  const {error}=await sbClient.auth.updateUser({password:pw.value});
+  if(error){status.textContent='Erreur : '+error.message;return}
+  status.textContent='Mot de passe modifié ! Tu peux maintenant te connecter.';
+  await sbClient.auth.signOut();onlineUser=null;
+  setTimeout(()=>accountOnlineMenu(),1200);
+ }));
+}
 function accountOnlineMenu(){
  dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>COMPTE EN LIGNE</h1>';
  if(!sbClient){M.appendChild(mk('small','Connexion Supabase indisponible. Vérifie ta connexion Internet puis recharge la page.'));M.appendChild(btn('← Retour',menu));return}
@@ -752,6 +768,13 @@ function accountOnlineMenu(){
  const status=mk('small','');M.appendChild(status);
  const valid=()=>{const em=email.value.trim(),pw=password.value,un=pseudo.value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){status.textContent='Entre une adresse e-mail valide.';return null}if(pw.length<8){status.textContent='Le mot de passe doit contenir au moins 8 caractères.';return null}const clean=un.replace(/[\u0000-\u001f\u007f]/g,'').slice(0,16);if(clean.length<2){status.textContent='Le pseudo doit contenir 2 à 16 caractères.';return null}return {em,pw,clean}};
  const sync=async(user,username)=>{const {error}=await sbClient.from('profiles').upsert({id:user.id,username},{onConflict:'id'});if(error)throw error;onlineUser=user;sv.pseudo=username;save()};
+ M.appendChild(btn('MOT DE PASSE OUBLIÉ ?',async()=>{
+  const em=email.value.trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){status.textContent='Entre ton adresse e-mail pour recevoir le lien de réinitialisation.';return}
+  status.textContent='Envoi de l’e-mail…';
+  try{const {error}=await sbClient.auth.resetPasswordForEmail(em,{redirectTo:location.origin+location.pathname});if(error)throw error;status.textContent='E-mail envoyé ! Vérifie ta boîte de réception et tes courriers indésirables.'}
+  catch(e){status.textContent='Erreur : '+e.message}
+}));
  M.appendChild(row([
   btn('CRÉER UN COMPTE',async()=>{const v=valid();if(!v)return;status.textContent='Création du compte…';try{const {data,error}=await sbClient.auth.signUp({email:v.em,password:v.pw});if(error)throw error;if(data.session&&data.user){await sync(data.user,v.clean);status.textContent='Compte créé et connecté.';accountOnlineMenu()}else{status.textContent='Compte créé. Vérifie ta boîte mail si Supabase demande une confirmation, puis connecte-toi.'}}catch(e){status.textContent='Erreur : '+e.message}}),
   btn('SE CONNECTER',async()=>{const v=valid();if(!v)return;status.textContent='Connexion…';try{const {data,error}=await sbClient.auth.signInWithPassword({email:v.em,password:v.pw});if(error)throw error;const {data:profile,error:readError}=await sbClient.from('profiles').select('username').eq('id',data.user.id).maybeSingle();if(readError)throw readError;const savedName=sv.pseudo&&sv.pseudo!=='Joueur'?sv.pseudo:null;const username=(!profile?.username||profile.username.startsWith('Joueur-'))?(savedName||v.clean):profile.username;await sync(data.user,username);await sbClient.from('profiles').update({player_level:lvl()}).eq('id',data.user.id);accountOnlineMenu()}catch(e){status.textContent='Erreur : '+e.message}}),
@@ -863,6 +886,6 @@ if(m!=='versus'&&m!=='train')right.appendChild(row(['Facile','Normal','Difficile
 if(m==='online')right.appendChild(btn('TROUVER UN ADVERSAIRE',findOnlineOpponent,0,'font-size:20px;padding:10px 30px'));else right.appendChild(btn(m==='online-ai'?'\u25b6 LANCER LE COMBAT CLASSÉ':'\u25b6 COMBATTRE',()=>{stage=0;start()},0,'font-size:20px;padding:10px 30px'));
 wrap.appendChild(left);wrap.appendChild(right);M.appendChild(wrap);M.appendChild(btn('\u2190 Retour',m==='online'?onlinePlayMenu:menu))}
 
-if(sbClient){sbClient.auth.getSession().then(({data})=>{onlineUser=data?.session?.user||null}).catch(()=>{});sbClient.auth.onAuthStateChange((_event,session)=>{onlineUser=session?.user||null})}
+if(sbClient){sbClient.auth.getSession().then(({data})=>{onlineUser=data?.session?.user||null}).catch(()=>{});sbClient.auth.onAuthStateChange((event,session)=>{onlineUser=session?.session?.user||session?.user||null;if(event==='PASSWORD_RECOVERY')passwordRecoveryMenu()})}
 menu();requestAnimationFrame(loop);
 </script></body></html>
