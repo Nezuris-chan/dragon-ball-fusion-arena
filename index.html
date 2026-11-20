@@ -900,10 +900,9 @@ for(const [sagaId,chapters] of Object.entries(STORY_REWRITES)){
 }
 // Les transformations majeures sont annoncées dans leur chapitre narratif d’éveil.
 const STORY_FORM_UNLOCKS={
- s2c13:['Goku','Super Saiyan'],s3c14:['Gohan','Super Saiyan 2'],s4c7:['Goku','Super Saiyan 3'],
- superc2:['Goku','Super Saiyan God'],superc12:['Goku','Ultra Instinct'],
- gt8:['Goku','Super Saiyan 4'],sup1:['Goku','Super Saiyan God'],
- cell1:['Trunks','Super Saiyan Rage'],buu8:['Gotenks','Super Saiyan 3']
+ s2c13:['Goku','Super Saiyan'],s3c14:['Gohan','Super Saiyan 2'],s4c14:['Goku','Super Saiyan 3'],
+ sup1:['Goku','Super Saiyan God'],superc12:['Goku','Ultra Instinct'],
+ gtc8:['Goku','Super Saiyan 4'],superc8:['Trunks','Super Saiyan Rage'],s4c9:['Gotenks','Super Saiyan 3']
 };
 for(const [chapterId,unlock] of Object.entries(STORY_FORM_UNLOCKS)){
  const ch=SAGAS.flatMap(s=>s.ch).find(c=>c.id===chapterId);
