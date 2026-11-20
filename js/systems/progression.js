@@ -47,3 +47,29 @@ function redeemProgressCode(){
  settingsMenu();
 }
 function settingsMenu(){dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>PARAMÈTRES</h1>';M.appendChild(row([btn('PSEUDO : '+(sv.pseudo||'Joueur'),setPlayerPseudo),btn('Effets réduits : '+(LOW?'OUI':'NON'),()=>{LOW=!LOW;try{localStorage.setItem('falow',LOW?'1':'0')}catch(e){}settingsMenu()}),btn('Musique : '+(MU?'OUI':'NON'),()=>{MU=!MU;try{localStorage.setItem('famu',MU?'1':'0')}catch(e){}music(MU);settingsMenu()}),btn('⌨ COMMANDES',()=>ctlMenu())]));M.appendChild(row([btn('CODE DE PROGRESSION',redeemProgressCode),btn('EXPORTER MA SAUVEGARDE',exportPlayerSave),btn('IMPORTER UNE SAUVEGARDE',()=>{const f=document.createElement('input');f.type='file';f.accept='.json,application/json';f.onchange=()=>{if(f.files&&f.files[0])importPlayerSave(f.files[0])};f.click()})]));M.appendChild(mk('small','Progression conservée automatiquement sur ce navigateur. Exporte régulièrement une copie de sécurité.'));M.appendChild(btn('← Retour',menu))}
+
+
+function profileMenu(){
+ const xp=Math.max(0,Number(sv.xp)||0),level=lvl(),maxLevel=100;
+ const currentThreshold=level>=maxLevel?0:250*(level-1)*level/2;
+ const nextThreshold=level>=maxLevel?currentThreshold:250*level*(level+1)/2;
+ const progress=level>=maxLevel?100:Math.max(0,Math.min(100,(xp-currentThreshold)/(nextThreshold-currentThreshold)*100));
+ const rank=rankInfo(),items=RELICS.filter(r=>sv.items.includes(r.id)),equipped=equippedRelic();
+ M.style.display='flex';M.style.background='';M.innerHTML='<h1>PROFIL RPG</h1>';
+ const panel=mk('div');panel.style.cssText='width:min(92%,560px);text-align:left;line-height:1.7;padding:12px 16px;background:#101a30;border:1px solid #357;border-radius:10px';
+ panel.innerHTML='<div style="display:flex;justify-content:space-between;gap:12px"><b>NIVEAU '+level+' / '+maxLevel+'</b><b>'+xp.toLocaleString('fr-FR')+' XP</b></div><div style="height:12px;background:#26344b;margin:8px 0;border-radius:8px;overflow:hidden"><div style="height:100%;width:'+progress+'%;background:linear-gradient(90deg,#08c,#6ef)"></div></div><small>'+(level>=maxLevel?'Niveau maximal atteint':(Math.max(0,nextThreshold-xp)).toLocaleString('fr-FR')+' XP avant le niveau '+(level+1))+'</small><hr style="border-color:#345"><b>Rang : '+rank.name+'</b><br><small>'+rank.points+' points de classement · '+(rank.next==null?'Rang maximal':(rank.next-rank.points)+' points avant le rang suivant')+'</small><hr style="border-color:#345"><b>Statistiques</b><br>Victoires : '+(Number(sv.w)||0)+'<br>Défaites : '+(Number(sv.l)||0)+'<br>Chapitres terminés : '+(Number(sv.storyClears)||0);
+ M.appendChild(panel);
+ const inv=mk('div');inv.style.cssText='width:min(92%,560px);text-align:left;padding:12px 16px;background:#101a30;border:1px solid #357;border-radius:10px';
+ inv.appendChild(mk('b','RELIQUES'));
+ inv.appendChild(mk('small',items.length? 'Équipe une relique pour bénéficier de son effet pendant les combats locaux et le mode histoire.':'Aucune relique obtenue pour le moment. Termine certains chapitres du mode Histoire pour en gagner.'));
+ if(equipped)inv.appendChild(mk('p','Équipée : '+equipped.name+' — '+equipped.desc));
+ else inv.appendChild(mk('p','Aucune relique équipée.'));
+ for(const relic of items){
+  const active=sv.equippedItem===relic.id;
+  inv.appendChild(row([btn((active?'✓ ':'')+relic.name,()=>{sv.equippedItem=active?'':relic.id;save();profileMenu()},active,'font-size:12px'),mk('small',relic.desc)]));
+ }
+ if(items.length&&equipped)inv.appendChild(btn('Retirer la relique',()=>{sv.equippedItem='';save();profileMenu()}));
+ M.appendChild(inv);
+ M.appendChild(row([btn('QUÊTES QUOTIDIENNES',dailyMenu),btn('CLASSEMENT',rankingMenu)]));
+ M.appendChild(btn('← Retour',menu));
+}
