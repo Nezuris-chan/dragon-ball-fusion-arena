@@ -22,6 +22,20 @@ small{opacity:.7;max-width:90%}
 .story-quest-card{min-width:0;text-align:left;background:rgba(8,15,38,.72);border:1px solid rgba(0,200,255,.3);border-radius:10px;padding:7px}
 .story-quest-card button{width:100%;text-align:left;font-size:12px;padding:8px}
 @media(max-width:620px){#storySagaGrid,#storyQuestGrid{grid-template-columns:minmax(0,1fr);width:94%}.story-chapters{max-height:210px}}
+
+/* Interface Fusion Arena : lisibilité, hiérarchie et navigation */
+#m{gap:12px;padding:clamp(12px,2.2vw,26px) 10px;scrollbar-color:#278cae #091226}
+#m>h1{font-size:clamp(24px,4.2vw,42px);letter-spacing:clamp(1px,.35vw,4px);margin:8px 0;text-align:center}
+#m>small{max-width:min(94%,760px);line-height:1.55;color:#c8d8f4}
+#m button{min-height:38px;max-width:min(94vw,620px);line-height:1.25;white-space:normal;overflow-wrap:anywhere}
+.story-saga{background:linear-gradient(145deg,rgba(12,27,55,.96),rgba(20,13,49,.94));border-color:rgba(73,207,255,.48);box-shadow:0 8px 24px #0007}
+.story-saga-head{min-height:42px;background:linear-gradient(100deg,#12345a,#292052);color:#eaf8ff}
+.story-chapters{max-height:340px;gap:5px}
+.story-chapters button{max-width:100%;border-radius:8px;background:rgba(19,35,64,.9);border-color:rgba(100,190,255,.35)}
+.story-chapters button:disabled{filter:grayscale(.7);cursor:not-allowed}
+.story-sub{padding:8px 7px 3px;border-bottom:1px solid #3b7b9c;color:#8fe8ff;letter-spacing:.5px}
+#storySagaGrid{width:min(98%,1120px);gap:12px}
+@media(max-width:620px){#m{justify-content:flex-start}#m>h1{margin-top:10px}.story-chapters{max-height:280px}}
 </style></head><body><div id="w"><canvas id="c" width="960" height="540"></canvas><div id="m"></div></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -336,6 +350,11 @@ Object.assign(STT,{
 });
 // ---- Extension du roster : combattants majeurs manquants ----
 const EXTRA=[
+ {n:'Zarbon',hair:'#39a879',gi:'#285e9a',aura:'#8fd',tf:'Forme monstre',fm:[['Base','#39a879','#8fd'],['Forme monstre','#286b53','#9f8']],st:[46,44,52,46,48,44,46,52,'Officier de Freezer, technique et puissant après transformation.'],mv:[['Elegant Blaster',20,26,14,30,'beam','#8fd'],['Wild Dash',24,30,10,32,'rush','#8fd'],['Monster Crusher',54,94,36,74,'nova','#9f8']]},
+ {n:'Dodoria',hair:'#d47b9d',gi:'#a94b70',aura:'#f9a',tf:'Puissance maximale',fm:[['Base','#d47b9d','#f9a'],['Puissance maximale','#d47b9d','#fff']],st:[48,30,28,54,40,48,38,30,'Soldat brutal de Freezer, lent mais solide.'],mv:[['Crusher Ball',20,26,14,30,'sphere','#f9a'],['Headbutt',26,32,8,34,'rush','#f9a'],['Dodoria Launcher',52,90,34,70,'nova','#fff']]},
+ {n:'King Cold',hair:'#b8d5e8',gi:'#4b5b88',aura:'#9cf',tf:'Forme royale',fm:[['Base','#b8d5e8','#9cf'],['Forme royale','#dceeff','#fff']],st:[52,34,58,58,54,52,56,50,'Roi de l’empire, robuste et méthodique.'],mv:[['Cold Beam',20,26,14,30,'thin','#9cf'],['Royal Impact',26,34,12,36,'rush','#9cf'],['Imperial Nova',58,98,40,80,'nova','#fff']]},
+ {n:'Videl',hair:'#33252b',gi:'#e8e5e0',aura:'#f9b',tf:'Potentiel éveillé',fm:[['Base','#33252b','#f9b'],['Potentiel éveillé','#33252b','#fff']],st:[24,50,46,26,24,44,24,52,'Artiste martiale rapide, technique et sans attaque énergétique majeure.'],mv:[['Eagle Kick',18,24,8,26,'rush','#f9b'],['Videl Rush',22,28,10,30,'rush','#f9b'],['Justice Combination',48,84,30,66,'rush','#fff']]},
+
  {n:'Android 17',hair:'#6b4b2e',gi:'#172b42',aura:'#8cf',tf:'Énergie infinie',fm:[['Base','#6b4b2e','#8cf'],['Énergie infinie','#6b4b2e','#bff']],st:[44,48,50,46,50,65,68,48,'Combattant endurant, réserve d’énergie exceptionnelle.'],mv:[['Barrier Blast',19,25,14,30,'wave','#8cf'],['Accel Driver',25,32,10,34,'rush','#8cf'],['Super Electric Strike',55,95,36,72,'beam','#bff']]},
  {n:'Android 18',hair:'#d6c49a',gi:'#d7d7df',aura:'#f9d',tf:'Énergie infinie',fm:[['Base','#d6c49a','#f9d'],['Puissance libérée','#d6c49a','#fff']],st:[42,50,50,43,48,65,68,50,'Très mobile, précise et infatigable.'],mv:[['Destructo Disc',20,26,12,28,'sword','#f9d'],['Accel Dance',24,30,8,32,'rush','#f9d'],['Infinity Bullet',54,92,34,70,'multi','#fff']]},
  {n:'Krillin',hair:'#1c1c1c',gi:'#e85b24',aura:'#fd8',tf:'Potentiel libéré',fm:[['Base','#1c1c1c','#fd8'],['Potentiel libéré','#1c1c1c','#fff']],st:[18,26,38,18,24,25,24,40,'Technique et ruse : dangereux malgré une force moindre.'],mv:[['Kienzan',18,24,10,26,'sword','#fd8'],['Taiyoken',15,20,8,24,'wave','#fff'],['Kamehameha',48,86,30,66,'beam','#fd8']]},
@@ -372,7 +391,7 @@ Object.assign(HR,{'Énergie infinie':[1.3,.2],'Puissance libérée':[1.25,.18],'
 for(const c of CH){const t=STT[c.n];for(const k of ['fo','vi','in','du','en','ed','ki','te'])t[k]=Math.max(10,Math.min(100,Math.round(t[k])));}
 for(const e of EXTRA){const c=CH.find(x=>x.n===e.n),tw=TW[c.n];c.fm=FM[c.n].map((x,i)=>{const q=FS[x.n]||[1+i*.5,.1,0],h=HR[x.n]||[1,0];return Object.assign(x,{pw:1+(q[0]-1)*tw.pw,kr:Math.min(.5,q[1]*tw.kr),dur:q[2],sp:1+.045*i*tw.sp,hm:1+(h[0]-1)*tw.hm,res:Math.min(.5,h[1]*tw.res)})});c.lk=LOOK[c.n];c.lk.pm=PM[c.n];}
 CH.forEach(c=>{
-  const t=c.st=STT[c.n];
+  const raw=STT[c.n],t=c.st=Object.assign({},raw);for(const k of ['fo','vi','in','du','en','ed','ki','te'])t[k]=Math.round(44+(Number(raw[k]||44)-44)*.68);
   // Vitesse (vi) : vitesse de déplacement, esquive et rapidité des attaques
   c.sp=+(2.6+t.vi*.036).toFixed(2);
   c.atkSpd=+(0.88+(t.vi/100)*0.36).toFixed(3);
@@ -789,7 +808,7 @@ if(f.st!=='b'){if(c.liP)doAtk(f,o,'li');else if(c.heP&&c.d&&MVS[f.c.n][3]&&f.ki>
 else if(c.spP&&f.ki>=mc(f,c.d?1:0)){const mi=c.d?1:0;f.ki-=mc(f,mi);doAtk(f,o,'sp');f.at='sp';f.mv=MV(f,mi);snd(260,.35,'triangle',.04)}
 else if(c.ulP&&f.ki>=mc(f,2)){f.ki-=mc(f,2);f.st='a';f.at='ul';f.t=0;f.atk=1;f.mv=MV(f,2);snd(180,.7,'triangle',.05);ultFx(f)}
 else if(c.trP&&f.ki>=50&&(f.fm|0)<mfm(f)){f.ki-=50;f.st='t';f.t=0}
-else if(c.tpP&&f.ki>=10&&f.cd<=0){f.ki-=10;f.st='d';f.t=0;f.inv=Math.max(10,12+(f.c.dodgeBonus||0));f.cd=Math.max(22,Math.round(45*(f.c.cdMult||1)));ghostAt(f);spark(f.x,f.y-60,'#9ff',14);ring(f.x,f.y-60,'#9ff',60);f.x=blinkAwayX(f,o);spark(f.x,f.y-60,'#9ff',14);ring(f.x,f.y-60,'#9ff',60);snd(900,.1,'sine')}else if(c.dgP&&f.cd<=0){f.st='d';f.t=0;f.inv=Math.max(12,16+(f.c.dodgeBonus||0));f.cd=Math.max(20,Math.round(40*(f.c.cdMult||1)));ghostAt(f);spark(f.x,f.y-60,'#fff',10);f.x=blinkAwayX(f,o);snd(800,.1,'sine')}}}}
+else if(c.tpP&&f.ki>=10&&f.cd<=0){f.ki-=10;f.st='d';f.t=0;f.inv=Math.max(10,12+(f.c.dodgeBonus||0));f.cd=Math.max(22,Math.round(45*(f.c.cdMult||1)));ghostAt(f);spark(f.x,f.y-60,'#9ff',14);ring(f.x,f.y-60,'#9ff',60);f.x=blinkAwayX(f,o);spark(f.x,f.y-60,'#9ff',14);ring(f.x,f.y-60,'#9ff',60);snd(900,.1,'sine')}else if(c.dgP&&f.cd<=0){f.st='d';f.t=0;f.inv=Math.max(12,16+(f.c.dodgeBonus||0));f.cd=Math.max(20,Math.round(40*(f.c.cdMult||1)));ghostAt(f);spark(f.x,f.y-60,'#fff',10);snd(800,.1,'sine')}}}}
 if(f.inputBuffer){
 const q=f.inputBuffer;
 if(G.tick>q.until)f.inputBuffer=null;
