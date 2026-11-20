@@ -52,6 +52,15 @@ function settingsMenu(){dlgNext=null;M.style.display='flex';M.style.background='
 function skillPointTotal(){return Math.max(0,(lvl()-1)*5)}
 function skillStats(){const keys=['fo','vi','in','du','en','ed','ki','te'],raw=sv.skillStats&&typeof sv.skillStats==='object'?sv.skillStats:{};const out={};let left=skillPointTotal();for(const k of keys){out[k]=Math.max(0,Math.floor(Number(raw[k])||0));left-=out[k]}if(left<0){for(const k of keys){const cut=Math.min(out[k],-left);out[k]-=cut;left+=cut;if(left===0)break}}return out}
 function skillStatBonus(k){return skillStats()[k]||0}
+const ADVENTURE_QUESTS=[
+{id:'first_win',name:'Premier pas',desc:'Remporte 1 combat (hors entraînement).',key:'wins',goal:1,xp:120,rp:15},
+{id:'fighter_3',name:'Combattant confirmé',desc:'Remporte 3 combats.',key:'wins',goal:3,xp:260,rp:30},
+{id:'story_2',name:'Protecteur des sagas',desc:'Remporte 2 combats en mode Histoire.',key:'storyWins',goal:2,xp:300,rp:35},
+{id:'hard_win',name:'Défi de guerrier',desc:'Remporte 1 combat en difficulté difficile.',key:'hardWins',goal:1,xp:220,rp:25}
+];
+function adventureState(){if(!sv.adventureQuests||typeof sv.adventureQuests!=='object')sv.adventureQuests={wins:0,storyWins:0,hardWins:0,claimed:[]};const q=sv.adventureQuests;for(const k of ['wins','storyWins','hardWins'])q[k]=Math.max(0,Number(q[k])||0);if(!Array.isArray(q.claimed))q.claimed=[];return q}
+function recordAdventureBattle(won,mode,difficulty){const q=adventureState();if(won){q.wins++;if(mode==='story')q.storyWins++;if(Number(difficulty)>=2)q.hardWins++}save()}
+function adventureMenu(){const q=adventureState();M.style.display='flex';M.style.background='';M.innerHTML='<h1>MISSIONS SECONDAIRES</h1><small>Des objectifs permanents pour faire progresser ton aventurier.</small>';for(const mission of ADVENTURE_QUESTS){const n=Math.min(mission.goal,q[mission.key]),claimed=q.claimed.includes(mission.id),ready=n>=mission.goal&&!claimed,el=mk('div');el.style.cssText='width:min(92%,560px);text-align:left;padding:12px 15px;margin:5px;background:#101a30;border:1px solid '+(claimed?'#4c8':ready?'#d9b44a':'#357')+';border-radius:10px';el.innerHTML='<b>'+mission.name+'</b> '+(claimed?'✓ RÉCOMPENSE RÉCUPÉRÉE':ready?'★ TERMINÉE':'')+'<br><small>'+mission.desc+'</small><div style="height:9px;background:#26344b;margin:8px 0;border-radius:8px;overflow:hidden"><div style="height:100%;width:'+(n/mission.goal*100)+'%;background:linear-gradient(90deg,#08c,#6ef)"></div></div><small>'+n+' / '+mission.goal+' · Récompense : '+mission.xp+' XP + '+mission.rp+' points de classement</small>';if(ready){el.appendChild(btn('RÉCUPÉRER LA RÉCOMPENSE',()=>{const state=adventureState();if(state.claimed.includes(mission.id))return;state.claimed.push(mission.id);sv.xp=(Number(sv.xp)||0)+mission.xp;sv.rp=(Number(sv.rp)||0)+mission.rp;save();adventureMenu()}))}M.appendChild(el)}M.appendChild(mk('small','Les missions et leurs récompenses sont conservées dans ta sauvegarde.'));M.appendChild(btn('← Retour',menu))}
 function profileMenu(){
  const xp=Math.max(0,Number(sv.xp)||0),level=lvl(),maxLevel=100;
  const currentThreshold=level>=maxLevel?0:250*(level-1)*level/2;
