@@ -1,0 +1,46 @@
+
+:root{--bg:#07070f;--fg:#e8ecff;--ac:#00c8ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root{--bg:#07070f;--fg:#e8ecff}}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:system-ui,sans-serif}
+#w{position:fixed;inset:0;width:100vw;height:100dvh;max-width:none;margin:0;overflow:hidden;background:#050711}canvas{width:100%;height:100%;display:block;background:#000;object-fit:fill;filter:saturate(1.1) contrast(1.025);will-change:transform}#m{position:absolute;inset:0;width:100%;height:100%;overflow-y:auto}
+#m{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(5,5,15,.88);gap:10px;text-align:center}
+h1{margin:0;font-size:clamp(22px,5vw,44px);letter-spacing:4px;color:var(--ac);text-shadow:0 0 20px var(--ac)}
+button{background:#111a33;color:var(--fg);border:1px solid var(--ac);padding:8px 16px;font-size:15px;cursor:pointer;margin:3px}
+button:hover,button.on{background:var(--ac);color:#000}button{border-radius:10px;background:linear-gradient(145deg,#172747,#0b1228);border-color:rgba(0,200,255,.65);box-shadow:0 4px 14px #0006}button:focus-visible{outline:2px solid #fff;outline-offset:3px}#m{justify-content:flex-start;padding:10px 0;box-sizing:border-box}button{transition:transform .15s,box-shadow .15s}button:hover{transform:translateY(-2px) scale(1.05);box-shadow:0 0 14px var(--ac)}#m{background:linear-gradient(120deg,rgba(5,5,15,.62),rgba(18,18,58,.62),rgba(42,10,74,.62),rgba(5,5,15,.62));background-size:300% 300%;animation:bgm 12s ease infinite;overflow:auto}@keyframes bgm{50%{background-position:100% 50%}}#m>*:not(h1){animation:sl .3s ease both}@keyframes sl{from{opacity:0;transform:translateY(10px)}}h1{animation:pl 2.4s ease-in-out infinite}@keyframes pl{50%{text-shadow:0 0 38px var(--ac),0 0 6px #fff}}.row{display:flex;flex-wrap:wrap;justify-content:center}
+small{opacity:.7;max-width:90%}
+
+/* Interface histoire en panneaux/colonnes, adaptée aux petits écrans */
+#storySagaGrid,#storyQuestGrid{width:min(96%,900px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px;align-items:start;margin:4px auto}
+.story-saga{min-width:0;text-align:left;background:rgba(8,15,38,.72);border:1px solid rgba(0,200,255,.35);border-radius:12px;padding:8px;box-shadow:0 4px 18px #0005}
+.story-saga-head{width:100%;margin:0;text-align:left;font-weight:800;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.story-chapters{display:flex;flex-direction:column;gap:3px;margin-top:6px;max-height:245px;overflow-y:auto;overscroll-behavior:contain;padding-right:3px}
+.story-chapters button{width:100%;text-align:left;margin:1px 0;padding:7px 10px;font-size:13px}
+.story-sub{color:#8fe8ff;font-size:11px;font-weight:800;padding:5px 5px 1px}
+.story-quest-card{min-width:0;text-align:left;background:rgba(8,15,38,.72);border:1px solid rgba(0,200,255,.3);border-radius:10px;padding:7px}
+.story-quest-card button{width:100%;text-align:left;font-size:12px;padding:8px}
+@media(max-width:620px){#storySagaGrid,#storyQuestGrid{grid-template-columns:minmax(0,1fr);width:94%}.story-chapters{max-height:210px}}
+
+/* Interface Fusion Arena : lisibilité, hiérarchie et navigation */
+#m{gap:12px;padding:clamp(12px,2.2vw,26px) 10px;scrollbar-color:#278cae #091226}
+#m>h1{font-size:clamp(24px,4.2vw,42px);letter-spacing:clamp(1px,.35vw,4px);margin:8px 0;text-align:center}
+#m>small{max-width:min(94%,760px);line-height:1.55;color:#c8d8f4}
+#m button{min-height:38px;max-width:min(94vw,620px);line-height:1.25;white-space:normal;overflow-wrap:anywhere}
+.story-saga{background:linear-gradient(145deg,rgba(12,27,55,.96),rgba(20,13,49,.94));border-color:rgba(73,207,255,.48);box-shadow:0 8px 24px #0007}
+.story-saga-head{min-height:42px;background:linear-gradient(100deg,#12345a,#292052);color:#eaf8ff}
+.story-chapters{max-height:340px;gap:5px}
+.story-chapters button{max-width:100%;border-radius:8px;background:rgba(19,35,64,.9);border-color:rgba(100,190,255,.35)}
+.story-chapters button:disabled{filter:grayscale(.7);cursor:not-allowed}
+.story-sub{padding:8px 7px 3px;border-bottom:1px solid #3b7b9c;color:#8fe8ff;letter-spacing:.5px}
+#storySagaGrid{width:min(98%,1120px);gap:12px}
+@media(max-width:620px){#m{justify-content:flex-start}#m>h1{margin-top:10px}.story-chapters{max-height:280px}}
+/* Refonte visuelle globale : menus, cartes, boutons et lisibilité */
+#m{background:radial-gradient(ellipse at 50% 0%,rgba(38,92,160,.22),transparent 58%),linear-gradient(160deg,rgba(4,9,24,.97),rgba(10,17,39,.97));backdrop-filter:blur(10px)}
+#m button{border:1px solid rgba(105,190,255,.48);border-radius:10px;background:linear-gradient(180deg,rgba(38,65,111,.96),rgba(15,29,59,.98));box-shadow:0 4px 12px #0005,inset 0 1px #ffffff16;transition:transform .14s ease,border-color .14s ease,filter .14s ease}
+#m button:hover:not(:disabled){transform:translateY(-2px);border-color:#8fe8ff;filter:brightness(1.18);box-shadow:0 7px 18px #0008,0 0 14px #38bfff22}
+#m button:active:not(:disabled){transform:translateY(0) scale(.985)}
+#m button:disabled{filter:saturate(.55);opacity:.5}
+#storySagaGrid,#storyQuestGrid{gap:14px}
+.story-saga,.story-quest-card{border-radius:14px;background:linear-gradient(145deg,rgba(13,30,61,.97),rgba(17,17,45,.96));border:1px solid rgba(87,190,255,.42);box-shadow:0 10px 28px #0006,inset 0 1px #ffffff0c}
+.story-saga-head{padding:10px 12px;border-radius:9px;background:linear-gradient(100deg,#174d78,#33235f);letter-spacing:.2px}
+.story-chapters button{background:linear-gradient(100deg,rgba(24,47,82,.95),rgba(20,26,54,.95));border-color:rgba(95,165,220,.28)}
+.story-chapters button:hover:not(:disabled){background:linear-gradient(100deg,#205b83,#40316d)}
