@@ -1294,7 +1294,7 @@ async function setPlayerPseudo(){const value=prompt('Choisis ton pseudo public (
 function redeemProgressCode(){
  const code=(prompt('Entre ton code de progression :')||'').trim().toUpperCase();
  if(!code)return;
- const validCode='FUSION-SUPER1';
+ const validCode='FUSION-AVANTSUPER';
  if(code!==validCode){alert('Code invalide. Vérifie les caractères et réessaie.');return}
  sv.redeemedCodes=Array.isArray(sv.redeemedCodes)?sv.redeemedCodes:[];
  if(sv.redeemedCodes.includes(validCode)){alert('Ce code a déjà été utilisé sur cette sauvegarde.');return}
@@ -1318,15 +1318,17 @@ function redeemProgressCode(){
   if(relic&&!sv.items.includes(relic.id)){sv.items.push(relic.id);unlockedItems.push(relic.name)}
  }
  sv.xp=Math.max(0,Number(sv.xp)||0)+gainedXP;
+ const preSuperSagaIds=['s0','s1','s2','s3','s4','daima'];
+ const preSuperNames=new Set(preSuperSagaIds.flatMap(id=>{
+  const saga=SAGAS.find(x=>x.id===id);
+  return [...(STORY_ROSTERS[id]||[]),...(saga?saga.ch.flatMap(c=>[c.en,...(c.players||[])].filter(Boolean)):[])];
+ }));
  let formCount=0;
- for(const ch of CH){
-  const forms=Array.isArray(ch.fm)?ch.fm:[];
+ for(const name of preSuperNames){
+  const forms=FM[name];
+  if(!Array.isArray(forms))continue;
   const max=Math.max(0,forms.length-1);
-  const old=Number(S.forms[ch.n])||0;if(max>old){S.forms[ch.n]=max;formCount+=max-old}
- }
- // Le catalogue contient aussi des formes de personnages qui ne sont pas forcément dans CH.
- for(const [name,forms] of Object.entries(FM)){
-  const max=Math.max(0,forms.length-1),old=Number(S.forms[name])||0;
+  const old=Number(S.forms[name])||0;
   if(max>old){S.forms[name]=max;formCount+=max-old}
  }
  sv.redeemedCodes.push(validCode);
