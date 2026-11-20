@@ -36,6 +36,17 @@ small{opacity:.7;max-width:90%}
 .story-sub{padding:8px 7px 3px;border-bottom:1px solid #3b7b9c;color:#8fe8ff;letter-spacing:.5px}
 #storySagaGrid{width:min(98%,1120px);gap:12px}
 @media(max-width:620px){#m{justify-content:flex-start}#m>h1{margin-top:10px}.story-chapters{max-height:280px}}
+/* Refonte visuelle globale : menus, cartes, boutons et lisibilité */
+#m{background:radial-gradient(ellipse at 50% 0%,rgba(38,92,160,.22),transparent 58%),linear-gradient(160deg,rgba(4,9,24,.97),rgba(10,17,39,.97));backdrop-filter:blur(10px)}
+#m button{border:1px solid rgba(105,190,255,.48);border-radius:10px;background:linear-gradient(180deg,rgba(38,65,111,.96),rgba(15,29,59,.98));box-shadow:0 4px 12px #0005,inset 0 1px #ffffff16;transition:transform .14s ease,border-color .14s ease,filter .14s ease}
+#m button:hover:not(:disabled){transform:translateY(-2px);border-color:#8fe8ff;filter:brightness(1.18);box-shadow:0 7px 18px #0008,0 0 14px #38bfff22}
+#m button:active:not(:disabled){transform:translateY(0) scale(.985)}
+#m button:disabled{filter:saturate(.55);opacity:.5}
+#storySagaGrid,#storyQuestGrid{gap:14px}
+.story-saga,.story-quest-card{border-radius:14px;background:linear-gradient(145deg,rgba(13,30,61,.97),rgba(17,17,45,.96));border:1px solid rgba(87,190,255,.42);box-shadow:0 10px 28px #0006,inset 0 1px #ffffff0c}
+.story-saga-head{padding:10px 12px;border-radius:9px;background:linear-gradient(100deg,#174d78,#33235f);letter-spacing:.2px}
+.story-chapters button{background:linear-gradient(100deg,rgba(24,47,82,.95),rgba(20,26,54,.95));border-color:rgba(95,165,220,.28)}
+.story-chapters button:hover:not(:disabled){background:linear-gradient(100deg,#205b83,#40316d)}
 </style></head><body><div id="w"><canvas id="c" width="960" height="540"></canvas><div id="m"></div></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -400,7 +411,7 @@ CH.forEach(c=>{
   c.lk.pm=+(0.42+(t.fo/100)*0.55).toFixed(3);
   c.pw=(c.pw||1)*(0.48+(t.fo/100)*0.52);
   // Durabilité (du) : PV max et résistance aux dégâts
-  c.hb=+(0.90+(t.du/100)*0.40).toFixed(3);
+  c.hb=+(0.92+Math.max(0,Math.min(1,(t.du-25)/45))*0.20).toFixed(3);
   c.br=Math.max(0,Math.min(0.45,(t.du-10)/160));
   // Énergie (en) : puissance des attaques spéciales
   c.enMult=+(0.45+(t.en/100)*0.55).toFixed(3);
@@ -731,7 +742,8 @@ const chained=f.chainWindow>0&&f.chainStep>0;
 const techBonus=f.c.techComboMult||1;
 if(t==='li'){f.comboStep=chained?Math.min(4,f.chainStep+1):1;f.comboMult=[1,1.08,1.16,1.28][f.comboStep-1]*(f.comboStep>1?techBonus:1);f.finisher=0}
 else if(t==='he'){f.comboStep=0;f.finisher=chained&&f.chainStep>=2?1:0;f.comboMult=(f.finisher?1.24:1)*(f.finisher?techBonus:1)}
-else if(t==='sp'){f.comboStep=0;f.finisher=0;f.comboMult=(chained&&f.chainStep>=2?1.12:1)*techBonus}
+else if(t==='sp'){f.comboStep=0;f.finisher=chained&&f.chainStep>=2?2:0;f.comboMult=(f.finisher?1.28:1)*techBonus;if(f.finisher)G.ann={t:58,s:'COMBO SPÉCIAL !',c:'#7df',big:true}}
+else if(t==='ul'){f.comboStep=0;f.finisher=chained&&f.chainStep>=3?3:0;f.comboMult=(f.finisher?1.38:1)*techBonus;if(f.finisher)G.ann={t:72,s:'COMBO ULTIME !',c:'#fd6',big:true}}
 else{f.comboStep=0;f.finisher=0;f.comboMult=1}
 f.st='a';f.mvFired=0;f.ultBreaks=0;f.charged=t==='he'&&!!f.heCharged;f.atk=ATK[f.charged?'hc':t];f.av=f.ct>0?((f.av|0)+1)%3:0;f.t=0;f.hit=0;f.at=t;if(f.finisher){G.ann={t:55,s:'FINISHER DE COMBO !',c:'#fd6',big:true};spark(f.x,f.y-60,'#fd6',18,8)}if(f.charged){G.ann={t:65,s:'ATTAQUE LOURDE CHARGÉE !',c:'#fd6',big:true};spark(f.x,f.y-60,'#fd6',26,10);ring(f.x,f.y-60,'#fd6',100)}snd(t=='he'?160:300,.1,'sawtooth')}
 function dmg(v,a,n,kb,stun){if(v.inv>0||v.hp<=0)return false;
@@ -741,7 +753,7 @@ if(v.st==='a'&&v.at==='ul'&&a!==v){const heavy=a.at==='he',strength=(n/(a.at==='
 const statOff=isSpec?(a.c.enMult||1):(a.c.pw||1);
 const parryCtr=a.counterBoost?1.25:1;
 a.counterBoost=0;
-let d=n*0.72*statOff*Math.pow(a.f$.pw,.85)*a.bn*parryCtr*(1-v.f$.res)*(1-(v.c.br||0))/Math.pow(v.f$.pw,.55)*(a.comboMult||1)*(a.itemStats?.damage||1)*(v.itemStats?.resist||1);
+let d=n*0.72*statOff*Math.pow(a.f$.pw,.85)*a.bn*parryCtr*(1-v.f$.res)*(1-(v.c.br||0))/Math.pow(v.f$.pw,.55)*(a.comboMult||1)*(a.itemStats?.damage||1)*(v.itemStats?.resist||1);d=Math.min(d,isSpec?(a.at==='ul'?2600:1550):1250);
 if(v.st==='b'&&v.guardBreak<=0&&((v.face>0)==(a.x>v.x))){d*=.15;v.vx=-v.face*Math.max(2,kb*.7);a.vx=-v.face*Math.max(3,kb*.55);a.st='h';a.t=0;a.stun=7;v.guardMeter=Math.max(0,v.guardMeter-(a.at==='he'?20:(a.at==='sp'||a.at==='ul'?24:11)));if(v.guardMeter<=0){v.guardBreak=72;v.guardMeter=30;v.st='h';v.t=0;v.stun=34;v.vx=-v.face*8;G.ann={t:60,s:'GARDE BRISÉE !',c:'#f66',big:true};spark(v.x,v.y-60,'#f66',24,10);ring(v.x,v.y-60,'#f66',100)}spark(v.x+v.face*30,v.y-60,'#9ff',8);snd(120,.1,'triangle');v.ki=Math.min(100,v.ki+3);}
 else{v.st='h';v.t=0;v.stun=stun;v.vx=(v.x>a.x?1:-1)*kb;v.vy=-3;a.combo++;a.ct=82;shake=Math.max(shake,kb);spark(v.x,v.y-60,'#ff8',12);ring(v.x,v.y-60,'#ffe',24+kb*3);G.hst=Math.max(G.hst||0,n>10?5:3);snd(90,.15,'sawtooth',.08);
 // Une quatrième frappe légère projette l'adversaire ; lourd/spécial terminent la chaîne.
