@@ -767,7 +767,7 @@ else if(c.spP&&f.ki>=mc(f,c.d?1:0)){const mi=c.d?1:0;f.ki-=mc(f,mi);doAtk(f,o,'s
 else if(c.ulP&&f.ki>=mc(f,2)){f.ki-=mc(f,2);f.st='a';f.at='ul';f.t=0;f.atk=1;f.mv=MV(f,2);snd(180,.7,'triangle',.05);ultFx(f)}
 else if(c.trP&&f.ki>=50&&(f.fm|0)<mfm(f)){f.ki-=50;f.st='t';f.t=0}
 else if(c.tpP&&f.ki>=10&&f.cd<=0){f.ki-=10;f.st='d';f.t=0;f.inv=Math.max(10,12+(f.c.dodgeBonus||0));f.cd=Math.max(22,Math.round(45*(f.c.cdMult||1)));ghostAt(f);spark(f.x,f.y-60,'#9ff',14);ring(f.x,f.y-60,'#9ff',60);f.x=blinkAwayX(f,o);spark(f.x,f.y-60,'#9ff',14);ring(f.x,f.y-60,'#9ff',60);snd(900,.1,'sine')}else if(c.dgP&&f.cd<=0){f.st='d';f.t=0;f.inv=Math.max(12,16+(f.c.dodgeBonus||0));f.cd=Math.max(20,Math.round(40*(f.c.cdMult||1)));ghostAt(f);spark(f.x,f.y-60,'#fff',10);f.x=blinkAwayX(f,o);snd(800,.1,'sine')}}}}
-if(cfg.mode!=='online'&&f.inputBuffer){
+if(f.inputBuffer){
 const q=f.inputBuffer;
 if(G.tick>q.until)f.inputBuffer=null;
 else if(f.st==='i'||f.st==='r'){
