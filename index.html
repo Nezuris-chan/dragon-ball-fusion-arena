@@ -1322,7 +1322,7 @@ function redeemProgressCode(){
  for(const ch of CH){
   const forms=Array.isArray(ch.fm)?ch.fm:[];
   const max=Math.max(0,forms.length-1);
-  if(max>Number(S.forms[ch.n]||0)){S.forms[ch.n]=max;formCount+=max-Number(S.forms[ch.n]||0)}
+  const old=Number(S.forms[ch.n])||0;if(max>old){S.forms[ch.n]=max;formCount+=max-old}
  }
  // Le catalogue contient aussi des formes de personnages qui ne sont pas forcément dans CH.
  for(const [name,forms] of Object.entries(FM)){
