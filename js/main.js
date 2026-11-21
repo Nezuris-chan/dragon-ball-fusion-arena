@@ -84,6 +84,7 @@ G=MG;try{MG.tick++;const a=MG.a,b=MG.b;a.fm=Math.min(cfg.sf|0,a.c.fm.length-1);a
 function rankingMenu(){const r=rankInfo();M.style.display='flex';M.style.background='';M.innerHTML='<h1>CLASSEMENT</h1><div style="width:min(92%,520px);text-align:left;line-height:1.9"><b>Rang local : '+r.name+'</b><br>Niveau : '+lvl()+' · XP : '+sv.xp+'<br>Points de classement : '+r.points+'<br>Victoires : '+sv.w+' · Défaites : '+sv.l+'<br><div style="height:12px;background:#18243d;border:1px solid #00c8ff;margin:8px 0"><div style="height:100%;width:'+r.progress+'%;background:linear-gradient(90deg,#00c8ff,#b6f)"></div></div>'+(r.next?'Prochain rang dans '+(r.next-r.points)+' points':'Rang maximal atteint')+'<p style="color:#9eabc8">Ce classement est enregistré dans ce navigateur. Il ne s’agit pas encore d’un classement mondial en ligne.</p></div>';M.appendChild(btn('← Retour',menu))}
 function openGuide(){window.open('guide.html','_blank','noopener')}
 function menu(){
+ adventureWalkStop();
  dlgNext=null;music(MU,'menu');M.style.display='flex';M.style.background='';M.classList.remove('story-screen','mode-screen');M.innerHTML='';
  const r=rankInfo(),xp=Math.max(0,Number(sv.xp)||0),wins=Math.max(0,Number(sv.w)||0);
  const shell=mk('section');shell.className='menu-shell';
