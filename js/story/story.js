@@ -542,6 +542,19 @@ films:[
 ["Le dernier souhait","Turles","La paix retrouvée","Les héros affrontent une dernière menace cinématographique avant de retrouver la paix."]
 ]
 };
+
+/* Titres homogènes : chaque chapitre garde son intitulé distinct, sans préfixes répétitifs. */
+const STORY_TITLE_POLISH={
+ superhero1:"Piccolo infiltre le quartier général",superhero2:"Les nouveaux héros artificiels",superhero3:"Piccolo éveille sa forme Orange",superhero4:"Pan au cœur du complot",superhero5:"Gohan contre Gamma 1",superhero6:"Le laboratoire du docteur Hedo",superhero7:"Le plan de Magenta",superhero8:"Piccolo contre Gamma 2",superhero9:"Cell Max est libéré",superhero10:"Gamma 2 choisit son camp",superhero11:"Piccolo Orange contre Cell Max",superhero12:"Gohan protège Piccolo",superhero13:"L’éveil de Gohan Beast",superhero14:"Gohan Beast contre Cell Max",superhero15:"Le dernier assaut contre Cell Max",superhero16:"La relève des super-héros",
+ lt1:"Le défi de Hit",lt2:"La puissance de Kefla",lt3:"Le mur nommé Jiren",lt4:"Le jugement de Beerus",lt5:"Le dernier test de Whis",lt6:"Le rival ultime",
+ cus1:"Rivalité : le premier défi",cus2:"Puissance déchaînée",cus3:"Le défi des dieux"
+};
+for(const saga of SAGAS) saga.ch.forEach((ch,i)=>{
+ const polished=STORY_TITLE_POLISH[ch.id];
+ if(polished)ch.t="Chapitre "+String(i+1).padStart(2,"0")+" · "+polished;
+ else if(ch.t)ch.t=ch.t.replace(/^(?:Chapitre|Sous-chapitre|Épisode personnalisé)\s*\d+\s*:\s*/i,"").replace(/^Combat secret\s*:\s*/i,"Bonus · ").replace(/^Entraînement bonus\s*:\s*/i,"Bonus · ");
+});
+
 const STORY_DIALOGUE_VOICES={
  Raditz:"Je suis venu chercher le dernier Saiyan. Tu ne peux pas échapper à ton héritage.",
  "Roi Kaï":"Ton entraînement n'est pas terminé. Montre-moi que tu as compris la leçon.",
