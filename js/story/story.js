@@ -235,6 +235,7 @@ SAGAS.push({id:'superhero',name:'Dragon Ball Super — SUPER HERO',ch:[
  {id:'superhero5',sub:'La forme Beast',t:'Chapitre 5 : L’éveil de Gohan Beast',req:'superhero4',en:'Cell',emf:1,ar:5,df:2,xp:700,ob:{all:[{k:'hp',v:.3},{k:'ki',v:25}],txt:'Finir avec au moins 30 % de vie et 25 Ki'},pre:[['Narration','En voyant Piccolo tomber face à Cell Max, Gohan libère une puissance qu’il n’avait jamais révélée.'],['Gohan','Tu as fait du mal à Piccolo… Je ne retiendrai plus ma puissance !'],['Narration','Le pouvoir Beast s’éveille.']],post:[['Narration','Cell Max est vaincu. Piccolo Orange et Gohan Beast ont changé le cours du combat.']]}
 ]});
 STORY_SAGA_REQ.superhero='filmsc10';
+const shIndex=SAGAS.findIndex(s=>s.id==='superhero'),filmIndex=SAGAS.findIndex(s=>s.id==='films'),trialIndex=SAGAS.findIndex(s=>s.id==='legendary_trials');if(shIndex>=0&&filmIndex>=0&&trialIndex>=0&&shIndex>trialIndex){const shSaga=SAGAS.splice(shIndex,1)[0];SAGAS.splice(trialIndex,0,shSaga);}
 // Réécriture narrative complète des 12 sagas principales : chronologie, adversaires et dialogues.
 const STORY_REWRITES={
 s1:[
@@ -470,7 +471,7 @@ for(const [sagaId,chapters] of Object.entries(STORY_REWRITES)){
 // Les transformations majeures sont annoncées dans leur chapitre narratif d’éveil.
 const STORY_FORM_UNLOCKS={
  s2c13:['Goku','Super Saiyan'],s3c14:['Gohan','Super Saiyan 2'],s4c9:['Gohan','Potentiel libéré (Ultimate)'],s4c14:['Goku','Super Saiyan 3'],
- sup1:['Goku','Super Saiyan God'],sup4:['Goku','Ultra Instinct'],superc16:['Goku','Ultra Instinct maîtrisé'],superhero3:['Piccolo','Piccolo Orange'],superhero5:['Gohan','Beast'],
+ sup1:['Goku','Super Saiyan God'],sup4:['Goku','Ultra Instinct'],sup4:['Goku','Ultra Instinct'],superc16:['Goku','Ultra Instinct maîtrisé'],superhero3:['Piccolo','Piccolo Orange'],superhero5:['Gohan','Beast'],
  gtc8:['Goku','Super Saiyan 4'],superc14:['Trunks','Super Saiyan Rage'],s4c11:['Gotenks','Super Saiyan 3']
 };
 for(const [chapterId,unlock] of Object.entries(STORY_FORM_UNLOCKS)){
@@ -526,7 +527,7 @@ const STORY_CHAPTER_RULE_GROUPS=[
  {ids:['db1'],players:['Goku','Krillin','Yamcha','Muten Roshi'],forms:{Goku:0,Krillin:0,Yamcha:0,'Muten Roshi':0}},
  {ids:['db2'],players:['Goku','Yamcha'],forms:{Goku:0,Yamcha:0}},
  {ids:['db3'],players:['Goku','Krillin','Yamcha','Muten Roshi','Tenshinhan'],forms:{Goku:0,Krillin:0,Yamcha:0,'Muten Roshi':0,Tenshinhan:0}},
- {ids:['db4','db5'],players:['Goku','Krillin','Yamcha','Muten Roshi','Tenshinhan'],forms:{Goku:0,Krillin:0,Yamcha:0,'Muten Roshi':0,Tenshinhan:0}},
+ {ids:['db4','db5'],players:['Goku','Yamcha','Muten Roshi','Tenshinhan'],forms:{Goku:0,Yamcha:0,'Muten Roshi':0,Tenshinhan:0}},
  {ids:['s0c6'],players:['Goku','Yamcha'],forms:{Goku:0,Yamcha:0}},
  {ids:['s0c7','s0c8','s0c9'],players:['Goku','Krillin','Yamcha','Muten Roshi'],forms:{Goku:0,Krillin:0,Yamcha:0,'Muten Roshi':0}},
  {ids:['s0c10','s0c11','s0c12'],players:['Goku','Krillin','Yamcha','Muten Roshi'],forms:{Goku:0,Krillin:0,Yamcha:0,'Muten Roshi':0}},
@@ -534,17 +535,17 @@ const STORY_CHAPTER_RULE_GROUPS=[
  {ids:['s0c15','s0c16'],players:['Goku','Krillin','Yamcha','Muten Roshi','Tenshinhan'],forms:{Goku:0,Krillin:0,Yamcha:0,'Muten Roshi':0,Tenshinhan:0}},
  {ids:['db9','db10'],players:['Goku','Krillin','Yamcha','Muten Roshi','Tenshinhan','Piccolo'],forms:{Goku:0,Krillin:0,Yamcha:0,'Muten Roshi':0,Tenshinhan:0,Piccolo:0}},
  // Fin de la saga Saiyan : après l'arrivée de Nappa, Goku rejoint le combat et Piccolo/Yamcha sont déjà tombés.
- {ids:['s1c6','s1c8'],players:['Goku','Gohan','Krillin','Tenshinhan'],forms:{Goku:0,Gohan:0,Krillin:0,Tenshinhan:0}},
+ {ids:['s1c6','s1c8'],players:['Goku','Gohan','Krillin'],forms:{Goku:0,Gohan:0,Krillin:0}},
  {ids:['s1c7'],players:['Goku'],forms:{Goku:0}},
  {ids:['s1c9','s1c10','s1c11'],players:['Goku','Gohan','Krillin'],forms:{Goku:0,Gohan:0,Krillin:0}},
  {ids:['s1c13'],players:['Gohan','Krillin','Vegeta'],forms:{Gohan:0,Krillin:0,Vegeta:0}},
  {ids:['s1c14','s1c15'],players:['Gohan','Krillin'],forms:{Gohan:0,Krillin:0}},
- {ids:['s1c16'],players:['Goku','Gohan','Krillin'],forms:{Goku:0,Gohan:0,Krillin:0}},
+ {ids:['s1c16'],players:['Gohan','Krillin'],forms:{Gohan:0,Krillin:0}},
  {ids:['superhero1'],players:['Piccolo','Pan'],forms:{Piccolo:0,Pan:0}},
  {ids:['superhero2'],players:['Piccolo','Gohan','Pan'],forms:{Piccolo:0,Gohan:3,Pan:0}},
- {ids:['superhero3'],players:['Piccolo','Gohan','Pan'],forms:{Piccolo:0,Gohan:3,Pan:0}},
+ {ids:['superhero3'],players:['Piccolo'],forms:{Piccolo:0}},
  {ids:['superhero4'],players:['Piccolo','Gohan','Pan','Gamma 1','Gamma 2'],forms:{Piccolo:1,Gohan:3,Pan:0,'Gamma 1':0,'Gamma 2':0}},
- {ids:['superhero5'],players:['Gohan','Piccolo','Pan','Gamma 1'],forms:{Gohan:3,Piccolo:1,Pan:0,'Gamma 1':0}}
+ {ids:['superhero5'],players:['Gohan'],forms:{Gohan:3}}
 ];
 const vegitoChapter=SAGAS.flatMap(saga=>saga.ch).find(item=>item.id==='s4c15');
 if(vegitoChapter){vegitoChapter.en='Majin Buu';vegitoChapter.pre=[['Narration','Goku et Vegeta utilisent les Potaras. La fusion donne naissance à Vegetto, prêt à affronter Buu.'],['Vegetto','La fusion est terminée. Buu, je vais mettre fin à tes actes !']];vegitoChapter.post=[['Vegetto','Ce n’est pas encore terminé, mais nous avons repris l’avantage.'],['Narration','La puissance de Vegetto permet aux héros de reprendre espoir.']];}
@@ -589,7 +590,6 @@ const FORM_QUESTS=[
  {character:'Gogeta',index:2,name:'Super Saiyan Blue',chapter:'sup5'},
  {character:'Vegetto',index:1,name:'Super Saiyan',chapter:'buu3'},
  {character:'Vegetto',index:2,name:'Super Saiyan Blue',chapter:'superc15'},
- {character:'Cell',index:1,name:'Cell Max',chapter:'superhero4'},
  {character:'Beerus',index:1,name:'Destruction',chapter:'sup1'},
  {character:'Jiren',index:1,name:'Full Power',chapter:'sup4'}
 ];
@@ -608,6 +608,7 @@ for(const [character,forms] of Object.entries(FM)){
  for(let index=1;index<forms.length;index++){
   if(known.has(index))continue;
   const form=forms[index],name=form.n;
+  if(character==='Cell'&&name==='Cell Max')continue;
   const chapter=FORM_CHAPTER_BY_CHARACTER[character]||'sup5';
   FORM_QUESTS.push({character,index,name,chapter});
  }
