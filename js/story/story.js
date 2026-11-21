@@ -484,8 +484,8 @@ gt:[
 ["La naissance de Super C-17","Omega Shenron","Le cyborg ultime","C-17 et son double de l’Enfer fusionnent pour devenir Super C-17. Goku doit trouver comment contourner son absorption d’énergie."],
 ["La bataille contre Super C-17","Omega Shenron","L’union des cyborgs","Goku affronte Super C-17 tandis que les alliés cherchent une faille dans sa défense. La crise annonce déjà un déséquilibre plus profond."],
 ["Les Dragon Balls maléfiques","Omega Shenron","Le prix des souhaits","Les Dragon Balls libèrent les conséquences de l’énergie négative accumulée au fil des souhaits. Les dragons maléfiques apparaissent."],
-["Les dragons maléfiques","Omega Shenron","Le prix des souhaits","Les Dragon Balls libèrent les conséquences de l’énergie négative accumulée au fil des souhaits. Syn Shenron apparaît et devient la plus grande menace."],
-["Vegeta et Gogeta Super Saiyan 4","Omega Shenron","Le dernier Genkidama","Vegeta atteint le Super Saiyan 4 grâce aux ondes Blutz. Goku et Vegeta fusionnent ensuite en Gogeta Super Saiyan 4 pour affronter Omega Shenron et conclure la bataille."]
+["Vegeta atteint le Super Saiyan 4","Vegeta","Les ondes Blutz de Bulma","Bulma permet à Vegeta de retrouver une queue grâce aux ondes Blutz. Le prince atteint le Super Saiyan 4 et rejoint le combat contre les dragons maléfiques."],
+["Gogeta Super Saiyan 4 contre Omega Shenron","Omega Shenron","Le dernier Genkidama","Goku et Vegeta exécutent la danse de fusion et deviennent Gogeta Super Saiyan 4. Ils affrontent Omega Shenron tandis que l’univers rassemble son énergie pour l’ultime attaque."]
 ],
 af:[
 ["Le retour d’un Saiyan oublié","Bardock","Une anomalie temporelle","Une distorsion ramène un guerrier du passé et bouleverse la chronologie."],
