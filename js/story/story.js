@@ -265,8 +265,8 @@ for(const sg of SAGAS){
    req:sg.ch[sg.ch.length-1].id,en:item.en,ar:item.ar,df:item.df,xp:item.xp,
    players:roster.filter(name=>CH.some(x=>x.n===name)),
    ob:item.k==='all'?{all:[{k:'hp',v:.25},{k:'ki',v:20}],txt:item.txt}:{k:item.k,v:item.v,txt:item.txt},
-   pre:[['Narration',item.intro], [item.en,'Tu ne passeras pas ! Montre-moi ce que tu sais faire.'], ['Goku','Je ne reculerai pas. Ce combat doit avoir un sens !']],
-   post:[[item.en,'Je reconnais ta détermination. Ce combat n’est pas terminé pour autant.'],['Narration','Une nouvelle étape de cette aventure attend le combattant.']]
+   pre:[['Narration',item.intro+' '+item.title+' devient le prochain tournant de cette saga.'], [item.en,'Tu as suivi cette piste jusqu’ici. Si tu veux continuer, tu devras me vaincre !'], ['Goku','Je ne me suis pas entraîné pour abandonner maintenant. Je vais protéger mes amis et aller jusqu’au bout.']],
+   post:[[item.en,'Tu as remporté ce duel, mais ne crois pas que toutes les menaces ont disparu.'],['Narration','Après '+item.title.toLowerCase()+', le groupe peut poursuivre son objectif avec une nouvelle détermination.']]
   };
   sg.ch.push(entry);
  }
@@ -275,7 +275,7 @@ for(const sg of SAGAS){
 // Deux missions inédites prolongent la campagne Dragon Ball avant l'arrivée des Saiyans.
 const dbSaga=SAGAS.find(s=>s.id==='s0');
 dbSaga.ch.push(
- {id:'db9',sub:'Arc bonus — Les arts martiaux',t:'Chapitre 9 : Le retour du tournoi',req:'db8',en:'Tenshinhan',ar:1,df:1,xp:300,ob:{k:'time',v:20,txt:'Gagner avec au moins 20 secondes restantes'},pre:[['Narration','Après ses premières grandes aventures, Goku retrouve ses rivaux lors d’un nouveau défi.'],['Tenshinhan','Tu as progressé, mais je ne compte pas te laisser gagner.'],['Goku','Parfait ! Un vrai combat nous fera progresser tous les deux.']],post:[['Tenshinhan','Tu as gagné cette fois. Je vais reprendre mon entraînement.'],['Narration','Une nouvelle menace se prépare loin du tournoi.']]},
+ {id:'db9',sub:'Arc bonus — Les arts martiaux',t:'Chapitre 9 : Le retour du tournoi',req:'s0c8',en:'Tenshinhan',ar:1,df:1,xp:300,ob:{k:'time',v:20,txt:'Gagner avec au moins 20 secondes restantes'},pre:[['Narration','Après ses premières grandes aventures, Goku retrouve ses rivaux lors d’un nouveau défi.'],['Tenshinhan','Tu as progressé, mais je ne compte pas te laisser gagner.'],['Goku','Parfait ! Un vrai combat nous fera progresser tous les deux.']],post:[['Tenshinhan','Tu as gagné cette fois. Je vais reprendre mon entraînement.'],['Narration','Une nouvelle menace se prépare loin du tournoi.']]},
  {id:'db10',sub:'Arc bonus — La dernière épreuve',t:'Chapitre 10 : L’épreuve du maître',req:'db9',en:'Muten Roshi',ar:1,df:2,xp:380,ob:{k:'hp',v:.35,txt:'Finir avec au moins 35 % de vie'},pre:[['Narration','Avant de poursuivre son voyage, Goku doit prouver que sa force s’accompagne de maîtrise.'],['Muten Roshi','La puissance ne suffit pas. Montre-moi que tu sais garder ton calme.'],['Goku','J’ai compris. Je vais me battre sans perdre le contrôle.']],post:[['Muten Roshi','Tu as encore beaucoup à apprendre, mais tu es prêt pour la suite.'],['Narration','Le chemin mène désormais vers les Saiyans.']]}
 );
 SAGAS.unshift(SAGAS.splice(SAGAS.findIndex(s=>s.id==='s0'),1)[0]);
