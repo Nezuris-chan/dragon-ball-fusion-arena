@@ -1,13 +1,26 @@
 function exportPlayerSave(){try{const pack={format:'FusionArenaSave',version:2,fa:sv,fakm:localStorage.getItem('fakm')||null,falow:localStorage.getItem('falow')||'0',famu:localStorage.getItem('famu')||'1'};const blob=new Blob([JSON.stringify(pack,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='fusion-arena-sauvegarde.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);alert('Sauvegarde exportée. Garde ce fichier en lieu sûr.')}catch(e){alert('Export impossible sur ce navigateur.')}}
 function importPlayerSave(file){const r=new FileReader();r.onload=()=>{try{const pack=JSON.parse(r.result);if(!pack||pack.format!=='FusionArenaSave'||!pack.fa)throw new Error('Fichier invalide');const old=localStorage.getItem('fa');if(old)localStorage.setItem('fa_backup',old);sv=Object.assign({xp:0,w:0,l:0},pack.fa);localStorage.setItem('fa',JSON.stringify(sv));if(pack.fakm)localStorage.setItem('fakm',pack.fakm);if(pack.falow!=null)localStorage.setItem('falow',pack.falow);if(pack.famu!=null)localStorage.setItem('famu',pack.famu);alert('Sauvegarde importée. Recharge le jeu pour appliquer toutes les données.');settingsMenu()}catch(e){alert('Sauvegarde invalide ou illisible. Aucune donnée importée.')}};r.readAsText(file)}
 async function setPlayerPseudo(){const value=prompt('Choisis ton pseudo public (2 à 16 caractères) :',sv.pseudo||'Joueur');if(value===null)return;const name=value.replace(/[\u0000-\u001f\u007f]/g,'').trim().slice(0,16);if(name.length<2){alert('Le pseudo doit contenir au moins 2 caractères.');return}sv.pseudo=name;save();if(onlineUser&&sbClient){const {error}=await sbClient.from('profiles').update({username:name,xp:Math.max(0,Number(sv.xp)||0),player_level:lvl()}).eq('id',onlineUser.id);if(error){alert('Pseudo enregistré localement, mais mise à jour du classement impossible : '+error.message);settingsMenu();return}}settingsMenu()}
-function redeemProgressCode(){
+async function redeemProgressCode(){
  const code=(prompt('Entre ton code de progression :')||'').trim().toUpperCase();
  if(!code)return;
- const validCode='FUSION-AVANTSUPER';
- if(code!==validCode){alert('Code invalide. Vérifie les caractères et réessaie.');return}
+ if(!sbClient){alert('La validation sécurisée nécessite une connexion au compte en ligne.');return}
  sv.redeemedCodes=Array.isArray(sv.redeemedCodes)?sv.redeemedCodes:[];
- if(sv.redeemedCodes.includes(validCode)){alert('Ce code a déjà été utilisé sur cette sauvegarde.');return}
+ if(sv.redeemedCodes.includes('FUSION-AVANTSUPER')){alert('Ce code a déjà été utilisé sur cette sauvegarde.');return}
+ try{
+  const {data:userData,error:userError}=await sbClient.auth.getUser();
+  if(userError)throw userError;
+  if(!userData?.user){alert('Connecte-toi à ton compte pour utiliser ce code.');accountOnlineMenu();return}
+  const {data,error}=await sbClient.rpc('redeem_progress_code',{p_code:code});
+  if(error)throw error;
+  if(data?.status==='already_redeemed'){alert('Ce code a déjà été utilisé sur ce compte.');return}
+  if(data?.status!=='accepted'){alert('Code invalide. Vérifie les caractères et réessaie.');return}
+ }catch(error){
+  console.error('Validation du code de progression impossible :',error);
+  alert('Validation sécurisée indisponible. Vérifie que la migration Supabase du code de progression a été appliquée, puis réessaie. Aucune progression n’a été modifiée.');
+  return;
+ }
+ const validCode='FUSION-AVANTSUPER';
  const S=SS();
  const sagaIds=['s0','s1','s2','s3','s4','daima'];
  const chapters=[];
@@ -43,7 +56,7 @@ function redeemProgressCode(){
  }
  sv.redeemedCodes.push(validCode);
  save();
- alert('Code accepté ! Progression débloquée jusqu’au chapitre 1 de Dragon Ball Super.\n+'+gainedXP+' XP\nToutes les transformations du catalogue sont débloquées ('+formCount+' nouvelles formes).'+(unlockedItems.length?'\nObjets obtenus : '+unlockedItems.join(', '):''));
+ alert('Code accepté ! Progression débloquée jusqu’au chapitre 1 de Dragon Ball Super.\n+'+gainedXP+' XP\n'+formCount+' transformations débloquées pour les personnages des sagas couvertes (jusqu’au début de Super).'+(unlockedItems.length?'\nObjets obtenus : '+unlockedItems.join(', '):''));
  settingsMenu();
 }
 function settingsMenu(){dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>PARAMÈTRES</h1>';M.appendChild(row([btn('PSEUDO : '+(sv.pseudo||'Joueur'),setPlayerPseudo),btn('Effets réduits : '+(LOW?'OUI':'NON'),()=>{LOW=!LOW;try{localStorage.setItem('falow',LOW?'1':'0')}catch(e){}settingsMenu()}),btn('Musique : '+(MU?'OUI':'NON'),()=>{MU=!MU;try{localStorage.setItem('famu',MU?'1':'0')}catch(e){}music(MU,G?'battle':'menu');settingsMenu()}),btn('Volume : '+Math.round(MUSIC_VOL*100)+'%',()=>{setMusicVolume(MUSIC_VOL>=.7?.22:MUSIC_VOL>=.35?.7:.42);settingsMenu()}),btn('⌨ COMMANDES',()=>ctlMenu())]));M.appendChild(row([btn('CODE DE PROGRESSION',redeemProgressCode),btn('EXPORTER MA SAUVEGARDE',exportPlayerSave),btn('IMPORTER UNE SAUVEGARDE',()=>{const f=document.createElement('input');f.type='file';f.accept='.json,application/json';f.onchange=()=>{if(f.files&&f.files[0])importPlayerSave(f.files[0])};f.click()})]));M.appendChild(mk('small','Progression conservée automatiquement sur ce navigateur. Exporte régulièrement une copie de sécurité.'));M.appendChild(btn('← Retour',menu))}
@@ -68,9 +81,10 @@ function adventureState(){
 }
 const ADVENTURE_ZONES=[
  {id:'paozu',name:'Mont Paozu',place:'Terre · Est',npc:'Goku',role:'Maître du combat',desc:'Ton aventure commence ici. Protège la Terre contre la première grande menace.',mission:{id:'ad_paozu',title:'La menace des Saiyans',enemy:'Raditz',hero:'Goku',diff:0,arena:0,xp:180,rp:15,brief:'Raditz est arrivé sur Terre. Prouve que tu peux défendre ta planète.'}},
- {id:'capsule',name:'Capsule Corporation',place:'Ville de l’Ouest',npc:'Bulma',role:'Inventrice',desc:'Une menace artificielle approche. Aide Bulma à tester ses données de combat.',mission:{id:'ad_capsule',title:'Alerte androïde',enemy:'Android 13',hero:'Trunks',diff:0,arena:5,xp:220,rp:20,brief:'Un androïde dangereux a été repéré près de la ville. Neutralise-le.'}},
- {id:'namek',name:'Planète Namek',place:'Secteur lointain',npc:'Piccolo',role:'Protecteur de Namek',desc:'Le tyran Freezer cherche les Dragon Balls. Arrête-le avant qu’il ne soit trop tard.',mission:{id:'ad_namek',title:'Le tyran de l’espace',enemy:'Freezer',hero:'Goku',diff:1,arena:0,xp:300,rp:25,brief:'Freezer libère toute sa puissance. Prépare-toi à un duel difficile.'}},
+ 
+ {id:'namek',name:'Planète Namek',place:'Secteur lointain',npc:'Piccolo',role:'Protecteur de Namek',desc:'Le tyran Freezer cherche les Dragon Balls. Arrête-le avant qu’il ne soit trop tard.',mission:{id:'ad_namek',title:'Le tyran de l’espace',enemy:'Freezer',hero:'Piccolo',diff:1,arena:0,xp:300,rp:25,brief:'Freezer libère toute sa puissance. Prépare-toi à un duel difficile.'}},
  {id:'islands',name:'Îles du Sud',place:'Terre',npc:'C-17',role:'Combattant artificiel',desc:'Les cyborgs sèment le chaos. Affronte un adversaire conçu pour la guerre.',mission:{id:'ad_islands',title:'Danger mécanique',enemy:'Android 16',hero:'Android 17',diff:1,arena:2,xp:320,rp:25,brief:'C-16 est un adversaire massif. Sa résistance sera son principal avantage.'}},
+ {id:'capsule',name:'Capsule Corporation',place:'Ville de l’Ouest',npc:'Bulma',role:'Inventrice',desc:'Une menace artificielle approche. Aide Bulma à tester ses données de combat.',mission:{id:'ad_capsule',title:'Alerte androïde',enemy:'Android 13',hero:'Trunks',diff:0,arena:5,xp:220,rp:20,brief:'Un androïde dangereux a été repéré près de la ville. Neutralise-le.'}},
  {id:'cellgames',name:'Cell Games',place:'Terre · Arène',npc:'Gohan',role:'Guerrier protecteur',desc:'Cell organise son tournoi. Mets fin à ses ambitions.',mission:{id:'ad_cellgames',title:'Le dernier Cell Game',enemy:'Cell',hero:'Gohan',diff:2,arena:2,xp:420,rp:35,brief:'Cell ne retiendra plus ses coups. Donne tout pour protéger la Terre.'}},
  {id:'buu',name:'Monde des Kaioshins',place:'Monde sacré',npc:'Vegeta',role:'Prince des Saiyans',desc:'Une ancienne créature menace l’univers. Affronte Majin Buu.',mission:{id:'ad_buu',title:'Le réveil de Majin Buu',enemy:'Majin Buu',hero:'Vegeta',diff:2,arena:4,xp:460,rp:40,brief:'Majin Buu est imprévisible et résistant. Garde ton sang-froid.'}},
  {id:'otherworld',name:'Autre Monde',place:'Royaume des morts',npc:'Pikkon',role:'Champion de l’au-delà',desc:'Une anomalie dimensionnelle a libéré Janemba. Rétablis l’équilibre.',mission:{id:'ad_otherworld',title:'Le démon dimensionnel',enemy:'Janemba',hero:'Gogeta',diff:2,arena:7,xp:480,rp:40,brief:'Janemba déforme l’espace et attaque sans prévenir.'}},
