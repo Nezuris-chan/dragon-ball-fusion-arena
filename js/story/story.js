@@ -1101,8 +1101,8 @@ function storyMenu(msg){
    if(c.sub&&c.sub!==lastSub){const sub=document.createElement('div');sub.className='story-sub';sub.textContent=c.sub;list.appendChild(sub);lastSub=c.sub}
    const d=SS().done[c.id],ok=chOpen(c),item=document.createElement('div');item.className='story-chapter'+(d?' is-done':ok?' is-open':' is-locked');
    const number=document.createElement('span');number.className='story-chapter-number';number.textContent=String(i+1).padStart(2,'0');
-   const body=document.createElement('span');body.className='story-chapter-copy';const name=document.createElement('strong');name.textContent=(c.t||('Chapitre '+(i+1)));const subline=document.createElement('small');subline.textContent=c.sub||sg.name;body.append(name,subline);
-   const status=document.createElement('span');status.className='story-chapter-status';status.textContent=d?'TERMINÉ':ok?'JOUER':'VERROUILLÉ';
+   const body=document.createElement('span');body.className='story-chapter-copy';const name=document.createElement('strong');name.textContent=(c.t||('Chapitre '+(i+1)));const subline=document.createElement('small');subline.textContent=(c.en?'ADVERSAIRE : '+c.en+' · ':'')+(c.xp?c.xp+' XP · ':'')+(c.sub||sg.name);body.append(name,subline);
+   const status=document.createElement('span');status.className='story-chapter-status';status.textContent=d?'TERMINÉ':ok?(c.scene?'SCÈNE':'JOUER'):'VERROUILLÉ';
    const b=document.createElement('button');b.type='button';b.className='story-chapter-button';b.disabled=!ok;b.title=ok?'Lancer ce chapitre':storyChapterLockReason(c);b.append(number,body,status);b.onclick=()=>{if(ok)playCh(c)};item.appendChild(b);list.appendChild(item);item.dataset.search=(sg.name+' '+c.t+' '+c.sub+' '+(c.en||'')).toLowerCase();item.dataset.state=d?'done':'todo';
   });
   panels.push(panel);grid.appendChild(panel);
