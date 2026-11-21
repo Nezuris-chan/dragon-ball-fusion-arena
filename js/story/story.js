@@ -434,23 +434,23 @@ daima:[
 ["La paix dans le royaume démoniaque","Gomah","Un nouvel équilibre","Les héros mettent fin au conflit et laissent le royaume face à un nouvel avenir."]
 ],
 super:[
-["La visite de Beerus","Beerus","Le Dieu de la Destruction","Beerus arrive sur Terre à la recherche du Super Saiyan God."],
-["Le Super Saiyan God","Beerus","Le rituel des Saiyans","Goku reçoit l’énergie de ses proches et atteint la forme divine."],
-["Goku contre Beerus","Beerus","Le duel divin","Goku teste sa nouvelle puissance face à Beerus dans un combat qui dépasse la Terre."],
-["La résurrection de Freezer","Golden Freezer","Le retour du tyran","Freezer est ressuscité et prépare sa revanche contre Goku et Vegeta."],
-["Le combat contre Golden Freezer","Golden Freezer","La forme dorée","Freezer révèle sa forme dorée et affronte les Saiyans sur Terre."],
-["Le tournoi entre les univers","Frost","L’équipe de Champa","Les combattants de l’Univers 7 affrontent ceux de l’Univers 6."],
-["Hit, l’assassin légendaire","Hit","Le saut temporel","Goku affronte Hit et cherche à comprendre sa technique temporelle."],
-["Le retour de Trunks du futur","Goku Black","Un ennemi familier","Trunks revient et révèle qu’un mystérieux Goku ravage son futur."],
-["La vérité sur Goku Black","Goku Black","Le corps volé","Les héros découvrent que Goku Black est lié à Zamasu."],
-["La fusion de Zamasu","Fused Zamasu","L’union divine","Zamasu fusionne avec son double et devient une menace pour les deux futurs."],
-["Le tournoi du pouvoir","Jiren","La survie des univers","Les univers participent à un tournoi où chaque équipe joue sa survie."],
-["Goku maîtrise l’Ultra Instinct","Jiren","L’instinct supérieur","Face à Jiren, Goku éveille l’Ultra Instinct et dépasse ses limites."],
-["Le dernier trio de l’Univers 7","Jiren","La stratégie finale","Goku, Vegeta et Freezer coordonnent leurs efforts contre Jiren."],
-["Broly apparaît","Broly","Le Saiyan incontrôlable","Un Saiyan inconnu révèle une puissance qui augmente au fil du combat."],
-["Gogeta contre Broly","Broly","La fusion bleue","Goku et Vegeta fusionnent en Gogeta pour arrêter Broly."],
-["Le départ de Broly","Broly","Une nouvelle voie","Le combat prend fin et Broly peut enfin suivre sa propre voie."]
-],
+["Beerus arrive sur Terre","Beerus","Le Dieu de la Destruction","Beerus se réveille et cherche le Super Saiyan God après avoir aperçu cette puissance en rêve. Goku décide de le rencontrer pour protéger la Terre."],
+["Le rituel du Super Saiyan God","Beerus","L’énergie des six Saiyans","Goku reçoit l’énergie de ses proches et atteint le Super Saiyan God. Cette puissance divine devient le seul moyen de tenir tête à Beerus."],
+["Goku contre Beerus","Beerus","Le duel divin","Le combat entre Goku et Beerus s’élève jusque dans l’espace. Goku apprend que la puissance divine exige autant de maîtrise que de force."],
+["Le tournoi de l’univers 6","Hit","Le défi de Champa","Champa organise un tournoi entre les univers 6 et 7. Goku et Vegeta découvrent de nouveaux adversaires, dont l’assassin Hit."],
+["Vegeta s’éveille au pouvoir divin","Beerus","L’entraînement de Whis","Vegeta poursuit son entraînement auprès de Whis et atteint à son tour le Super Saiyan God. Il refuse de rester derrière Goku."],
+["La résurrection de Freezer","Freezer","Le retour du tyran","Les soldats de Freezer réunissent les Dragon Balls et ressuscitent leur maître. Le tyran revient avec une nouvelle ambition et s’entraîne pour se venger."],
+["Goku et Vegeta contre Golden Freezer","Freezer","La forme dorée","Freezer atteint sa forme dorée et attaque la Terre. Goku et Vegeta doivent l’arrêter avant que la planète ne soit détruite."],
+["L’éveil du Super Saiyan Blue","Whis","La maîtrise du ki divin","Goku et Vegeta apprennent à mêler le Super Saiyan à leur ki divin. Ils éveillent le Super Saiyan Blue et maîtrisent enfin cette énergie."],
+["Le retour de Trunks du futur","Goku Black","Un futur dévasté","Trunks revient d’un futur ravagé par un ennemi qui possède le visage de Goku. Il demande de l’aide pour sauver son monde."],
+["Goku contre Goku Black","Goku Black","Le visage volé","Goku affronte son double maléfique et découvre une puissance qui évolue pendant le combat. Trunks reconnaît le danger qui menace son époque."],
+["Vegeta affronte Goku Black","Goku Black","La riposte du prince","Vegeta retourne dans le futur pour affronter Goku Black. Sa maîtrise du Super Saiyan Blue lui permet de prendre l’avantage."],
+["L’éveil du Super Saiyan Rage","Goku Black","La détermination de Trunks","Face à la destruction de son monde, Trunks rassemble toute sa volonté et éveille le Super Saiyan Rage."],
+["Vegetto Blue contre Zamasu fusionné","Zamasu fusionné","La fusion des Potaras","Goku et Vegeta fusionnent avec les Potaras et deviennent Vegetto Blue. Ils affrontent Zamasu fusionné, dont l’immortalité menace les deux futurs."],
+["Goku face à Jiren","Jiren","Le premier éveil de l’Ultra Instinct","Au Tournoi du Pouvoir, Goku affronte Jiren. Sous une pression extrême, il commence à éveiller l’Ultra Instinct."],
+["Goku contre Kefla","Kefla","L’instinct en mouvement","Kefla pousse Goku dans ses derniers retranchements. Goku doit laisser son corps réagir instinctivement pour contrer la puissance de la fusion."],
+["L’Ultra Instinct maîtrisé contre Jiren","Jiren","Le dernier combat du tournoi","Goku maîtrise l’Ultra Instinct face à Jiren. Avec l’aide de ses alliés, il joue le tout pour le tout afin de sauver les univers."]
+]
 heroes:[
 ["La prison planétaire","Cumber","Le Saiyan maléfique","Goku et ses alliés se retrouvent piégés dans une prison mystérieuse."],
 ["L’arrivée de Fu","Fu","Le scientifique mystérieux","Fu révèle qu’il observe les combats pour alimenter ses expériences."],
@@ -652,7 +652,7 @@ for(const [sagaId,chapters] of Object.entries(STORY_REWRITES)){
 // Les transformations majeures sont annoncées dans leur chapitre narratif d’éveil.
 const STORY_FORM_UNLOCKS={
  s2c13:['Goku','Super Saiyan'],s3c14:['Gohan','Super Saiyan 2'],s4c9:['Gohan','Potentiel libéré (Ultimate)'],s4c7:['Goku','Super Saiyan 3'],s4c11:['Gotenks','Super Saiyan 3'],
- sup2:['Goku','Super Saiyan God'],superc8:['Goku','Super Saiyan Blue'],superc14:['Goku','Ultra Instinct'],superc16:['Goku','Ultra Instinct maîtrisé'],superhero3:['Piccolo','Piccolo Orange'],superhero13:['Gohan','Beast'],
+ sup2:['Goku','Super Saiyan God'],sup5:['Vegeta','Super Saiyan God'],superc8:['Goku','Super Saiyan Blue'],superc14:['Goku','Ultra Instinct'],superc16:['Goku','Ultra Instinct maîtrisé'],superhero3:['Piccolo','Piccolo Orange'],superhero13:['Gohan','Beast'],
  daimac16:['Goku','Super Saiyan 4'],gtc15:['Vegeta','Super Saiyan 4'],gtc16:['Gogeta','Super Saiyan 4'],superc12:['Trunks','Super Saiyan Rage'],s4c11:['Gotenks','Super Saiyan 3']
 };
 for(const [chapterId,unlock] of Object.entries(STORY_FORM_UNLOCKS)){
@@ -814,6 +814,24 @@ const findTimelineChapter=id=>SAGAS.flatMap(saga=>saga.ch).find(chapter=>chapter
 const STORY_CHRONOLOGY_FIXES={
  daima:{
   daimac16:{players:['Goku','Vegeta','Glorio'],forms:{Goku:4,Vegeta:2,Glorio:0},scene:0}
+ },
+ s3:{
+  cell1:{players:['Trunks'],forms:{Trunks:1},scene:1},
+  cell2:{players:['Goku'],forms:{Goku:0}},
+  cell3:{players:['Vegeta'],forms:{Vegeta:1}},
+  s3c4:{players:['Piccolo'],forms:{Piccolo:0}},
+  s3c5:{players:['Android 16','Android 17','Android 18'],forms:{'Android 16':0,'Android 17':0,'Android 18':0},scene:1},
+  s3c6:{players:['Piccolo'],forms:{Piccolo:0}},
+  s3c7:{players:['Android 16'],forms:{'Android 16':0},scene:1},
+  s3c8:{players:['Piccolo'],forms:{Piccolo:0}},
+  s3c9:{players:['Goku','Gohan'],forms:{Goku:1,Gohan:1},scene:1},
+  s3c10:{players:['Vegeta'],forms:{Vegeta:1}},
+  s3c11:{players:['Trunks'],forms:{Trunks:1},scene:1},
+  s3c12:{players:['Android 18','Cell'],forms:{'Android 18':0,Cell:0},scene:1},
+  s3c13:{players:['Goku'],forms:{Goku:1}},
+  s3c14:{players:['Gohan'],forms:{Gohan:2}},
+  s3c15:{players:['Goku'],forms:{Goku:1},scene:1},
+  s3c16:{players:['Gohan'],forms:{Gohan:2}}
  },
  gt:{
   gt1:{players:['Goku'],forms:{Goku:3},scene:1},
