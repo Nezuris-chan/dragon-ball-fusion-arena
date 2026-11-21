@@ -83,9 +83,9 @@ const ADVENTURE_ZONES=[
 ];
 
 const ADVENTURE_TIMELINES={
- ad_paozu:{arc:'Arc d’arrivée de Raditz — avant l’invasion de Vegeta et Nappa',fighters:['Goku','Piccolo','Gohan','Raditz','Krillin','Muten Roshi'],forms:{Goku:0,Piccolo:0,Gohan:0,Raditz:0,Krillin:0,'Muten Roshi':0}},
+ ad_paozu:{arc:'Arrivée de Raditz — avant l’arrivée des Saiyans',fighters:['Goku','Piccolo','Raditz'],forms:{Goku:0,Piccolo:0,Raditz:0}},
  ad_capsule:{arc:'Film — Super Android 13',fighters:['Goku','Vegeta','Trunks','Piccolo','Gohan','Krillin','Android 13'],forms:{Goku:1,Vegeta:1,Trunks:1,Piccolo:0,Gohan:1,Krillin:0,'Android 13':1}},
- ad_namek:{arc:'Saga Namek — affrontement final contre Freezer',fighters:['Goku','Vegeta','Gohan','Krillin','Piccolo','Freezer'],forms:{Goku:1,Vegeta:0,Gohan:0,Krillin:0,Piccolo:0,Freezer:3}},
+ ad_namek:{arc:'Namek — affrontement de Piccolo contre Freezer',fighters:['Piccolo','Gohan','Krillin','Freezer'],forms:{Piccolo:0,Gohan:0,Krillin:0,Freezer:1}},
  ad_islands:{arc:'Saga des cyborgs — arrivée des Androïdes',fighters:['Goku','Vegeta','Trunks','Piccolo','Gohan','Krillin','Yamcha','Tenshinhan','Android 16','Android 17','Android 18'],forms:{Goku:1,Vegeta:1,Trunks:1,Piccolo:0,Gohan:1,Krillin:0,Yamcha:0,Tenshinhan:0,'Android 16':0,'Android 17':0,'Android 18':0}},
  ad_cellgames:{arc:'Saga Cell — Cell Games',fighters:['Goku','Vegeta','Gohan','Trunks','Piccolo','Cell','Android 18','Krillin','Yamcha','Tenshinhan'],forms:{Goku:1,Vegeta:1,Gohan:2,Trunks:1,Piccolo:0,Cell:0,'Android 18':0,Krillin:0,Yamcha:0,Tenshinhan:0}},
  ad_buu:{arc:'Saga Boo — réveil de Majin Boo',fighters:['Goku','Vegeta','Gohan','Piccolo','Majin Buu','Dabura','Android 18','Krillin','Videl'],forms:{Goku:2,Vegeta:2,Gohan:2,Piccolo:0,'Majin Buu':0,Dabura:0,'Android 18':0,Krillin:0,Videl:0}},
