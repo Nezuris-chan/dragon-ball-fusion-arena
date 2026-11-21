@@ -679,7 +679,7 @@ function startStory(c){
  if(!allowed.length)allowed.push(...CH.map(x=>x.n).filter(n=>n!==c.en).slice(0,1));
  if(!CH[cfg.p1]||!allowed.includes(CH[cfg.p1].n))cfg.p1=CH.findIndex(x=>x.n===allowed[0]);
  cfg.p2=storyEnemyIndex(c);cfg.ar=c.ar;cfg.diff=c.df;stage=0;start();
- const fighterName=G.a.c.n,unlocked=storyFormMax(fighterName),whitelist=c.formWhitelist?.[fighterName];
+ const fighterName=G.a.c.n,chapterUnlocks=FORM_QUESTS.filter(q=>q.chapter===c.id&&q.character===fighterName).map(q=>q.index),unlocked=Math.max(storyFormMax(fighterName),...chapterUnlocks,0),whitelist=c.formWhitelist?.[fighterName];
  if(Array.isArray(whitelist)){
   const originalForms=G.a.c.fm,indices=whitelist.filter(index=>index===0||index<=unlocked),selected=indices.filter(index=>originalForms[index]);
   if(!selected.includes(0))selected.unshift(0);
