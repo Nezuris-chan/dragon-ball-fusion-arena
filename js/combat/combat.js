@@ -4,7 +4,16 @@ const ATK={li:{d:6,s:2,a:4,r:5,rg:62,kb:3,ki:4},he:{d:14,s:7,a:5,r:13,rg:78,kb:1
 class F{constructor(c,x,side,ai){this.c=CH[c];this.x=x;this.y=GY;this.vx=0;this.vy=0;this.face=side;this.rpgSide=side;this.hp=this.mhp=HPB*(this.c.hb||1)*(1+(this.rpg.du||0)*.004);this.ki=30;this.st='i';this.t=0;this.jc=0;this.tf=0;this.ai=ai;this.combo=0;this.ct=0;this.hit=0;this.inv=0;this.cd=0;this.atk=null;this.rc=0;this.heHold=0;this.heReady=0;this.charged=0;this.dashCd=0;this.chainStep=0;this.chainWindow=0;this.comboStep=0;this.comboMult=1;this.finisher=0;this.guardParry=0;this.guardMeter=100;this.guardBreak=0;this.runTicks=0;this.dashTime=0;this.dashDir=side;this.airDashUsed=0}
 get itemStats(){const r=equippedRelic(),local=cfg.mode!=='online'&&this===G?.a;return local&&r?r:{damage:1,resist:1}}get rpg(){if(cfg.mode==='online'||this.rpgSide!==1)return{fo:0,vi:0,in:0,du:0,en:0,ed:0,ki:0,te:0};return{fo:skillStatBonus('fo'),vi:skillStatBonus('vi'),in:skillStatBonus('in'),du:skillStatBonus('du'),en:skillStatBonus('en'),ed:skillStatBonus('ed'),ki:skillStatBonus('ki'),te:skillStatBonus('te')}}get pw(){return this.c.pw*this.f$.pw*(1+(this.rpg.fo||0)*.006)}get sp(){return this.c.sp*this.f$.sp*(1+(this.rpg.vi||0)*.002)*(this.kk?KK[this.kk-1].s:1)}get f$(){return this.c.fm[this.fm|0]||this.c.fm[0]}get bn(){let b=1+(this.cn>0?.3:0)+(this.kk?KK[this.kk-1].d-1:0)+(this.c.n==='Bardock'&&this.hp<(this.mhp||HPB)*.3?.25:0);b+=((this.rpg.te||0)*.002);if(this.f$.ego)b+=egoB((this.eg||0)/(this.mhp||HPB));if(this.c.n==='Broly')b+=(this.rage||0)*.004;return b}
 }
-function start(){G={a:new F(cfg.p1,260,1,false),b:new F(cfg.p2,700,-1,cfg.mode!=='versus'&&cfg.mode!=='online'),pr:[],time:99,over:0,tick:0,stage:0};G.a.px=G.a.x;G.a.py=G.a.y;G.b.px=G.b.x;G.b.py=G.b.y;
+function start(){
+if(cfg.mode==='adventure'){
+ const mission=adventureMissionById(adventureState().activeMission),rule=mission&&adventureTimelineForMission(mission.id);
+ if(mission&&rule){
+  if(!rule.fighters.includes(CH[cfg.p1]?.n)){const hero=CH.findIndex(c=>c.n===mission.hero);cfg.p1=rule.fighters.includes(CH[hero]?.n)?hero:CH.findIndex(c=>c.n===rule.fighters[0]);}
+  const enemy=CH.findIndex(c=>c.n===mission.enemy);if(enemy>=0)cfg.p2=enemy;
+  cfg.sf=Math.min(Math.max(0,Number(cfg.sf)||0),adventureMaxFormIndex(CH[cfg.p1]?.n,mission.id));
+ }
+}
+G={a:new F(cfg.p1,260,1,false),b:new F(cfg.p2,700,-1,cfg.mode!=='versus'&&cfg.mode!=='online'),pr:[],time:99,over:0,tick:0,stage:0};G.a.px=G.a.x;G.a.py=G.a.y;G.b.px=G.b.x;G.b.py=G.b.y;
 if(cfg.mode==='train'){G.b.dummy=1}if(cfg.mode!=='versus'&&cfg.mode!=='train'&&cfg.mode!=='online'){G.b.c=CH[(cfg.p2+stage)%CH.length];G.b.hp=G.b.mhp=HPB*(G.b.c.hb||1)}
 M.style.display='none';fx=[];rings=[];LN=[];music(MU,cfg.mode==='adventure'?'adventure':cfg.mode==='story'?'story':'battle');}
 function spark(x,y,col,n,s=6){if(LOW)n=Math.ceil(n/3);n=Math.min(n,LOW?8:14);for(let i=0;i<n&&fx.length<(LOW?70:150);i++){const a=Math.random()*6.28,v=Math.random()*s;fx.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:20+Math.random()*20,col,r:2+Math.random()*3})}}
