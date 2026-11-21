@@ -431,7 +431,7 @@ daima:[
 ["Le pouvoir du Troisième Œil","Gomah","L’œil maléfique","Gomah utilise le pouvoir du Troisième Œil pour prendre l’avantage."],
 ["Le combat de Vegeta","Tamago","Le prince contre-attaque","Vegeta rejoint le combat et affronte un adversaire du royaume démoniaque."],
 ["Goku contre Gomah","Gomah","Le duel final","Goku affronte Gomah alors que le sort du royaume démoniaque se décide."],
-["La paix dans le royaume démoniaque","Gomah","Un nouvel équilibre","Les héros mettent fin au conflit et laissent le royaume face à un nouvel avenir."]
+["L’éveil du Super Saiyan 4","Gomah","La puissance retrouvée","Face au pouvoir du Troisième Œil, Goku révèle le Super Saiyan 4 et renverse le cours du combat pour sauver le royaume démoniaque."]
 ],
 super:[
 ["Beerus arrive sur Terre","Beerus","Le Dieu de la Destruction","Beerus se réveille et cherche le Super Saiyan God après avoir aperçu cette puissance en rêve. Goku décide de le rencontrer pour protéger la Terre."],
@@ -478,14 +478,14 @@ gt:[
 ["La menace du docteur Myuu","Baby Vegeta","Le secret de Baby","Le docteur Myuu prépare le retour de Baby, un survivant tsuful animé par la vengeance contre les Saiyans."],
 ["Baby arrive sur Terre","Baby Vegeta","La vengeance des Tsufuls","Baby atteint la Terre et commence à prendre le contrôle des habitants. Goku comprend que cette menace vise directement son peuple."],
 ["Vegeta sous l’emprise de Baby","Baby Vegeta","Le prince possédé","Baby prend le contrôle de Vegeta et utilise sa puissance pour affronter Goku. Pan refuse d’abandonner son grand-père."],
-["L’éveil du Super Saiyan 4","Baby Vegeta","La puissance primordiale","Face à Baby, Goku retrouve sa queue et maîtrise la puissance du singe géant doré. Il atteint le Super Saiyan 4 et reprend le contrôle du combat."],
+["Goku maîtrise le Super Saiyan 4","Baby Vegeta","La puissance primordiale","Goku retrouve la puissance du Super Saiyan 4 déjà éveillée et apprend à la maîtriser face à Baby. Cette forme lui permet de reprendre le contrôle du combat."],
 ["Goku SSJ4 contre Baby Vegeta","Baby Vegeta","La revanche de Goku","Goku utilise sa nouvelle forme pour libérer Vegeta et mettre fin à la vengeance de Baby. Le combat atteint son point culminant."],
 ["L’ouverture des portes de l’Enfer","Omega Shenron","Une alliance dangereuse","Une expérience liée au docteur Myuu provoque une brèche entre la Terre et l’Enfer. Les anciennes menaces peuvent revenir."],
 ["La naissance de Super C-17","Omega Shenron","Le cyborg ultime","C-17 et son double de l’Enfer fusionnent pour devenir Super C-17. Goku doit trouver comment contourner son absorption d’énergie."],
 ["La bataille contre Super C-17","Omega Shenron","L’union des cyborgs","Goku affronte Super C-17 tandis que les alliés cherchent une faille dans sa défense. La crise annonce déjà un déséquilibre plus profond."],
 ["Les Dragon Balls maléfiques","Omega Shenron","Le prix des souhaits","Les Dragon Balls libèrent les conséquences de l’énergie négative accumulée au fil des souhaits. Les dragons maléfiques apparaissent."],
-["Le dragon à une étoile","Omega Shenron","Syn Shenron devient Omega","Syn Shenron absorbe les autres Dragon Balls et devient Omega Shenron. Goku et Vegeta doivent unir leurs forces."],
-["Le dernier Genkidama","Omega Shenron","L’adieu de Goku","Les combattants rassemblent l’énergie de l’univers pour vaincre Omega Shenron. Après la bataille, Goku part avec Shenron et laisse ses proches face à un nouveau départ."]
+["Les dragons maléfiques","Omega Shenron","Le prix des souhaits","Les Dragon Balls libèrent les conséquences de l’énergie négative accumulée au fil des souhaits. Syn Shenron apparaît et devient la plus grande menace."],
+["Vegeta et Gogeta Super Saiyan 4","Omega Shenron","Le dernier Genkidama","Vegeta atteint le Super Saiyan 4 grâce aux ondes Blutz. Goku et Vegeta fusionnent ensuite en Gogeta Super Saiyan 4 pour affronter Omega Shenron et conclure la bataille."]
 ],
 af:[
 ["Le retour d’un Saiyan oublié","Bardock","Une anomalie temporelle","Une distorsion ramène un guerrier du passé et bouleverse la chronologie."],
@@ -824,10 +824,10 @@ const STORY_CHRONOLOGY_FIXES={
  s4:{
   buu1:{players:['Goku','Vegeta','Gohan','Piccolo','Krillin','Videl','Android 18'],forms:{Goku:2,Vegeta:2,Gohan:2,Piccolo:0,Krillin:0,Videl:0,'Android 18':0}},
   s4c4:{players:['Gohan'],forms:{Gohan:2}},
-  s4c5:{players:['Goku','Vegeta'],forms:{Goku:3,Vegeta:2}},
-  s4c6:{players:['Goku','Vegeta','Gohan'],forms:{Goku:3,Vegeta:2,Gohan:2},scene:1},
+  s4c5:{players:['Goku','Vegeta'],forms:{Goku:2,Vegeta:2}},
+  s4c6:{players:['Goku','Vegeta','Gohan'],forms:{Goku:2,Vegeta:2,Gohan:2},scene:1},
   s4c7:{players:['Goku'],forms:{Goku:3}},
-  s4c8:{players:['Gotenks'],forms:{Gotenks:0},scene:1},
+  s4c8:{players:['Goku'],forms:{Goku:2},scene:1},
   s4c9:{players:['Gohan'],forms:{Gohan:3}},
   s4c10:{players:['Gotenks'],forms:{Gotenks:1}},
   s4c11:{players:['Gotenks'],forms:{Gotenks:2}},
@@ -836,7 +836,7 @@ const STORY_CHRONOLOGY_FIXES={
   s4c13:{players:['Gohan','Piccolo'],forms:{Gohan:3,Piccolo:0}},
   s4c14:{players:['Vegeta'],forms:{Vegeta:2},scene:1},
   buu3:{players:['Vegetto'],forms:{Vegetto:1}},
-  s4c15:{players:['Vegetto'],forms:{Vegetto:1},scene:1},
+  s4c15:{players:['Goku','Vegeta'],forms:{Goku:3,Vegeta:2},scene:1},
   s4c16:{players:['Goku'],forms:{Goku:3}}
  },
  daima:{
