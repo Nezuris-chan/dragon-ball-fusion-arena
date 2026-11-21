@@ -486,7 +486,7 @@ gt:[
 ["Les Dragon Balls maléfiques","Omega Shenron","Le prix des souhaits","Les Dragon Balls libèrent les conséquences de l’énergie négative accumulée au fil des souhaits. Les dragons maléfiques apparaissent."],
 ["Le dragon à une étoile","Omega Shenron","Syn Shenron devient Omega","Syn Shenron absorbe les autres Dragon Balls et devient Omega Shenron. Goku et Vegeta doivent unir leurs forces."],
 ["Le dernier Genkidama","Omega Shenron","L’adieu de Goku","Les combattants rassemblent l’énergie de l’univers pour vaincre Omega Shenron. Après la bataille, Goku part avec Shenron et laisse ses proches face à un nouveau départ."]
-]
+],
 af:[
 ["Le retour d’un Saiyan oublié","Bardock","Une anomalie temporelle","Une distorsion ramène un guerrier du passé et bouleverse la chronologie."],
 ["Le Super Saiyan 5","Xeno Goku","Au-delà des limites","Goku découvre une transformation légendaire propre à cette continuité fan-made."],
@@ -651,7 +651,7 @@ for(const [sagaId,chapters] of Object.entries(STORY_REWRITES)){
 }
 // Les transformations majeures sont annoncées dans leur chapitre narratif d’éveil.
 const STORY_FORM_UNLOCKS={
- s2c13:['Goku','Super Saiyan'],s3c14:['Gohan','Super Saiyan 2'],s4c9:['Gohan','Potentiel libéré (Ultimate)'],s4c7:['Goku','Super Saiyan 3'],s4c11:['Gotenks','Super Saiyan 3'],daimac16:['Goku','Super Saiyan 4'],
+ s2c13:['Goku','Super Saiyan'],s3c14:['Gohan','Super Saiyan 2'],s4c9:['Gohan','Potentiel libéré (Ultimate)'],s4c7:['Goku','Super Saiyan 3'],s4c11:['Gotenks','Super Saiyan 3'],
  sup2:['Goku','Super Saiyan God'],superc8:['Goku','Super Saiyan Blue'],superc14:['Goku','Ultra Instinct'],superc16:['Goku','Ultra Instinct maîtrisé'],superhero3:['Piccolo','Piccolo Orange'],superhero13:['Gohan','Beast'],
  daimac16:['Goku','Super Saiyan 4'],gtc15:['Vegeta','Super Saiyan 4'],gtc16:['Gogeta','Super Saiyan 4'],superc12:['Trunks','Super Saiyan Rage'],s4c11:['Gotenks','Super Saiyan 3']
 };
