@@ -114,7 +114,7 @@ const ADVENTURE_TIMELINES={
  ad_vampa:{arc:'Film Dragon Ball Super — Broly',fighters:['Goku','Vegeta','Broly','Piccolo'],forms:{Goku:6,Vegeta:5,Broly:1,Piccolo:0}},
  ad_cereal:{arc:'Dragon Ball Super — Granolah',fighters:['Goku','Vegeta','Freezer','Broly'],forms:{Goku:7,Vegeta:6,Freezer:4,Broly:1}},
  ad_redribbon:{arc:'Dragon Ball Super — Super Hero',fighters:['Piccolo','Gohan','Goku','Vegeta','Cell'],forms:{Piccolo:0,Gohan:4,Goku:6,Vegeta:5,Cell:1}},
- ad_destroyer:{arc:'Épilogue — entraînement divin',fighters:['Goku','Vegeta','Beerus','Whis'],forms:{Goku:8,Vegeta:7,Beerus:0,Whis:0}}
+ ad_destroyer:{arc:'Épilogue — entraînement divin',fighters:['Goku','Vegeta','Beerus'],forms:{Goku:8,Vegeta:7,Beerus:0}}
 };
 function adventureTimelineForMission(id){return ADVENTURE_TIMELINES[id]||null}
 function adventureMaxFormIndex(characterName,missionId){
