@@ -6,8 +6,8 @@ function mk(tag,html){const e=document.createElement(tag);if(html!=null)e.innerH
 const PF={};
 function fighterKind(name){
  const n=String(name||'');
- if(['Videl','Pan','Android 18','Android 21','Kefla','Caulifla','Kale'].includes(n))return {id:'female',label:'Combattante'};
- if(['Android 13','Android 16','Android 17','Android 18','Android 21','Cell','Tamagami'].includes(n))return {id:'android',label:'Androïde'};
+ if(['Android 13','Android 16','Android 17','Android 18','Android 21','Cell','Tamagami'].includes(n))return {id:'android',label:['Android 18','Android 21'].includes(n)?'Androïde · Combattante':'Androïde',feminine:['Android 18','Android 21'].includes(n)};
+ if(['Videl','Pan','Kefla','Caulifla','Kale'].includes(n))return {id:'female',label:'Combattante',feminine:true};
  if(['Freezer','Cooler','King Cold','Zarbon','Dodoria','Ginyu','Piccolo','Slug','Moro','Granolah','Hit','Pikkon','Glorio'].includes(n))return {id:'alien',label:'Extraterrestre'};
  if(['Beerus','Whis','Champa','Vados','Gowasu','Zamasu fusionné'].includes(n))return {id:'divine',label:'Divinité'};
  if(['Majin Buu','Dabura','Janemba','Gomah','Hearts'].includes(n))return {id:'demon',label:'Démon / Majin'};
@@ -17,7 +17,7 @@ function fighterKind(name){
 function portrait(i){
  if(PF[i])return PF[i];
  const cv=document.createElement('canvas');cv.width=cv.height=96;const g=cv.getContext('2d');if(!g)return cv;
- const c=CH[i]||CH[0],lk=c.lk||{},kind=fighterKind(c.n).id,hair=c.fm?.[0]?.hair||c.hair||'#333',skin=c.fm?.[0]?.sk||(kind==='alien'?'#79b99a':kind==='android'?'#d8c5ad':kind==='divine'?'#b89bdb':kind==='demon'?'#b978a0':'#efc5a0'),aura=c.aura||'#4cf';
+ const c=CH[i]||CH[0],lk=c.lk||{},kindInfo=fighterKind(c.n),kind=kindInfo.id,hair=c.fm?.[0]?.hair||c.hair||'#333',skin=c.fm?.[0]?.sk||(kind==='alien'?'#79b99a':kind==='android'?'#d8c5ad':kind==='divine'?'#b89bdb':kind==='demon'?'#b978a0':'#efc5a0'),aura=c.aura||'#4cf';
  g.save();g.shadowColor=aura;g.shadowBlur=13;g.fillStyle=lk.top||c.gi||'#345';g.beginPath();g.ellipse(48,91,31,22,0,0,Math.PI*2);g.fill();g.shadowBlur=0;
  if(kind==='android'){g.fillStyle='#9aa9b8';g.fillRect(30,70,36,12);g.fillStyle='#e0e8ed';g.fillRect(35,73,26,5);g.strokeStyle='#60768b';g.lineWidth=2;g.strokeRect(30,70,36,12)}
  g.fillStyle=skin;g.beginPath();g.ellipse(48,47,kind==='alien'?25:24,29,0,0,Math.PI*2);g.fill();
@@ -25,11 +25,11 @@ function portrait(i){
  if(kind==='demon'){g.fillStyle='#d8b7cc';g.beginPath();g.moveTo(29,30);g.lineTo(15,13);g.lineTo(35,23);g.fill();g.beginPath();g.moveTo(67,30);g.lineTo(81,13);g.lineTo(61,23);g.fill()}
  if(kind==='divine'){g.fillStyle='#e8c66b';g.beginPath();g.arc(48,15,5,0,6.28);g.fill()}
  if(kind==='android'){g.fillStyle='#27394b';g.fillRect(25,43,46,7);g.fillStyle='#ffdc78';g.fillRect(31,44,10,3);g.fillRect(55,44,10,3)}
- else{g.fillStyle='#171a27';g.fillRect(34,45,8,3);g.fillRect(54,45,8,3);if(kind==='female'){g.strokeStyle='#211728';g.lineWidth=1.5;g.beginPath();g.moveTo(32,43);g.lineTo(42,41);g.moveTo(54,41);g.lineTo(64,43);g.stroke()}}
+ else{g.fillStyle='#171a27';g.fillRect(34,45,8,3);g.fillRect(54,45,8,3);if(kindInfo.feminine){g.strokeStyle='#211728';g.lineWidth=1.5;g.beginPath();g.moveTo(32,43);g.lineTo(42,41);g.moveTo(54,41);g.lineTo(64,43);g.stroke()}}
  g.fillStyle=hair;
  if(['Freezer','Cooler','King Cold'].includes(c.n)){g.beginPath();g.ellipse(48,29,25,14,0,Math.PI,Math.PI*2);g.fill();g.fillStyle='#d9f5ff';g.fillRect(40,8,16,7)}
  else if(kind==='android'&&['Cell','Android 13','Android 16','Android 17','Android 18','Android 21'].includes(c.n)){g.beginPath();g.ellipse(48,26,25,18,Math.PI,Math.PI,Math.PI*2);g.fill()}
- else if(kind==='female'){g.beginPath();g.moveTo(24,42);g.lineTo(18,12);g.lineTo(34,25);g.lineTo(48,8);g.lineTo(63,24);g.lineTo(78,12);g.lineTo(72,58);g.lineTo(65,42);g.closePath();g.fill()}
+ else if(kindInfo.feminine){g.beginPath();g.moveTo(24,42);g.lineTo(18,12);g.lineTo(34,25);g.lineTo(48,8);g.lineTo(63,24);g.lineTo(78,12);g.lineTo(72,58);g.lineTo(65,42);g.closePath();g.fill()}
  else{g.beginPath();g.moveTo(24,39);g.lineTo(18,19);g.lineTo(32,25);g.lineTo(38,7);g.lineTo(48,23);g.lineTo(60,5);g.lineTo(63,25);g.lineTo(79,17);g.lineTo(72,42);g.closePath();g.fill()}
  if(c.n==='Piccolo'){g.strokeStyle='#d9ef9a';g.lineWidth=3;g.beginPath();g.moveTo(39,18);g.lineTo(34,5);g.moveTo(57,18);g.lineTo(62,5);g.stroke()}
  if(kind==='female'){g.fillStyle=hair;g.beginPath();g.moveTo(24,32);g.quadraticCurveTo(10,55,23,78);g.lineTo(31,65);g.fill();g.beginPath();g.moveTo(72,32);g.quadraticCurveTo(86,55,73,78);g.lineTo(65,65);g.fill()}
@@ -63,7 +63,7 @@ function selectScreen(mode){
  M.innerHTML='<h1>'+(T[m]||'PERSONNAGES')+'</h1><small class="select-subtitle">Choisis ton combattant · '+new Set(CH.map(c=>c.n)).size+' guerriers disponibles</small>';
  const wrap=mk('div');wrap.className='select-layout';const left=mk('div');left.className='select-roster';const right=mk('div');right.className='select-details';
  const chosen=(m==='versus'||cfg.cmp)&&cfg.sel2?cfg.p2:cfg.p1;
- CH.forEach((c,i)=>{const b=document.createElement('button');b.className='fighter-tile'+(chosen===i?' selected':'');b.appendChild(portrait(i));b.appendChild(mk('span',c.n));if(chosen===i)b.appendChild(mk('small','SÉLECTIONNÉ'));b.onclick=()=>{snd(600,.06,'square',.03);if((m==='versus'||m==='online-ai'||cfg.cmp)&&cfg.sel2)cfg.p2=i;else cfg.p1=i;cfg.sf=0;selectScreen()};left.appendChild(b)});
+ CH.forEach((c,i)=>{const b=document.createElement('button');b.className='fighter-tile'+(chosen===i?' selected':'');b.appendChild(portrait(i));b.appendChild(mk('span',c.n));const kindTag=mk('small',fighterKind(c.n).label);kindTag.className='fighter-kind';b.appendChild(kindTag);if(chosen===i)b.appendChild(mk('small','SÉLECTIONNÉ'));b.onclick=()=>{snd(600,.06,'square',.03);if((m==='versus'||m==='online-ai'||cfg.cmp)&&cfg.sel2)cfg.p2=i;else cfg.p1=i;cfg.sf=0;selectScreen()};left.appendChild(b)});
  if(m==='versus'||cfg.cmp)right.appendChild(row([btn('Joueur 1',()=>{cfg.sel2=false;selectScreen()},!cfg.sel2),btn('Joueur 2',()=>{cfg.sel2=true;selectScreen()},!!cfg.sel2)]));
  if(m==='online-ai')right.appendChild(mk('small','Ton adversaire IA choisira automatiquement un combattant.'));
  const preview=mk('div');preview.className='fighter-preview';const large=portrait(chosen);large.className='fighter-portrait-large';preview.appendChild(large);const identity=mk('div');identity.innerHTML='<h2>'+CH[chosen].n+'</h2><p>'+fighterKind(CH[chosen].n).label+' · '+((CH[chosen].tf)||'Combattant')+'</p>';preview.appendChild(identity);right.appendChild(preview);
