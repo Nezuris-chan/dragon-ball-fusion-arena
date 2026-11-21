@@ -174,3 +174,13 @@ small{opacity:.7;max-width:90%}
 #m .adventure-mission-card h2,#m .adventure-result-card h2{color:#f4f8ff}
 #m .adventure-zone-card small{color:#b6cee8}
 @media(max-width:620px){.main-menu-actions{width:94vw;max-width:94vw;padding:10px}.main-menu-actions button{min-height:43px}}
+
+/* Scènes dialoguées et exploration de l'Aventure */
+.adventure-dialogue-card{width:min(94%,760px);min-height:180px;display:flex;align-items:center;gap:18px;box-sizing:border-box;padding:20px;border:1px solid rgba(110,210,255,.42);border-radius:18px;background:linear-gradient(145deg,#142e50,#211943);box-shadow:0 16px 42px #0007}
+.adventure-dialogue-portrait{width:116px;height:116px;flex:none;display:flex;align-items:center;justify-content:center;overflow:hidden;border:2px solid rgba(135,225,255,.56);border-radius:15px;background:radial-gradient(circle,#32618a,#101a30)}
+.adventure-dialogue-portrait canvas{width:110px;height:110px;object-fit:contain}
+.adventure-dialogue-text{flex:1;min-width:0;text-align:left}
+.adventure-dialogue-text small{color:#8eeaff;font-weight:900;letter-spacing:1.4px}
+.adventure-dialogue-text p{margin:10px 0 14px;color:#f3f7ff;font-size:clamp(15px,2vw,20px);line-height:1.55}
+.adventure-dialogue-progress{color:#95b8d9;font-size:11px;text-align:right}
+@media(max-width:600px){.adventure-dialogue-card{flex-direction:column;align-items:center;text-align:center;padding:14px}.adventure-dialogue-portrait{width:86px;height:86px}.adventure-dialogue-portrait canvas{width:82px;height:82px}.adventure-dialogue-text{text-align:center}}
