@@ -450,7 +450,7 @@ super:[
 ["Goku face à Jiren","Jiren","Le premier éveil de l’Ultra Instinct","Au Tournoi du Pouvoir, Goku affronte Jiren. Sous une pression extrême, il commence à éveiller l’Ultra Instinct."],
 ["Goku contre Kefla","Kefla","L’instinct en mouvement","Kefla pousse Goku dans ses derniers retranchements. Goku doit laisser son corps réagir instinctivement pour contrer la puissance de la fusion."],
 ["L’Ultra Instinct maîtrisé contre Jiren","Jiren","Le dernier combat du tournoi","Goku maîtrise l’Ultra Instinct face à Jiren. Avec l’aide de ses alliés, il joue le tout pour le tout afin de sauver les univers."]
-]
+],
 heroes:[
 ["La prison planétaire","Cumber","Le Saiyan maléfique","Goku et ses alliés se retrouvent piégés dans une prison mystérieuse."],
 ["L’arrivée de Fu","Fu","Le scientifique mystérieux","Fu révèle qu’il observe les combats pour alimenter ses expériences."],
