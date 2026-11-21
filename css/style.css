@@ -388,3 +388,97 @@ small{opacity:.7;max-width:90%}
  #storySagaGrid{grid-template-columns:minmax(0,1fr);width:94%;gap:12px}
  #m .story-chapters{max-height:300px}
 }
+
+/* DRAGON BALL FUSION ARENA — interface premium du mode histoire */
+#m.story-screen{
+ justify-content:flex-start!important;
+ align-items:center!important;
+ gap:18px!important;
+ padding:clamp(14px,2.5vw,30px) 12px 34px!important;
+ background:
+ radial-gradient(ellipse at 12% 0%,rgba(27,167,224,.25),transparent 38%),
+ radial-gradient(ellipse at 90% 18%,rgba(122,74,220,.22),transparent 36%),
+ linear-gradient(145deg,#071426 0%,#0a1024 48%,#140d2c 100%)!important;
+ animation:none!important;
+}
+#m.story-screen>*{animation:none!important}
+#m.story-screen .story-hero{
+ width:min(1120px,96%);box-sizing:border-box;position:relative;overflow:hidden;
+ padding:clamp(20px,3.4vw,38px);border-radius:26px;
+ background:linear-gradient(118deg,rgba(17,61,93,.96),rgba(29,35,83,.96) 58%,rgba(68,31,94,.94));
+ box-shadow:0 22px 60px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.12);
+ text-align:left;
+}
+#m.story-screen .story-hero:after{
+ content:"";position:absolute;width:340px;height:340px;right:-110px;top:-190px;border-radius:50%;
+ background:radial-gradient(circle,rgba(109,226,255,.24),transparent 68%);pointer-events:none;
+}
+#m.story-screen .story-eyebrow{font-size:11px;letter-spacing:3px;font-weight:900;color:#8ceaff}
+#m.story-screen .story-hero h1{
+ margin:10px 0 8px!important;color:#fff!important;text-align:left!important;
+ font-size:clamp(27px,4vw,48px)!important;letter-spacing:1.5px!important;
+ text-shadow:0 4px 24px rgba(0,0,0,.28)!important;animation:none!important;
+}
+#m.story-screen .story-hero p{max-width:720px;margin:0;color:#d5e9ff;font-size:14px;line-height:1.65}
+#m.story-screen .story-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:22px}
+#m.story-screen .story-stat{display:flex;flex-direction:column;gap:5px;padding:11px 13px;border-radius:14px;background:rgba(5,19,43,.38);box-shadow:inset 0 1px rgba(255,255,255,.08)}
+#m.story-screen .story-stat small{font-size:9px;letter-spacing:1.4px;color:#a6cce9;font-weight:800}
+#m.story-screen .story-stat strong{font-size:clamp(14px,2vw,19px);color:#fff;font-variant-numeric:tabular-nums}
+#m.story-screen .story-progress{height:7px;margin-top:16px;overflow:hidden;border-radius:99px;background:rgba(4,13,30,.58)}
+#m.story-screen .story-progress span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#45d7ff,#9d8aff);box-shadow:0 0 18px rgba(76,218,255,.55);transition:width .35s ease}
+#m.story-screen .story-notice{margin-top:12px;padding:10px 13px;border-radius:12px;background:rgba(255,215,105,.12);color:#ffe6a2;font-size:13px}
+#m.story-screen .story-toolbar{width:min(1120px,96%);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+#m.story-screen .story-toolbar input{
+ flex:1 1 280px;min-width:0;min-height:48px;padding:0 17px;border:0!important;border-radius:14px!important;
+ background:rgba(18,33,62,.94)!important;color:#f4f8ff!important;
+ box-shadow:0 8px 22px rgba(0,0,0,.18),inset 0 1px rgba(255,255,255,.06)!important;
+}
+#m.story-screen .story-toolbar input::placeholder{color:#91a8c6}
+#m.story-screen .story-filters{display:flex;flex-wrap:wrap;gap:7px}
+#m.story-screen .story-filter{min-height:40px;padding:9px 14px!important;border:0!important;border-radius:12px!important;background:rgba(23,40,72,.9)!important;color:#c7d9f2!important;font-size:11px;letter-spacing:.7px}
+#m.story-screen .story-filter.active{background:linear-gradient(110deg,#1689b4,#6553b5)!important;color:#fff!important;box-shadow:0 6px 18px rgba(48,160,218,.24)!important}
+#m.story-screen #storySagaGrid{width:min(1120px,96%);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;align-items:start;margin:0 auto}
+#m.story-screen .story-saga{
+ min-width:0;padding:13px;border:0!important;border-radius:19px!important;
+ background:linear-gradient(150deg,rgba(17,35,67,.97),rgba(20,22,53,.97))!important;
+ box-shadow:0 12px 30px rgba(0,0,0,.2),inset 0 1px rgba(255,255,255,.06)!important;
+ transition:transform .18s ease,box-shadow .18s ease;
+}
+#m.story-screen .story-saga:hover{transform:translateY(-2px);box-shadow:0 17px 36px rgba(0,0,0,.25),0 0 22px rgba(69,193,255,.08)!important}
+#m.story-screen .story-saga-head{
+ width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto 20px;align-items:center;gap:10px;
+ margin:0;padding:10px 7px!important;border:0!important;border-radius:12px!important;
+ background:transparent!important;box-shadow:none!important;text-align:left;
+}
+#m.story-screen .story-saga-name{font-size:14px;font-weight:900;color:#f3f8ff;line-height:1.35}
+#m.story-screen .story-saga-meta{font-size:10px;font-weight:800;color:#93dfff;white-space:nowrap}
+#m.story-screen .story-saga-arrow{font-size:20px;color:#9ab8e2;text-align:center}
+#m.story-screen .story-saga-progress{height:4px;margin:0 7px 8px;overflow:hidden;border-radius:99px;background:rgba(6,13,31,.7)}
+#m.story-screen .story-saga-progress span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#36c8f2,#9278f5)}
+#m.story-screen .story-chapters{display:flex;flex-direction:column;gap:5px;max-height:380px;margin:8px 0 0;padding:2px 1px 3px;overflow:auto}
+#m.story-screen .story-sub{padding:10px 7px 5px;border:0!important;color:#77dafa;font-size:9px;letter-spacing:1.5px;text-transform:uppercase}
+#m.story-screen .story-chapter{min-width:0}
+#m.story-screen .story-chapter[hidden],#m.story-screen .story-saga[hidden]{display:none!important}
+#m.story-screen .story-chapter-button{
+ display:grid!important;grid-template-columns:34px minmax(0,1fr) auto;align-items:center;gap:10px;
+ width:100%;max-width:none!important;min-height:58px!important;margin:0!important;padding:8px 10px!important;
+ border:0!important;border-radius:12px!important;background:rgba(27,46,79,.72)!important;
+ box-shadow:none!important;text-align:left;transform:none!important;
+}
+#m.story-screen .story-chapter-button:hover:not(:disabled){background:linear-gradient(100deg,rgba(30,91,126,.9),rgba(55,48,105,.9))!important}
+#m.story-screen .story-chapter-number{display:grid;place-items:center;width:31px;height:31px;border-radius:10px;background:rgba(87,153,197,.16);color:#9bdfff;font-size:11px;font-weight:900}
+#m.story-screen .story-chapter-copy{display:flex;flex-direction:column;gap:3px;min-width:0}
+#m.story-screen .story-chapter-copy strong{color:#edf5ff;font-size:12px;line-height:1.35;font-weight:800}
+#m.story-screen .story-chapter-copy small{color:#8ea8c8;font-size:10px;line-height:1.25}
+#m.story-screen .story-chapter-status{font-size:8px;letter-spacing:.7px;font-weight:900;color:#9ab1d1;white-space:nowrap}
+#m.story-screen .story-chapter.is-done .story-chapter-number{background:rgba(48,190,137,.18);color:#76e5b6}
+#m.story-screen .story-chapter.is-done .story-chapter-status{color:#76e5b6}
+#m.story-screen .story-chapter.is-locked .story-chapter-status{color:#71819d}
+#m.story-screen .story-chapter-button:disabled{opacity:.5!important;filter:none!important}
+#m.story-screen .story-footer{width:min(1120px,96%);display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin:4px auto 12px}
+#m.story-screen .story-footer button{min-height:48px;padding:12px 20px!important;border:0!important;border-radius:14px!important}
+#m.story-screen .story-footer-primary{background:linear-gradient(110deg,#147da5,#5c4eb0)!important;color:#fff!important}
+#m.story-screen .story-footer-secondary{background:rgba(23,40,70,.92)!important;color:#d6e7ff!important}
+@media(max-width:760px){#m.story-screen #storySagaGrid{grid-template-columns:1fr}#m.story-screen .story-stats{grid-template-columns:repeat(2,minmax(0,1fr))}#m.story-screen .story-toolbar{align-items:stretch}#m.story-screen .story-filters{width:100%}#m.story-screen .story-filter{flex:1}}
+@media(max-width:420px){#m.story-screen .story-chapter-button{grid-template-columns:30px minmax(0,1fr);gap:8px}#m.story-screen .story-chapter-status{grid-column:2;text-align:left}#m.story-screen .story-hero{padding:20px 16px}}
+@media(prefers-reduced-motion:reduce){#m.story-screen *{transition:none!important}}

@@ -326,176 +326,185 @@ SAGAS.sort((a,b)=>{
 
 const STORY_REWRITES={
 s1:[
-["L’arrivée de Raditz","Raditz","Le frère oublié","Raditz révèle à Goku ses origines saiyans et enlève Son Gohan."],
-["L’entraînement chez le Roi Kaï","Roi Kaï","Le Kaioken","Dans l’au-delà, Goku apprend le Kaioken pour affronter les Saiyans qui approchent."],
-["L’arrivée de Nappa et Vegeta","Nappa","Les envahisseurs","Les deux Saiyans arrivent sur Terre. Nappa ouvre l’assaut pendant que Vegeta observe."],
+["Le frère venu de l’espace","Raditz","Le frère oublié","Raditz révèle à Goku ses origines saiyans et enlève Son Gohan."],
+["L’entraînement du Roi Kaï","Roi Kaï","Le Kaioken","Dans l’au-delà, Goku apprend le Kaioken pour affronter les Saiyans qui approchent."],
+["Les Saiyans arrivent sur Terre","Nappa","Les envahisseurs","Les deux Saiyans arrivent sur Terre. Nappa ouvre l’assaut pendant que Vegeta observe."],
 ["Goku contre Nappa","Nappa","Le retour de Goku","Goku rejoint le champ de bataille et affronte Nappa après l’entraînement du Roi Kaï."],
-["Le duel contre Vegeta","Vegeta","Le prince des Saiyans","Vegeta passe à l’attaque et pousse Goku à dépasser ses limites."],
-["Le Kaioken à pleine puissance","Vegeta","La limite du Kaioken","Goku augmente le Kaioken malgré le danger que représente cette technique."],
-["Le Genkidama","Vegeta","L’énergie de la Terre","Goku rassemble l’énergie de ses alliés pour créer une attaque capable d’arrêter Vegeta."],
+["Le prince des Saiyans","Vegeta","Le prince des Saiyans","Vegeta passe à l’attaque et pousse Goku à dépasser ses limites."],
+["Le Kaioken à sa limite","Vegeta","La limite du Kaioken","Goku augmente le Kaioken malgré le danger que représente cette technique."],
+["Le Genkidama de la Terre","Vegeta","L’énergie de la Terre","Goku rassemble l’énergie de ses alliés pour créer une attaque capable d’arrêter Vegeta."],
 ["La lune artificielle","Vegeta","La forme Oozaru","Vegeta crée une lune artificielle et se transforme en grand singe."],
 ["Yajirobé entre en scène","Vegeta","La queue du Saiyan","Alors que Vegeta domine le combat, Yajirobé cherche une ouverture décisive."],
-["Gohan libère sa puissance","Vegeta","Le courage de Gohan","Gohan dépasse sa peur et rejoint le combat pour protéger ses amis."],
-["Le dernier assaut sur Terre","Vegeta","La défaite du prince","Les combattants unissent leurs forces pour empêcher Vegeta de détruire la planète."],
-["Le départ vers Namek","Vegeta","Une nouvelle destination","Après la bataille, les survivants apprennent que les Dragon Balls de Namek peuvent exaucer leur souhait."],
-["La convalescence de Goku","Vegeta","La préparation de Goku","Goku récupère et se prépare à rejoindre ses amis avec un entraînement intensif."],
-["Les conséquences du combat","Vegeta","Le choix de Vegeta","Vegeta quitte la Terre, humilié mais déterminé à devenir plus puissant."],
-["Le voyage des héros","Nappa","La route de Namek","Le voyage vers Namek se prépare tandis que les Saiyans restent une menace."],
-["La fin de la bataille des Saiyans","Vegeta","La promesse du prince","La Terre est sauvée. Vegeta s’éloigne et annonce qu’il retrouvera Goku."]
+["La rage de Gohan","Vegeta","Le courage de Gohan","Gohan dépasse sa peur et rejoint le combat pour protéger ses amis."],
+["L’ultime offensive sur Terre","Vegeta","La défaite du prince","Les combattants unissent leurs forces pour empêcher Vegeta de détruire la planète."],
+["Cap sur Namek","Vegeta","Une nouvelle destination","Après la bataille, les survivants apprennent que les Dragon Balls de Namek peuvent exaucer leur souhait."],
+["Le retour de Goku","Vegeta","La préparation de Goku","Goku récupère et se prépare à rejoindre ses amis avec un entraînement intensif."],
+["Les survivants de la bataille","Vegeta","Le choix de Vegeta","Vegeta quitte la Terre, humilié mais déterminé à devenir plus puissant."],
+["Un nouvel espoir","Nappa","La route de Namek","Le voyage vers Namek se prépare tandis que les Saiyans restent une menace."],
+["La fin de l’invasion saiyanne","Vegeta","La promesse du prince","La Terre est sauvée. Vegeta s’éloigne et annonce qu’il retrouvera Goku."]
+
 ],
 s0:[
 ["La rencontre avec Bulma","Yamcha","La quête commence","Goku rencontre Bulma et découvre l’existence des sept Dragon Balls."],
-["Le bandit du désert","Yamcha","Un rival inattendu","Yamcha tente de dépouiller les voyageurs avant de découvrir la force de Goku."],
-["Oolong et le village","Oolong","Le vœu du village","Goku et Bulma libèrent un village de la menace d’Oolong et poursuivent leur quête."],
-["Le mont Fry-Pan","Muten Roshi","La rencontre du maître","Le groupe rencontre le vieux maître Tortue Géniale et découvre la puissance du Kamehameha."],
-["L’armée du Ruban Rouge","Colonel Silver","La première base","La quête des Dragon Balls mène Goku face aux soldats du Ruban Rouge."],
+["Yamcha, le bandit du désert","Yamcha","Un rival inattendu","Yamcha tente de dépouiller les voyageurs avant de découvrir la force de Goku."],
+["Le village d’Oolong","Oolong","Le vœu du village","Goku et Bulma libèrent un village de la menace d’Oolong et poursuivent leur quête."],
+["L’épreuve du mont Fry-Pan","Muten Roshi","La rencontre du maître","Le groupe rencontre le vieux maître Tortue Géniale et découvre la puissance du Kamehameha."],
+["La forteresse du Ruban Rouge","Colonel Silver","La première base","La quête des Dragon Balls mène Goku face aux soldats du Ruban Rouge."],
 ["La tour du Muscle","Général White","Le village enneigé","Goku aide un village isolé et affronte le commandant de la tour."],
 ["Le ninja Murasaki","Ninja Murasaki","L’étage des ninjas","Goku traverse la tour et déjoue les pièges de ses défenseurs."],
 ["C-8 choisit son camp","Android 8","Un cœur courageux","Un androïde refuse d’obéir aux ordres et aide Goku à poursuivre sa route."],
-["Le trésor du pirate","Général Blue","La grotte sous-marine","Goku affronte un officier du Ruban Rouge dans sa recherche d’une Dragon Ball."],
+["Le secret de la grotte pirate","Général Blue","La grotte sous-marine","Goku affronte un officier du Ruban Rouge dans sa recherche d’une Dragon Ball."],
 ["La voyante Baba","Yamcha","Les cinq combattants","Pour retrouver la dernière Dragon Ball, Goku doit relever les épreuves de la voyante."],
 ["Le 21e Tenkaichi Budokai","Jackie Chun","Le premier grand tournoi","Goku participe au tournoi et retrouve des adversaires qui ont progressé."],
-["Le rival aux trois yeux","Tenshinhan","Le 22e tournoi","Tenshinhan défie Goku et met à l’épreuve sa discipline martiale."],
+["Tenshinhan, le rival","Tenshinhan","Le 22e tournoi","Tenshinhan défie Goku et met à l’épreuve sa discipline martiale."],
 ["Le sacrifice de Chaozu","Tenshinhan","Le tournoi bascule","Le tournoi est interrompu par les conséquences de la rivalité entre les écoles."],
 ["Le roi démon Piccolo","Piccolo Daimaô","La menace démoniaque","Piccolo Daimaô cherche à régner sur le monde et Goku se dresse devant lui."],
-["La dernière bataille contre Piccolo","Piccolo Daimaô","Le dernier espoir","Goku rassemble ses dernières forces pour mettre fin au règne du démon."],
-["Le 23e tournoi","Piccolo","Le nouveau champion","Trois ans plus tard, Goku retrouve Piccolo au tournoi et décide de protéger la Terre."]
+["Le dernier duel contre Piccolo","Piccolo Daimaô","Le dernier espoir","Goku rassemble ses dernières forces pour mettre fin au règne du démon."],
+["Le 23e Tenkaichi Budokai","Piccolo","Le nouveau champion","Trois ans plus tard, Goku retrouve Piccolo au tournoi et décide de protéger la Terre."]
+
 ],
 s2:[
-["Cap sur Namek","Dodoria","La planète aux Dragon Balls","Gohan, Krillin et Bulma arrivent sur Namek tandis que Freezer traque les Dragon Balls."],
+["En route pour Namek","Dodoria","La planète aux Dragon Balls","Gohan, Krillin et Bulma arrivent sur Namek tandis que Freezer traque les Dragon Balls."],
 ["La chasse aux Dragon Balls","Dodoria","Les villages nameks","Les héros tentent de protéger les Nameks et leurs Dragon Balls des soldats de Freezer."],
-["Zarbon révèle sa puissance","Zarbon","Le guerrier transformé","Vegeta affronte Zarbon, qui révèle une forme bien plus puissante."],
-["Le retour de Vegeta","Vegeta","Une alliance fragile","Vegeta poursuit son propre objectif et croise de nouveau la route des héros."],
-["L’arrivée du commando Ginyu","Recoome","Les forces spéciales","Le commando Ginyu débarque sur Namek et met les combattants à rude épreuve."],
-["Recoome contre les Saiyans","Recoome","La force brute","Recoome domine le terrain jusqu’à ce que Goku arrive sur Namek."],
-["Goku contre le commando","Burter","La vitesse de Burter","Goku affronte les membres les plus rapides du commando Ginyu."],
-["Le changement de corps","Capitaine Ginyu","Le corps de Goku","Ginyu utilise sa technique d’échange de corps et bouleverse le cours du combat."],
+["Zarbon révèle sa vraie forme","Zarbon","Le guerrier transformé","Vegeta affronte Zarbon, qui révèle une forme bien plus puissante."],
+["Vegeta contre les soldats de Freezer","Vegeta","Une alliance fragile","Vegeta poursuit son propre objectif et croise de nouveau la route des héros."],
+["Le commando Ginyu","Recoome","Les forces spéciales","Le commando Ginyu débarque sur Namek et met les combattants à rude épreuve."],
+["Recoome défie les Saiyans","Recoome","La force brute","Recoome domine le terrain jusqu’à ce que Goku arrive sur Namek."],
+["Goku contre les forces spéciales","Burter","La vitesse de Burter","Goku affronte les membres les plus rapides du commando Ginyu."],
+["L’échange des corps","Capitaine Ginyu","Le corps de Goku","Ginyu utilise sa technique d’échange de corps et bouleverse le cours du combat."],
 ["Le vœu de Freezer","Freezer","Les Dragon Balls réunies","Freezer découvre que les Dragon Balls lui échappent et décide d’intervenir personnellement."],
-["Le combat des formes de Freezer","Freezer","La deuxième forme","Freezer dévoile ses transformations et écrase progressivement ses adversaires."],
+["La deuxième forme du tyran","Freezer","La deuxième forme","Freezer dévoile ses transformations et écrase progressivement ses adversaires."],
 ["Piccolo rejoint le combat","Freezer","Le guerrier fusionné","Piccolo revient après sa fusion avec Nail et affronte Freezer."],
-["La troisième forme","Freezer","La terreur grandissante","Freezer révèle une nouvelle transformation et pousse les héros dans leurs retranchements."],
-["Le Super Saiyan s’éveille","Freezer","La rage de Goku","Après la perte de Krillin, Goku s’éveille au Super Saiyan. La transformation est débloquée à ce chapitre."],
-["Le combat des Super Saiyans","Freezer","La puissance dorée","Goku maîtrise progressivement sa nouvelle forme tandis que Freezer libère sa puissance maximale."],
-["Le dernier combat sur Namek","Freezer","La planète condamnée","Le duel atteint son sommet alors que Namek menace d’exploser."],
-["La fuite de Namek","Freezer","La fin du tyran","Goku tente de quitter la planète et le règne de Freezer touche à sa fin."]
+["La troisième forme de Freezer","Freezer","La terreur grandissante","Freezer révèle une nouvelle transformation et pousse les héros dans leurs retranchements."],
+["L’éveil du Super Saiyan","Freezer","La rage de Goku","Après la perte de Krillin, Goku s’éveille au Super Saiyan. La transformation est débloquée à ce chapitre."],
+["Le duel des formes finales","Freezer","La puissance dorée","Goku maîtrise progressivement sa nouvelle forme tandis que Freezer libère sa puissance maximale."],
+["Namek au bord de l’explosion","Freezer","La planète condamnée","Le duel atteint son sommet alors que Namek menace d’exploser."],
+["La fuite de la planète Namek","Freezer","La fin du tyran","Goku tente de quitter la planète et le règne de Freezer touche à sa fin."]
+
 ],
 s3:[
-["L’avertissement du futur","Trunks","Un futur dévasté","Trunks arrive du futur et avertit les héros de l’apparition prochaine des cyborgs."],
+["L’avertissement de Trunks","Trunks","Un futur dévasté","Trunks arrive du futur et avertit les héros de l’apparition prochaine des cyborgs."],
 ["Le virus de Goku","Android 19","Un combat interrompu","Goku tombe malade au milieu du combat et les cyborgs prennent l’avantage."],
-["L’arrivée de C-17 et C-18","Android 17","Les cyborgs activés","C-17 et C-18 se réveillent et dépassent les prévisions des combattants."],
-["Le réveil de C-16","Android 16","Un androïde pacifique","C-16 rejoint les cyborgs, mais son objectif diffère de celui de C-17 et C-18."],
-["La première apparition de Cell","Cell","Le monstre mystérieux","Une créature absorbe l’énergie des habitants et commence à rechercher les cyborgs."],
-["La chasse de Cell","Cell","L’absorption","Cell traque C-17 pour atteindre une nouvelle forme."],
-["Cell devient semi-parfait","Cell","La deuxième forme","Après avoir absorbé C-17, Cell gagne en puissance et vise désormais C-18."],
-["La perfection de Cell","Cell","La forme parfaite","Cell absorbe C-18 et atteint sa forme parfaite."],
-["Le tournoi annoncé","Cell","Le Cell Game","Cell annonce un tournoi pour mesurer sa puissance face aux défenseurs de la Terre."],
-["L’entraînement dans la salle du temps","Vegeta","La préparation des guerriers","Les combattants s’entraînent dans la salle de l’Esprit et du Temps avant le tournoi."],
-["Le combat de Trunks","Cell","La puissance ne suffit pas","Trunks révèle sa puissance, mais découvre les limites d’une transformation trop lente."],
-["Goku entre dans l’arène","Cell","Le duel du maître","Goku affronte Cell et comprend qu’un autre combattant devra prendre le relais."],
-["Les Cell Juniors","Cell","La pression sur les héros","Cell crée les Cell Juniors pour pousser les combattants à bout."],
-["Gohan libère le Super Saiyan 2","Cell","La colère de Gohan","La destruction de C-16 déclenche l’éveil du Super Saiyan 2 chez Gohan."],
+["L’éveil des cyborgs","Android 17","Les cyborgs activés","C-17 et C-18 se réveillent et dépassent les prévisions des combattants."],
+["Le docteur Gero démasqué","Android 16","Un androïde pacifique","C-16 rejoint les cyborgs, mais son objectif diffère de celui de C-17 et C-18."],
+["Le réveil de C-16","Cell","Le monstre mystérieux","Une créature absorbe l’énergie des habitants et commence à rechercher les cyborgs."],
+["Cell entre en chasse","Cell","L’absorption","Cell traque C-17 pour atteindre une nouvelle forme."],
+["La forme semi-parfaite","Cell","La deuxième forme","Après avoir absorbé C-17, Cell gagne en puissance et vise désormais C-18."],
+["Cell atteint la perfection","Cell","La forme parfaite","Cell absorbe C-18 et atteint sa forme parfaite."],
+["L’annonce des Cell Games","Cell","Le Cell Game","Cell annonce un tournoi pour mesurer sa puissance face aux défenseurs de la Terre."],
+["La salle de l’Esprit et du Temps","Vegeta","La préparation des guerriers","Les combattants s’entraînent dans la salle de l’Esprit et du Temps avant le tournoi."],
+["Trunks libère sa puissance","Cell","La puissance ne suffit pas","Trunks révèle sa puissance, mais découvre les limites d’une transformation trop lente."],
+["Goku défie Cell","Cell","Le duel du maître","Goku affronte Cell et comprend qu’un autre combattant devra prendre le relais."],
+["L’attaque des Cell Juniors","Cell","La pression sur les héros","Cell crée les Cell Juniors pour pousser les combattants à bout."],
+["Gohan devient Super Saiyan 2","Cell","La colère de Gohan","La destruction de C-16 déclenche l’éveil du Super Saiyan 2 chez Gohan."],
 ["Le sacrifice de Goku","Cell","Le choix de Goku","Goku tente d’empêcher l’explosion de Cell et confie le combat à la génération suivante."],
-["Le Kamehameha final","Cell","La victoire de Gohan","Gohan affronte le dernier assaut de Cell et protège la Terre avec l’aide de ses alliés."]
+["Le Kamehameha père-fils","Cell","La victoire de Gohan","Gohan affronte le dernier assaut de Cell et protège la Terre avec l’aide de ses alliés."]
+
 ],
 s4:[
 ["Le 25e Tenkaichi Budokai","Spopovitch","Le tournoi reprend","Des années après Cell, Goku revient sur Terre pour participer au tournoi."],
-["La mystérieuse énergie","Yamu","Le plan de Babidi","Deux combattants volent l’énergie de Gohan pour réveiller une ancienne menace."],
-["L’entrée dans le vaisseau de Babidi","Pui Pui","Les épreuves du sorcier","Les héros pénètrent dans le vaisseau de Babidi et affrontent ses guerriers."],
+["L’énergie mystérieuse","Yamu","Le plan de Babidi","Deux combattants volent l’énergie de Gohan pour réveiller une ancienne menace."],
+["Le vaisseau de Babidi","Pui Pui","Les épreuves du sorcier","Les héros pénètrent dans le vaisseau de Babidi et affrontent ses guerriers."],
 ["Dabura, roi des démons","Dabura","Le gardien du vaisseau","Dabura révèle sa puissance et menace les combattants avec ses pouvoirs démoniaques."],
 ["Vegeta devient Majin","Majin Vegeta","Le duel des rivaux","Babidi exploite la fierté de Vegeta, qui provoque Goku pour régler leur rivalité."],
-["Le réveil de Majin Buu","Majin Buu","L’ancienne menace","L’énergie accumulée réveille enfin Majin Buu."],
+["Le réveil de Buu","Majin Buu","L’ancienne menace","L’énergie accumulée réveille enfin Majin Buu."],
 ["Goku révèle le Super Saiyan 3","Majin Buu","Une puissance temporaire","Goku dévoile le Super Saiyan 3 pour gagner du temps face à Buu."],
 ["La fusion de Goten et Trunks","Gotenks","La danse de fusion","Goten et Trunks apprennent la fusion pour défendre la Terre."],
-["Buu contre Gotenks","Majin Buu","Le combat dans la salle du temps","Gotenks affronte Buu et teste les limites de sa nouvelle puissance."],
+["Gotenks contre Buu","Majin Buu","Le combat dans la salle du temps","Gotenks affronte Buu et teste les limites de sa nouvelle puissance."],
 ["Gohan libère son potentiel","Super Buu","Le pouvoir ultime","Gohan revient après son entraînement auprès du Vieux Kaïôshin."],
-["L’absorption de Gotenks","Super Buu","La menace grandit","Buu absorbe Gotenks et Piccolo et devient encore plus dangereux."],
+["Buu absorbe Gotenks","Super Buu","La menace grandit","Buu absorbe Gotenks et Piccolo et devient encore plus dangereux."],
 ["Vegetto entre en scène","Vegetto","La fusion des Potaras","Goku et Vegeta fusionnent avec les Potaras pour affronter Buu."],
-["À l’intérieur de Buu","Super Buu","Sauver les absorbés","Les héros pénètrent dans Buu pour libérer leurs amis absorbés."],
-["Le retour à Kid Buu","Kid Buu","La forme originelle","Buu retrouve sa forme la plus chaotique et menace l’univers."],
+["Le combat dans le corps de Buu","Super Buu","Sauver les absorbés","Les héros pénètrent dans Buu pour libérer leurs amis absorbés."],
+["Le retour de Kid Buu","Kid Buu","La forme originelle","Buu retrouve sa forme la plus chaotique et menace l’univers."],
 ["Le Genkidama universel","Kid Buu","L’énergie de tous","Goku rassemble l’énergie des habitants de la Terre pour préparer son attaque finale."],
 ["La fin de Majin Buu","Kid Buu","Un nouveau départ","Le combat s’achève et la paix revient, tandis que Goku espère retrouver Buu un jour."]
+
 ],
 daima:[
-["Le complot dans le royaume des démons","Gomah","Un vœu dangereux","Gomah utilise les Dragon Balls pour rajeunir Goku et ses amis."],
-["Le départ vers le royaume des démons","Glorio","Un guide mystérieux","Goku rencontre Glorio et accepte de voyager vers le royaume des démons."],
+["Le complot du royaume démoniaque","Gomah","Un vœu dangereux","Gomah utilise les Dragon Balls pour rajeunir Goku et ses amis."],
+["Le voyage vers le monde des démons","Glorio","Un guide mystérieux","Goku rencontre Glorio et accepte de voyager vers le royaume des démons."],
 ["La rencontre avec Panzy","Panzy","Une alliée inattendue","Panzy rejoint le groupe et leur révèle les dangers du royaume des démons."],
 ["Le premier Tamagami","Tamagami","L’épreuve du Dragon Ball","Goku doit réussir l’épreuve du premier gardien pour récupérer une Dragon Ball."],
-["La route du deuxième monde démoniaque","Glorio","Les terres inconnues","Le groupe traverse un nouveau territoire et découvre les règles du royaume."],
+["La traversée du premier monde","Glorio","Les terres inconnues","Le groupe traverse un nouveau territoire et découvre les règles du royaume."],
 ["Le deuxième Tamagami","Tamagami","Le gardien du second monde","Un autre gardien protège une Dragon Ball et impose une épreuve différente."],
 ["Les secrets de Glorio","Glorio","La confiance mise à l’épreuve","Les intentions de Glorio deviennent incertaines alors que le groupe approche de son objectif."],
 ["Le troisième Tamagami","Tamagami","La dernière épreuve","Goku affronte le dernier gardien pour réunir les Dragon Balls nécessaires."],
-["La vérité sur les Dragon Balls","Gomah","Le pouvoir convoité","Le groupe découvre les véritables enjeux du souhait de Gomah."],
-["La puissance du royaume démoniaque","Degesu","Les plans de Degesu","Les intrigues de Degesu menacent de bouleverser l’équilibre du royaume."],
-["La transformation de Goku","Gomah","Une nouvelle puissance","Goku révèle une puissance adaptée aux dangers du royaume démoniaque."],
-["L’armée de Gomah","Gomah","Le palais assiégé","Les héros affrontent les forces qui protègent le souverain démoniaque."],
-["Le pouvoir du Troisième Œil","Gomah","L’œil maléfique","Gomah utilise le pouvoir du Troisième Œil pour prendre l’avantage."],
-["Le combat de Vegeta","Tamago","Le prince contre-attaque","Vegeta rejoint le combat et affronte un adversaire du royaume démoniaque."],
-["Goku contre Gomah","Gomah","Le duel final","Goku affronte Gomah alors que le sort du royaume démoniaque se décide."],
-["L’éveil du Super Saiyan 4","Gomah","La puissance retrouvée","Face au pouvoir du Troisième Œil, Goku révèle le Super Saiyan 4 et renverse le cours du combat pour sauver le royaume démoniaque."]
+["Le mystère des Dragon Balls","Gomah","Le pouvoir convoité","Le groupe découvre les véritables enjeux du souhait de Gomah."],
+["La puissance de Gomah","Degesu","Les plans de Degesu","Les intrigues de Degesu menacent de bouleverser l’équilibre du royaume."],
+["Goku retrouve sa puissance","Gomah","Une nouvelle puissance","Goku révèle une puissance adaptée aux dangers du royaume démoniaque."],
+["L’armée du roi démon","Gomah","Le palais assiégé","Les héros affrontent les forces qui protègent le souverain démoniaque."],
+["Le Troisième Œil s’éveille","Gomah","L’œil maléfique","Gomah utilise le pouvoir du Troisième Œil pour prendre l’avantage."],
+["Vegeta entre dans la bataille","Tamago","Le prince contre-attaque","Vegeta rejoint le combat et affronte un adversaire du royaume démoniaque."],
+["Le duel final contre Gomah","Gomah","Le duel final","Goku affronte Gomah alors que le sort du royaume démoniaque se décide."],
+["Goku atteint le Super Saiyan 4","Gomah","La puissance retrouvée","Face au pouvoir du Troisième Œil, Goku révèle le Super Saiyan 4 et renverse le cours du combat pour sauver le royaume démoniaque."]
+
 ],
 super:[
-["Beerus arrive sur Terre","Beerus","Le Dieu de la Destruction","Beerus se réveille et cherche le Super Saiyan God après avoir aperçu cette puissance en rêve. Goku décide de le rencontrer pour protéger la Terre."],
+["Le réveil de Beerus","Beerus","Le Dieu de la Destruction","Beerus se réveille et cherche le Super Saiyan God après avoir aperçu cette puissance en rêve. Goku décide de le rencontrer pour protéger la Terre."],
 ["Le rituel du Super Saiyan God","Beerus","L’énergie des six Saiyans","Goku reçoit l’énergie de ses proches et atteint le Super Saiyan God. Cette puissance divine devient le seul moyen de tenir tête à Beerus."],
-["Goku contre Beerus","Beerus","Le duel divin","Le combat entre Goku et Beerus s’élève jusque dans l’espace. Goku apprend que la puissance divine exige autant de maîtrise que de force."],
-["Le tournoi de l’univers 6","Hit","Le défi de Champa","Champa organise un tournoi entre les univers 6 et 7. Goku et Vegeta découvrent de nouveaux adversaires, dont l’assassin Hit."],
-["Vegeta s’éveille au pouvoir divin","Beerus","L’entraînement de Whis","Vegeta poursuit son entraînement auprès de Whis et atteint à son tour le Super Saiyan God. Il refuse de rester derrière Goku."],
-["La résurrection de Freezer","Freezer","Le retour du tyran","Les soldats de Freezer réunissent les Dragon Balls et ressuscitent leur maître. Le tyran revient avec une nouvelle ambition et s’entraîne pour se venger."],
-["Goku et Vegeta contre Golden Freezer","Freezer","La forme dorée","Freezer atteint sa forme dorée et attaque la Terre. Goku et Vegeta doivent l’arrêter avant que la planète ne soit détruite."],
+["Goku contre le dieu de la destruction","Beerus","Le duel divin","Le combat entre Goku et Beerus s’élève jusque dans l’espace. Goku apprend que la puissance divine exige autant de maîtrise que de force."],
+["Le tournoi des univers 6 et 7","Hit","Le défi de Champa","Champa organise un tournoi entre les univers 6 et 7. Goku et Vegeta découvrent de nouveaux adversaires, dont l’assassin Hit."],
+["Vegeta éveille le pouvoir divin","Beerus","L’entraînement de Whis","Vegeta poursuit son entraînement auprès de Whis et atteint à son tour le Super Saiyan God. Il refuse de rester derrière Goku."],
+["Freezer revient à la vie","Freezer","Le retour du tyran","Les soldats de Freezer réunissent les Dragon Balls et ressuscitent leur maître. Le tyran revient avec une nouvelle ambition et s’entraîne pour se venger."],
+["Golden Freezer attaque la Terre","Freezer","La forme dorée","Freezer atteint sa forme dorée et attaque la Terre. Goku et Vegeta doivent l’arrêter avant que la planète ne soit détruite."],
 ["L’éveil du Super Saiyan Blue","Whis","La maîtrise du ki divin","Goku et Vegeta apprennent à mêler le Super Saiyan à leur ki divin. Ils éveillent le Super Saiyan Blue et maîtrisent enfin cette énergie."],
-["Le retour de Trunks du futur","Goku Black","Un futur dévasté","Trunks revient d’un futur ravagé par un ennemi qui possède le visage de Goku. Il demande de l’aide pour sauver son monde."],
-["Goku contre Goku Black","Goku Black","Le visage volé","Goku affronte son double maléfique et découvre une puissance qui évolue pendant le combat. Trunks reconnaît le danger qui menace son époque."],
-["Vegeta affronte Goku Black","Goku Black","La riposte du prince","Vegeta retourne dans le futur pour affronter Goku Black. Sa maîtrise du Super Saiyan Blue lui permet de prendre l’avantage."],
-["L’éveil du Super Saiyan Rage","Goku Black","La détermination de Trunks","Face à la destruction de son monde, Trunks rassemble toute sa volonté et éveille le Super Saiyan Rage."],
-["Vegetto Blue contre Zamasu fusionné","Zamasu fusionné","La fusion des Potaras","Goku et Vegeta fusionnent avec les Potaras et deviennent Vegetto Blue. Ils affrontent Zamasu fusionné, dont l’immortalité menace les deux futurs."],
+["Trunks revient du futur","Goku Black","Un futur dévasté","Trunks revient d’un futur ravagé par un ennemi qui possède le visage de Goku. Il demande de l’aide pour sauver son monde."],
+["Goku affronte Black","Goku Black","Le visage volé","Goku affronte son double maléfique et découvre une puissance qui évolue pendant le combat. Trunks reconnaît le danger qui menace son époque."],
+["Vegeta défie Black","Goku Black","La riposte du prince","Vegeta retourne dans le futur pour affronter Goku Black. Sa maîtrise du Super Saiyan Blue lui permet de prendre l’avantage."],
+["Le Super Saiyan Rage de Trunks","Goku Black","La détermination de Trunks","Face à la destruction de son monde, Trunks rassemble toute sa volonté et éveille le Super Saiyan Rage."],
+["Vegetto Blue contre Zamasu","Zamasu fusionné","La fusion des Potaras","Goku et Vegeta fusionnent avec les Potaras et deviennent Vegetto Blue. Ils affrontent Zamasu fusionné, dont l’immortalité menace les deux futurs."],
 ["Goku face à Jiren","Jiren","Le premier éveil de l’Ultra Instinct","Au Tournoi du Pouvoir, Goku affronte Jiren. Sous une pression extrême, il commence à éveiller l’Ultra Instinct."],
-["Goku contre Kefla","Kefla","L’instinct en mouvement","Kefla pousse Goku dans ses derniers retranchements. Goku doit laisser son corps réagir instinctivement pour contrer la puissance de la fusion."],
-["L’Ultra Instinct maîtrisé contre Jiren","Jiren","Le dernier combat du tournoi","Goku maîtrise l’Ultra Instinct face à Jiren. Avec l’aide de ses alliés, il joue le tout pour le tout afin de sauver les univers."]
+["Kefla pousse Goku à bout","Kefla","L’instinct en mouvement","Kefla pousse Goku dans ses derniers retranchements. Goku doit laisser son corps réagir instinctivement pour contrer la puissance de la fusion."],
+["L’Ultra Instinct maîtrisé","Jiren","Le dernier combat du tournoi","Goku maîtrise l’Ultra Instinct face à Jiren. Avec l’aide de ses alliés, il joue le tout pour le tout afin de sauver les univers."]
+
 ],
 heroes:[
 ["La prison planétaire","Cumber","Le Saiyan maléfique","Goku et ses alliés se retrouvent piégés dans une prison mystérieuse."],
-["L’arrivée de Fu","Fu","Le scientifique mystérieux","Fu révèle qu’il observe les combats pour alimenter ses expériences."],
-["Le Saiyan maléfique","Cumber","Une aura incontrôlable","Cumber libère une puissance sombre qui menace les combattants."],
+["Fu déclenche le chaos","Fu","Le scientifique mystérieux","Fu révèle qu’il observe les combats pour alimenter ses expériences."],
+["Cumber, le Saiyan maléfique","Cumber","Une aura incontrôlable","Cumber libère une puissance sombre qui menace les combattants."],
 ["La mission de Trunks Xeno","Xeno Goku","Les patrouilleurs du temps","Les patrouilleurs tentent de comprendre les anomalies qui déforment l’histoire."],
-["Le conflit du royaume démoniaque","Towa","La magie de Towa","Towa manipule les événements pour servir les plans du royaume démoniaque."],
-["L’éveil de Hearts","Hearts","Le projet universel","Hearts révèle son projet et affronte les guerriers qui veulent l’arrêter."],
+["La guerre du royaume démoniaque","Towa","La magie de Towa","Towa manipule les événements pour servir les plans du royaume démoniaque."],
+["Hearts révèle son pouvoir","Hearts","Le projet universel","Hearts révèle son projet et affronte les guerriers qui veulent l’arrêter."],
 ["La graine de l’univers","Hearts","Une puissance nouvelle","La graine de l’univers amplifie la menace et bouleverse le champ de bataille."],
-["L’attaque de la zone de faille","Fu","Les lignes temporelles","Fu provoque de nouvelles distorsions et force les héros à changer de stratégie."],
+["La faille temporelle","Fu","Les lignes temporelles","Fu provoque de nouvelles distorsions et force les héros à changer de stratégie."],
 ["Le retour de Cumber","Cumber","Le Saiyan libéré","Cumber revient avec une puissance encore plus difficile à contenir."],
-["Les guerriers de l’espace-temps","Xeno Vegeta","Une alliance nécessaire","Les versions Xeno des Saiyans rejoignent le combat pour stabiliser le temps."],
+["Les patrouilleurs de l’espace-temps","Xeno Vegeta","Une alliance nécessaire","Les versions Xeno des Saiyans rejoignent le combat pour stabiliser le temps."],
 ["Le pouvoir de la création","Fu","L’expérience de Fu","Fu pousse son expérience plus loin et met les univers en péril."],
-["Xeno Goku contre le chaos","Xeno Goku","Le protecteur du temps","Xeno Goku affronte la menace qui déforme les événements historiques."],
-["L’ultime forme de Hearts","Hearts","Le cœur de l’univers","Hearts libère son ultime puissance et lance son dernier assaut."],
-["La contre-attaque des patrouilleurs","Fu","Le temps se répare","Les patrouilleurs unissent leurs forces pour contrer le plan de Fu."],
-["Le duel des doubles","Cumber","Deux puissances opposées","Les guerriers affrontent les dernières conséquences des expériences temporelles."],
+["Xeno Goku face au chaos","Xeno Goku","Le protecteur du temps","Xeno Goku affronte la menace qui déforme les événements historiques."],
+["La forme ultime de Hearts","Hearts","Le cœur de l’univers","Hearts libère son ultime puissance et lance son dernier assaut."],
+["La riposte des patrouilleurs","Fu","Le temps se répare","Les patrouilleurs unissent leurs forces pour contrer le plan de Fu."],
+["Le combat des doubles","Cumber","Deux puissances opposées","Les guerriers affrontent les dernières conséquences des expériences temporelles."],
 ["La fin de la crise temporelle","Fu","Le continuum restauré","La crise prend fin et les patrouilleurs restaurent l’équilibre du temps."]
+
 ],
 gt:[
 ["Les Dragon Balls aux étoiles noires","Baby Vegeta","Le souhait de Pilaf","Pilaf fait un vœu imprudent avec les Dragon Balls aux étoiles noires. Goku retrouve un corps d’enfant et la Terre risque de disparaître si les sphères ne sont pas réunies à temps."],
 ["Le compte à rebours de la Terre","Baby Vegeta","Un an pour sauver la planète","Les Dragon Balls se dispersent dans l’espace. Goku, Pan et Trunks doivent les retrouver avant l’échéance qui menace la Terre."],
-["Le départ de Goku, Pan et Trunks","Baby Vegeta","L’équipage improbable","Pan s’impose dans l’expédition et le trio quitte la Terre. Leur voyage les mène vers des planètes où les Dragon Balls sont gardées par des adversaires inattendus."],
+["Goku, Pan et Trunks dans l’espace","Baby Vegeta","L’équipage improbable","Pan s’impose dans l’expédition et le trio quitte la Terre. Leur voyage les mène vers des planètes où les Dragon Balls sont gardées par des adversaires inattendus."],
 ["La planète Imecka","Baby Vegeta","Les dettes de Don Kia","Le groupe découvre une planète dominée par Don Kia. Pan et Goku refusent de laisser ses habitants subir les abus de son pouvoir."],
 ["La planète M-2","Baby Vegeta","Le piège des machines","Les héros découvrent les plans du docteur Myuu et affrontent les machines qui protègent ses recherches."],
-["La menace du docteur Myuu","Baby Vegeta","Le secret de Baby","Le docteur Myuu prépare le retour de Baby, un survivant tsuful animé par la vengeance contre les Saiyans."],
+["Le docteur Myuu","Baby Vegeta","Le secret de Baby","Le docteur Myuu prépare le retour de Baby, un survivant tsuful animé par la vengeance contre les Saiyans."],
 ["Baby arrive sur Terre","Baby Vegeta","La vengeance des Tsufuls","Baby atteint la Terre et commence à prendre le contrôle des habitants. Goku comprend que cette menace vise directement son peuple."],
-["Vegeta sous l’emprise de Baby","Baby Vegeta","Le prince possédé","Baby prend le contrôle de Vegeta et utilise sa puissance pour affronter Goku. Pan refuse d’abandonner son grand-père."],
-["Goku maîtrise le Super Saiyan 4","Baby Vegeta","La puissance primordiale","Goku retrouve la puissance du Super Saiyan 4 déjà éveillée et apprend à la maîtriser face à Baby. Cette forme lui permet de reprendre le contrôle du combat."],
+["Vegeta devient l’hôte de Baby","Baby Vegeta","Le prince possédé","Baby prend le contrôle de Vegeta et utilise sa puissance pour affronter Goku. Pan refuse d’abandonner son grand-père."],
+["L’éveil du Super Saiyan 4","Baby Vegeta","La puissance primordiale","Goku retrouve la puissance du Super Saiyan 4 déjà éveillée et apprend à la maîtriser face à Baby. Cette forme lui permet de reprendre le contrôle du combat."],
 ["Goku SSJ4 contre Baby Vegeta","Baby Vegeta","La revanche de Goku","Goku utilise sa nouvelle forme pour libérer Vegeta et mettre fin à la vengeance de Baby. Le combat atteint son point culminant."],
-["L’ouverture des portes de l’Enfer","Omega Shenron","Une alliance dangereuse","Une expérience liée au docteur Myuu provoque une brèche entre la Terre et l’Enfer. Les anciennes menaces peuvent revenir."],
+["Les portes de l’Enfer","Omega Shenron","Une alliance dangereuse","Une expérience liée au docteur Myuu provoque une brèche entre la Terre et l’Enfer. Les anciennes menaces peuvent revenir."],
 ["La naissance de Super C-17","Omega Shenron","Le cyborg ultime","C-17 et son double de l’Enfer fusionnent pour devenir Super C-17. Goku doit trouver comment contourner son absorption d’énergie."],
-["La bataille contre Super C-17","Omega Shenron","L’union des cyborgs","Goku affronte Super C-17 tandis que les alliés cherchent une faille dans sa défense. La crise annonce déjà un déséquilibre plus profond."],
-["Les Dragon Balls maléfiques","Omega Shenron","Le prix des souhaits","Les Dragon Balls libèrent les conséquences de l’énergie négative accumulée au fil des souhaits. Les dragons maléfiques apparaissent."],
+["La chute de Super C-17","Omega Shenron","L’union des cyborgs","Goku affronte Super C-17 tandis que les alliés cherchent une faille dans sa défense. La crise annonce déjà un déséquilibre plus profond."],
+["Les dragons maléfiques","Omega Shenron","Le prix des souhaits","Les Dragon Balls libèrent les conséquences de l’énergie négative accumulée au fil des souhaits. Les dragons maléfiques apparaissent."],
 ["Vegeta atteint le Super Saiyan 4","Vegeta","Les ondes Blutz de Bulma","Bulma permet à Vegeta de retrouver une queue grâce aux ondes Blutz. Le prince atteint le Super Saiyan 4 et rejoint le combat contre les dragons maléfiques."],
-["Gogeta Super Saiyan 4 contre Omega Shenron","Omega Shenron","Le dernier Genkidama","Goku et Vegeta exécutent la danse de fusion et deviennent Gogeta Super Saiyan 4. Ils affrontent Omega Shenron tandis que l’univers rassemble son énergie pour l’ultime attaque."]
+["Gogeta SSJ4 contre Omega Shenron","Omega Shenron","Le dernier Genkidama","Goku et Vegeta exécutent la danse de fusion et deviennent Gogeta Super Saiyan 4. Ils affrontent Omega Shenron tandis que l’univers rassemble son énergie pour l’ultime attaque."]
+
 ],
 af:[
-["Le retour d’un Saiyan oublié","Bardock","Une anomalie temporelle","Une distorsion ramène un guerrier du passé et bouleverse la chronologie."],
-["Le Super Saiyan 5","Xeno Goku","Au-delà des limites","Goku découvre une transformation légendaire propre à cette continuité fan-made."],
+["Le Saiyan oublié","Bardock","Une anomalie temporelle","Une distorsion ramène un guerrier du passé et bouleverse la chronologie."],
+["L’éveil du Super Saiyan 5","Xeno Goku","Au-delà des limites","Goku découvre une transformation légendaire propre à cette continuité fan-made."],
 ["L’empire des ténèbres","Dark Broly","La menace obscure","Une force obscure rassemble des guerriers pour conquérir plusieurs mondes."],
-["Le réveil de Dark Broly","Dark Broly","La puissance sombre","Dark Broly libère une énergie instable et défie les Saiyans."],
+["Dark Broly se réveille","Dark Broly","La puissance sombre","Dark Broly libère une énergie instable et défie les Saiyans."],
 ["Les guerriers dimensionnels","Xeno Vegeta","Des mondes parallèles","Les héros traversent plusieurs dimensions à la recherche de l’origine du conflit."],
 ["Le double maléfique","Dark Goku","Le reflet noir","Un double corrompu de Goku tente de prendre sa place."],
 ["La fusion interdite","Dark Gogeta","Une fusion instable","Deux puissances opposées fusionnent et créent un adversaire imprévisible."],
-["Le pouvoir des cinq Saiyans","Broly","L’énergie partagée","Les Saiyans unissent leurs énergies pour repousser l’armée obscure."],
+["La puissance des cinq Saiyans","Broly","L’énergie partagée","Les Saiyans unissent leurs énergies pour repousser l’armée obscure."],
 ["Le maître des dimensions","Dark Janemba","Les portails du chaos","Janemba déforme l’espace et sépare les combattants."],
 ["La forteresse obscure","Dark Broly","Le siège final","Les héros atteignent la forteresse qui alimente les anomalies."],
 ["Le Super Saiyan 5 maîtrisé","Xeno Goku","Une maîtrise nouvelle","Goku apprend à stabiliser sa transformation fan-made."],
@@ -503,28 +512,30 @@ af:[
 ["L’alliance des univers","Gogeta","Les héros réunis","Des guerriers de plusieurs réalités forment une alliance contre la menace."],
 ["Le retour de Dark Gogeta","Dark Gogeta","Le rival fusionné","Dark Gogeta revient avec une puissance renforcée."],
 ["Gogeta contre Dark Gogeta","Dark Gogeta","Le miroir des fusions","Les deux fusions s’affrontent dans un duel décisif."],
-["La fin de la guerre dimensionnelle","Dark Broly","Les mondes réunifiés","Les héros referment les brèches et mettent fin à la guerre dimensionnelle."]
+["La guerre dimensionnelle finale","Dark Broly","Les mondes réunifiés","Les héros referment les brèches et mettent fin à la guerre dimensionnelle."]
+
 ],
 kakumei:[
 ["Le monde après Buu","Dabura","Une paix fragile","Après la défaite de Buu, une nouvelle menace liée au monde démoniaque apparaît."],
 ["Le retour des Kaioshins","Dabura","Les signes du danger","Les Kaioshins enquêtent sur une énergie ancienne qui se répand."],
-["La menace du royaume démoniaque","Dabura","Les portes s’ouvrent","Des passages vers le royaume démoniaque s’ouvrent et libèrent ses guerriers."],
+["La menace démoniaque","Dabura","Les portes s’ouvrent","Des passages vers le royaume démoniaque s’ouvrent et libèrent ses guerriers."],
 ["Le premier assaut","Dabura","Les soldats démoniaques","Les défenseurs de la Terre repoussent une première vague d’ennemis."],
 ["Gohan reprend l’entraînement","Gohan","Le potentiel retrouvé","Gohan reprend son entraînement pour protéger sa famille et ses amis."],
-["Vegeta face aux démons","Vegeta","La fierté du prince","Vegeta affronte les forces démoniaques sans accepter de reculer."],
+["Vegeta contre les démons","Vegeta","La fierté du prince","Vegeta affronte les forces démoniaques sans accepter de reculer."],
 ["Goku revient au combat","Goku","Le retour du héros","Goku rejoint les défenseurs alors que la menace s’étend."],
 ["L’énergie des Kaioshins","Supreme Kai","Le pouvoir sacré","Les Kaioshins révèlent une énergie capable de contrer les démons."],
-["Le général du royaume démoniaque","Dabura","Le commandant ennemi","Un chef démoniaque prend le commandement et défie les Saiyans."],
+["Le général démoniaque","Dabura","Le commandant ennemi","Un chef démoniaque prend le commandement et défie les Saiyans."],
 ["La bataille du sanctuaire","Piccolo","Le sanctuaire attaqué","Piccolo protège un lieu sacré devenu essentiel à la défense de la Terre."],
 ["Le pouvoir ultime de Gohan","Gohan","Le potentiel libéré","Gohan libère pleinement son potentiel pour affronter le commandant démoniaque."],
 ["La fusion des Saiyans","Gogeta","L’union des rivaux","Goku et Vegeta envisagent une fusion pour faire face à l’ennemi."],
-["L’assaut sur le royaume démoniaque","Dabura","Entrer dans l’ombre","Les héros traversent le portail pour combattre la menace à sa source."],
-["Le trône démoniaque","Dabura","Le souverain attend","Les combattants atteignent le trône et affrontent les derniers gardiens."],
+["L’assaut du royaume démoniaque","Dabura","Entrer dans l’ombre","Les héros traversent le portail pour combattre la menace à sa source."],
+["Le trône des démons","Dabura","Le souverain attend","Les combattants atteignent le trône et affrontent les derniers gardiens."],
 ["Le dernier duel","Dabura","La chute du royaume","Le combat final décide du sort du royaume démoniaque et de la Terre."],
 ["Un nouvel équilibre","Goku","Après la bataille","Les héros réparent les dégâts et veillent à ce que les portails restent fermés."]
+
 ],
 films:[
-["À la recherche des Dragon Balls","Turles","L’arbre de puissance","Turles arrive sur Terre et plante l’Arbre de Puissance pour absorber l’énergie de la planète."],
+["Le frère de Freezer","Turles","L’arbre de puissance","Turles arrive sur Terre et plante l’Arbre de Puissance pour absorber l’énergie de la planète."],
 ["Le retour de Cooler","Cooler","Le frère de Freezer","Cooler revient avec une nouvelle forme et cherche à vaincre Goku."],
 ["L’armée des cyborgs","Android 13","La menace artificielle","Les cyborgs C-13, C-14 et C-15 sont envoyés pour éliminer Goku."],
 ["L’épée de Tapion","Hirudegarn","Le héros mystérieux","Tapion confie aux héros l’histoire d’un monstre scellé dans une boîte à musique."],
@@ -534,14 +545,28 @@ films:[
 ["Janemba apparaît","Janemba","Le démon de l’au-delà","Une anomalie dans l’au-delà libère Janemba et déforme les dimensions."],
 ["Gogeta contre Janemba","Janemba","La fusion salvatrice","Goku et Vegeta fusionnent pour affronter Janemba."],
 ["La colère du dragon","Hirudegarn","Le monstre scellé","Hirudegarn est libéré et menace de détruire la ville."],
-["Le retour de Beerus","Beerus","Le dieu curieux","Beerus revient sur Terre et teste une nouvelle fois les Saiyans."],
+["Le réveil de Beerus","Beerus","Le dieu curieux","Beerus revient sur Terre et teste une nouvelle fois les Saiyans."],
 ["La bataille des dieux","Beerus","L’énergie divine","Goku tente de maîtriser son énergie divine face au Dieu de la Destruction."],
 ["La résurrection de Freezer","Golden Freezer","L’armée ressuscitée","Freezer revient avec une armée et prépare une nouvelle attaque contre la Terre."],
 ["Broly contre Gogeta","Broly","Le combat sur la glace","Gogeta affronte Broly sur une planète glacée pour protéger les combattants."],
 ["Le héros de la galaxie","Bojack","La menace de Bojack","Bojack et ses guerriers surgissent après le tournoi de Cell."],
 ["Le dernier souhait","Turles","La paix retrouvée","Les héros affrontent une dernière menace cinématographique avant de retrouver la paix."]
+
 ]
 };
+
+/* Titres homogènes : chaque chapitre garde son intitulé distinct, sans préfixes répétitifs. */
+const STORY_TITLE_POLISH={
+ superhero1:"Piccolo infiltre le quartier général",superhero2:"Les nouveaux héros artificiels",superhero3:"Piccolo éveille sa forme Orange",superhero4:"Pan au cœur du complot",superhero5:"Gohan contre Gamma 1",superhero6:"Le laboratoire du docteur Hedo",superhero7:"Le plan de Magenta",superhero8:"Piccolo contre Gamma 2",superhero9:"Cell Max est libéré",superhero10:"Gamma 2 choisit son camp",superhero11:"Piccolo Orange contre Cell Max",superhero12:"Gohan protège Piccolo",superhero13:"L’éveil de Gohan Beast",superhero14:"Gohan Beast contre Cell Max",superhero15:"Le dernier assaut contre Cell Max",superhero16:"La relève des super-héros",
+ lt1:"Le défi de Hit",lt2:"La puissance de Kefla",lt3:"Le mur nommé Jiren",lt4:"Le jugement de Beerus",lt5:"Le dernier test de Whis",lt6:"Le rival ultime",
+ cus1:"Rivalité : le premier défi",cus2:"Puissance déchaînée",cus3:"Le défi des dieux"
+};
+for(const saga of SAGAS) saga.ch.forEach((ch,i)=>{
+ const polished=STORY_TITLE_POLISH[ch.id];
+ if(polished)ch.t="Chapitre "+String(i+1).padStart(2,"0")+" · "+polished;
+ else if(ch.t)ch.t=ch.t.replace(/^(?:Chapitre|Sous-chapitre|Épisode personnalisé)\s*\d+\s*:\s*/i,"").replace(/^Combat secret\s*:\s*/i,"Bonus · ").replace(/^Entraînement bonus\s*:\s*/i,"Bonus · ");
+});
+
 const STORY_DIALOGUE_VOICES={
  Raditz:"Je suis venu chercher le dernier Saiyan. Tu ne peux pas échapper à ton héritage.",
  "Roi Kaï":"Ton entraînement n'est pas terminé. Montre-moi que tu as compris la leçon.",
@@ -1039,14 +1064,54 @@ function collMenu(){dlgNext=null;M.style.display='flex';M.style.background='';M.
 function statMenu(){dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>STATISTIQUES</h1>';const dn=SS().done,k=Object.keys(dn),stars=k.reduce((a,i)=>a+(dn[i].s||1),0),d=document.createElement('div');d.style.cssText='width:min(92%,420px);text-align:left;font-size:15px;line-height:1.8';d.innerHTML='Niveau : <b>'+lvl()+'</b> ('+sv.xp+' XP)<br>Victoires : <b>'+sv.w+'</b> \u00b7 Défaites : <b>'+sv.l+'</b><br>Chapitres terminés : <b>'+k.length+'</b> \u00b7 Étoiles : <b>'+stars+'</b>';M.appendChild(d);M.appendChild(btn('\u2190 Retour',menu))}
 function objectsMenu(){dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>OBJETS & BOUTIQUE</h1><small>Équipe une relique ou achète de nouveaux objets avec tes points de classement.</small><div style="margin:5px 0 12px;color:#fd6">Points de classement : '+(Number(sv.rp)||0)+'</div>';const relicPanel=mk('div');relicPanel.style.cssText='width:min(94%,620px);display:grid;gap:8px';for(const relic of RELICS){const owned=sv.items.includes(relic.id),active=sv.equippedItem===relic.id,card=mk('div');card.style.cssText='padding:10px 12px;border:1px solid '+(active?'#5fdba5':'#385477')+';border-radius:10px;background:#101a30;text-align:left';const title=mk('b',(owned?'✦ ':'🔒 ')+relic.name+(active?' · ÉQUIPÉ':''));const desc=mk('small',relic.desc+' · '+(owned?'Dans ton inventaire':relic.price?'Prix : '+relic.price+' points':'À obtenir dans le chapitre : '+(chapterById(relic.chapter)?.t||relic.chapter)));card.append(title,desc);if(owned)card.appendChild(btn(active?'RETIRER':'ÉQUIPER',()=>{sv.equippedItem=active?'':relic.id;save();objectsMenu()}));else if(relic.price)card.appendChild(btn('ACHETER',()=>{if((Number(sv.rp)||0)<relic.price){M.appendChild(mk('small','Points de classement insuffisants pour cet achat.'));return}sv.rp-=relic.price;sv.items.push(relic.id);save();objectsMenu()}));relicPanel.appendChild(card)}M.appendChild(relicPanel);M.appendChild(btn('COLLECTION',collMenu));M.appendChild(btn('PERSONNAGES & STATISTIQUES',objectsRoster));M.appendChild(btn('STATISTIQUES DU JOUEUR',statMenu));M.appendChild(btn('← Retour au Mode Histoire',storyMenu))}
 function objectsRoster(){dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>PERSONNAGES</h1><small>'+CH.length+' combattants · sélectionne un personnage pour voir ses statistiques</small>';const grid=mk('div');grid.style.cssText='display:flex;flex-wrap:wrap;justify-content:center;gap:4px;width:96%;max-width:800px';CH.forEach((c,i)=>{const b=btn(c.n,()=>{cfg.p1=i;cfg.sf=0;objectsRoster()},cfg.p1===i,'font-size:11px;padding:5px 7px');grid.appendChild(b)});M.appendChild(grid);M.appendChild(statPanel());M.appendChild(btn('← Retour aux objets',objectsMenu))}
-function storyMenu(msg){dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>MODE HISTOIRE</h1><small>Niv. '+lvl()+'/100 · Parcours histoire '+Math.min(STORY_CLEAR_TARGET,Number(sv.storyClears)||0)+'/'+STORY_CLEAR_TARGET+' · XP '+sv.xp+(SS().fl.kk?' · Kaioken':'')+(SS().fl.ssj?' · Super Saiyan':'')+'</small>'+(msg?'<small style="color:#fd0">'+msg+'</small>':'');
-const grid=document.createElement('div');grid.id='storySagaGrid';
-SAGAS.forEach((sg,si)=>{const panel=document.createElement('section');panel.className='story-saga';const head=btn('',null,0,'');head.className='story-saga-head';const opened=si===0||sg.ch.some(c=>chOpen(c)&&!SS().done[c.id]);const list=document.createElement('div');list.className='story-chapters';list.style.display=opened?'flex':'none';
-const doneCount=sg.ch.filter(c=>SS().done[c.id]).length;head.textContent=sg.name+' · '+doneCount+'/'+sg.ch.length+' chapitres '+(opened?'▾':'▸');head.onclick=()=>{const show=list.style.display==='none';list.style.display=show?'flex':'none';head.textContent=sg.name+' · '+doneCount+'/'+sg.ch.length+' chapitres '+(show?'▾':'▸')};panel.appendChild(head);
-let lastSub='';for(const c of sg.ch){if(c.sub&&c.sub!==lastSub){const sub=document.createElement('div');sub.className='story-sub';sub.textContent=c.sub;list.appendChild(sub);lastSub=c.sub}const d=SS().done[c.id],ok=chOpen(c),b=btn((d?'✓ ':ok?'▶ ':'🔒 ')+c.t+(d?'  '+'★'.repeat(d.s||1):''),()=>{if(ok)playCh(c)},0,'');b.style.opacity=ok?'1':'.42';b.disabled=!ok;if(!ok)b.title=storyChapterLockReason(c);list.appendChild(b)}panel.appendChild(list);grid.appendChild(panel)});
-M.appendChild(grid);const so=document.createElement('small');so.innerHTML=SOON.map(x=>x+' (bientôt)').join('<br>');M.appendChild(so);M.appendChild(btn('QUÊTES DE TRANSFORMATION',storyQuestsMenu));M.appendChild(btn('← Retour',menu))}
-function storyQuestsMenu(){dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>QUÊTES DE TRANSFORMATION</h1><small>Sélectionne un personnage pour voir l’ordre de ses transformations et les chapitres nécessaires.</small>';const grid=document.createElement('div');grid.id='storyQuestGrid';const names=[...new Set(FORM_QUESTS.map(q=>q.character))];for(const name of names){const qs=FORM_QUESTS.filter(q=>q.character===name),unlocked=qs.filter(q=>Number(SS().forms[name]||0)>=q.index).length,card=document.createElement('section');card.className='story-quest-card';card.appendChild(btn(name+' · '+unlocked+'/'+qs.length+' transformations',()=>storyCharacterQuestDetail(name),false,''));grid.appendChild(card)}M.appendChild(grid);M.appendChild(btn('← Retour à l’histoire',storyMenu))}
-function storyCharacterQuestDetail(name){dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>'+name.toUpperCase()+'</h1><small>Ordre des transformations · gagne le chapitre indiqué avec ce personnage pour débloquer la forme.</small>';const grid=document.createElement('div');grid.id='storyQuestGrid';for(const q of FORM_QUESTS.filter(x=>x.character===name)){const unlocked=Number(SS().forms[name]||0)>=q.index,c=chapterById(q.chapter),available=c&&chOpen(c),card=document.createElement('section');card.className='story-quest-card';const info=document.createElement('div');info.style.cssText='font-size:13px;line-height:1.6;padding:4px 2px';info.innerHTML='<b>'+q.index+'. '+q.name+'</b><br>'+(unlocked?'✓ Transformation déjà débloquée':'🔒 Transformation à débloquer')+'<br>Chapitre : '+(c?c.t:q.chapter)+'<br>'+(c?(available?'Chapitre accessible':'Chapitre encore verrouillé'):'Chapitre introuvable');card.appendChild(info);if(!unlocked&&available)card.appendChild(btn('JOUER CE CHAPITRE',()=>playCh(c)));grid.appendChild(card)}M.appendChild(grid);M.appendChild(btn('← Personnages',storyQuestsMenu));M.appendChild(btn('← Retour à l’histoire',storyMenu))}
+function storyMenu(msg){
+ dlgNext=null;M.classList.add('story-screen');M.style.display='flex';M.style.background='';
+ M.innerHTML='';
+ const total=SAGAS.reduce((n,sg)=>n+sg.ch.length,0),done=SAGAS.reduce((n,sg)=>n+sg.ch.filter(c=>SS().done[c.id]).length,0),pct=total?Math.round(done/total*100):0;
+ const hero=document.createElement('section');hero.className='story-hero';
+ const eyebrow=document.createElement('div');eyebrow.className='story-eyebrow';eyebrow.textContent='FUSION ARENA  /  CAMPAGNE';hero.appendChild(eyebrow);
+ const h=document.createElement('h1');h.textContent='CHRONIQUES DES GUERRIERS';hero.appendChild(h);
+ const intro=document.createElement('p');intro.textContent='Revivez les grandes sagas, débloquez les transformations au bon moment et écrivez votre légende.';hero.appendChild(intro);
+ const stats=document.createElement('div');stats.className='story-stats';
+ [['NIVEAU',lvl()+'/100'],['CHAPITRES',done+'/'+total],['PROGRESSION',pct+'%'],['EXPÉRIENCE',(Number(sv.xp)||0).toLocaleString('fr-FR')+' XP']].forEach(([a,b])=>{const chip=document.createElement('div');chip.className='story-stat';const small=document.createElement('small');small.textContent=a;const strong=document.createElement('strong');strong.textContent=b;chip.append(small,strong);stats.appendChild(chip)});
+ hero.appendChild(stats);const track=document.createElement('div');track.className='story-progress';const fill=document.createElement('span');fill.style.width=pct+'%';track.appendChild(fill);hero.appendChild(track);
+ if(msg){const notice=document.createElement('div');notice.className='story-notice';notice.textContent=msg;hero.appendChild(notice)}
+ M.appendChild(hero);
+ const toolbar=document.createElement('div');toolbar.className='story-toolbar';
+ const search=document.createElement('input');search.type='search';search.placeholder='Rechercher une saga, un chapitre, un adversaire…';search.setAttribute('aria-label','Rechercher dans les chapitres');toolbar.appendChild(search);
+ const filters=document.createElement('div');filters.className='story-filters';toolbar.appendChild(filters);M.appendChild(toolbar);
+ const grid=document.createElement('div');grid.id='storySagaGrid';M.appendChild(grid);
+ let mode='all';const filterButtons=[];
+ [['all','TOUT'],['todo','À JOUER'],['done','TERMINÉS']].forEach(([value,label])=>{const b=document.createElement('button');b.type='button';b.className='story-filter'+(value==='all'?' active':'');b.textContent=label;b.onclick=()=>{mode=value;filterButtons.forEach(x=>x.classList.toggle('active',x.dataset.mode===mode));refresh()};b.dataset.mode=value;filterButtons.push(b);filters.appendChild(b)});
+ const panels=[];
+ SAGAS.forEach((sg,si)=>{
+  const panel=document.createElement('section');panel.className='story-saga';panel.dataset.saga=sg.name.toLowerCase();
+  const doneCount=sg.ch.filter(c=>SS().done[c.id]).length,ratio=sg.ch.length?Math.round(doneCount/sg.ch.length*100):0;
+  const head=document.createElement('button');head.type='button';head.className='story-saga-head';head.setAttribute('aria-expanded','false');
+  const title=document.createElement('span');title.className='story-saga-name';title.textContent=sg.name;
+  const meta=document.createElement('span');meta.className='story-saga-meta';meta.textContent=doneCount+'/'+sg.ch.length+' · '+ratio+'%';
+  const arrow=document.createElement('span');arrow.className='story-saga-arrow';arrow.textContent='＋';
+  head.append(title,meta,arrow);panel.appendChild(head);
+  const progress=document.createElement('div');progress.className='story-saga-progress';const pfill=document.createElement('span');pfill.style.width=ratio+'%';progress.appendChild(pfill);panel.appendChild(progress);
+  const list=document.createElement('div');list.className='story-chapters';panel.appendChild(list);
+  let opened=si===0||sg.ch.some(c=>chOpen(c)&&!SS().done[c.id]);list.hidden=!opened;head.setAttribute('aria-expanded',String(opened));arrow.textContent=opened?'−':'＋';
+  head.onclick=()=>{opened=!opened;list.hidden=!opened;head.setAttribute('aria-expanded',String(opened));arrow.textContent=opened?'−':'＋'};
+  let lastSub='';
+  sg.ch.forEach((c,i)=>{
+   if(c.sub&&c.sub!==lastSub){const sub=document.createElement('div');sub.className='story-sub';sub.textContent=c.sub;list.appendChild(sub);lastSub=c.sub}
+   const d=SS().done[c.id],ok=chOpen(c),item=document.createElement('div');item.className='story-chapter'+(d?' is-done':ok?' is-open':' is-locked');
+   const number=document.createElement('span');number.className='story-chapter-number';number.textContent=String(i+1).padStart(2,'0');
+   const body=document.createElement('span');body.className='story-chapter-copy';const name=document.createElement('strong');name.textContent=(c.t||('Chapitre '+(i+1)));const subline=document.createElement('small');subline.textContent=c.sub||sg.name;body.append(name,subline);
+   const status=document.createElement('span');status.className='story-chapter-status';status.textContent=d?'TERMINÉ':ok?'JOUER':'VERROUILLÉ';
+   const b=document.createElement('button');b.type='button';b.className='story-chapter-button';b.disabled=!ok;b.title=ok?'Lancer ce chapitre':storyChapterLockReason(c);b.append(number,body,status);b.onclick=()=>{if(ok)playCh(c)};item.appendChild(b);list.appendChild(item);item.dataset.search=(sg.name+' '+c.t+' '+c.sub+' '+(c.en||'')).toLowerCase();item.dataset.state=d?'done':'todo';
+  });
+  panels.push(panel);grid.appendChild(panel);
+ });
+ function refresh(){const q=search.value.trim().toLowerCase();panels.forEach(panel=>{let visible=0;panel.querySelectorAll('.story-chapter').forEach(item=>{const matchText=!q||item.dataset.search.includes(q)||panel.dataset.saga.includes(q),matchMode=mode==='all'||item.dataset.state===mode;item.hidden=!(matchText&&matchMode);if(!item.hidden)visible++});const sagaMatch=!q||panel.dataset.saga.includes(q);panel.hidden=!(sagaMatch||visible>0);if(q&&visible>0){const list=panel.querySelector('.story-chapters');list.hidden=false;const head=panel.querySelector('.story-saga-head');head.setAttribute('aria-expanded','true');panel.querySelector('.story-saga-arrow').textContent='−'}})}
+ search.addEventListener('input',refresh);
+ const bottom=document.createElement('div');bottom.className='story-footer';const quest=btn('✦  QUÊTES DE TRANSFORMATION',()=>{M.classList.remove('story-screen');storyQuestsMenu()});quest.className='story-footer-primary';const back=btn('←  RETOUR AU MENU',()=>{M.classList.remove('story-screen');menu()});back.className='story-footer-secondary';bottom.append(quest,back);M.appendChild(bottom);
+}function storyQuestsMenu(){dlgNext=null;M.classList.remove('story-screen');M.style.display='flex';M.style.background='';M.innerHTML='<h1>QUÊTES DE TRANSFORMATION</h1><small>Sélectionne un personnage pour voir l’ordre de ses transformations et les chapitres nécessaires.</small>';const grid=document.createElement('div');grid.id='storyQuestGrid';const names=[...new Set(FORM_QUESTS.map(q=>q.character))];for(const name of names){const qs=FORM_QUESTS.filter(q=>q.character===name),unlocked=qs.filter(q=>Number(SS().forms[name]||0)>=q.index).length,card=document.createElement('section');card.className='story-quest-card';card.appendChild(btn(name+' · '+unlocked+'/'+qs.length+' transformations',()=>storyCharacterQuestDetail(name),false,''));grid.appendChild(card)}M.appendChild(grid);M.appendChild(btn('← Retour à l’histoire',storyMenu))}
+function storyCharacterQuestDetail(name){dlgNext=null;M.classList.remove('story-screen');M.style.display='flex';M.style.background='';M.innerHTML='<h1>'+name.toUpperCase()+'</h1><small>Ordre des transformations · gagne le chapitre indiqué avec ce personnage pour débloquer la forme.</small>';const grid=document.createElement('div');grid.id='storyQuestGrid';for(const q of FORM_QUESTS.filter(x=>x.character===name)){const unlocked=Number(SS().forms[name]||0)>=q.index,c=chapterById(q.chapter),available=c&&chOpen(c),card=document.createElement('section');card.className='story-quest-card';const info=document.createElement('div');info.style.cssText='font-size:13px;line-height:1.6;padding:4px 2px';info.innerHTML='<b>'+q.index+'. '+q.name+'</b><br>'+(unlocked?'✓ Transformation déjà débloquée':'🔒 Transformation à débloquer')+'<br>Chapitre : '+(c?c.t:q.chapter)+'<br>'+(c?(available?'Chapitre accessible':'Chapitre encore verrouillé'):'Chapitre introuvable');card.appendChild(info);if(!unlocked&&available)card.appendChild(btn('JOUER CE CHAPITRE',()=>playCh(c)));grid.appendChild(card)}M.appendChild(grid);M.appendChild(btn('← Personnages',storyQuestsMenu));M.appendChild(btn('← Retour à l’histoire',storyMenu))}
 function dialogue(L,done){let i=0;const A=AR[(curCh&&curCh.ar)||0];const show=()=>{if(i>=L.length){dlgNext=null;M.style.background='';done();return}const hero=CH[cfg.p1]?.n||'Goku',dynamic=curCh&&!curCh.scene&&curCh.players?.includes(hero)&&hero!=='Goku',w0=L[i][0],t0=L[i][1],w=dynamic&&w0==='Goku'?hero:w0,t=dynamic?t0.replace(/\bGoku\b/g,hero):t0,ch=CH.find(x=>x.n===w),col=ch?(ch.fm[0].hair==='#000'?ch.fm[0].au:ch.fm[0].hair):w==='Narration'?'#ccd':w==='Roi Kaï'?'#fd6':w==='Piccolo'?'#6fbf3f':'#8cf';M.style.display='flex';M.style.background='linear-gradient(#0009,#0009),linear-gradient(180deg,'+A[1][0]+','+A[1][1]+')';M.innerHTML='';const b=document.createElement('div');b.style.cssText='width:min(92%,640px);background:#000c;border:2px solid '+col+';padding:14px;text-align:left;border-radius:6px';b.innerHTML='<div style="display:flex;gap:12px;align-items:center"><div style="min-width:54px;height:54px;border-radius:50%;background:'+col+';display:flex;align-items:center;justify-content:center;font:900 26px sans-serif;color:#000">'+w[0]+'</div><div><b style="color:'+col+'">'+w+'</b><div style="margin-top:6px;font-size:16px">'+t+'</div></div></div>';M.appendChild(b);M.appendChild(row([btn('Suivant \u25b6',()=>{i++;show()}),btn('Passer',()=>{i=L.length;show()})]));dlgNext=()=>{i++;show()}};show()}
 addEventListener('keydown',e=>{if(dlgNext&&(e.code==='Enter'||e.code==='Space')){e.preventDefault();dlgNext()}});
 function reward(c,st,ok){const S=SS(),old=S.done[c.id],first=!old,diff=Math.max(0,Math.min(2,Number(c.df)||0)),chapterXP=Math.max(20,Math.min(500,Number(c.xp)||[80,130,190][diff])),xp=first?Math.round(chapterXP*(st===2?1.15:1)):Math.max(5,Math.round(chapterXP*.15));sv.xp+=xp;if(!c.scene)sv.storyClears=(Number(sv.storyClears)||0)+1;S.done[c.id]={s:Math.max(st,(old||{}).s||0),clears:((old||{}).clears||0)+1};const campaignChapters=SAGAS.flatMap(sg=>sg.ch).filter(ch=>!ch.scene);const campaignComplete=campaignChapters.length>0&&campaignChapters.every(ch=>ch.id===c.id||!!S.done[ch.id]);let bonus=0;if(first&&campaignComplete&&!sv.storyCampaignBonus){bonus=200000;sv.xp+=bonus;sv.storyCampaignBonus=1}const relic=RELICS.find(x=>x.chapter===c.id);if(first&&relic&&!sv.items.includes(relic.id)){sv.items.push(relic.id);sv.newItem=relic.id}if(c.fl)for(const k of c.fl)S.fl[k]=1;const earned=[];for(const q of FORM_QUESTS){if(q.chapter===c.id&&(CH[cfg.p1]?.n===q.character||c.formUnlocks?.includes(q.character))){S.forms[q.character]=Math.max(Number(S.forms[q.character])||0,q.index);earned.push(q.name)}}save();return '+'+xp+' XP'+(bonus?' · BONUS FIN DE CAMPAGNE : +'+bonus+' XP (niveau 40+)':'')+(first?' (première victoire)':' (rejoué : récompense réduite)')+(c.rw&&first?' · '+c.rw:'')+(c.ob?' · Objectif réussi':'')+(earned.length?' · Transformation débloquée : '+earned.join(', '):'')}
