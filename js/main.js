@@ -14,26 +14,67 @@ function fighterKind(name){
  if(['Goku','Vegeta','Gogeta','Vegetto','Broly','Gohan','Trunks','Gotenks','Bardock','Raditz','Nappa','Cabba','Caulifla','Kale','Shallot','Cumber','Xeno Goku','Baby Vegeta','Uub','Pan','Kefla'].includes(n))return {id:'saiyan',label:'Saiyan'};
  return {id:'human',label:'Terrien'};
 }
+const PORTRAIT_STYLE={
+ Beerus:{skin:'#b77bd5',hair:'#382344',out:'#17142b',kind:'cat',ears:1,eyes:'#f4d35e'},
+ Piccolo:{skin:'#79b94d',hair:'#315c3b',out:'#6b9b37',kind:'namek',antenna:1,eyes:'#d8f0a0'},
+ 'Majin Buu':{skin:'#e89ab5',hair:'#e89ab5',out:'#e8c7cf',kind:'majin',antenna:1,eyes:'#21172a'},
+ Dabura:{skin:'#bd6d76',hair:'#25202b',out:'#7c283e',kind:'horn',horn:1,eyes:'#ffdc72'},
+ Janemba:{skin:'#b75c72',hair:'#6f3157',out:'#8b3856',kind:'demon',horn:1,eyes:'#ffdf8a'},
+ Freezer:{skin:'#e7d8e9',hair:'#f5f0fa',out:'#8e54ad',kind:'frieza',eyes:'#9c4bc8'},
+ Cooler:{skin:'#8b9ebd',hair:'#24354c',out:'#293c5b',kind:'frieza',eyes:'#e4efff'},
+ 'King Cold':{skin:'#c7a6dc',hair:'#eee4f4',out:'#5d4c78',kind:'frieza',horn:1,eyes:'#a85bce'},
+ 'Android 16':{skin:'#e0bd9e',hair:'#e7a33b',out:'#4b8b61',kind:'robot',eyes:'#8ff'},
+ 'Android 17':{skin:'#e5c6aa',hair:'#1d2432',out:'#283e58',kind:'human',eyes:'#7deaff'},
+ 'Android 18':{skin:'#f0d1b1',hair:'#e5c86c',out:'#526b91',kind:'female',eyes:'#75dfff'},
+ 'Android 21':{skin:'#edc7ad',hair:'#e9b9d2',out:'#d8b7cf',kind:'female',eyes:'#e7a1dc'},
+ 'Android 13':{skin:'#d7aa88',hair:'#e6d9b8',out:'#4b7c9c',kind:'robot',eyes:'#8ff'},
+ Cell:{skin:'#7ebd7a',hair:'#315e4a',out:'#315e4a',kind:'cell',eyes:'#ffdf67'},
+ Videl:{skin:'#efc7a8',hair:'#24232d',out:'#263b66',kind:'female',eyes:'#5ad'},
+ Pan:{skin:'#efc7a8',hair:'#33252a',out:'#bd3038',kind:'female',eyes:'#5ad'},
+ Kefla:{skin:'#eac0a1',hair:'#2a252b',out:'#31734c',kind:'female',eyes:'#7df'},
+ Caulifla:{skin:'#eac0a1',hair:'#25232b',out:'#4b7144',kind:'female',eyes:'#7df'},
+ Kale:{skin:'#eac0a1',hair:'#25232b',out:'#315d43',kind:'female',eyes:'#7df'},
+ 'Muten Roshi':{skin:'#e4bd9c',hair:'#eee8df',out:'#e9a34a',kind:'bald',beard:1,eyes:'#222'},
+ Krillin:{skin:'#efc5a0',hair:'#efc5a0',out:'#e58b28',kind:'bald',dots:1,eyes:'#222'},
+ Tenshinhan:{skin:'#e7c09e',hair:'#222',out:'#314c8d',kind:'third',eyes:'#222'},
+ Zarbon:{skin:'#a7c8b5',hair:'#2f7892',out:'#477a9a',kind:'alien',eyes:'#9df'},
+ Dodoria:{skin:'#d98b9d',hair:'#d98b9d',out:'#8e4c70',kind:'alien',spikes:1,eyes:'#ff8'},
+ Ginyu:{skin:'#7656a6',hair:'#7656a6',out:'#5b4d9b',kind:'alien',horn:1,eyes:'#fff'},
+ Moro:{skin:'#779e8b',hair:'#c5cbd0',out:'#3c5368',kind:'goat',horn:1,eyes:'#f5d36a'},
+ Hit:{skin:'#6c82a0',hair:'#6c82a0',out:'#53677f',kind:'alien',eyes:'#e8f6ff'},
+ Pikkon:{skin:'#79b98d',hair:'#b9d7a4',out:'#d9e1cf',kind:'alien',antenna:1,eyes:'#dff'},
+ 'Omega Shenron':{skin:'#bd6b78',hair:'#f0e4d5',out:'#8d283d',kind:'dragon',horn:1,eyes:'#ffd66e'},
+ Glorio:{skin:'#b3a0bd',hair:'#34303e',out:'#68435f',kind:'demon',horn:1,eyes:'#fca'},
+ Gomah:{skin:'#c27b9b',hair:'#51243f',out:'#7c3457',kind:'demon',horn:1,eyes:'#ffb'},
+ Tamagami:{skin:'#d1b38a',hair:'#d8c9a7',out:'#94764b',kind:'armor',horn:1,eyes:'#fff'}
+};
 function portrait(i){
  if(PF[i])return PF[i];
- const cv=document.createElement('canvas');cv.width=cv.height=96;const g=cv.getContext('2d');if(!g)return cv;
- const c=CH[i]||CH[0],lk=c.lk||{},kindInfo=fighterKind(c.n),kind=kindInfo.id,hair=c.fm?.[0]?.hair||c.hair||'#333',skin=c.fm?.[0]?.sk||(kind==='alien'?'#79b99a':kind==='android'?'#d8c5ad':kind==='divine'?'#b89bdb':kind==='demon'?'#b978a0':'#efc5a0'),aura=c.aura||'#4cf';
- g.save();g.shadowColor=aura;g.shadowBlur=13;g.fillStyle=lk.top||c.gi||'#345';g.beginPath();g.ellipse(48,91,31,22,0,0,Math.PI*2);g.fill();g.shadowBlur=0;
- if(kind==='android'){g.fillStyle='#9aa9b8';g.fillRect(30,70,36,12);g.fillStyle='#e0e8ed';g.fillRect(35,73,26,5);g.strokeStyle='#60768b';g.lineWidth=2;g.strokeRect(30,70,36,12)}
- g.fillStyle=skin;g.beginPath();g.ellipse(48,47,kind==='alien'?25:24,29,0,0,Math.PI*2);g.fill();
- if(kind==='alien'){g.fillStyle=skin;g.beginPath();g.moveTo(25,43);g.lineTo(12,32);g.lineTo(27,35);g.fill();g.beginPath();g.moveTo(71,43);g.lineTo(84,32);g.lineTo(69,35);g.fill()}
- if(kind==='demon'){g.fillStyle='#d8b7cc';g.beginPath();g.moveTo(29,30);g.lineTo(15,13);g.lineTo(35,23);g.fill();g.beginPath();g.moveTo(67,30);g.lineTo(81,13);g.lineTo(61,23);g.fill()}
- if(kind==='divine'){g.fillStyle='#e8c66b';g.beginPath();g.arc(48,15,5,0,6.28);g.fill()}
- if(kind==='android'){g.fillStyle='#27394b';g.fillRect(25,43,46,7);g.fillStyle='#ffdc78';g.fillRect(31,44,10,3);g.fillRect(55,44,10,3)}
- else{g.fillStyle='#171a27';g.fillRect(34,45,8,3);g.fillRect(54,45,8,3);if(kindInfo.feminine){g.strokeStyle='#211728';g.lineWidth=1.5;g.beginPath();g.moveTo(32,43);g.lineTo(42,41);g.moveTo(54,41);g.lineTo(64,43);g.stroke()}}
+ const cv=document.createElement('canvas');cv.width=cv.height=112;const g=cv.getContext('2d');if(!g)return cv;
+ const c=CH[i]||CH[0],n=c.n,st=PORTRAIT_STYLE[n]||{},kind=st.kind||fighterKind(n).id;
+ const skin=st.skin||c.fm?.[0]?.sk||'#efc5a0',hair=st.hair||c.fm?.[0]?.hair||c.hair||'#25232c',out=st.out||c.lk?.top||c.gi||'#345',eyes=st.eyes||'#171a27',aura=c.aura||'#4cf';
+ g.save();g.shadowColor=aura;g.shadowBlur=12;g.fillStyle=out;g.beginPath();g.moveTo(18,108);g.lineTo(24,82);g.quadraticCurveTo(56,66,88,82);g.lineTo(96,108);g.closePath();g.fill();g.shadowBlur=0;
+ if(kind==='robot'||kind==='armor'){g.fillStyle='#aebdca';g.fillRect(27,75,58,22);g.fillStyle='#536b80';g.fillRect(34,80,44,6);g.fillStyle='#e9c85b';g.fillRect(39,81,8,3);g.fillRect(65,81,8,3)}
+ if(kind==='frieza'){g.fillStyle=skin;g.beginPath();g.ellipse(56,49,29,36,0,0,6.283);g.fill();g.fillStyle=st.out;g.beginPath();g.ellipse(56,25,21,10,0,Math.PI,6.283);g.fill();g.fillStyle='#f3f5fa';g.beginPath();g.ellipse(56,49,18,24,0,0,6.283);g.fill()}
+ else{g.fillStyle=skin;g.beginPath();g.ellipse(56,49,kind==='alien'?26:24,30,0,0,6.283);g.fill()}
+ if(st.ears||kind==='cat'){g.fillStyle=skin;g.beginPath();g.moveTo(35,29);g.lineTo(25,3);g.lineTo(48,21);g.fill();g.beginPath();g.moveTo(75,29);g.lineTo(87,3);g.lineTo(65,21);g.fill()}
+ if(st.horn||kind==='demon'||kind==='dragon'){g.fillStyle=hair;g.beginPath();g.moveTo(38,27);g.lineTo(27,2);g.lineTo(49,22);g.fill();g.beginPath();g.moveTo(72,27);g.lineTo(84,2);g.lineTo(63,22);g.fill()}
+ if(st.antenna||kind==='namek'){g.strokeStyle=skin;g.lineWidth=5;g.beginPath();g.moveTo(48,24);g.quadraticCurveTo(40,5,34,9);g.moveTo(64,24);g.quadraticCurveTo(72,5,78,9);g.stroke()}
+ if(kind==='third'){g.fillStyle=skin;g.beginPath();g.arc(56,20,8,0,6.283);g.fill()}
+ if(st.beard){g.fillStyle='#eee8df';g.beginPath();g.moveTo(35,60);g.lineTo(77,60);g.lineTo(56,92);g.closePath();g.fill()}
+ if(st.spikes){g.fillStyle=skin;for(let x=28;x<88;x+=12){g.beginPath();g.moveTo(x,25);g.lineTo(x-4,12);g.lineTo(x+6,23);g.fill()}}
  g.fillStyle=hair;
- if(['Freezer','Cooler','King Cold'].includes(c.n)){g.beginPath();g.ellipse(48,29,25,14,0,Math.PI,Math.PI*2);g.fill();g.fillStyle='#d9f5ff';g.fillRect(40,8,16,7)}
- else if(kind==='android'&&['Cell','Android 13','Android 16','Android 17','Android 18','Android 21'].includes(c.n)){g.beginPath();g.ellipse(48,26,25,18,Math.PI,Math.PI,Math.PI*2);g.fill()}
- else if(kindInfo.feminine){g.beginPath();g.moveTo(24,42);g.lineTo(18,12);g.lineTo(34,25);g.lineTo(48,8);g.lineTo(63,24);g.lineTo(78,12);g.lineTo(72,58);g.lineTo(65,42);g.closePath();g.fill()}
- else{g.beginPath();g.moveTo(24,39);g.lineTo(18,19);g.lineTo(32,25);g.lineTo(38,7);g.lineTo(48,23);g.lineTo(60,5);g.lineTo(63,25);g.lineTo(79,17);g.lineTo(72,42);g.closePath();g.fill()}
- if(c.n==='Piccolo'){g.strokeStyle='#d9ef9a';g.lineWidth=3;g.beginPath();g.moveTo(39,18);g.lineTo(34,5);g.moveTo(57,18);g.lineTo(62,5);g.stroke()}
- if(kindInfo.feminine){g.fillStyle=hair;g.beginPath();g.moveTo(24,32);g.quadraticCurveTo(10,55,23,78);g.lineTo(31,65);g.fill();g.beginPath();g.moveTo(72,32);g.quadraticCurveTo(86,55,73,78);g.lineTo(65,65);g.fill()}
- g.strokeStyle='#8d4c45';g.lineWidth=2;g.beginPath();g.moveTo(42,63);g.quadraticCurveTo(48,67,54,63);g.stroke();g.strokeStyle=aura;g.lineWidth=2;g.beginPath();g.ellipse(48,47,24,29,0,0,Math.PI*2);g.stroke();g.restore();PF[i]=cv;return cv
+ if(kind==='bald'||kind==='frieza'){}else if(['Broly','Goku','Gogeta','Vegetto','Gohan','Gotenks','Bardock','Raditz','Nappa','Shallot','Cumber','Xeno Goku'].includes(n)){g.beginPath();g.moveTo(31,40);g.lineTo(27,15);g.lineTo(42,26);g.lineTo(48,4);g.lineTo(58,24);g.lineTo(72,5);g.lineTo(73,27);g.lineTo(88,16);g.lineTo(79,43);g.closePath();g.fill()}
+ else if(kind==='female'){g.beginPath();g.moveTo(32,43);g.lineTo(28,12);g.lineTo(49,24);g.lineTo(65,9);g.lineTo(84,17);g.lineTo(79,70);g.lineTo(70,61);g.lineTo(69,38);g.closePath();g.fill();g.fillRect(29,38,8,37)}
+ else if(kind!=='frieza'){g.beginPath();g.ellipse(56,27,25,14,0,Math.PI,6.283);g.fill()}
+ g.fillStyle=eyes;g.fillRect(39,47,11,4);g.fillRect(63,47,11,4);
+ if(st.dots){g.fillStyle='#8b5b3c';for(let x=42;x<=70;x+=9)g.beginPath(),g.arc(x,36,2,0,6.283),g.fill()}
+ g.strokeStyle='#7b4141';g.lineWidth=2;g.beginPath();g.moveTo(48,66);g.quadraticCurveTo(56,70,64,66);g.stroke();
+ if(kind==='cell'){g.fillStyle='#263c32';g.beginPath();g.moveTo(31,32);g.lineTo(39,13);g.lineTo(48,25);g.lineTo(56,5);g.lineTo(67,24);g.lineTo(78,13);g.lineTo(81,34);g.closePath();g.fill()}
+ if(kind==='majin'){g.fillStyle=skin;g.beginPath();g.moveTo(56,19);g.quadraticCurveTo(68,-1,74,12);g.lineTo(68,34);g.fill()}
+ if(kind==='goat'){g.strokeStyle='#d8d5c5';g.lineWidth=6;g.beginPath();g.moveTo(39,25);g.lineTo(30,5);g.moveTo(73,25);g.lineTo(82,5);g.stroke()}
+ if(kind==='armor'){g.strokeStyle='#e8cf85';g.lineWidth=4;g.strokeRect(25,74,62,25)}
+ g.strokeStyle=aura;g.lineWidth=2;g.beginPath();g.ellipse(56,49,29,35,0,0,6.283);g.stroke();g.restore();PF[i]=cv;return cv
 }
 let MG=null;
 function menuBg(){const key=cfg.p1+'|'+cfg.p2+'|'+cfg.mode+'|'+cfg.cmp;if(!MG||MG.key!==key){const pb=(cfg.mode==='versus'||cfg.cmp)?cfg.p2:(cfg.p1+3)%CH.length;MG={tick:MG?MG.tick:0,pr:[],time:99,over:0,key};G=MG;try{MG.a=new F(cfg.p1,560,1,0);MG.b=new F(pb,800,-1,0)}finally{G=null}}
