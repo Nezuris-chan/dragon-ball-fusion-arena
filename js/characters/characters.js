@@ -91,12 +91,16 @@ Object.assign(HR,{'Super Baby 2':[1.6,.25],'Omega Shenron':[1.8,.3],'Super Saiya
 const EXTRA_ROSTER=[["Zamasu fusionné","#a7d","#536b",[140,124,130,140,138,132,140,136],1.18,4.8],["Moro","#5d6b79","#273746",[142,118,145,138,145,132,148,142],1.2,4.7],["Granolah","#c65b52","#3c4a62",[134,145,130,112,132,128,138,145],1.12,5.6],["Janemba","#a12d56","#3c164b",[138,132,118,142,132,130,130,128],1.16,5],["Toppo","#b9a8a0","#743b32",[134,102,112,140,126,130,118,116],1.12,4.2],["Uub","#4b3027","#a64b32",[112,126,108,108,112,116,108,118],1,5.1],["Kefla","#3b8b65","#4e245f",[136,142,108,120,126,124,122,128],1.14,5.5],["Caulifla","#3b8b65","#482d5b",[112,132,92,104,106,110,102,112],0.98,5.4],["Kale","#315d45","#3a4b37",[126,104,82,132,108,120,102,96],1.08,4.3],["Cabba","#9a9a9a","#344b6b",[104,118,98,100,104,108,100,108],0.96,5],["Dyspo","#6c3b9c","#31284f",[112,155,108,102,118,120,112,128],1.02,6],["Android 17","#d8d8d8","#344d64",[120,132,120,126,128,132,120,130],1.06,5.2],["Android 18","#e2d0b2","#4b586c",[118,128,116,120,124,126,116,126],1.04,5.1],["Android 16","#d7b78a","#536b57",[124,92,90,142,118,128,108,94],1.08,3.8],["Dabura","#9a2525","#3d2d32",[112,108,112,114,118,110,116,120],1,4.8],["Zarbon","#4c9b76","#3d5472",[100,112,100,102,104,106,100,108],0.98,4.9],["Dodoria","#c27caa","#8c3e52",[102,72,72,112,92,100,82,78],0.98,3.8],["King Cold","#9ab7cf","#394b68",[118,92,108,120,118,112,116,110],1.06,4],["Tenshinhan","#d4c6a0","#8a302c",[96,112,110,98,94,108,96,116],0.94,4.8],["Krillin","#e8d4b0","#d75b3b",[90,116,104,88,90,104,94,112],0.9,5],["Muten Roshi","#e7e0cf","#4e7d8a",[92,82,128,92,104,100,106,120],0.92,3.6],["Yamcha","#c88d55","#8b3b2b",[94,118,92,94,92,102,88,104],0.92,5],["Videl","#8b3328","#d2b8a1",[72,108,88,76,78,92,72,96],0.78,4.7],["Pan","#7b4b36","#d85b3b",[86,122,94,84,88,96,84,102],0.84,5.2],["Android 21","#d6b7a5","#b94d66",[132,126,140,128,138,126,140,142],1.12,5],["Pikkon","#3b7b7b","#c8a66a",[126,118,120,124,120,120,116,126],1.08,4.8]];
 for(const q of EXTRA_ROSTER){
  const [n,hair,gi,stats,pw,sp]=q;
- CH.push({n,hair,gi,aura:'#cfe',sp,pw,tf:'',tH:hair,tA:'#cfe',sn:'Attaque spéciale',un:'Technique ultime'});
- FM[n]=[fm('Base',hair,'#cfe')];
- LOOK[n]={top:gi,und:'#222',pa:gi,sash:'#ddd',bt:'#222',gl:gi,mus:1,hs:'goku',pc:'#cfe'};
- PM[n]=1;
- TW[n]={pw:1,hm:1,res:1,sp:1,kr:1};
+ if(!CH.some(c=>c.n===n))CH.push({n,hair,gi,aura:'#cfe',sp,pw,tf:'',tH:hair,tA:'#cfe',sn:'Attaque spéciale',un:'Technique ultime'});
+ if(!FM[n])FM[n]=[fm('Base',hair,'#cfe')];
+ if(!LOOK[n])LOOK[n]={top:gi,und:'#222',pa:gi,sash:'#ddd',bt:'#222',gl:gi,mus:1,hs:'goku',pc:'#cfe'};
+ if(!PM[n])PM[n]=1;
+ if(!TW[n])TW[n]={pw:1,hm:1,res:1,sp:1,kr:1};
 }
+// Sécurité anti-doublons : un seul combattant par nom, en conservant la première fiche complète.
+const uniqueFighters=new Map();
+for(const fighter of CH)if(fighter&&fighter.n&&!uniqueFighters.has(fighter.n))uniqueFighters.set(fighter.n,fighter);
+CH.length=0;CH.push(...uniqueFighters.values());
 // Statistiques de base harmonisées sur une échelle commune (40–150).
 // Les personnages divins et les combattants de fin de saga ont des valeurs supérieures,
 // sans rendre la vitesse ou la puissance seules décisives.
