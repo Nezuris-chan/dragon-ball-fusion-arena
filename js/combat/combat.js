@@ -6,7 +6,7 @@ get itemStats(){const r=equippedRelic(),local=cfg.mode!=='online'&&this===G?.a;r
 }
 function start(){G={a:new F(cfg.p1,260,1,false),b:new F(cfg.p2,700,-1,cfg.mode!=='versus'&&cfg.mode!=='online'),pr:[],time:99,over:0,tick:0,stage:0};G.a.px=G.a.x;G.a.py=G.a.y;G.b.px=G.b.x;G.b.py=G.b.y;
 if(cfg.mode==='train'){G.b.dummy=1}if(cfg.mode!=='versus'&&cfg.mode!=='train'&&cfg.mode!=='online'){G.b.c=CH[(cfg.p2+stage)%CH.length];G.b.hp=G.b.mhp=HPB*(G.b.c.hb||1)}
-M.style.display='none';fx=[];rings=[];LN=[];music(0);}
+M.style.display='none';fx=[];rings=[];LN=[];music(MU,cfg.mode==='adventure'?'adventure':cfg.mode==='story'?'story':'battle');}
 function spark(x,y,col,n,s=6){if(LOW)n=Math.ceil(n/3);n=Math.min(n,LOW?8:14);for(let i=0;i<n&&fx.length<(LOW?70:150);i++){const a=Math.random()*6.28,v=Math.random()*s;fx.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:20+Math.random()*20,col,r:2+Math.random()*3})}}
 function doAtk(f,o,t){if(f.st!=='i'&&f.st!=='r')return;if((t==='li'||t==='he')&&f.ct>0&&f.combo>=10){G.ann={t:28,s:'LIMITE DE 10 COUPS',c:'#fd6'};return}
 // Chaîne de coups : les frappes légères ouvrent une fenêtre de combo,
@@ -41,39 +41,67 @@ let cfgNoDmg=false;
 function ultFx(f){slow=70;flash=14;G.fz=60;shake=14;G.cin=80;G.cinc=f.mv?f.mv.c:'#ffffff';G.cinx=f.x}
 function ctrl(f,o,i){let c;if(cfg.mode==='online'){const local=(onlineLocalSide===0&&f===G.a)||(onlineLocalSide===1&&f===G.b);c=local?humIn(0):{...(onlineRemoteInput||{})}}else if(f.ai){c=aiIn(f,o)}else c=humIn(f===G.a?0:1);return c}
 function aiIn(f,o){
-const c={},d=Math.abs(o.x-f.x),df=cfg.diff,iq=Math.max(10,Math.min(100,f.c.st?.in||35))/100;
-if(f.dummy||G.b.dummy&&f===G.b)return c;
-f.ar=f.ar||0;
-if(--f.ar>0){const p=f.last||{};return {l:!!p.l,r:!!p.r,d:!!p.d,b:!!p.b,ch:!!p.ch}}
-f.ar=Math.max(7,Math.round([25,19,14][df]*(1.35-iq*.35)));
-const r=Math.random,reaction=Math.max(.05,Math.min(.28,.05+iq*.18+df*.025)),canDash=f.dashCd<=0;
-const canTransform=f.ki>=50&&(f.fm|0)<mfm(f);
-const canUltimate=f.ki>=mc(f,2);
-const canSpecial=f.ki>=mc(f,0);
-if(o.st==='a'&&d<180&&r()<reaction){
- if(r()<.25+iq*.25&&f.cd<=0)c.dgP=1;
- else c.b=1;
-}else if(canTransform&&r()<(.006+.012*df+iq*.025))c.trP=1;
-else if(canUltimate&&d>175&&r()<(.003+.008*df+iq*.015))c.ulP=1;
-else if(d>260){
- if(f.ki<38&&r()<.5)c.ch=1;
- else if(canSpecial&&r()<(.012+.018*df+iq*.03))c.spP=1;
- if(r()<(.08+iq*.13)&&canDash)c.dsP=1;
- if(!c.dsP&&!c.ch)c[o.x>f.x?'r':'l']=1;
-}else if(d>100){
- c[o.x>f.x?'r':'l']=1;
- if(canSpecial&&r()<(.012+iq*.05))c.spP=1;
- if(canDash&&r()<(.035+iq*.12))c.dsP=1;
- if(r()<(.012+iq*.045))c.jP=1;
-}else{
- if(f.chainWindow>0&&f.chainStep>=2&&r()<(.28+iq*.48))c.heP=1;
- else if(r()<(.27+iq*.18))c.liP=1;
- else if(r()<(.2+iq*.18))c.heP=1;
- else if(canSpecial&&r()<(.018+iq*.055))c.spP=1;
- if(o.st==='r'&&r()<(.1+iq*.22)*df/2)c.heP=1;
- if(r()<(.02+iq*.05))c.b=1;
+ const c={},d=Math.abs(o.x-f.x),df=Math.max(0,Math.min(2,Number(cfg.diff)||0)),iq=Math.max(.1,Math.min(1,(Number(f.c.st?.in)||35)/100));
+ if(f.dummy||G.b.dummy&&f===G.b)return c;
+ f.ar=f.ar||0;
+ if(--f.ar>0){const p=f.last||{};return {l:!!p.l,r:!!p.r,d:!!p.d,b:!!p.b,ch:!!p.ch,he:!!p.he}}
+ f.ar=Math.max(4,Math.round([17,10,5][df]*(1.18-iq*.25)));
+ const rand=Math.random,ready=f.st==='i'||f.st==='r'||f.st==='b',ground=f.y>=GY-1;
+ const canDash=f.dashCd<=0,canDodge=f.cd<=0,canTransform=f.ki>=50&&(f.fm|0)<mfm(f);
+ const canSpecial=f.ki>=mc(f,0),canAlt=f.ki>=mc(f,1),canUltimate=f.ki>=mc(f,2);
+ const facing=(o.x-f.x)*f.face>0,opponentInRange=d<Math.max(82,(o.atk?.rg||70)*1.22);
+ const meleeThreat=o.st==='a'&&facing&&opponentInRange&&(o.at==='li'||o.at==='he')&&o.t<=((o.atk?.s||8)+(o.atk?.a||5)+3);
+ const projectileThreat=(G.pr||[]).some(p=>p.o===o&&p.l>0&&Math.abs(p.x-f.x)<Math.max(125,(p.m?.w||30)*1.5)&&Math.abs(p.y-(f.y-60))<105);
+ const danger=meleeThreat||projectileThreat||o.st==='a'&&o.at==='ul'&&d<245;
+ const opponentBusy=o.st==='a'||o.st==='h'||o.st==='t'||o.chg;
+ const opponentRecovering=o.st==='h'||o.st==='t'||o.st==='d';
+ f.aiParryCd=Math.max(0,(f.aiParryCd||0)-1);
+ f.aiPlanCd=Math.max(0,(f.aiPlanCd||0)-1);
+ // Défense réactive : esquive les ultimes et projectiles, pare les coups proches.
+ if(danger&&ready){
+  if(df>=1&&canDodge&&rand()<(.48+iq*.28+df*.06)){c.dgP=1;f.aiParryCd=3}
+  else if(df===2&&canDodge&&projectileThreat&&rand()<.72){c.dgP=1}
+  else{c.b=1;if(!f.aiParryCd&&meleeThreat){c.bP=1;f.aiParryCd=3}}
+  f.last=c;return c;
+ }
+ if(canTransform&&((df===0&&f.ki>78&&d>145)||(df===1&&f.ki>62)||(df===2&&f.ki>53&&(!opponentBusy||f.hp<f.mhp*.72)))&&rand()<(.45+iq*.4)){c.trP=1;f.last=c;return c}
+ if(canUltimate&&d>95&&d<390&&ready&&(opponentRecovering||opponentBusy&&df===2||f.combo>=4)&&rand()<(.12+df*.19+iq*.2)){c.ulP=1;f.last=c;return c}
+ if(f.ki<32&&d>205){c.ch=1;if(d>290)c[o.x>f.x?'r':'l']=1;f.last=c;return c}
+ if(f.aiHeavyActive){
+  if(f.heReady)f.aiHeavyActive=0;
+  else{c.he=1;if(d>185)c[o.x>f.x?'r':'l']=1;f.last=c;return c}
+ }
+ if(!f.aiHeavyActive&&df>=1&&ground&&canDash&&d>125&&d<220&&(opponentRecovering||o.chg||o.ch)&&f.ki>20&&rand()<(.18+df*.18+iq*.16)){f.aiHeavyActive=1;c.he=1;f.last=c;return c}
+ if(d>255){
+  c[o.x>f.x?'r':'l']=1;
+  if(canDash&&rand()<(.28+df*.2+iq*.12))c.dsP=1;
+  if(canSpecial&&d<390&&rand()<(.12+df*.12+iq*.1))c.spP=1;
+  if(f.ki<45&&rand()<.45)c.ch=1;
+ }else if(d>145){
+  if(d>205)c[o.x>f.x?'r':'l']=1;
+  else if(df===0&&rand()<.35)c[o.x>f.x?'r':'l']=1;
+  if(canSpecial&&rand()<(.12+df*.12+iq*.12))c.spP=1;
+  if(canDash&&o.st==='r'&&rand()<(.12+df*.18))c.dsP=1;
+  if(f.ki<28&&rand()<.2)c.ch=1;
+ }else if(d>88){
+  if(o.st==='h'||o.st==='t'||o.chg)c[o.x>f.x?'r':'l']=1;
+  else if(df===0&&rand()<.22)c[o.x>f.x?'r':'l']=1;
+  if(canAlt&&rand()<(.12+df*.16+iq*.12))c.spP=1;
+  else if(canSpecial&&rand()<(.08+df*.12+iq*.1))c.spP=1;
+  if(canDash&&df===2&&rand()<.12)c.dsP=1;
+ }else{
+  if(opponentRecovering){c.liP=1;if(f.chainWindow>0&&f.chainStep>=2&&rand()<.55)c.heP=1}
+  else if(f.chainWindow>0&&f.chainStep>=2&&rand()<(.38+df*.16+iq*.18))c.heP=1;
+  else if(rand()<(.48+df*.1+iq*.12))c.liP=1;
+  else c.heP=1;
+  if(canSpecial&&f.ki>38&&rand()<(.1+df*.09+iq*.12))c.spP=1;
+  if(o.combo>=3&&canDodge&&rand()<(.16+df*.18))c.dgP=1;
+  if(!c.dgP&&rand()<(.04+df*.06))c.b=1;
+ }
+ if(o.chg&&d<225&&canDash)c.dsP=rand()<(.25+df*.2)?1:c.dsP;
+ if(df===2&&d<100&&o.st==='i'&&f.guardMeter>65&&rand()<.08)c.b=1;
+ f.last=c;return c
 }
-f.last=c;return c}
 function blinkAwayX(f,o){const dist=110,back=o.face||1;let x=o.x-back*dist;if(x<45||x>W-45)x=o.x+back*dist;return Math.max(45,Math.min(W-45,x))}
 function upd(f,o,c){kaio(f,c);
 if(f.st==='a'||f.st==='h'||f.st==='d'){
