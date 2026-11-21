@@ -594,7 +594,13 @@ const STORY_DIALOGUE_VOICES={
  "Android 13":"Je suis programmé pour éliminer Goku. Rien ne me détournera de ma cible.",
  Janemba:"Gogogogogo !",
  Broly:"Kakarot... ma puissance ne cesse de grandir !",
- "Whis":"Vous avez progressé, mais votre maîtrise du ki divin doit encore s’améliorer.",\n "Frost":"Je vais vous montrer que l’univers 6 possède aussi ses champions.",\n "Panzy":"Je ne suis pas une princesse qui attend qu’on la sauve. Je peux me défendre !",\n "Tamago":"Le roi Gomah ne tolérera aucune intrusion dans son palais.",\n "Fu":"Les anomalies temporelles sont parfaites pour mes expériences. Essayez donc de m’arrêter.",\n "Towa":"Le royaume démoniaque ne laissera pas vos interventions ruiner nos plans.",\n "Gamma 1":"Je suis un super-héros. Je ne laisserai pas cette menace gagner.",
+ "Whis":"Vous avez progressé, mais votre maîtrise du ki divin doit encore s’améliorer.",
+ "Frost":"Je vais vous montrer que l’univers 6 possède aussi ses champions.",
+ "Panzy":"Je ne suis pas une princesse qui attend qu’on la sauve. Je peux me défendre !",
+ "Tamago":"Le roi Gomah ne tolérera aucune intrusion dans son palais.",
+ "Fu":"Les anomalies temporelles sont parfaites pour mes expériences. Essayez donc de m’arrêter.",
+ "Towa":"Le royaume démoniaque ne laissera pas vos interventions ruiner nos plans.",
+ "Gamma 1":"Je suis un super-héros. Je ne laisserai pas cette menace gagner.",
  "Gamma 2":"L'heure est venue de montrer ce que peut faire un véritable héros.",
  "Cell Max":"GRAAAAAH !"
 };
