@@ -203,3 +203,62 @@ small{opacity:.7;max-width:90%}
 .adventure-event-card{max-width:760px;border-color:rgba(255,205,105,.45)}
 .adventure-daily-banner>small{display:block;color:#b7d0e8;margin:8px 0}
 @media(max-width:600px){.adventure-activity-summary{flex-direction:column;align-items:center}.adventure-spot-card,.adventure-local-quest-card,.adventure-event-card,.adventure-daily-banner{padding:13px}}
+
+
+/* Interface finale : menu principal plus clair, navigation rapide et cartes cohérentes */
+#m .main-menu-actions{
+ width:min(92%,560px)!important;
+ min-width:0!important;
+ display:grid!important;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:10px!important;
+ margin:clamp(12px,3vh,28px) auto 16px!important;
+ align-self:center!important;
+}
+#m .main-menu-actions button{
+ min-height:58px;
+ margin:0;
+ padding:12px 15px!important;
+ display:flex;
+ align-items:center;
+ justify-content:flex-start;
+ text-align:left!important;
+ font-size:clamp(13px,1.35vw,16px)!important;
+ font-weight:800;
+ letter-spacing:.25px;
+ border-radius:14px;
+ background:linear-gradient(135deg,rgba(24,55,91,.98),rgba(20,26,57,.98));
+ border:1px solid rgba(108,204,255,.42);
+ box-shadow:0 8px 20px rgba(0,0,0,.24),inset 0 1px rgba(255,255,255,.06);
+}
+#m .main-menu-actions button:first-child{
+ grid-column:1/-1;
+ min-height:68px;
+ justify-content:center;
+ text-align:center!important;
+ font-size:clamp(17px,2vw,21px)!important;
+ color:#dffaff;
+ background:linear-gradient(110deg,#145575,#263c78 58%,#4a286b);
+ border-color:#74e3ff;
+ box-shadow:0 0 24px rgba(41,190,255,.14),0 8px 22px #0005;
+}
+#m .main-menu-actions button:hover:not(:disabled){
+ transform:translateY(-3px);
+ border-color:#9aefff;
+ background:linear-gradient(130deg,#1d6682,#343a78);
+ box-shadow:0 12px 26px rgba(0,0,0,.32),0 0 16px rgba(67,202,255,.18);
+}
+#m>h1{align-self:center!important;margin:clamp(8px,2vh,20px) 0 2px!important}
+#m>small:first-of-type{align-self:center!important;margin:0!important;text-align:center}
+#m .story-saga-head{font-size:14px;line-height:1.35}
+#m .story-chapters button{min-height:36px}
+#m .profile-panel,#m .adventure-progress-card,#m .adventure-mission-card,
+#m .adventure-result-card,#m .adventure-sidequest-card{
+ backdrop-filter:blur(8px);
+}
+#m button:focus-visible{outline:2px solid #baf5ff;outline-offset:3px}
+@media(max-width:560px){
+ #m .main-menu-actions{grid-template-columns:1fr;width:min(94%,420px)!important;gap:8px!important}
+ #m .main-menu-actions button:first-child{grid-column:auto}
+ #m .main-menu-actions button{min-height:48px}
+}
