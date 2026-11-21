@@ -256,9 +256,19 @@ function kaio(f,c){if(f.c.n!=='Goku'||f.nokk)return;if(c.kkP&&f.st!=='t'&&f.st!=
 if(f.kk){const k=KK[f.kk-1];if(f.f$.ui){f.kk=0;return}const divine=['Super Saiyan God','Super Saiyan Blue','Blue Evolution','Ultra Instinct','Ultra Instinct maîtrisé','Ultra Ego','Super Saiyan Rosé','Godslayer','Destruction','Beast'].includes(f.f$.n);f.ki=Math.max(0,f.ki-k.dr/60*95/f.c.st.ed*(divine?.78:1));if(f.kt<k.t*54&&Math.random()<k.o*.004){endKK(f,1);return}if(--f.kt<=0||f.ki<=0)endKK(f,1)}}
 function stOf(c,fi,withRpg=false){const s=Object.assign({},c.st),f=c.fm[fi||0],b=Math.round(Math.log2(f.pw)*10);for(const k of['fo','en','du'])s[k]+=b;s.vi+=Math.round(b*.8);s.ed+=Math.round(b*.3);s.ki+=Math.round(f.kr*60);if(f.ui){s.in+=8;s.te+=8}if(withRpg){for(const k of['fo','vi','in','du','en','ed','ki','te'])s[k]+=skillStatBonus(k)}return s}
 const SN=[['fo','Force'],['vi','Vitesse'],['in','Intelligence'],['du','Durabilité'],['en','Énergie'],['ed','Endurance'],['ki','Ki'],['te','Technique']];
-function statPanel(){const a=CH[cfg.p1],fa=Math.min(cfg.sf|0,a.fm.length-1),sa=stOf(a,fa,true),cmp=cfg.cmp,b=CH[cfg.p2],sb=cmp?stOf(b,0):null,w=document.createElement('div');w.style.cssText='width:100%;display:flex;flex-direction:column;align-items:center';
-w.appendChild(row(a.fm.map((f,i)=>btn(f.n,()=>{cfg.sf=i;selectScreen()},fa===i,'font-size:12px;padding:4px 8px')).concat([btn('Comparer : '+(cmp?'OUI':'NON'),()=>{cfg.cmp=!cfg.cmp;selectScreen()},cmp,'font-size:12px;padding:4px 8px')])));
-
-const d=document.createElement('div');d.style.cssText='width:min(92%,520px);font-size:13px;text-align:left';let h='<div style="text-align:center;margin:4px"><b>'+a.n+' — '+a.fm[fa].n+'</b>'+(cmp?' &nbsp;vs&nbsp; <b style="color:#fa4">'+b.n+'</b>':'')+'</div><div style="text-align:center;opacity:.75;margin-bottom:4px">'+a.st.d+'</div>';
-for(const [k,n] of SN)h+='<div style="display:grid;grid-template-columns:96px 1fr 34px;gap:6px;align-items:center;margin:2px 0"><span>'+n+'</span><div style="background:#0008;height:8px;position:relative"><div style="background:var(--ac);height:8px;width:'+Math.min(100,sa[k]/1.5)+'%"></div>'+(cmp?'<div style="background:#fa4;height:4px;width:'+Math.min(100,sb[k])+'%;position:absolute;bottom:0"></div>':'')+'</div><span>'+sa[k]+(cmp?'<br><small style="color:#fa4">'+sb[k]+'</small>':'')+'</span></div>';
-d.innerHTML=h;w.appendChild(d);return w}
+function statPanel(chosenIndex=cfg.p1){
+ const w=document.createElement('div');w.className='fighter-stats-live';w.style.cssText='width:100%;display:flex;flex-direction:column;align-items:center;gap:8px';
+ const render=()=>{
+  w.replaceChildren();
+  const a=CH[chosenIndex]||CH[cfg.p1]||CH[0],forms=Array.isArray(a.fm)&&a.fm.length?a.fm:[{n:'Base',pw:1,kr:1}],fi=Math.max(0,Math.min(cfg.sf|0,forms.length-1));
+  let stats={...(a.st||{})};try{stats=stOf(a,fi,true)||stats}catch(err){console.warn('Calcul des statistiques:',err)}
+  const compare=!!cfg.cmp,other=CH[chosenIndex===cfg.p1?cfg.p2:cfg.p1]||a;let otherStats=other.st||{};
+  if(compare){try{otherStats=stOf(other,0,true)||otherStats}catch(err){}}
+  w.appendChild(row(forms.map((f,i)=>btn(f.n,()=>{cfg.sf=i;render()},fi===i,'font-size:12px;padding:5px 8px')).concat([btn('Comparer : '+(compare?'OUI':'NON'),()=>{cfg.cmp=!cfg.cmp;render()},compare,'font-size:12px;padding:5px 8px')])));
+  const d=document.createElement('div');d.className='selection-section';d.style.cssText='width:100%;box-sizing:border-box;font-size:13px;text-align:left;padding:12px';
+  let h='<div style="text-align:center;font-weight:800;margin:2px 0 10px">'+a.n+' — '+(forms[fi].n||'Base')+(compare?' <span style="color:#ffd36a"> vs '+other.n+'</span>':'')+'</div>';
+  for(const [k,label] of SN){const value=Math.max(0,Math.round(Number(stats[k])||0)),v2=compare?Math.max(0,Math.round(Number(otherStats[k])||0)):0;h+='<div style="display:grid;grid-template-columns:96px minmax(40px,1fr) 38px;gap:7px;align-items:center;margin:8px 0"><span>'+label+'</span><div style="height:10px;background:#18243a;border-radius:8px;overflow:hidden;position:relative"><div style="height:100%;width:'+Math.min(100,value/1.5)+'%;background:linear-gradient(90deg,#16bde9,#a68aff);border-radius:8px"></div>'+(compare?'<div style="position:absolute;left:0;top:0;height:3px;width:'+Math.min(100,v2/1.5)+'%;background:#ffd36a"></div>':'')+'</div><b style="text-align:right">'+value+'</b></div>'}
+  d.innerHTML=h;w.appendChild(d);
+ };
+ render();return w;
+}
