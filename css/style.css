@@ -73,3 +73,37 @@ small{opacity:.7;max-width:90%}
 /* Lisibilité : retirer les aplats noirs derrière les libellés et éviter les ombres lourdes */
 #m small,#m p,#m label,#m span{background-color:transparent}
 #m h1,#m h2,#m h3{background:transparent;text-shadow:0 0 10px rgba(0,200,255,.22)}
+
+/* Refonte générale de l'interface : lisibilité, cohérence et adaptation écran */
+#m{gap:clamp(8px,1.5vh,16px);padding:clamp(12px,2.4vh,24px) clamp(10px,2vw,24px);background:radial-gradient(ellipse at 50% 0%,rgba(34,105,160,.18),transparent 55%),linear-gradient(145deg,rgba(5,10,25,.96),rgba(10,17,38,.97) 55%,rgba(20,12,42,.96));}
+#m>h1{font-weight:900;line-height:1.12;letter-spacing:clamp(1px,.3vw,4px);text-shadow:0 0 16px rgba(0,200,255,.24);animation:none;}
+#m>small,#m p,#m label,#m span{background:transparent!important;box-shadow:none!important;text-shadow:none!important;-webkit-text-stroke:0!important;}
+#m small{color:#c4d5ee;opacity:.92;line-height:1.5}
+#m button{min-height:40px;padding:9px 15px;color:#edf6ff;background:linear-gradient(145deg,#1b3154,#101a32);border:1px solid rgba(105,190,255,.5);border-radius:11px;box-shadow:0 4px 12px rgba(0,0,0,.22);font-weight:650;text-shadow:none;-webkit-text-stroke:0;transition:transform .14s ease,border-color .14s ease,background .14s ease}
+#m button:hover:not(:disabled),#m button.on{background:linear-gradient(145deg,#14516d,#26345d);border-color:#7ee8ff;color:#fff;box-shadow:0 0 0 1px rgba(126,232,255,.14),0 7px 18px rgba(0,0,0,.25)}
+#m button:focus-visible{outline:2px solid #b8f4ff;outline-offset:3px}
+#m button:disabled{opacity:.48;filter:saturate(.5);cursor:not-allowed}
+#m .row{gap:6px;align-items:center}
+#m .select-layout{width:min(96%,1180px);min-height:0;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.85fr);gap:14px;align-items:start}
+#m .select-roster{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px;max-height:min(68vh,680px);overflow:auto;padding:10px;background:rgba(7,16,34,.66);border:1px solid rgba(100,170,220,.24);border-radius:16px;scrollbar-width:thin;scrollbar-color:#3d91b6 #0b1830}
+#m .fighter-tile{width:100%;max-width:none;min-width:0;min-height:112px;margin:0;padding:8px 5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:linear-gradient(155deg,#172b49,#101a30)}
+#m .fighter-tile canvas{width:58px;height:58px;filter:drop-shadow(0 0 5px rgba(75,200,255,.24))}
+#m .fighter-tile span{font-size:11px;font-weight:750;line-height:1.2;text-align:center;overflow-wrap:anywhere}
+#m .fighter-tile small{font-size:9px;color:#a8edff}
+#m .select-details{position:sticky;top:8px;max-height:68vh;overflow:auto;background:rgba(8,17,36,.78);border-color:rgba(100,170,220,.3)}
+#m .fighter-preview{background:linear-gradient(115deg,rgba(22,66,100,.92),rgba(38,28,72,.92));border:1px solid rgba(120,210,255,.22)}
+#m .selection-section,#m .profile-panel,.story-saga,.story-quest-card{border:1px solid rgba(100,170,220,.28);border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+#m .selection-section{background:rgba(12,26,49,.78)}
+#m .profile-panel{background:linear-gradient(145deg,rgba(16,30,56,.96),rgba(20,20,45,.96))}
+#m .skill-cell,#m .relic-card{background:rgba(10,22,42,.94)}
+#m h2,#m h3{color:#a9edff}
+#m input,#m select,#m textarea{max-width:100%;color:#eef7ff;background:#101e38;border:1px solid #456b91;border-radius:9px;padding:9px}
+#m hr{width:min(92%,900px);border:0;border-top:1px solid rgba(130,190,230,.2)}
+@media(max-width:760px){
+ #m{justify-content:flex-start}
+ #m .select-layout{grid-template-columns:1fr}
+ #m .select-roster{grid-template-columns:repeat(auto-fill,minmax(76px,1fr));max-height:48vh}
+ #m .select-details{position:static;max-height:none}
+ #m .fighter-tile{min-height:100px}
+}
+@media(prefers-reduced-motion:reduce){#m,#m>*{animation:none!important}#m button{transition:none!important}}
