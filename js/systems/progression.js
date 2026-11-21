@@ -161,6 +161,71 @@ function recordAdventureBattle(won,mode,difficulty){
  }
  save();
 }
+
+function adventureWalkStop(){
+ const stop=window.__fusionAdventureWalkStop;if(stop){stop();window.__fusionAdventureWalkStop=null}
+}
+function adventureWalkMenu(zoneId){
+ const index=ADVENTURE_ZONES.findIndex(z=>z.id===zoneId);if(index<0||!adventureZoneOpen(index))return adventureMapMenu();
+ adventureWalkStop();
+ const zone=ADVENTURE_ZONES[index],q=adventureState(),data=adventureZoneData(zoneId);
+ if(!Array.isArray(q.foundAdventureItems))q.foundAdventureItems=[];
+ const objects=[
+  {id:'capsule',name:'Capsule mystérieuse',kind:'CAPSULE',xp:35,rp:3,color:'#61dcff'},
+  {id:'orb',name:'Objet ancien',kind:'RELIQUE',xp:45,rp:4,color:'#ffc65d'},
+  {id:'crystal',name:'Cristal de ki',kind:'CRISTAL',xp:30,rp:3,color:'#b79aff'},
+  {id:'dragonball',name:'Boule à une étoile',kind:'BOULE DE CRISTAL',xp:100,rp:10,color:'#ff9d45'}
+ ];
+ const canvas=document.createElement('canvas');canvas.width=960;canvas.height=540;canvas.className='adventure-walk-canvas';canvas.setAttribute('aria-label','Zone d’exploration jouable');
+ const wrap=mk('section');wrap.className='adventure-walk-shell';
+ const top=mk('div');top.className='adventure-walk-hud';
+ const heading=mk('div');heading.innerHTML='<small>EXPLORATION LIBRE · '+zone.place.toUpperCase()+'</small><h2>'+zone.name+'</h2>';
+ const counter=mk('strong');counter.className='adventure-walk-counter';
+ top.append(heading,counter);wrap.append(top,canvas);
+ const hint=mk('div');hint.className='adventure-walk-hint';hint.textContent='Déplacement : ZQSD / WASD ou flèches · Approche-toi des objets pour les récupérer';
+ const nearby=mk('div');nearby.className='adventure-walk-nearby';wrap.append(hint,nearby);
+ M.style.display='flex';M.style.background='';M.classList.remove('story-screen','mode-screen');M.innerHTML='<div class="adventure-walk-header"><span>FUSION ARENA · EXPLORATION</span><button type="button" class="adventure-walk-exit">QUITTER</button></div>';M.appendChild(wrap);
+ M.querySelector('.adventure-walk-exit').onclick=()=>{adventureWalkStop();adventureNpcMenu(zoneId)};
+ const ctx=canvas.getContext('2d'),keys=new Set(),W=960,H=540,world={w:1800,h:1100},player={x:world.w/2,y:world.h/2,r:17,face:0};
+ const points=data.spots.map((s,i)=>({x:210+(i%3)*570,y:260+Math.floor(i/3)*430,label:s.name,id:s.id}));
+ const pickups=objects.map((o,i)=>({ ...o,x:160+(i*367+index*91)%(world.w-320),y:160+(i*241+index*67)%(world.h-320),taken:q.foundAdventureItems.includes(zoneId+':'+o.id)}));
+ const walls=[{x:350,y:170,w:250,h:100},{x:1040,y:300,w:270,h:125},{x:620,y:700,w:230,h:120},{x:1400,y:780,w:190,h:90}];
+ let raf=0,last=0,active=true,nearText='Explore la zone et cherche des objets cachés.';
+ const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+ const collides=(x,y)=>walls.some(o=>x>o.x-18&&x<o.x+o.w+18&&y>o.y-18&&y<o.y+o.h+18);
+ const draw=()=>{
+  const camX=clamp(player.x-W/2,0,world.w-W),camY=clamp(player.y-H/2,0,world.h-H);
+  const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,'#285d55');g.addColorStop(1,'#142f3d');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  ctx.save();ctx.translate(-camX,-camY);
+  ctx.strokeStyle='rgba(180,235,211,.09)';ctx.lineWidth=1;
+  for(let x=0;x<world.w;x+=64){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,world.h);ctx.stroke()}
+  for(let y=0;y<world.h;y+=64){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(world.w,y);ctx.stroke()}
+  for(let i=0;i<38;i++){const x=(i*173+index*97)%world.w,y=(i*263+80)%world.h;ctx.fillStyle=i%2?'#477f61':'#6c9563';ctx.beginPath();ctx.arc(x,y,14+(i%4)*4,0,Math.PI*2);ctx.fill();ctx.fillStyle='rgba(9,34,32,.25)';ctx.beginPath();ctx.ellipse(x+8,y+14,17,6,0,0,Math.PI*2);ctx.fill()}
+  for(const pt of points){ctx.fillStyle='rgba(90,214,255,.14)';ctx.beginPath();ctx.arc(pt.x,pt.y,48,0,Math.PI*2);ctx.fill();ctx.fillStyle='#d8f4ff';ctx.font='bold 15px Arial';ctx.textAlign='center';ctx.fillText('⌖ '+pt.label,pt.x,pt.y-40)}
+  for(const o of walls){ctx.fillStyle='#394c62';ctx.fillRect(o.x,o.y,o.w,o.h);ctx.fillStyle='#62778c';ctx.fillRect(o.x,o.y,o.w,12);ctx.fillStyle='rgba(0,0,0,.2)';ctx.fillRect(o.x+8,o.y+o.h-10,o.w,10)}
+  for(const item of pickups){if(item.taken)continue;const pulse=1+Math.sin(performance.now()/220+item.x)*.12;ctx.fillStyle=item.color;ctx.shadowColor=item.color;ctx.shadowBlur=20;ctx.beginPath();ctx.arc(item.x,item.y,11*pulse,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle='#fff';ctx.font='bold 10px Arial';ctx.textAlign='center';ctx.fillText(item.kind,item.x,item.y-19)}
+  ctx.fillStyle='rgba(0,0,0,.28)';ctx.beginPath();ctx.ellipse(player.x,player.y+14,18,7,0,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#ffe0a5';ctx.beginPath();ctx.arc(player.x,player.y,player.r,0,Math.PI*2);ctx.fill();ctx.fillStyle='#243f76';ctx.fillRect(player.x-12,player.y+5,24,17);ctx.fillStyle='#17233c';ctx.beginPath();ctx.moveTo(player.x-15,player.y-8);ctx.lineTo(player.x-7,player.y-26);ctx.lineTo(player.x+1,player.y-13);ctx.lineTo(player.x+10,player.y-27);ctx.lineTo(player.x+17,player.y-7);ctx.closePath();ctx.fill();
+  ctx.restore();
+  ctx.fillStyle='rgba(5,14,28,.72)';ctx.fillRect(16,16,190,48);ctx.fillStyle='#fff';ctx.font='bold 12px Arial';ctx.textAlign='left';ctx.fillText('POSITION EXPLORATION',28,35);ctx.fillStyle='#a6e8ff';ctx.fillText(Math.round(player.x)+' / '+Math.round(player.y),28,52);
+  const found=pickups.filter(x=>x.taken).length;counter.textContent=found+' / '+pickups.length+' objets';
+ };
+ const tick=(t)=>{
+  if(!active)return;const dt=Math.min(.035,(t-last)/1000||0);last=t;
+  let dx=0,dy=0;if(keys.has('ArrowLeft')||keys.has('a')||keys.has('q'))dx--;if(keys.has('ArrowRight')||keys.has('d'))dx++;if(keys.has('ArrowUp')||keys.has('w')||keys.has('z'))dy--;if(keys.has('ArrowDown')||keys.has('s'))dy++;
+  if(dx||dy){const n=Math.hypot(dx,dy)||1;dx/=n;dy/=n;const speed=230;const nx=clamp(player.x+dx*speed*dt,25,world.w-25),ny=clamp(player.y+dy*speed*dt,25,world.h-25);if(!collides(nx,player.y))player.x=nx;if(!collides(player.x,ny))player.y=ny;player.face=Math.atan2(dy,dx)}
+  for(const item of pickups){if(!item.taken&&Math.hypot(player.x-item.x,player.y-item.y)<34){item.taken=true;const key=zoneId+':'+item.id;if(!q.foundAdventureItems.includes(key))q.foundAdventureItems.push(key);sv.xp=(Number(sv.xp)||0)+item.xp;sv.rp=(Number(sv.rp)||0)+item.rp;save();nearText='Objet trouvé : '+item.name+' · +'+item.xp+' XP · +'+item.rp+' RP';}}
+  const target=pickups.find(x=>!x.taken&&Math.hypot(player.x-x.x,player.y-x.y)<95);if(target)nearText='Objet proche : '+target.name+' — approche-toi !';
+  const place=points.find(x=>Math.hypot(player.x-x.x,player.y-x.y)<75);if(place)nearText='Lieu découvert : '+place.label+' — ouvre la carte des lieux pour le visiter.';
+  nearby.textContent=nearText;draw();raf=requestAnimationFrame(tick);
+ };
+ const down=e=>{const k=e.key.toLowerCase();if(['arrowup','arrowdown','arrowleft','arrowright','w','a','s','d','z','q'].includes(k)){e.preventDefault();keys.add(k)}};
+ const up=e=>keys.delete(e.key.toLowerCase());
+ window.addEventListener('keydown',down);window.addEventListener('keyup',up);
+ const stop=()=>{active=false;cancelAnimationFrame(raf);window.removeEventListener('keydown',down);window.removeEventListener('keyup',up);keys.clear()};
+ window.__fusionAdventureWalkStop=stop;draw();raf=requestAnimationFrame(tick);
+}
+
 function adventureNpcMenu(zoneId){
  const index=ADVENTURE_ZONES.findIndex(z=>z.id===zoneId);if(index<0)return adventureMapMenu();
  const zone=ADVENTURE_ZONES[index],mission=zone.mission,q=adventureState(),open=adventureZoneOpen(index),done=q.completedMissions.includes(mission.id),data=ADVENTURE_REGION_DATA[zoneId],found=data.spots.filter(p=>q.discoveredSpots.includes(zoneId+':'+p.id)).length,claimed=data.quests.filter(x=>q.claimedRegionQuests.includes(x.id)).length;
@@ -173,6 +238,7 @@ function adventureNpcMenu(zoneId){
  const activity=mk('section');activity.className='adventure-activity-summary';activity.innerHTML='<b>VIE DE LA RÉGION</b><span>'+found+' / '+data.spots.length+' lieux découverts</span><span>'+claimed+' / '+data.quests.length+' quêtes locales terminées</span>';
  M.appendChild(activity);
  M.appendChild(row([btn('LIEUX À EXPLORER',()=>adventureSpotsMenu(zoneId)),btn('QUÊTES LOCALES',()=>adventureRegionQuestMenu(zoneId))]));
+ M.appendChild(btn('SE DÉPLACER ET CHERCHER DES OBJETS',()=>adventureWalkMenu(zoneId)));
  M.appendChild(row([btn('PARLER À '+zone.npc.toUpperCase(),()=>adventureDialogue(zoneId,'intro')),btn((q.exploredZones||[]).includes(zoneId)?'REVOIR LE SOUVENIR':'SOUVENIR DE LA RÉGION',()=>adventureExplore(zoneId))]));
  M.appendChild(btn('← Retour à la carte',adventureMapMenu));
 }
@@ -323,8 +389,9 @@ function adventureBattleAfter(){
  M.appendChild(btn('CARTE DE L’AVENTURE',adventureMapMenu));M.appendChild(btn('MENU PRINCIPAL',menu));
 }
 function adventureMapMenu(){
- const q=adventureState(),completed=q.completedMissions.length,total=ADVENTURE_ZONES.length,daily=adventureCurrentDailyEvent();
- M.style.display='flex';M.style.background='';M.innerHTML='<h1>AVENTURE — VOYAGE À TRAVERS LES UNIVERS</h1><small>Une campagne de 12 missions, des lieux à explorer, des personnages à aider et un événement qui change chaque jour.</small>';
+ adventureWalkStop();
+ const q=adventureState(),completed=ADVENTURE_ZONES.filter(z=>q.completedMissions.includes(z.mission.id)).length,total=ADVENTURE_ZONES.length,daily=adventureCurrentDailyEvent();
+ M.style.display='flex';M.style.background='';M.innerHTML='<h1>AVENTURE — VOYAGE À TRAVERS LES UNIVERS</h1><small>Une campagne de 16 régions à parcourir, des objets cachés à récupérer, des lieux à découvrir et des personnages à aider.</small>';
  const progress=mk('section');progress.className='adventure-progress-card';progress.innerHTML='<div><b>PROGRESSION DE LA CAMPAGNE</b><strong>'+completed+' / '+total+'</strong></div><div class="adventure-progress-track"><span style="width:'+(completed/total*100)+'%"></span></div><small>'+q.wins+' victoires enregistrées · '+q.storyWins+' victoires en mode Histoire · '+q.claimedRegionQuests.length+' quêtes locales terminées</small>';M.appendChild(progress);
  const eventCard=mk('section');eventCard.className='adventure-daily-banner';eventCard.innerHTML='<div class="adventure-kicker">'+(daily.claimed?'ÉVÉNEMENT DU JOUR · TERMINÉ':'ÉVÉNEMENT DU JOUR · NOUVEAU')+'</div><h2>'+daily.event.title+'</h2><p>'+daily.event.desc+'</p><small>'+daily.zone.name+' · '+daily.spot.name+' · '+daily.event.xp+' XP + '+daily.event.rp+' RP</small>';
  eventCard.appendChild(btn(daily.claimed?'ÉVÉNEMENT DÉJÀ RÉSOLU':'PARTICIPER À L’ÉVÉNEMENT',adventureDailyEventMenu));M.appendChild(eventCard);
