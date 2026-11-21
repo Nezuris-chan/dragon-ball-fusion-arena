@@ -539,3 +539,37 @@ small{opacity:.7;max-width:90%}
 #m.mode-screen>.row{width:min(1180px,96%);justify-content:center}
 @media(max-width:760px){#m:not(.story-screen):not(.mode-screen){justify-content:flex-start}#m .menu-hero{grid-template-columns:1fr}#m .menu-quick-stats{grid-column:auto}#m .menu-brand-mark{width:58px;height:58px;border-radius:17px;font-size:31px}#m .main-menu-actions{grid-template-columns:1fr}#m .menu-action-featured{grid-column:auto}#m .menu-action{min-height:86px;padding:13px!important}#m .menu-utility{grid-template-columns:1fr}#m.mode-screen .select-layout{grid-template-columns:1fr}#m.mode-screen .select-roster{max-height:42vh}#m.mode-screen .select-details{max-height:none}}
 @media(max-width:420px){#m .menu-player-card{grid-template-columns:42px minmax(0,1fr)}#m .menu-player-avatar{width:40px;height:40px}#m .menu-player-rank{grid-column:2;padding:0;border:0}#m .menu-quick-stat{padding:8px}#m .menu-quick-stat strong{font-size:15px}#m .menu-action{grid-template-columns:42px minmax(0,1fr) 16px;gap:9px}#m .menu-action-icon{width:40px;height:40px;font-size:21px}}
+
+/* Campaign clarity: chapters and exploration */
+#m.story-screen .story-chapter-copy small{display:block;margin-top:4px;color:#9ebbd9;font-size:10px;letter-spacing:.25px}
+#m.story-screen .story-chapter-button{min-height:62px;gap:12px}
+#m.story-screen .story-chapter-status{min-width:72px;padding:6px 8px;border:1px solid rgba(117,200,238,.25);border-radius:8px;background:rgba(7,19,38,.7);text-align:center;font-size:9px;font-weight:900;letter-spacing:.7px}
+#m.story-screen .story-chapter.is-done .story-chapter-status{color:#82e8bd;border-color:rgba(100,225,174,.4)}
+#m.story-screen .story-chapter.is-locked .story-chapter-status{color:#a1aabe}
+#m:not(.story-screen) .adventure-map-grid{width:min(1180px,96%);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,255px),1fr));gap:14px;margin:12px auto}
+#m:not(.story-screen) .adventure-zone-card{position:relative;min-height:210px;padding:18px;border:1px solid rgba(110,192,235,.34);border-radius:18px;background:linear-gradient(145deg,rgba(19,43,75,.98),rgba(11,20,43,.98));box-shadow:0 12px 30px rgba(0,0,0,.24);text-align:left;transition:transform .18s,border-color .18s,box-shadow .18s}
+#m:not(.story-screen) .adventure-zone-card.is-open{cursor:pointer}
+#m:not(.story-screen) .adventure-zone-card.is-open:hover{transform:translateY(-3px);border-color:#83e7ff;box-shadow:0 16px 34px rgba(0,0,0,.3),0 0 22px rgba(50,185,255,.12)}
+#m:not(.story-screen) .adventure-zone-card.is-done{border-color:rgba(89,220,169,.5)}
+#m:not(.story-screen) .adventure-zone-card.is-locked{opacity:.62;filter:saturate(.65)}
+#m:not(.story-screen) .adventure-zone-top,#m:not(.story-screen) .adventure-zone-footer,#m:not(.story-screen) .adventure-zone-activity{display:flex;justify-content:space-between;gap:8px;align-items:center}
+#m:not(.story-screen) .adventure-zone-top{color:#8fe6ff;font-size:9px;font-weight:900;letter-spacing:1.1px}
+#m:not(.story-screen) .adventure-zone-card h3{margin:17px 0 3px;color:#fff;font-size:20px}
+#m:not(.story-screen) .adventure-zone-card>small{color:#91b9dc}
+#m:not(.story-screen) .adventure-zone-card p{min-height:44px;color:#c1d3e8;font-size:12px;line-height:1.5}
+#m:not(.story-screen) .adventure-zone-activity{padding:9px 0;border-top:1px solid rgba(139,184,222,.15);color:#a9c7e3;font-size:10px}
+#m:not(.story-screen) .adventure-zone-footer{margin-top:10px;color:#8ba7c8;font-size:10px}
+#m:not(.story-screen) .adventure-zone-footer b{color:#a0eaff}
+#m:not(.story-screen) .adventure-progress-card,#m:not(.story-screen) .adventure-daily-banner{width:min(1180px,96%);box-sizing:border-box;border:1px solid rgba(110,192,235,.3);border-radius:18px;background:linear-gradient(110deg,rgba(16,57,87,.95),rgba(36,31,75,.95));padding:16px 20px;text-align:left;box-shadow:0 12px 30px rgba(0,0,0,.2)}
+#m:not(.story-screen) .adventure-progress-card>div:first-child{display:flex;justify-content:space-between;align-items:center;color:#d9edff}
+#m:not(.story-screen) .adventure-progress-card strong{font-size:20px;color:#fff}
+#m:not(.story-screen) .adventure-progress-card .adventure-progress-track{height:8px;overflow:hidden;border-radius:99px;background:#071326}
+#m:not(.story-screen) .adventure-progress-card .adventure-progress-track span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#43d7ff,#9c7aff)}
+#m:not(.story-screen) .adventure-daily-banner h2{margin:7px 0;color:#fff}
+#m:not(.story-screen) .adventure-daily-banner p{color:#c3d7ec}
+#m:not(.story-screen) .adventure-mission-card,#m:not(.story-screen) .adventure-result-card,#m:not(.story-screen) .adventure-sidequest-card{width:min(900px,94%);box-sizing:border-box;padding:18px;border:1px solid rgba(110,192,235,.34);border-radius:17px;background:linear-gradient(145deg,#142c4e,#101a35);text-align:left;box-shadow:0 12px 30px rgba(0,0,0,.22)}
+#m:not(.story-screen) .adventure-mission-card h2,#m:not(.story-screen) .adventure-result-card h2{color:#fff}
+#m:not(.story-screen) .adventure-mission-meta{display:flex;flex-wrap:wrap;gap:8px}
+#m:not(.story-screen) .adventure-mission-meta span{padding:6px 9px;border-radius:8px;background:#09162b;color:#bce4ff;font-size:10px}
+#m:not(.story-screen) .adventure-reward{margin:12px 0;color:#ffe59c}
+@media(max-width:650px){#m:not(.story-screen) .adventure-map-grid{grid-template-columns:1fr}#m:not(.story-screen) .adventure-zone-card{min-height:unset}}
