@@ -573,3 +573,27 @@ small{opacity:.7;max-width:90%}
 #m:not(.story-screen) .adventure-mission-meta span{padding:6px 9px;border-radius:8px;background:#09162b;color:#bce4ff;font-size:10px}
 #m:not(.story-screen) .adventure-reward{margin:12px 0;color:#ffe59c}
 @media(max-width:650px){#m:not(.story-screen) .adventure-map-grid{grid-template-columns:1fr}#m:not(.story-screen) .adventure-zone-card{min-height:unset}}
+
+/* Main menu: cinematic arcade presentation */
+#m{background:radial-gradient(ellipse at 50% -10%,rgba(42,111,164,.3),transparent 55%),linear-gradient(145deg,#07101f,#0c1730 55%,#17122b)!important}
+#m .menu-shell{width:min(1120px,100%);gap:clamp(16px,2.8vh,27px);padding:clamp(8px,1.4vw,18px);box-sizing:border-box}
+#m .menu-hero{border:1px solid rgba(119,210,255,.22);background:linear-gradient(112deg,rgba(9,47,75,.98),rgba(23,35,78,.98) 58%,rgba(56,27,78,.98));}
+#m .menu-brand-mark{border-radius:20px;box-shadow:0 0 34px rgba(72,206,255,.28),inset 0 1px rgba(255,255,255,.55)}
+#m .menu-action{backdrop-filter:blur(10px);min-height:104px}
+#m .menu-action:not(.menu-action-featured){background:linear-gradient(145deg,rgba(17,37,67,.98),rgba(12,22,47,.98))!important}
+#m .menu-action-icon{box-shadow:inset 0 0 0 1px rgba(115,211,255,.16)}
+#m .menu-action-copy strong{font-size:14px;letter-spacing:.55px}
+#m .menu-action-copy small{line-height:1.45}
+#m .menu-utility-button{border:1px solid rgba(127,188,225,.18)!important;background:rgba(15,30,54,.72)!important;border-radius:12px!important}
+#m .menu-footer-note{color:#7693b6;letter-spacing:1.1px}
+.adventure-walk-header{width:min(1050px,96%);display:flex;justify-content:space-between;align-items:center;margin:0 auto 10px;color:#92dfff;font-size:10px;font-weight:900;letter-spacing:1.5px}
+.adventure-walk-header button{width:auto!important;min-height:34px;padding:7px 14px!important;border-radius:9px!important}
+.adventure-walk-shell{width:min(1050px,96%);display:flex;flex-direction:column;gap:10px;padding:14px;box-sizing:border-box;border:1px solid rgba(115,202,245,.25);border-radius:20px;background:linear-gradient(145deg,#132b49,#0b172e);box-shadow:0 18px 45px rgba(0,0,0,.3)}
+.adventure-walk-hud{display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left}
+.adventure-walk-hud small{color:#81dfff;font-size:9px;font-weight:900;letter-spacing:1px}
+.adventure-walk-hud h2{margin:4px 0;color:#fff;font-size:22px}
+.adventure-walk-counter{padding:8px 12px;border-radius:10px;background:#09172b;color:#ffe39b;font-size:12px}
+.adventure-walk-canvas{display:block;width:100%;height:auto;aspect-ratio:16/9;border:1px solid rgba(138,210,245,.35);border-radius:13px;background:#183e43;box-shadow:inset 0 0 35px rgba(0,0,0,.25);touch-action:none}
+.adventure-walk-hint,.adventure-walk-nearby{padding:10px 12px;border-radius:10px;background:rgba(5,15,31,.55);color:#b8d6ec;text-align:left;font-size:11px}
+.adventure-walk-nearby{min-height:16px;color:#ffe29b}
+@media(max-width:650px){#m .menu-hero{grid-template-columns:1fr}#m .main-menu-actions{grid-template-columns:1fr}#m .menu-action-featured{grid-column:auto}.adventure-walk-shell{padding:8px}.adventure-walk-hud h2{font-size:17px}}
