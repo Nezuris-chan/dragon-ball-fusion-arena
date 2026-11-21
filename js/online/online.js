@@ -18,7 +18,7 @@ function accountOnlineMenu(){
  dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>COMPTE EN LIGNE</h1>';
  if(!sbClient){M.appendChild(mk('small','Connexion Supabase indisponible. Vérifie ta connexion Internet puis recharge la page.'));M.appendChild(btn('← Retour',menu));return}
  if(onlineUser){
-  M.appendChild(mk('p','Connecté : '+(sv.pseudo||onlineUser.email||'Joueur')));
+  const connectedLabel=document.createElement('p');connectedLabel.textContent='Connecté : '+(sv.pseudo||onlineUser.email||'Joueur');M.appendChild(connectedLabel);
   M.appendChild(row([btn('CLASSEMENT MONDIAL',globalRankingMenu),btn('COMBATS EN LIGNE',onlinePlayMenu),btn('SE DÉCONNECTER',async()=>{const {error}=await sbClient.auth.signOut();if(error){alert('Déconnexion impossible : '+error.message);return}onlineUser=null;menu()})]));
   M.appendChild(mk('small','Ton compte est connecté. Tu peux accéder aux combats classés et au classement mondial.'));
   M.appendChild(btn('← Retour',menu));return;
@@ -69,7 +69,7 @@ function onlinePlayMenu(){
 }
 function onlineQueueMenu(message){
  M.style.display='flex';M.style.background='';M.innerHTML='<h1>RECHERCHE D’ADVERSAIRE</h1>';
- M.appendChild(mk('p',message||'Recherche d’un joueur connecté…'));
+ const queueMessage=document.createElement('p');queueMessage.textContent=message||'Recherche d’un joueur connecté…';M.appendChild(queueMessage);
  M.appendChild(mk('small','Garde cette page ouverte pendant la recherche.'));
  M.appendChild(btn('ANNULER',async()=>{if(onlineQueue){try{await onlineQueue.untrack();await sbClient.removeChannel(onlineQueue)}catch(e){}onlineQueue=null}onlineMatchId=null;onlinePlayMenu()}));
 }
@@ -94,9 +94,9 @@ async function joinOnlineRoom(room,opponentName,isHost,opponentId){
  ch.subscribe(async status=>{if(status==='SUBSCRIBED'){await ch.track({user_id:onlineUser.id,pseudo:sv.pseudo||'Joueur',character:null});onlineRoomReady=true;onlineCharacterSelect()}else if(status==='CHANNEL_ERROR'||status==='TIMED_OUT'){onlineRoomReady=false;onlineQueueMenu('Impossible de rejoindre le salon. Réessaie.')}});
 }
 function onlineCharacterSelect(){
- if(!onlineRoomReady)return;M.style.display='flex';M.style.background='';M.innerHTML='<h1>CHOISIS TON PERSONNAGE</h1><small>Adversaire : '+onlineOpponentName+'</small><small>Choisis ton combattant. Le terrain sera tiré au sort après les deux choix.</small>';
+ if(!onlineRoomReady)return;M.style.display='flex';M.style.background='';M.innerHTML='<h1>CHOISIS TON PERSONNAGE</h1>';const opponentLabel=document.createElement('small');opponentLabel.textContent='Adversaire : '+onlineOpponentName;const selectionHint=document.createElement('small');selectionHint.textContent='Choisis ton combattant. Le terrain sera tiré au sort après les deux choix.';M.append(opponentLabel,selectionHint);
  const grid=document.createElement('div');grid.style.cssText='width:min(96%,820px);max-height:62vh;overflow:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(115px,1fr));gap:8px;padding:8px';
- CH.forEach((c,i)=>{const b=document.createElement('button');b.style.cssText='display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px';b.appendChild(portrait(i));const n=document.createElement('b');n.textContent=c.n;b.appendChild(n);b.onclick=async()=>{cfg.p1=i;cfg.sf=0;await onlineRoomChannel.track({user_id:onlineUser.id,pseudo:sv.pseudo||'Joueur',character:i});M.innerHTML='<h1>PERSONNAGE CHOISI</h1>';M.appendChild(mk('p','Tu joues '+c.n+'. En attente du choix de '+onlineOpponentName+'…'));M.appendChild(btn('Changer de personnage',onlineCharacterSelect));};grid.appendChild(b)});
+ CH.forEach((c,i)=>{const b=document.createElement('button');b.style.cssText='display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px';b.appendChild(portrait(i));const n=document.createElement('b');n.textContent=c.n;b.appendChild(n);b.onclick=async()=>{cfg.p1=i;cfg.sf=0;await onlineRoomChannel.track({user_id:onlineUser.id,pseudo:sv.pseudo||'Joueur',character:i});M.innerHTML='<h1>PERSONNAGE CHOISI</h1>';const waitingLabel=document.createElement('p');waitingLabel.textContent='Tu joues '+c.n+'. En attente du choix de '+onlineOpponentName+'…';M.appendChild(waitingLabel);M.appendChild(btn('Changer de personnage',onlineCharacterSelect));};grid.appendChild(b)});
  M.appendChild(grid);M.appendChild(btn('Annuler',leaveOnlineBattle));
 }
 function beginOnlineBattle(player1Char,player2Char,matchId,arena,localSide){
@@ -112,7 +112,7 @@ async function onlineConfirmResult(winnerId){
  }catch(e){onlineResultSubmitted=false;M.innerHTML='<h1>ERREUR DE VALIDATION</h1><small>'+e.message+'</small>';M.appendChild(btn('Réessayer',onlineResultConfirmMenu))}
 }
 function onlineResultConfirmMenu(){
- if(!G||!G.win)return;M.style.display='flex';M.style.background='';M.innerHTML='<h1>CONFIRMER LE RÉSULTAT</h1><small>Le jeu estime que '+(G.win===(onlineLocalSide===0?G.a:G.b)?(sv.pseudo||'Toi'):onlineOpponentName)+' a gagné. Choisis le résultat réel. Les points ne seront ajoutés qu’après l’accord des deux joueurs.</small>';
+ if(!G||!G.win)return;M.style.display='flex';M.style.background='';M.innerHTML='<h1>CONFIRMER LE RÉSULTAT</h1>';const resultHint=document.createElement('small');resultHint.textContent='Le jeu estime que '+(G.win===(onlineLocalSide===0?G.a:G.b)?(sv.pseudo||'Toi'):onlineOpponentName)+' a gagné. Choisis le résultat réel. Les points ne seront ajoutés qu’après l’accord des deux joueurs.';M.appendChild(resultHint);
  M.appendChild(btn('VICTOIRE : '+(sv.pseudo||'MOI'),()=>onlineConfirmResult(onlineUser.id)));M.appendChild(btn('VICTOIRE : '+onlineOpponentName,()=>onlineConfirmResult(onlineOpponentId)));M.appendChild(btn('QUITTER SANS VALIDER',leaveOnlineBattle));
 }
 async function leaveOnlineBattle(){
