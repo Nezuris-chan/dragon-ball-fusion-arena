@@ -81,6 +81,32 @@ const ADVENTURE_ZONES=[
  {id:'demon',name:'Royaume des Démons',place:'Troisième Royaume',npc:'Glorio',role:'Guide du royaume',desc:'Une dernière menace s’élève dans le royaume démoniaque. Affronte Gomah.',mission:{id:'ad_demon',title:'Le roi démoniaque',enemy:'Gomah',hero:'Glorio',diff:2,arena:7,xp:800,rp:70,brief:'Le dernier défi de cette aventure t’attend. Mets fin au règne de Gomah.'}}
 
 ];
+
+const ADVENTURE_TIMELINES={
+ ad_paozu:{arc:'Saga des Saiyans — arrivée de Raditz',fighters:['Goku','Piccolo','Gohan','Raditz','Vegeta','Nappa','Krillin','Yamcha','Tenshinhan'],forms:{Goku:0,Piccolo:0,Gohan:0,Raditz:0,Vegeta:0,Nappa:0,Krillin:0,Yamcha:0,Tenshinhan:0}},
+ ad_capsule:{arc:'Film — Super Android 13',fighters:['Goku','Vegeta','Trunks','Piccolo','Gohan','Krillin','Android 13'],forms:{Goku:1,Vegeta:1,Trunks:1,Piccolo:0,Gohan:1,Krillin:0,'Android 13':1}},
+ ad_namek:{arc:'Saga Namek — Freezer',fighters:['Goku','Vegeta','Gohan','Krillin','Piccolo','Freezer','Zarbon','Dodoria','Ginyu'],forms:{Goku:1,Vegeta:0,Gohan:0,Krillin:0,Piccolo:0,Freezer:3,Zarbon:1,Dodoria:0,Ginyu:0}},
+ ad_islands:{arc:'Saga des cyborgs — arrivée des Androïdes',fighters:['Goku','Vegeta','Trunks','Piccolo','Gohan','Krillin','Yamcha','Tenshinhan','Android 16','Android 17','Android 18','Cell'],forms:{Goku:1,Vegeta:1,Trunks:1,Piccolo:0,Gohan:1,Krillin:0,Yamcha:0,Tenshinhan:0,'Android 16':0,'Android 17':0,'Android 18':0,Cell:0}},
+ ad_cellgames:{arc:'Saga Cell — Cell Games',fighters:['Goku','Vegeta','Gohan','Trunks','Piccolo','Cell','Android 16','Android 17','Android 18','Krillin','Yamcha','Tenshinhan'],forms:{Goku:1,Vegeta:1,Gohan:1,Trunks:1,Piccolo:0,Cell:0,'Android 16':0,'Android 17':0,'Android 18':0,Krillin:0,Yamcha:0,Tenshinhan:0}},
+ ad_buu:{arc:'Saga Boo — Majin Boo',fighters:['Goku','Vegeta','Gohan','Gotenks','Piccolo','Majin Buu','Dabura','Android 18','Krillin','Videl','Vegetto'],forms:{Goku:3,Vegeta:2,Gohan:2,Gotenks:2,Piccolo:0,'Majin Buu':2,Dabura:1,'Android 18':0,Krillin:0,Videl:0,Vegetto:1}},
+ ad_otherworld:{arc:'Film — Fusion / Janemba',fighters:['Goku','Vegeta','Janemba','Gogeta','Pikkon','Freezer','Cell'],forms:{Goku:3,Vegeta:2,Janemba:1,Gogeta:1,Pikkon:0,Freezer:3,Cell:0}},
+ ad_beerus:{arc:'Battle of Gods — arrivée de Beerus',fighters:['Goku','Vegeta','Beerus','Gohan','Piccolo','Trunks','Videl','Krillin','Android 18','Yamcha','Tenshinhan','Muten Roshi'],forms:{Goku:4,Vegeta:2,Beerus:0,Gohan:2,Piccolo:0,Trunks:1,Videl:0,Krillin:0,'Android 18':0,Yamcha:0,Tenshinhan:0,'Muten Roshi':0}},
+ ad_future:{arc:'Saga du futur — Goku Black',fighters:['Goku','Vegeta','Trunks','Goku Black','Zamasu fusionné','Beerus'],forms:{Goku:5,Vegeta:4,Trunks:2,'Goku Black':1,'Zamasu fusionné':0,Beerus:0}},
+ ad_universe6:{arc:'Tournoi de l’Univers 6',fighters:['Goku','Vegeta','Piccolo','Hit','Cabba'],forms:{Goku:5,Vegeta:4,Piccolo:0,Hit:1,Cabba:1}},
+ ad_tournament:{arc:'Tournoi du Pouvoir',fighters:['Goku','Vegeta','Gohan','Piccolo','Android 17','Android 18','Krillin','Tenshinhan','Muten Roshi','Freezer','Jiren','Hit','Kefla','Caulifla','Kale','Cabba','Toppo','Dyspo'],forms:{Goku:7,Vegeta:5,Gohan:2,Piccolo:0,'Android 17':0,'Android 18':0,Krillin:0,Tenshinhan:0,'Muten Roshi':0,Freezer:4,Jiren:1,Hit:1,Kefla:1,Caulifla:1,Kale:1,Cabba:1,Toppo:1,Dyspo:0}},
+ ad_demon:{arc:'Dragon Ball Daima — Royaume des Démons',fighters:['Goku','Vegeta','Glorio','Gomah','Tamagami'],forms:{Goku:3,Vegeta:3,Glorio:0,Gomah:1,Tamagami:0}}
+};
+function adventureTimelineForMission(id){return ADVENTURE_TIMELINES[id]||null}
+function adventureMaxFormIndex(characterName,missionId){
+ const id=missionId||adventureState().activeMission,rule=adventureTimelineForMission(id);
+ if(!rule||!rule.fighters.includes(characterName))return 0;
+ const index=Number(rule.forms[characterName]);
+ return Number.isFinite(index)?Math.max(0,index):0;
+}
+function adventureFighterAllowed(characterName,missionId){
+ const rule=adventureTimelineForMission(missionId||adventureState().activeMission);
+ return !!rule&&rule.fighters.includes(characterName);
+}
 const ADVENTURE_REGION_DATA={
  paozu:{spots:[{id:'sentier',name:'Sentier du Mont Paozu',desc:'Des traces de pas gigantesques marquent le chemin.'},{id:'cascade',name:'Cascade de la montagne',desc:'Un courant d’énergie inhabituel se cache derrière l’eau.'},{id:'maison',name:'Maison de Goku',desc:'Un endroit paisible où un vieux souvenir attend.'}],quests:[{id:'paozu_patrol',npc:'Krillin',title:'Patrouille autour du mont',desc:'Inspecte le sentier et vérifie si d’autres guerriers sont arrivés.',needs:['sentier'],xp:70,rp:8},{id:'paozu_energy',npc:'Yamcha',title:'Énergie près de la cascade',desc:'Retrouve la source d’énergie puis rapporte ton observation à Yamcha.',needs:['cascade','maison'],xp:105,rp:12}]},
  capsule:{spots:[{id:'hangar',name:'Hangar des capsules',desc:'Des capsules ouvertes révèlent des pièces déplacées.'},{id:'lab',name:'Laboratoire secondaire',desc:'Un ordinateur contient des données sur les signatures artificielles.'},{id:'rooftop',name:'Toit de Capsule Corp',desc:'La ville entière est visible depuis cette plateforme.'}],quests:[{id:'capsule_parts',npc:'Trunks',title:'Pièces manquantes',desc:'Fouille le hangar pour retrouver les pièces du prototype.',needs:['hangar'],xp:75,rp:9},{id:'capsule_scan',npc:'Android 17',title:'Une signature inconnue',desc:'Analyse les données du laboratoire et surveille la ville depuis le toit.',needs:['lab','rooftop'],xp:110,rp:13}]},
