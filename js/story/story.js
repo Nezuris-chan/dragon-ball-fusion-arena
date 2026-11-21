@@ -495,7 +495,7 @@ const STORY_CHAPTER_RULE_GROUPS=[
  {ids:['s3c7'],players:['Goku','Vegeta','Trunks','Gohan','Piccolo','Krillin','Yamcha','Tenshinhan','Android 16','Android 18'],forms:{Goku:1,Vegeta:1,Trunks:1,Gohan:1,Piccolo:0,Krillin:0,Yamcha:0,Tenshinhan:0,'Android 16':0,'Android 18':0}},
  {ids:['s3c8','s3c9','s3c10','s3c11','s3c12'],players:['Goku','Vegeta','Trunks','Gohan','Piccolo','Krillin','Yamcha','Tenshinhan','Android 16'],forms:{Goku:1,Vegeta:1,Trunks:1,Gohan:1,Piccolo:0,Krillin:0,Yamcha:0,Tenshinhan:0,'Android 16':0}},
  {ids:['s3c13','s3c14','s3c15','s3c16'],players:['Goku','Vegeta','Trunks','Gohan','Piccolo','Krillin','Yamcha','Tenshinhan'],forms:{Goku:1,Vegeta:1,Trunks:1,Gohan:2,Piccolo:0,Krillin:0,Yamcha:0,Tenshinhan:0}},
- {ids:['buu1','s4c4','s4c5','s4c6'],players:['Goku','Vegeta','Gohan','Piccolo','Krillin','Videl','Android 18'],forms:{Goku:2,Vegeta:2,Gohan:1,Piccolo:0,Krillin:0,Videl:0,'Android 18':0}},
+ {ids:['buu1','s4c4','s4c5','s4c6'],players:['Goku','Vegeta','Gohan','Piccolo','Krillin','Videl','Android 18'],forms:{Goku:2,Vegeta:2,Gohan:2,Piccolo:0,Krillin:0,Videl:0,'Android 18':0}},
  {ids:['s4c7','s4c8'],players:['Goku','Vegeta','Gohan','Piccolo','Krillin','Videl','Android 18'],forms:{Goku:2,Vegeta:2,Gohan:1,Piccolo:0,Krillin:0,Videl:0,'Android 18':0}},
  {ids:['s4c9'],players:['Gohan','Goku','Vegeta','Piccolo','Krillin','Videl','Android 18'],forms:{Gohan:3,Goku:2,Vegeta:2,Piccolo:0,Krillin:0,Videl:0,'Android 18':0}},
  {ids:['buu2','s4c10'],players:['Goku','Vegeta','Gohan','Piccolo','Krillin','Videl'],forms:{Goku:2,Vegeta:2,Gohan:3,Piccolo:0,Krillin:0,Videl:0}},
