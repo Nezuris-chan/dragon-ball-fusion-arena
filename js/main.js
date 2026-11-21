@@ -105,7 +105,7 @@ function selectScreen(mode){
  const timeline=m==='adventure'?adventureTimelineForMission(activeMission?.id):null;
  let visible=CH.map((c,i)=>({c,i}));
  if(m==='adventure'){
-  visible=visible.filter(x=>timeline?timeline.fighters.includes(x.c.n):x.c.n===activeMission?.hero);
+  visible=visible.filter(x=>timeline?timeline.fighters.includes(x.c.n)&&x.c.n!==activeMission?.enemy:x.c.n===activeMission?.hero);
   if(!visible.some(x=>x.i===cfg.p1)){const hero=CH.findIndex(c=>c.n===activeMission?.hero);cfg.p1=visible.some(x=>x.i===hero)?hero:(visible[0]?.i??0);cfg.sf=0}
   if(activeMission){const enemyIndex=CH.findIndex(c=>c.n===activeMission.enemy);if(enemyIndex>=0)cfg.p2=enemyIndex}
  }
