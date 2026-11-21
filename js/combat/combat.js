@@ -7,7 +7,7 @@ get itemStats(){const r=equippedRelic(),local=cfg.mode!=='online'&&this===G?.a;r
 function start(){G={a:new F(cfg.p1,260,1,false),b:new F(cfg.p2,700,-1,cfg.mode!=='versus'&&cfg.mode!=='online'),pr:[],time:99,over:0,tick:0,stage:0};G.a.px=G.a.x;G.a.py=G.a.y;G.b.px=G.b.x;G.b.py=G.b.y;
 if(cfg.mode==='train'){G.b.dummy=1}if(cfg.mode!=='versus'&&cfg.mode!=='train'&&cfg.mode!=='online'){G.b.c=CH[(cfg.p2+stage)%CH.length];G.b.hp=G.b.mhp=HPB*(G.b.c.hb||1)}
 M.style.display='none';fx=[];rings=[];LN=[];music(0);}
-function spark(x,y,col,n,s=6){if(LOW)n=Math.ceil(n/3);for(let i=0;i<n&&fx.length<(LOW?120:400);i++){const a=Math.random()*6.28,v=Math.random()*s;fx.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:20+Math.random()*20,col,r:2+Math.random()*3})}}
+function spark(x,y,col,n,s=6){if(LOW)n=Math.ceil(n/3);n=Math.min(n,LOW?8:14);for(let i=0;i<n&&fx.length<(LOW?70:150);i++){const a=Math.random()*6.28,v=Math.random()*s;fx.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:20+Math.random()*20,col,r:2+Math.random()*3})}}
 function doAtk(f,o,t){if(f.st!=='i'&&f.st!=='r')return;if((t==='li'||t==='he')&&f.ct>0&&f.combo>=10){G.ann={t:28,s:'LIMITE DE 10 COUPS',c:'#fd6'};return}
 // Chaîne de coups : les frappes légères ouvrent une fenêtre de combo,
 // puis le lourd ou le spécial peuvent servir de finisher/cancel.
