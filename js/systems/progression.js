@@ -53,37 +53,105 @@ function skillPointTotal(){return Math.max(0,(lvl()-1)*5)}
 function skillStats(){const keys=['fo','vi','in','du','en','ed','ki','te'],raw=sv.skillStats&&typeof sv.skillStats==='object'?sv.skillStats:{};const out={};let left=skillPointTotal();for(const k of keys){out[k]=Math.max(0,Math.floor(Number(raw[k])||0));left-=out[k]}if(left<0){for(const k of keys){const cut=Math.min(out[k],-left);out[k]-=cut;left+=cut;if(left===0)break}}return out}
 function skillStatBonus(k){return skillStats()[k]||0}
 const ADVENTURE_QUESTS=[
-{id:'first_win',name:'Premier pas',desc:'Remporte 1 combat (hors entraînement).',key:'wins',goal:1,xp:120,rp:15},
-{id:'fighter_3',name:'Combattant confirmé',desc:'Remporte 3 combats.',key:'wins',goal:3,xp:260,rp:30},
-{id:'story_2',name:'Protecteur des sagas',desc:'Remporte 2 combats en mode Histoire.',key:'storyWins',goal:2,xp:300,rp:35},
-{id:'hard_win',name:'Défi de guerrier',desc:'Remporte 1 combat en difficulté difficile.',key:'hardWins',goal:1,xp:220,rp:25}
+ {id:'first_win',name:'Premier pas',desc:'Remporte 1 combat (hors entraînement).',key:'wins',goal:1,xp:120,rp:15},
+ {id:'fighter_3',name:'Combattant confirmé',desc:'Remporte 3 combats.',key:'wins',goal:3,xp:260,rp:30},
+ {id:'story_2',name:'Protecteur des sagas',desc:'Remporte 2 combats en mode Histoire.',key:'storyWins',goal:2,xp:300,rp:35},
+ {id:'hard_win',name:'Défi de guerrier',desc:'Remporte 1 combat en difficulté difficile.',key:'hardWins',goal:1,xp:220,rp:25}
 ];
-function adventureState(){if(!sv.adventureQuests||typeof sv.adventureQuests!=='object')sv.adventureQuests={wins:0,storyWins:0,hardWins:0,claimed:[]};const q=sv.adventureQuests;for(const k of ['wins','storyWins','hardWins'])q[k]=Math.max(0,Number(q[k])||0);if(!Array.isArray(q.claimed))q.claimed=[];if(!Array.isArray(q.npcClaims))q.npcClaims=[];return q}
-function recordAdventureBattle(won,mode,difficulty){const q=adventureState();if(won){q.wins++;if(mode==='story')q.storyWins++;if(Number(difficulty)>=2)q.hardWins++}save()}
+function adventureState(){
+ if(!sv.adventureQuests||typeof sv.adventureQuests!=='object')sv.adventureQuests={wins:0,storyWins:0,hardWins:0,claimed:[]};
+ const q=sv.adventureQuests;
+ for(const k of ['wins','storyWins','hardWins'])q[k]=Math.max(0,Number(q[k])||0);
+ for(const k of ['claimed','npcClaims','completedMissions'])if(!Array.isArray(q[k]))q[k]=[];
+ if(typeof q.activeMission!=='string')q.activeMission='';
+ return q;
+}
 const ADVENTURE_ZONES=[
-{id:'paozu',name:'Mont Paozu',place:'Terre',unlock:()=>true,desc:'Entraînement et premiers défis',npc:'Goku',role:'Maître du combat',quest:{id:'goku_trial',title:'Épreuve de Goku',desc:'Remporte 2 combats.',key:'wins',goal:2,xp:180,rp:15}},
-{id:'capsule',name:'Capsule Corporation',place:'Ville Ouest',unlock:()=>adventureState().wins>=2,desc:'Technologie et missions tactiques',npc:'Bulma',role:'Inventrice',quest:{id:'bulma_trial',title:'Test de Bulma',desc:'Remporte 1 combat en mode Histoire.',key:'storyWins',goal:1,xp:220,rp:20}},
-{id:'namek',name:'Planète Namek',place:'Secteur lointain',unlock:()=>adventureState().storyWins>=2,desc:'Défis de résistance et de maîtrise du ki',npc:'Piccolo',role:'Entraîneur',quest:{id:'piccolo_trial',title:'Discipline Namekienne',desc:'Remporte 3 combats.',key:'wins',goal:3,xp:300,rp:25}},
-{id:'beerus',name:'Planète de Beerus',place:'Monde des dieux',unlock:()=>lvl()>=10&&adventureState().wins>=5,desc:'Épreuves divines de haut niveau',npc:'Whis',role:'Guide divin',quest:{id:'whis_trial',title:'Leçon divine',desc:'Remporte 1 combat en difficulté difficile.',key:'hardWins',goal:1,xp:450,rp:40}}
+ {id:'paozu',name:'Mont Paozu',place:'Terre · Est',npc:'Goku',role:'Maître du combat',desc:'Ton aventure commence ici. Protège la Terre contre la première grande menace.',mission:{id:'ad_paozu',title:'La menace des Saiyans',enemy:'Raditz',hero:'Goku',diff:0,arena:0,xp:180,rp:15,brief:'Raditz est arrivé sur Terre. Prouve que tu peux défendre ta planète.'}},
+ {id:'capsule',name:'Capsule Corporation',place:'Ville de l’Ouest',npc:'Bulma',role:'Inventrice',desc:'Une menace artificielle approche. Aide Bulma à tester ses données de combat.',mission:{id:'ad_capsule',title:'Alerte androïde',enemy:'Android 13',hero:'Trunks',diff:0,arena:5,xp:220,rp:20,brief:'Un androïde dangereux a été repéré près de la ville. Neutralise-le.'}},
+ {id:'namek',name:'Planète Namek',place:'Secteur lointain',npc:'Piccolo',role:'Protecteur de Namek',desc:'Le tyran Freezer cherche les Dragon Balls. Arrête-le avant qu’il ne soit trop tard.',mission:{id:'ad_namek',title:'Le tyran de l’espace',enemy:'Freezer',hero:'Piccolo',diff:1,arena:0,xp:300,rp:25,brief:'Freezer libère toute sa puissance. Prépare-toi à un duel difficile.'}},
+ {id:'islands',name:'Îles du Sud',place:'Terre',npc:'C-17',role:'Combattant artificiel',desc:'Les cyborgs sèment le chaos. Affronte un adversaire conçu pour la guerre.',mission:{id:'ad_islands',title:'Danger mécanique',enemy:'Android 16',hero:'Android 17',diff:1,arena:2,xp:320,rp:25,brief:'C-16 est un adversaire massif. Sa résistance sera son principal avantage.'}},
+ {id:'cellgames',name:'Cell Games',place:'Terre · Arène',npc:'Gohan',role:'Guerrier protecteur',desc:'Cell organise son tournoi. Mets fin à ses ambitions.',mission:{id:'ad_cellgames',title:'Le dernier Cell Game',enemy:'Cell',hero:'Gohan',diff:2,arena:2,xp:420,rp:35,brief:'Cell ne retiendra plus ses coups. Donne tout pour protéger la Terre.'}},
+ {id:'buu',name:'Monde des Kaioshins',place:'Monde sacré',npc:'Vegeta',role:'Prince des Saiyans',desc:'Une ancienne créature menace l’univers. Affronte Majin Buu.',mission:{id:'ad_buu',title:'Le réveil de Majin Buu',enemy:'Majin Buu',hero:'Vegeta',diff:2,arena:4,xp:460,rp:40,brief:'Majin Buu est imprévisible et résistant. Garde ton sang-froid.'}},
+ {id:'otherworld',name:'Autre Monde',place:'Royaume des morts',npc:'Pikkon',role:'Champion de l’au-delà',desc:'Une anomalie dimensionnelle a libéré Janemba. Rétablis l’équilibre.',mission:{id:'ad_otherworld',title:'Le démon dimensionnel',enemy:'Janemba',hero:'Pikkon',diff:2,arena:7,xp:480,rp:40,brief:'Janemba déforme l’espace et attaque sans prévenir.'}},
+ {id:'beerus',name:'Planète de Beerus',place:'Monde des dieux',npc:'Whis',role:'Guide divin',desc:'Une épreuve divine t’attend. Montre que tu maîtrises les bases du combat.',mission:{id:'ad_beerus',title:'Épreuve de destruction',enemy:'Beerus',hero:'Goku',diff:2,arena:4,xp:520,rp:45,brief:'Beerus ne plaisante pas. Un seul faux pas peut coûter le combat.'}},
+ {id:'future',name:'Futur dévasté',place:'Ligne temporelle alternative',npc:'Trunks',role:'Dernier défenseur',desc:'Le futur est sous la menace de Goku Black. Change son destin.',mission:{id:'ad_future',title:'Le cauchemar du futur',enemy:'Goku Black',hero:'Trunks',diff:2,arena:3,xp:560,rp:45,brief:'Goku Black maîtrise une puissance divine. Protège cette ligne temporelle.'}},
+ {id:'universe6',name:'Tournoi des Univers',place:'Univers 6',npc:'Cabba',role:'Combattant de Sadala',desc:'Un duel décisif t’attend face à l’assassin légendaire Hit.',mission:{id:'ad_universe6',title:'Le saut temporel',enemy:'Hit',hero:'Vegeta',diff:2,arena:1,xp:580,rp:50,brief:'Hit manipule le temps. Observe ses ouvertures avant d’attaquer.'}},
+ {id:'tournament',name:'Tournoi du Pouvoir',place:'Arène du Néant',npc:'Goku',role:'Représentant de l’Univers 7',desc:'La survie de ton univers est en jeu. Affronte le guerrier le plus redoutable.',mission:{id:'ad_tournament',title:'Le mur de puissance',enemy:'Jiren',hero:'Goku',diff:2,arena:1,xp:700,rp:60,brief:'Jiren est extrêmement puissant. Utilise chaque mécanique à ta disposition.'}},
+ {id:'demon',name:'Royaume des Démons',place:'Troisième Royaume',npc:'Glorio',role:'Guide du royaume',desc:'Une dernière menace s’élève dans le royaume démoniaque. Affronte Gomah.',mission:{id:'ad_demon',title:'Le roi démoniaque',enemy:'Gomah',hero:'Glorio',diff:2,arena:7,xp:800,rp:70,brief:'Le dernier défi de cette aventure t’attend. Mets fin au règne de Gomah.'}}
 ];
+function adventureMissionById(id){for(const z of ADVENTURE_ZONES)if(z.mission.id===id)return z.mission;return null}
+function adventureZoneOpen(index){if(index<=0)return true;const q=adventureState();return q.completedMissions.includes(ADVENTURE_ZONES[index-1].mission.id)}
+function recordAdventureBattle(won,mode,difficulty){
+ const q=adventureState();
+ if(won){q.wins++;if(mode==='story')q.storyWins++;if(Number(difficulty)>=2)q.hardWins++}
+ if(mode==='adventure'&&q.activeMission){
+  const mission=adventureMissionById(q.activeMission),already=mission&&q.completedMissions.includes(mission.id);
+  q.lastMissionResult={id:q.activeMission,won:!!won,completed:false,xp:0,rp:0};
+  if(won&&mission&&!already){
+   q.completedMissions.push(mission.id);sv.xp=(Number(sv.xp)||0)+mission.xp;sv.rp=(Number(sv.rp)||0)+mission.rp;
+   q.lastMissionResult.completed=true;q.lastMissionResult.xp=mission.xp;q.lastMissionResult.rp=mission.rp;q.activeMission='';
+  }
+ }
+ save();
+}
 function adventureNpcMenu(zoneId){
- const zone=ADVENTURE_ZONES.find(z=>z.id===zoneId);if(!zone)return adventureMapMenu();
- const q=adventureState(),m=zone.quest,claims=Array.isArray(q.npcClaims)?q.npcClaims:(q.npcClaims=[]),done=claims.includes(m.id),n=Math.min(m.goal,q[m.key]||0),ready=n>=m.goal&&!done;
+ const index=ADVENTURE_ZONES.findIndex(z=>z.id===zoneId);if(index<0)return adventureMapMenu();
+ const zone=ADVENTURE_ZONES[index],mission=zone.mission,q=adventureState(),open=adventureZoneOpen(index),done=q.completedMissions.includes(mission.id);
  M.style.display='flex';M.style.background='';M.innerHTML='<h1>'+zone.npc.toUpperCase()+'</h1><small>'+zone.role+' · '+zone.name+'</small>';
- const card=mk('div');card.style.cssText='width:min(92%,560px);text-align:left;padding:14px;background:#101a30;border:1px solid #5279a8;border-radius:12px;line-height:1.6';
- card.innerHTML='<b>'+m.title+'</b><p>'+m.desc+'</p><div style="height:10px;background:#26344b;border-radius:8px;overflow:hidden"><div style="height:100%;width:'+(n/m.goal*100)+'%;background:linear-gradient(90deg,#08c,#6ef)"></div></div><small>'+n+' / '+m.goal+' · Récompense : '+m.xp+' XP + '+m.rp+' points de classement</small><p>'+(done?'Mission terminée ✓':ready?'Mission réussie !':'Continue tes combats pour progresser.')+'</p>';
- if(ready)card.appendChild(btn('RÉCUPÉRER LA RÉCOMPENSE',()=>{const state=adventureState();state.npcClaims=Array.isArray(state.npcClaims)?state.npcClaims:[];if(state.npcClaims.includes(m.id))return;state.npcClaims.push(m.id);sv.xp=(Number(sv.xp)||0)+m.xp;sv.rp=(Number(sv.rp)||0)+m.rp;save();adventureNpcMenu(zoneId)}));
- M.appendChild(card);M.appendChild(mk('small',zone.npc+' : « Chaque défi te rapproche de ton prochain objectif. »'));M.appendChild(btn('← Retour à la carte',adventureMapMenu));
+ const card=mk('section');card.className='adventure-mission-card';
+ card.innerHTML='<div class="adventure-kicker">'+(done?'MISSION VALIDÉE':'MISSION PRINCIPALE')+'</div><h2>'+mission.title+'</h2><p>'+mission.brief+'</p><div class="adventure-mission-meta"><span>ADVERSAIRE : '+mission.enemy+'</span><span>DIFFICULTÉ : '+['FACILE','NORMALE','DIFFICILE'][mission.diff]+'</span></div><div class="adventure-reward">Récompense : <b>+'+mission.xp+' XP</b> · <b>+'+mission.rp+' RP</b></div><p class="adventure-npc-quote">« '+zone.npc+' : chaque combat te rapproche de ton objectif. »</p>';
+ if(!open){card.appendChild(mk('small','Cette zone est verrouillée. Termine la mission précédente pour y accéder.'))}
+ else card.appendChild(btn(done?'REJOUER LA MISSION':'COMMENCER LA MISSION',()=>startAdventureMission(mission.id)));
+ M.appendChild(card);M.appendChild(btn('← Retour à la carte',adventureMapMenu));
+}
+function startAdventureMission(id){
+ const mission=adventureMissionById(id);if(!mission)return adventureMapMenu();
+ const index=ADVENTURE_ZONES.findIndex(z=>z.mission.id===id);if(!adventureZoneOpen(index))return adventureNpcMenu(ADVENTURE_ZONES[index].id);
+ const q=adventureState();q.activeMission=id;q.lastMissionResult=null;save();
+ const enemy=CH.findIndex(c=>c.n===mission.enemy),hero=CH.findIndex(c=>c.n===mission.hero);
+ if(enemy<0){q.activeMission='';save();return adventureNpcMenu(ADVENTURE_ZONES[index].id)}
+ cfg.mode='adventure';cfg.p2=enemy;cfg.p1=hero>=0?hero:0;cfg.diff=mission.diff;cfg.ar=mission.arena;cfg.sf=0;cfg.sel2=false;
+ selectScreen('adventure');
+}
+function adventureBattleAfter(){
+ const q=adventureState(),result=q.lastMissionResult,mission=result&&adventureMissionById(result.id);
+ if(!mission)return adventureMapMenu();
+ const index=ADVENTURE_ZONES.findIndex(z=>z.mission.id===mission.id),zone=ADVENTURE_ZONES[index];
+ M.style.display='flex';M.style.background='';M.innerHTML='<h1>'+(result.won?'MISSION ACCOMPLIE':'MISSION ÉCHOUÉE')+'</h1><small>'+mission.title+' · '+mission.enemy+'</small>';
+ const card=mk('section');card.className='adventure-result-card';
+ card.innerHTML=result.won?'<div class="adventure-result-mark">VICTOIRE</div><h2>'+mission.title+'</h2><p>'+zone.npc+' est fier de ton exploit.</p>'+(result.completed?'<div class="adventure-reward">Récompenses gagnées : <b>+'+result.xp+' XP</b> · <b>+'+result.rp+' RP</b></div>':'<p>Mission déjà terminée : aucun doublon de récompense.</p>'):'<div class="adventure-result-mark">À RÉESSAYER</div><h2>'+mission.title+'</h2><p>Le combat n’est pas terminé. Change de combattant ou de stratégie et retente ta chance.</p>';
+ M.appendChild(card);
+ if(!result.won)M.appendChild(btn('RÉESSAYER',()=>startAdventureMission(mission.id)));
+ const next=ADVENTURE_ZONES[index+1];
+ if(result.won&&next)M.appendChild(btn('MISSION SUIVANTE : '+next.name.toUpperCase(),()=>adventureNpcMenu(next.id)));
+ M.appendChild(btn('CARTE DE L’AVENTURE',adventureMapMenu));M.appendChild(btn('MENU PRINCIPAL',menu));
 }
 function adventureMapMenu(){
- const q=adventureState();M.style.display='flex';M.style.background='';M.innerHTML='<h1>CARTE DE L’AVENTURE</h1><small>Explore les lieux, rencontre leurs habitants et relève leurs défis.</small>';
- const map=mk('div');map.style.cssText='width:min(94%,680px);display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:9px;margin:8px 0';
- for(const z of ADVENTURE_ZONES){const open=!!z.unlock(),card=mk('section');card.style.cssText='padding:13px;text-align:left;border:1px solid '+(open?'#4b9b83':'#46516a')+';border-radius:12px;background:'+(open?'linear-gradient(145deg,#132d35,#101a30)':'#111827')+';opacity:'+(open?'1':'.68');
- card.innerHTML='<b>'+(open?'◆ ':'🔒 ')+z.name+'</b><br><small>'+z.place+'</small><p style="margin:7px 0">'+z.desc+'</p><small>'+(open?'PNJ : '+z.npc+' · '+z.role:'Zone verrouillée · '+(z.id==='capsule'?'2 victoires':z.id==='namek'?'2 victoires en histoire':'Niveau 10 et 5 victoires'))+'</small>';
- if(open)card.appendChild(btn('RENCONTRER '+z.npc.toUpperCase(),()=>adventureNpcMenu(z.id)));map.appendChild(card)}
- M.appendChild(map);M.appendChild(mk('small','Progression : '+q.wins+' victoires · '+q.storyWins+' victoires en histoire · '+q.hardWins+' victoires difficiles'));M.appendChild(btn('MISSIONS SECONDAIRES',adventureMenu));M.appendChild(btn('← Retour',menu));
+ const q=adventureState(),completed=q.completedMissions.length,total=ADVENTURE_ZONES.length;
+ M.style.display='flex';M.style.background='';M.innerHTML='<h1>AVENTURE — VOYAGE À TRAVERS LES UNIVERS</h1><small>Une campagne de 12 missions. Termine chaque affrontement pour ouvrir la prochaine région.</small>';
+ const progress=mk('section');progress.className='adventure-progress-card';progress.innerHTML='<div><b>PROGRESSION DE LA CAMPAGNE</b><strong>'+completed+' / '+total+'</strong></div><div class="adventure-progress-track"><span style="width:'+(completed/total*100)+'%"></span></div><small>'+q.wins+' victoires enregistrées · '+q.storyWins+' victoires en mode Histoire</small>';M.appendChild(progress);
+ const map=mk('div');map.className='adventure-map-grid';
+ for(let i=0;i<ADVENTURE_ZONES.length;i++){
+  const z=ADVENTURE_ZONES[i],open=adventureZoneOpen(i),done=q.completedMissions.includes(z.mission.id),card=mk('section');
+  card.className='adventure-zone-card'+(done?' is-done':open?' is-open':' is-locked');
+  card.innerHTML='<div class="adventure-zone-top"><span>'+(done?'✓':open?'◆':'🔒')+' ÉTAPE '+String(i+1).padStart(2,'0')+'</span><span>'+(done?'TERMINÉE':open?'DISPONIBLE':'VERROUILLÉE')+'</span></div><h3>'+z.name+'</h3><small>'+z.place+'</small><p>'+z.desc+'</p><div class="adventure-zone-footer"><span>PNJ : '+z.npc+'</span><b>'+(done?'Rejouer':open?'Voir la mission':'À débloquer')+'</b></div>';
+  card.onclick=open?()=>adventureNpcMenu(z.id):null;
+  if(!open)card.setAttribute('aria-disabled','true');
+  map.appendChild(card);
+ }
+ M.appendChild(map);M.appendChild(row([btn('MISSIONS SECONDAIRES',adventureMenu),btn('← Retour',menu)]));
 }
-function adventureMenu(){const q=adventureState();M.style.display='flex';M.style.background='';M.innerHTML='<h1>MISSIONS SECONDAIRES</h1><small>Des objectifs permanents pour faire progresser ton aventurier.</small>';for(const mission of ADVENTURE_QUESTS){const n=Math.min(mission.goal,q[mission.key]),claimed=q.claimed.includes(mission.id),ready=n>=mission.goal&&!claimed,el=mk('div');el.style.cssText='width:min(92%,560px);text-align:left;padding:12px 15px;margin:5px;background:#101a30;border:1px solid '+(claimed?'#4c8':ready?'#d9b44a':'#357')+';border-radius:10px';el.innerHTML='<b>'+mission.name+'</b> '+(claimed?'✓ RÉCOMPENSE RÉCUPÉRÉE':ready?'★ TERMINÉE':'')+'<br><small>'+mission.desc+'</small><div style="height:9px;background:#26344b;margin:8px 0;border-radius:8px;overflow:hidden"><div style="height:100%;width:'+(n/mission.goal*100)+'%;background:linear-gradient(90deg,#08c,#6ef)"></div></div><small>'+n+' / '+mission.goal+' · Récompense : '+mission.xp+' XP + '+mission.rp+' points de classement</small>';if(ready){el.appendChild(btn('RÉCUPÉRER LA RÉCOMPENSE',()=>{const state=adventureState();if(state.claimed.includes(mission.id))return;state.claimed.push(mission.id);sv.xp=(Number(sv.xp)||0)+mission.xp;sv.rp=(Number(sv.rp)||0)+mission.rp;save();adventureMenu()}))}M.appendChild(el)}M.appendChild(mk('small','Les missions et leurs récompenses sont conservées dans ta sauvegarde.'));M.appendChild(btn('CARTE DE L’AVENTURE',adventureMapMenu));M.appendChild(btn('← Retour',menu))}
+function adventureMenu(){
+ const q=adventureState();M.style.display='flex';M.style.background='';M.innerHTML='<h1>MISSIONS SECONDAIRES</h1><small>Des objectifs permanents qui complètent la campagne principale.</small>';
+ for(const mission of ADVENTURE_QUESTS){
+  const n=Math.min(mission.goal,q[mission.key]),claimed=q.claimed.includes(mission.id),ready=n>=mission.goal&&!claimed,el=mk('section');el.className='adventure-sidequest-card';
+  el.innerHTML='<b>'+mission.name+'</b> '+(claimed?'✓ RÉCOMPENSE RÉCUPÉRÉE':ready?'★ TERMINÉE':'')+'<p>'+mission.desc+'</p><div class="adventure-progress-track"><span style="width:'+(n/mission.goal*100)+'%"></span></div><small>'+n+' / '+mission.goal+' · '+mission.xp+' XP + '+mission.rp+' RP</small>';
+  if(ready)el.appendChild(btn('RÉCUPÉRER LA RÉCOMPENSE',()=>{const state=adventureState();if(state.claimed.includes(mission.id))return;state.claimed.push(mission.id);sv.xp=(Number(sv.xp)||0)+mission.xp;sv.rp=(Number(sv.rp)||0)+mission.rp;save();adventureMenu()}));
+  M.appendChild(el);
+ }
+ M.appendChild(btn('CARTE DE L’AVENTURE',adventureMapMenu));M.appendChild(btn('← Retour',menu));
+}
 function profileMenu(){
  const xp=Math.max(0,Number(sv.xp)||0),level=lvl(),maxLevel=100,currentThreshold=level>=maxLevel?0:250*(level-1)*level/2,nextThreshold=level>=maxLevel?currentThreshold:250*level*(level+1)/2;
  const progress=level>=maxLevel?100:Math.max(0,Math.min(100,(xp-currentThreshold)/(nextThreshold-currentThreshold)*100)),rank=rankInfo(),stats=skillStats();
