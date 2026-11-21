@@ -109,7 +109,17 @@ const BASE_STATS={
 'Xeno Goku':[132,132,112,122,126,124,126,132],'Shallot':[108,118,100,108,108,112,108,112]
 };
 const STAT_KEYS=['fo','vi','in','du','en','ed','ki','te'];
-CH.forEach(c=>{const a=BASE_STATS[c.n]||[90,90,90,90,90,90,90,90];c.st=Object.fromEntries(STAT_KEYS.map((k,i)=>[k,a[i]]));c.st.d='Profil de combat : '+c.n});
+// Chaque combattant reçoit un profil complet. Les personnages sans fiche dédiée
+// héritent de valeurs calculées depuis leurs statistiques propres (force/vitesse),
+// jamais d'un profil générique identique.
+CH.forEach(c=>{
+ const p=Math.max(.65,Math.min(1.65,Number(c.pw)||1)),v=Math.max(3,Math.min(6,Number(c.sp)||5));
+ const derived=[Math.round(76+(p-.8)*88),Math.round(78+(v-3.5)*24),Math.round(82+(p-.8)*22+(v-5)*8),Math.round(82+(p-.8)*78),Math.round(82+(p-.8)*40),Math.round(84+(p-.8)*32),Math.round(82+(p-.8)*35),Math.round(82+(v-4.5)*16)];
+ const a=BASE_STATS[c.n]||derived;
+ c.st=Object.fromEntries(STAT_KEYS.map((k,i)=>[k,Math.max(55,Math.min(155,a[i]))]));
+ c.st.d='Profil de combat : '+c.n;
+});
+
 CH.forEach(c=>{const tw=TW[c.n];c.fm=FM[c.n].map((x,i)=>{const q=FS[x.n]||[1+i*.5,.1,0],h=HR[x.n]||[1,0];return Object.assign(x,{pw:1+(q[0]-1)*tw.pw,kr:Math.min(.5,q[1]*tw.kr),dur:q[2],sp:1+.045*i*tw.sp,hm:1+(h[0]-1)*tw.hm,res:Math.min(.5,h[1]*tw.res)})});c.lk=LOOK[c.n];c.lk.pm=PM[c.n]});
 const HS={goku:[[-14,-92],[-20,-100],[-17,-112],[-9,-107],[-8,-124],[-1,-112],[6,-130],[9,-112],[17,-124],[16,-106],[24,-110],[15,-92],[10,-100],[4,-103],[-4,-100],[-10,-98]],vegeta:[[-14,-92],[-16,-104],[-12,-118],[-6,-140],[-1,-122],[2,-148],[7,-124],[12,-136],[14,-116],[16,-104],[14,-92],[9,-104],[0,-98],[-9,-104]],gogeta:[[-14,-92],[-18,-106],[-14,-122],[-8,-134],[-2,-124],[2,-140],[8,-124],[14,-132],[16,-114],[17,-100],[14,-90],[11,-98],[5,-96],[0,-104],[-5,-96],[-11,-98]],vegetto:[[-14,-92],[-19,-104],[-16,-118],[-8,-112],[-5,-130],[0,-116],[6,-134],[10,-114],[18,-124],[16,-104],[15,-92],[9,-102],[0,-97],[-9,-102]],broly:[[-14,-92],[-22,-100],[-20,-116],[-12,-108],[-14,-128],[-5,-114],[0,-134],[6,-114],[16,-126],[14,-108],[22,-112],[16,-90],[10,-98],[0,-102],[-10,-98]],long:[[-14,-92],[-20,-100],[-28,-70],[-18,-96],[-20,-120],[-10,-110],[-9,-136],[0,-116],[8,-138],[10,-112],[22,-122],[18,-100],[30,-66],[16,-92],[11,-100],[0,-104],[-11,-100]]};
 function L(a,b,c,d,w,col){X.lineCap='round';X.strokeStyle='#000';X.lineWidth=w+5;X.beginPath();X.moveTo(a,b);X.lineTo(c,d);X.stroke();X.strokeStyle=col;X.lineWidth=w;X.stroke();X.strokeStyle='rgba(0,0,0,.22)';X.lineWidth=w*.4;X.beginPath();X.moveTo(a+2,b);X.lineTo(c+2,d);X.stroke()}
