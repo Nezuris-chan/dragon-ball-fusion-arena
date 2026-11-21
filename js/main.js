@@ -6,7 +6,7 @@ function mk(tag,html){const e=document.createElement(tag);if(html!=null)e.innerH
 const PF={};
 function fighterKind(name){
  const n=String(name||'');
- if(['Android 13','Android 16','Android 17','Android 18','Android 21','Cell','Tamagami'].includes(n))return {id:'android',label:['Android 18','Android 21'].includes(n)?'Androïde · Combattante':'Androïde',feminine:['Android 18','Android 21'].includes(n)};
+ if(['Android 13','Android 16','Android 17','Android 18','Android 19','Android 20','Android 21','Cell','Tamagami'].includes(n))return {id:'android',label:['Android 18','Android 21'].includes(n)?'Androïde · Combattante':'Androïde',feminine:['Android 18','Android 21'].includes(n)};
  if(['Videl','Pan','Kefla','Caulifla','Kale'].includes(n))return {id:'female',label:'Combattante',feminine:true};
  if(['Freezer','Cooler','King Cold','Zarbon','Dodoria','Ginyu','Piccolo','Slug','Moro','Granolah','Hit','Pikkon','Glorio'].includes(n))return {id:'alien',label:'Extraterrestre'};
  if(['Beerus','Whis','Champa','Vados','Gowasu','Zamasu fusionné'].includes(n))return {id:'divine',label:'Divinité'};
@@ -28,6 +28,8 @@ const PORTRAIT_STYLE={
  'Android 18':{skin:'#f0d1b1',hair:'#e5c86c',out:'#526b91',kind:'female',eyes:'#75dfff'},
  'Android 21':{skin:'#edc7ad',hair:'#e9b9d2',out:'#d8b7cf',kind:'female',eyes:'#e7a1dc'},
  'Android 13':{skin:'#d7aa88',hair:'#e6d9b8',out:'#4b7c9c',kind:'robot',eyes:'#8ff'},
+ 'Android 19':{skin:'#c7bca9',hair:'#b7b4ad',out:'#77786f',kind:'robot',eyes:'#bfe'},
+ 'Android 20':{skin:'#d1bd9d',hair:'#b5a17d',out:'#806b4e',kind:'robot',eyes:'#f5d36a'},
  Cell:{skin:'#7ebd7a',hair:'#315e4a',out:'#315e4a',kind:'cell',eyes:'#ffdf67'},
  Videl:{skin:'#efc7a8',hair:'#24232d',out:'#263b66',kind:'female',eyes:'#5ad'},
  Pan:{skin:'#efc7a8',hair:'#33252a',out:'#bd3038',kind:'female',eyes:'#5ad'},
