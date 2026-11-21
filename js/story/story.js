@@ -131,7 +131,7 @@ SAGAS.push({id:'heroes',name:'Super Dragon Ball Heroes',ch:[
  {id:'her2',sub:'Cumber',t:'Chapitre 2 : Le Saiyan maléfique',req:'her1',en:'Cumber',ar:2,df:2,xp:320,pre:[['Cumber','Je vais écraser cette époque !'],['Goku','Ta puissance est énorme, mais je ne reculerai pas.']]},
  {id:'her3',sub:'Hearts',t:'Chapitre 3 : Le plan de Hearts',req:'her2',en:'Hearts',ar:4,df:2,xp:400,pre:[['Hearts','Je vais libérer l’univers de ses dieux.'],['Goku','Tu ne décideras pas du destin de tout le monde.']]}
 ,{id:'heroesc4',sub:'Suite de la saga',t:'Chapitre 4 : La faille du temps',req:'her3',en:'Cumber',ar:2,df:0,xp:400,pre:[['Narration','Une faille temporelle bouleverse les lignes du temps. Les patrouilleurs doivent empêcher Cumber et Hearts de détruire l’équilibre des univers. Le chapitre « Chapitre 4 : La faille du temps » marque un tournant : il faut maintenant faire face à Cumber.'],['Cumber','La rage est ma seule limite. Viens donc tenter de me contrôler !'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Cumber est repoussé après un affrontement décisif. La faille temporelle reste instable. Les patrouilleurs doivent se préparer à une nouvelle attaque. Le chapitre « Chapitre 4 : La faille du temps » restera une étape importante de cette aventure.']]},{id:'heroesc5',sub:'Suite de la saga',t:'Chapitre 5 : Le Saiyan maléfique',req:'heroesc4',en:'Cumber',ar:3,df:0,xp:435,pre:[['Narration','Une faille temporelle bouleverse les lignes du temps. Les patrouilleurs doivent empêcher Cumber et Hearts de détruire l’équilibre des univers. Le chapitre « Chapitre 5 : Le Saiyan maléfique » marque un tournant : il faut maintenant faire face à Cumber.'],['Cumber','La rage est ma seule limite. Viens donc tenter de me contrôler !'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Cumber est repoussé après un affrontement décisif. La faille temporelle reste instable. Les patrouilleurs doivent se préparer à une nouvelle attaque. Le chapitre « Chapitre 5 : Le Saiyan maléfique » restera une étape importante de cette aventure.']]},{id:'heroesc6',sub:'Suite de la saga',t:'Chapitre 6 : Cumber se déchaîne',req:'heroesc5',en:'Cumber',ar:1,df:0,xp:470,pre:[['Narration','Une faille temporelle bouleverse les lignes du temps. Les patrouilleurs doivent empêcher Cumber et Hearts de détruire l’équilibre des univers. Le chapitre « Chapitre 6 : Cumber se déchaîne » marque un tournant : il faut maintenant faire face à Cumber.'],['Cumber','La rage est ma seule limite. Viens donc tenter de me contrôler !'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Cumber est repoussé après un affrontement décisif. La faille temporelle reste instable. Les patrouilleurs doivent se préparer à une nouvelle attaque. Le chapitre « Chapitre 6 : Cumber se déchaîne » restera une étape importante de cette aventure.']]},{id:'heroesc7',sub:'Suite de la saga',t:'Chapitre 7 : La prison planétaire',req:'heroesc6',en:'Hearts',ar:2,df:1,xp:505,pre:[['Narration','Une faille temporelle bouleverse les lignes du temps. Les patrouilleurs doivent empêcher Cumber et Hearts de détruire l’équilibre des univers. Le chapitre « Chapitre 7 : La prison planétaire » marque un tournant : il faut maintenant faire face à Hearts.'],['Hearts','Les dieux ne sont pas intouchables. Mon projet dépasse votre compréhension.'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Hearts est repoussé après un affrontement décisif. La faille temporelle reste instable. Les patrouilleurs doivent se préparer à une nouvelle attaque. Le chapitre « Chapitre 7 : La prison planétaire » restera une étape importante de cette aventure.']]},{id:'heroesc8',sub:'Suite de la saga',t:'Chapitre 8 : Le mystérieux Hearts',req:'heroesc7',en:'Hearts',ar:3,df:1,xp:540,pre:[['Narration','Une faille temporelle bouleverse les lignes du temps. Les patrouilleurs doivent empêcher Cumber et Hearts de détruire l’équilibre des univers. Le chapitre « Chapitre 8 : Le mystérieux Hearts » marque un tournant : il faut maintenant faire face à Hearts.'],['Hearts','Les dieux ne sont pas intouchables. Mon projet dépasse votre compréhension.'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Hearts est repoussé après un affrontement décisif. La faille temporelle reste instable. Les patrouilleurs doivent se préparer à une nouvelle attaque. Le chapitre « Chapitre 8 : Le mystérieux Hearts » restera une étape importante de cette aventure.']]},{id:'heroesc9',sub:'Suite de la saga',t:'Chapitre 9 : Le pouvoir de la graine universelle',req:'heroesc8',en:'Cumber',ar:1,df:1,xp:575,pre:[['Narration','Une faille temporelle bouleverse les lignes du temps. Les patrouilleurs doivent empêcher Cumber et Hearts de détruire l’équilibre des univers. Le chapitre « Chapitre 9 : Le pouvoir de la graine universelle » marque un tournant : il faut maintenant faire face à Cumber.'],['Cumber','La rage est ma seule limite. Viens donc tenter de me contrôler !'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Cumber est repoussé après un affrontement décisif. La faille temporelle reste instable. Les patrouilleurs doivent se préparer à une nouvelle attaque. Le chapitre « Chapitre 9 : Le pouvoir de la graine universelle » restera une étape importante de cette aventure.']]},{id:'heroesc10',sub:'Suite de la saga',t:'Chapitre 10 : La bataille des patrouilleurs',req:'heroesc9',en:'Xeno Goku',ar:2,df:1,xp:610,pre:[['Narration','Une faille temporelle bouleverse les lignes du temps. Les patrouilleurs doivent empêcher Cumber et Hearts de détruire l’équilibre des univers. Le chapitre « Chapitre 10 : La bataille des patrouilleurs » marque un tournant : il faut maintenant faire face à Xeno Goku.'],['Xeno Goku','Tu ne passeras pas. Je vais défendre mon objectif jusqu’au bout.'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Xeno Goku est repoussé après un affrontement décisif. La faille temporelle reste instable. Les patrouilleurs doivent se préparer à une nouvelle attaque. Le chapitre « Chapitre 10 : La bataille des patrouilleurs » restera une étape importante de cette aventure.']]},{id:'heroesc11',sub:'Suite de la saga',t:'Chapitre 11 : Le royaume du démon noir',req:'heroesc10',en:'Hearts',ar:3,df:1,xp:645,pre:[['Narration','Une faille temporelle bouleverse les lignes du temps. Les patrouilleurs doivent empêcher Cumber et Hearts de détruire l’équilibre des univers. Le chapitre « Chapitre 11 : Le royaume du démon noir » marque un tournant : il faut maintenant faire face à Hearts.'],['Hearts','Les dieux ne sont pas intouchables. Mon projet dépasse votre compréhension.'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Hearts est repoussé après un affrontement décisif. La faille temporelle reste instable. Les patrouilleurs doivent se préparer à une nouvelle attaque. Le chapitre « Chapitre 11 : Le royaume du démon noir » restera une étape importante de cette aventure.']]},{id:'heroesc12',sub:'Suite de la saga',t:'Chapitre 12 : Les guerriers Xeno',req:'heroesc11',en:'Xeno Goku',ar:1,df:1,xp:680,pre:[['Narration','Une faille temporelle bouleverse les lignes du temps. Les patrouilleurs doivent empêcher Cumber et Hearts de détruire l’équilibre des univers. Le chapitre « Chapitre 12 : Les guerriers Xeno » marque un tournant : il faut maintenant faire face à Xeno Goku.'],['Xeno Goku','Tu ne passeras pas. Je vais défendre mon objectif jusqu’au bout.'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Xeno Goku est repoussé après un affrontement décisif. La faille temporelle reste instable. Les patrouilleurs doivent se préparer à une nouvelle attaque. Le chapitre « Chapitre 12 : Les guerriers Xeno » restera une étape importante de cette aventure.']]},{id:'heroesc13',sub:'Suite de la saga',t:'Chapitre 13 : Le retour des ennemis',req:'heroesc12',en:'Cumber',ar:2,df:2,xp:715,pre:[['Narration','Une faille temporelle bouleverse les lignes du temps. Les patrouilleurs doivent empêcher Cumber et Hearts de détruire l’équilibre des univers. Le chapitre « Chapitre 13 : Le retour des ennemis » marque un tournant : il faut maintenant faire face à Cumber.'],['Cumber','La rage est ma seule limite. Viens donc tenter de me contrôler !'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Cumber est repoussé après un affrontement décisif. La faille temporelle reste instable. Les patrouilleurs doivent se préparer à une nouvelle attaque. Le chapitre « Chapitre 13 : Le retour des ennemis » restera une étape importante de cette aventure.']]},{id:'heroesc14',sub:'Suite de la saga',t:'Chapitre 14 : La menace multiverselle',req:'heroesc13',en:'Hearts',ar:3,df:2,xp:750,pre:[['Narration','Une faille temporelle bouleverse les lignes du temps. Les patrouilleurs doivent empêcher Cumber et Hearts de détruire l’équilibre des univers. Le chapitre « Chapitre 14 : La menace multiverselle » marque un tournant : il faut maintenant faire face à Hearts.'],['Hearts','Les dieux ne sont pas intouchables. Mon projet dépasse votre compréhension.'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Hearts est repoussé après un affrontement décisif. La faille temporelle reste instable. Les patrouilleurs doivent se préparer à une nouvelle attaque. Le chapitre « Chapitre 14 : La menace multiverselle » restera une étape importante de cette aventure.']]},{id:'heroesc15',sub:'Suite de la saga',t:'Chapitre 15 : Le combat des doubles',req:'heroesc14',en:'Xeno Goku',ar:1,df:2,xp:785,pre:[['Narration','Une faille temporelle bouleverse les lignes du temps. Les patrouilleurs doivent empêcher Cumber et Hearts de détruire l’équilibre des univers. Le chapitre « Chapitre 15 : Le combat des doubles » marque un tournant : il faut maintenant faire face à Xeno Goku.'],['Xeno Goku','Tu ne passeras pas. Je vais défendre mon objectif jusqu’au bout.'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Xeno Goku est repoussé après un affrontement décisif. La faille temporelle reste instable. Les patrouilleurs doivent se préparer à une nouvelle attaque. Le chapitre « Chapitre 15 : Le combat des doubles » restera une étape importante de cette aventure.']]},{id:'heroesc16',sub:'Suite de la saga',t:'Chapitre 16 : La puissance de Cumber',req:'heroesc15',en:'Cumber',ar:2,df:2,xp:820,pre:[['Narration','Une faille temporelle bouleverse les lignes du temps. Les patrouilleurs doivent empêcher Cumber et Hearts de détruire l’équilibre des univers. Le chapitre « Chapitre 16 : La puissance de Cumber » marque un tournant : il faut maintenant faire face à Cumber.'],['Cumber','La rage est ma seule limite. Viens donc tenter de me contrôler !'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Cumber est repoussé après un affrontement décisif. La faille temporelle reste instable. Les patrouilleurs doivent se préparer à une nouvelle attaque. Le chapitre « Chapitre 16 : La puissance de Cumber » restera une étape importante de cette aventure.']]}]});
-SAGAS.push({id:'gt',name:'Dragon Ball GT',ch:[
+SAGAS.push({id:'gt',name:'Dragon Ball GT — branche alternative',ch:[
  {id:'gt1',sub:'Baby',t:'Chapitre 1 : La revanche de Baby',en:'Baby Vegeta',ar:2,df:1,xp:260,pre:[['Narration','Une ancienne vengeance menace les Saiyans. Baby prend le contrôle de Vegeta.'],['Baby Vegeta','Les Saiyans vont payer pour leur passé !'],['Goku','Je vais libérer Vegeta et protéger la Terre.']]},
  {id:'gt2',sub:'La menace de Baby',t:'Chapitre 2 : Les plans de Baby',req:'gt1',scene:1,ar:2,df:2,xp:400,pre:[['Narration','Baby continue de préparer sa revanche contre les Saiyans. Goku, Pan et Trunks cherchent à empêcher son retour sur Terre.'],['Goku','Nous devons retrouver Baby avant qu’il ne prenne le contrôle de Vegeta.']]}
 ,{id:'gtc3',sub:'Suite de la saga',t:'Chapitre 3 : Le voyage dans l\'espace',req:'gt2',en:'Baby Vegeta',ar:1,df:0,xp:365,pre:[['Narration','Les Dragon Balls aux étoiles noires menacent la Terre. Goku et ses alliés doivent agir avant que le compte à rebours ne soit terminé. Le chapitre « Chapitre 3 : Le voyage dans l\'espace » marque un tournant : il faut maintenant faire face à Baby Vegeta.'],['Baby Vegeta','Les Saiyans paieront pour ce qu’ils ont fait à mon peuple !'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Baby Vegeta est repoussé après un affrontement décisif. La quête continue et le danger se rapproche de la Terre. Les héros n’ont pas le droit de ralentir. Le chapitre « Chapitre 3 : Le voyage dans l\'espace » restera une étape importante de cette aventure.']]},{id:'gtc4',sub:'Suite de la saga',t:'Chapitre 4 : Les premières Dragon Balls noires',req:'gtc3',en:'Baby Vegeta',ar:2,df:0,xp:400,pre:[['Narration','Les Dragon Balls aux étoiles noires menacent la Terre. Goku et ses alliés doivent agir avant que le compte à rebours ne soit terminé. Le chapitre « Chapitre 4 : Les premières Dragon Balls noires » marque un tournant : il faut maintenant faire face à Baby Vegeta.'],['Baby Vegeta','Les Saiyans paieront pour ce qu’ils ont fait à mon peuple !'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Baby Vegeta est repoussé après un affrontement décisif. La quête continue et le danger se rapproche de la Terre. Les héros n’ont pas le droit de ralentir. Le chapitre « Chapitre 4 : Les premières Dragon Balls noires » restera une étape importante de cette aventure.']]},{id:'gtc5',sub:'Suite de la saga',t:'Chapitre 5 : La menace de Baby',req:'gtc4',en:'Baby Vegeta',ar:3,df:0,xp:435,pre:[['Narration','Les Dragon Balls aux étoiles noires menacent la Terre. Goku et ses alliés doivent agir avant que le compte à rebours ne soit terminé. Le chapitre « Chapitre 5 : La menace de Baby » marque un tournant : il faut maintenant faire face à Baby Vegeta.'],['Baby Vegeta','Les Saiyans paieront pour ce qu’ils ont fait à mon peuple !'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Baby Vegeta est repoussé après un affrontement décisif. La quête continue et le danger se rapproche de la Terre. Les héros n’ont pas le droit de ralentir. Le chapitre « Chapitre 5 : La menace de Baby » restera une étape importante de cette aventure.']]},{id:'gtc6',sub:'Suite de la saga',t:'Chapitre 6 : Baby prend le contrôle',req:'gtc5',en:'Baby Vegeta',ar:1,df:0,xp:470,pre:[['Narration','Les Dragon Balls aux étoiles noires menacent la Terre. Goku et ses alliés doivent agir avant que le compte à rebours ne soit terminé. Le chapitre « Chapitre 6 : Baby prend le contrôle » marque un tournant : il faut maintenant faire face à Baby Vegeta.'],['Baby Vegeta','Les Saiyans paieront pour ce qu’ils ont fait à mon peuple !'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Baby Vegeta est repoussé après un affrontement décisif. La quête continue et le danger se rapproche de la Terre. Les héros n’ont pas le droit de ralentir. Le chapitre « Chapitre 6 : Baby prend le contrôle » restera une étape importante de cette aventure.']]},{id:'gtc7',sub:'Suite de la saga',t:'Chapitre 7 : Le retour sur Terre',req:'gtc6',en:'Baby Vegeta',ar:2,df:1,xp:505,pre:[['Narration','Les Dragon Balls aux étoiles noires menacent la Terre. Goku et ses alliés doivent agir avant que le compte à rebours ne soit terminé. Le chapitre « Chapitre 7 : Le retour sur Terre » marque un tournant : il faut maintenant faire face à Baby Vegeta.'],['Baby Vegeta','Les Saiyans paieront pour ce qu’ils ont fait à mon peuple !'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Baby Vegeta est repoussé après un affrontement décisif. La quête continue et le danger se rapproche de la Terre. Les héros n’ont pas le droit de ralentir. Le chapitre « Chapitre 7 : Le retour sur Terre » restera une étape importante de cette aventure.']]},{id:'gtc8',sub:'Suite de la saga',t:'Chapitre 8 : Baby Vegeta se révèle',req:'gtc7',en:'Baby Vegeta',ar:3,df:1,xp:540,pre:[['Narration','Les Dragon Balls aux étoiles noires menacent la Terre. Goku et ses alliés doivent agir avant que le compte à rebours ne soit terminé. Le chapitre « Chapitre 8 : Baby Vegeta se révèle » marque un tournant : il faut maintenant faire face à Baby Vegeta.'],['Baby Vegeta','Les Saiyans paieront pour ce qu’ils ont fait à mon peuple !'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Baby Vegeta est repoussé après un affrontement décisif. La quête continue et le danger se rapproche de la Terre. Les héros n’ont pas le droit de ralentir. Le chapitre « Chapitre 8 : Baby Vegeta se révèle » restera une étape importante de cette aventure.']]},{id:'gtc9',sub:'Suite de la saga',t:'Chapitre 9 : Le Super Saiyan 4',req:'gtc8',en:'Baby Vegeta',ar:1,df:1,xp:575,pre:[['Narration','Les Dragon Balls aux étoiles noires menacent la Terre. Goku et ses alliés doivent agir avant que le compte à rebours ne soit terminé. Le chapitre « Chapitre 9 : Le Super Saiyan 4 » marque un tournant : il faut maintenant faire face à Baby Vegeta.'],['Baby Vegeta','Les Saiyans paieront pour ce qu’ils ont fait à mon peuple !'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Baby Vegeta est repoussé après un affrontement décisif. La quête continue et le danger se rapproche de la Terre. Les héros n’ont pas le droit de ralentir. Le chapitre « Chapitre 9 : Le Super Saiyan 4 » restera une étape importante de cette aventure.']]},{id:'gtc10',sub:'Suite de la saga',t:'Chapitre 10 : La revanche de Baby',req:'gtc9',en:'Baby Vegeta',ar:2,df:1,xp:610,pre:[['Narration','Les Dragon Balls aux étoiles noires menacent la Terre. Goku et ses alliés doivent agir avant que le compte à rebours ne soit terminé. Le chapitre « Chapitre 10 : La revanche de Baby » marque un tournant : il faut maintenant faire face à Baby Vegeta.'],['Baby Vegeta','Les Saiyans paieront pour ce qu’ils ont fait à mon peuple !'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Baby Vegeta est repoussé après un affrontement décisif. La quête continue et le danger se rapproche de la Terre. Les héros n’ont pas le droit de ralentir. Le chapitre « Chapitre 10 : La revanche de Baby » restera une étape importante de cette aventure.']]},{id:'gtc11',sub:'Suite de la saga',t:'Chapitre 11 : Les dragons maléfiques',req:'gtc10',en:'Omega Shenron',ar:3,df:1,xp:645,pre:[['Narration','Les Dragon Balls aux étoiles noires menacent la Terre. Goku et ses alliés doivent agir avant que le compte à rebours ne soit terminé. Le chapitre « Chapitre 11 : Les dragons maléfiques » marque un tournant : il faut maintenant faire face à Omega Shenron.'],['Omega Shenron','L’énergie négative des Dragon Balls va engloutir votre monde.'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Omega Shenron est repoussé après un affrontement décisif. La quête continue et le danger se rapproche de la Terre. Les héros n’ont pas le droit de ralentir. Le chapitre « Chapitre 11 : Les dragons maléfiques » restera une étape importante de cette aventure.']]},{id:'gtc12',sub:'Suite de la saga',t:'Chapitre 12 : Le dragon à quatre étoiles',req:'gtc11',en:'Omega Shenron',ar:1,df:1,xp:680,pre:[['Narration','Les Dragon Balls aux étoiles noires menacent la Terre. Goku et ses alliés doivent agir avant que le compte à rebours ne soit terminé. Le chapitre « Chapitre 12 : Le dragon à quatre étoiles » marque un tournant : il faut maintenant faire face à Omega Shenron.'],['Omega Shenron','L’énergie négative des Dragon Balls va engloutir votre monde.'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Omega Shenron est repoussé après un affrontement décisif. La quête continue et le danger se rapproche de la Terre. Les héros n’ont pas le droit de ralentir. Le chapitre « Chapitre 12 : Le dragon à quatre étoiles » restera une étape importante de cette aventure.']]},{id:'gtc13',sub:'Suite de la saga',t:'Chapitre 13 : Les sept dragons',req:'gtc12',en:'Omega Shenron',ar:2,df:2,xp:715,pre:[['Narration','Les Dragon Balls aux étoiles noires menacent la Terre. Goku et ses alliés doivent agir avant que le compte à rebours ne soit terminé. Le chapitre « Chapitre 13 : Les sept dragons » marque un tournant : il faut maintenant faire face à Omega Shenron.'],['Omega Shenron','L’énergie négative des Dragon Balls va engloutir votre monde.'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Omega Shenron est repoussé après un affrontement décisif. La quête continue et le danger se rapproche de la Terre. Les héros n’ont pas le droit de ralentir. Le chapitre « Chapitre 13 : Les sept dragons » restera une étape importante de cette aventure.']]},{id:'gtc14',sub:'Suite de la saga',t:'Chapitre 14 : La puissance d\'Omega',req:'gtc13',en:'Omega Shenron',ar:3,df:2,xp:750,pre:[['Narration','Les Dragon Balls aux étoiles noires menacent la Terre. Goku et ses alliés doivent agir avant que le compte à rebours ne soit terminé. Le chapitre « Chapitre 14 : La puissance d\'Omega » marque un tournant : il faut maintenant faire face à Omega Shenron.'],['Omega Shenron','L’énergie négative des Dragon Balls va engloutir votre monde.'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Omega Shenron est repoussé après un affrontement décisif. La quête continue et le danger se rapproche de la Terre. Les héros n’ont pas le droit de ralentir. Le chapitre « Chapitre 14 : La puissance d\'Omega » restera une étape importante de cette aventure.']]},{id:'gtc15',sub:'Suite de la saga',t:'Chapitre 15 : Le combat des Saiyans',req:'gtc14',en:'Omega Shenron',ar:1,df:2,xp:785,pre:[['Narration','Les Dragon Balls aux étoiles noires menacent la Terre. Goku et ses alliés doivent agir avant que le compte à rebours ne soit terminé. Le chapitre « Chapitre 15 : Le combat des Saiyans » marque un tournant : il faut maintenant faire face à Omega Shenron.'],['Omega Shenron','L’énergie négative des Dragon Balls va engloutir votre monde.'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Omega Shenron est repoussé après un affrontement décisif. La quête continue et le danger se rapproche de la Terre. Les héros n’ont pas le droit de ralentir. Le chapitre « Chapitre 15 : Le combat des Saiyans » restera une étape importante de cette aventure.']]},{id:'gtc16',sub:'Suite de la saga',t:'Chapitre 16 : La Terre en danger',req:'gtc15',en:'Omega Shenron',ar:2,df:2,xp:820,pre:[['Narration','Les Dragon Balls aux étoiles noires menacent la Terre. Goku et ses alliés doivent agir avant que le compte à rebours ne soit terminé. Le chapitre « Chapitre 16 : La Terre en danger » marque un tournant : il faut maintenant faire face à Omega Shenron.'],['Omega Shenron','L’énergie négative des Dragon Balls va engloutir votre monde.'],['Goku','Je ne laisserai pas cette menace atteindre mes amis. Je vais me battre jusqu’au bout et trouver un moyen d’avancer.']],post:[['Narration','Omega Shenron est repoussé après un affrontement décisif. La quête continue et le danger se rapproche de la Terre. Les héros n’ont pas le droit de ralentir. Le chapitre « Chapitre 16 : La Terre en danger » restera une étape importante de cette aventure.']]}]});
@@ -156,13 +156,13 @@ s0:['Goku','Yamcha','Krillin','Tenshinhan','Muten Roshi','Piccolo'],
 s3:['Goku','Vegeta','Trunks','Gohan','Piccolo','Android 16','Android 17','Android 18'],
 s4:['Goku','Vegeta','Gohan','Gotenks','Piccolo','Majin Buu'],
 daima:['Goku','Vegeta','Glorio','Gomah','Tamagami'],
-super:['Goku','Vegeta','Gohan','Beerus','Hit','Jiren','Broly','Android 17','Kefla','Toppo','Dyspo','Zamasu fusionné'],
+super:['Goku','Vegeta','Gohan','Beerus','Hit','Jiren','Android 17','Kefla','Toppo','Dyspo','Zamasu fusionné'],
 heroes:['Xeno Goku','Goku','Vegeta','Cumber','Hearts','Gogeta','Vegetto'],
-gt:['Goku','Vegeta','Baby Vegeta','Omega Shenron','Pan','Uub'],
+gt:['Goku','Vegeta','Baby Vegeta','Omega Shenron','Pan','Trunks','Uub'],
 af:['Goku','Vegeta','Gohan','Gogeta','Vegetto','Shallot','Omega Shenron','Broly'],
 kakumei:['Goku','Vegeta','Jiren','Beerus','Gohan','Piccolo','Android 17','Broly'],
 custom:['Goku','Vegeta','Gohan','Piccolo','Trunks','Broly','Gogeta','Vegetto','Freezer','Cell','Beerus','Jiren','Gotenks','Hit','Android 17','Kefla','Shallot'],
-films:['Goku','Vegeta','Trunks','Piccolo','Tapion','Android 13','Cooler','Janemba']
+films:['Goku','Vegeta','Trunks','Piccolo','Broly','Tapion','Android 13','Cooler','Janemba']
 };
 const STORY_EXTRA={
 s1:[
@@ -278,8 +278,8 @@ dbSaga.ch.push(
  {id:'db9',sub:'Arc bonus — Les arts martiaux',t:'Chapitre 9 : Le retour du tournoi',req:'s0c8',en:'Tenshinhan',ar:1,df:1,xp:300,ob:{k:'time',v:20,txt:'Gagner avec au moins 20 secondes restantes'},pre:[['Narration','Après ses premières grandes aventures, Goku retrouve ses rivaux lors d’un nouveau défi.'],['Tenshinhan','Tu as progressé, mais je ne compte pas te laisser gagner.'],['Goku','Parfait ! Un vrai combat nous fera progresser tous les deux.']],post:[['Tenshinhan','Tu as gagné cette fois. Je vais reprendre mon entraînement.'],['Narration','Une nouvelle menace se prépare loin du tournoi.']]},
  {id:'db10',sub:'Arc bonus — La dernière épreuve',t:'Chapitre 10 : L’épreuve du maître',req:'db9',en:'Muten Roshi',ar:1,df:2,xp:380,ob:{k:'hp',v:.35,txt:'Finir avec au moins 35 % de vie'},pre:[['Narration','Avant de poursuivre son voyage, Goku doit prouver que sa force s’accompagne de maîtrise.'],['Muten Roshi','La puissance ne suffit pas. Montre-moi que tu sais garder ton calme.'],['Goku','J’ai compris. Je vais me battre sans perdre le contrôle.']],post:[['Muten Roshi','Tu as encore beaucoup à apprendre, mais tu es prêt pour la suite.'],['Narration','Le chemin mène désormais vers les Saiyans.']]}
 );
-SAGAS.unshift(SAGAS.splice(SAGAS.findIndex(s=>s.id==='s0'),1)[0]);
-const STORY_SAGA_REQ={s1:'db10',s2:'s1c12',s3:'s2c16',s4:'s3c16',daima:'s4c16',super:'daimac16',gt:'superc16',heroes:'sup5',af:'sup5',kakumei:'sup5',custom:'sup5',films:'sup5'};
+// L'ordre visuel est défini plus bas, après l'enregistrement de toutes les sagas.
+const STORY_SAGA_REQ={s1:'db10',s2:'s1c12',s3:'s2c16',s4:'s3c16',daima:'s4c16',gt:'daimac16',super:'gtc16',heroes:'sup5',af:'sup5',kakumei:'sup5',custom:null,films:'sup5'};
 SAGAS.push({id:'films',name:'Films Dragon Ball — Menaces légendaires',ch:[
 {id:'film1',sub:'L’empire de Cooler',t:'Chapitre 1 : Le frère de Freezer',req:'sup5',en:'Cooler',ar:6,df:1,xp:260,ob:{k:'hp',v:.4,txt:'Finir avec au moins 40 % de vie'},pre:[['Narration','Une nouvelle flotte approche de la Terre. À sa tête se trouve Cooler, le frère aîné de Freezer.'],['Cooler','Je vais terminer ce que mon frère a commencé.'],['Goku','Tu ne détruiras pas cette planète.']],post:[['Cooler','Ne crois pas que cette défaite soit la fin.']]},
 {id:'film2',sub:'L’empire de Cooler',t:'Chapitre 2 : Le guerrier métallique',req:'film1',en:'Cooler',ar:6,df:2,xp:330,ob:{k:'time',v:25,txt:'Gagner avec au moins 25 secondes restantes'},pre:[['Narration','Cooler revient sous une forme mécanique, soutenu par son armée.'],['Cooler','Mon nouveau corps ne connaît aucune limite.'],['Goku','Alors je vais devoir dépasser mes limites aussi.']]},
@@ -317,6 +317,13 @@ SAGAS.push({id:'superhero',name:'Dragon Ball Super — SUPER HERO',ch:[
 STORY_SAGA_REQ.superhero='filmsc10';
 const shIndex=SAGAS.findIndex(s=>s.id==='superhero'),filmIndex=SAGAS.findIndex(s=>s.id==='films'),trialIndex=SAGAS.findIndex(s=>s.id==='legendary_trials');if(shIndex>=0&&filmIndex>=0&&trialIndex>=0&&shIndex>trialIndex){const shSaga=SAGAS.splice(shIndex,1)[0];SAGAS.splice(trialIndex,0,shSaga);}
 // Réécriture narrative complète des 12 sagas principales : chronologie, adversaires et dialogues.
+// Ordre chronologique principal : Dragon Ball, Z, Daima, GT (branche alternative), puis Super.
+const STORY_SAGA_ORDER=['s0','s1','s2','s3','s4','daima','gt','super','films','superhero','heroes','af','kakumei','legendary_trials','custom'];
+SAGAS.sort((a,b)=>{
+ const ai=STORY_SAGA_ORDER.indexOf(a.id),bi=STORY_SAGA_ORDER.indexOf(b.id);
+ return (ai<0?999:ai)-(bi<0?999:bi);
+});
+
 const STORY_REWRITES={
 s1:[
 ["L’arrivée de Raditz","Raditz","Le frère oublié","Raditz révèle à Goku ses origines saiyans et enlève Son Gohan."],
@@ -424,25 +431,25 @@ daima:[
 ["Le pouvoir du Troisième Œil","Gomah","L’œil maléfique","Gomah utilise le pouvoir du Troisième Œil pour prendre l’avantage."],
 ["Le combat de Vegeta","Tamago","Le prince contre-attaque","Vegeta rejoint le combat et affronte un adversaire du royaume démoniaque."],
 ["Goku contre Gomah","Gomah","Le duel final","Goku affronte Gomah alors que le sort du royaume démoniaque se décide."],
-["La paix dans le royaume démoniaque","Gomah","Un nouvel équilibre","Les héros mettent fin au conflit et laissent le royaume face à un nouvel avenir."]
+["L’éveil du Super Saiyan 4","Gomah","La puissance retrouvée","Face au pouvoir du Troisième Œil, Goku révèle le Super Saiyan 4 et renverse le cours du combat pour sauver le royaume démoniaque."]
 ],
 super:[
-["La visite de Beerus","Beerus","Le Dieu de la Destruction","Beerus arrive sur Terre à la recherche du Super Saiyan God."],
-["Le Super Saiyan God","Beerus","Le rituel des Saiyans","Goku reçoit l’énergie de ses proches et atteint la forme divine."],
-["Goku contre Beerus","Beerus","Le duel divin","Goku teste sa nouvelle puissance face à Beerus dans un combat qui dépasse la Terre."],
-["La résurrection de Freezer","Golden Freezer","Le retour du tyran","Freezer est ressuscité et prépare sa revanche contre Goku et Vegeta."],
-["Le combat contre Golden Freezer","Golden Freezer","La forme dorée","Freezer révèle sa forme dorée et affronte les Saiyans sur Terre."],
-["Le tournoi entre les univers","Frost","L’équipe de Champa","Les combattants de l’Univers 7 affrontent ceux de l’Univers 6."],
-["Hit, l’assassin légendaire","Hit","Le saut temporel","Goku affronte Hit et cherche à comprendre sa technique temporelle."],
-["Le retour de Trunks du futur","Goku Black","Un ennemi familier","Trunks revient et révèle qu’un mystérieux Goku ravage son futur."],
-["La vérité sur Goku Black","Goku Black","Le corps volé","Les héros découvrent que Goku Black est lié à Zamasu."],
-["La fusion de Zamasu","Fused Zamasu","L’union divine","Zamasu fusionne avec son double et devient une menace pour les deux futurs."],
-["Le tournoi du pouvoir","Jiren","La survie des univers","Les univers participent à un tournoi où chaque équipe joue sa survie."],
-["Goku maîtrise l’Ultra Instinct","Jiren","L’instinct supérieur","Face à Jiren, Goku éveille l’Ultra Instinct et dépasse ses limites."],
-["Le dernier trio de l’Univers 7","Jiren","La stratégie finale","Goku, Vegeta et Freezer coordonnent leurs efforts contre Jiren."],
-["Broly apparaît","Broly","Le Saiyan incontrôlable","Un Saiyan inconnu révèle une puissance qui augmente au fil du combat."],
-["Gogeta contre Broly","Broly","La fusion bleue","Goku et Vegeta fusionnent en Gogeta pour arrêter Broly."],
-["Le départ de Broly","Broly","Une nouvelle voie","Le combat prend fin et Broly peut enfin suivre sa propre voie."]
+["Beerus arrive sur Terre","Beerus","Le Dieu de la Destruction","Beerus se réveille et cherche le Super Saiyan God après avoir aperçu cette puissance en rêve. Goku décide de le rencontrer pour protéger la Terre."],
+["Le rituel du Super Saiyan God","Beerus","L’énergie des six Saiyans","Goku reçoit l’énergie de ses proches et atteint le Super Saiyan God. Cette puissance divine devient le seul moyen de tenir tête à Beerus."],
+["Goku contre Beerus","Beerus","Le duel divin","Le combat entre Goku et Beerus s’élève jusque dans l’espace. Goku apprend que la puissance divine exige autant de maîtrise que de force."],
+["Le tournoi de l’univers 6","Hit","Le défi de Champa","Champa organise un tournoi entre les univers 6 et 7. Goku et Vegeta découvrent de nouveaux adversaires, dont l’assassin Hit."],
+["Vegeta s’éveille au pouvoir divin","Beerus","L’entraînement de Whis","Vegeta poursuit son entraînement auprès de Whis et atteint à son tour le Super Saiyan God. Il refuse de rester derrière Goku."],
+["La résurrection de Freezer","Freezer","Le retour du tyran","Les soldats de Freezer réunissent les Dragon Balls et ressuscitent leur maître. Le tyran revient avec une nouvelle ambition et s’entraîne pour se venger."],
+["Goku et Vegeta contre Golden Freezer","Freezer","La forme dorée","Freezer atteint sa forme dorée et attaque la Terre. Goku et Vegeta doivent l’arrêter avant que la planète ne soit détruite."],
+["L’éveil du Super Saiyan Blue","Whis","La maîtrise du ki divin","Goku et Vegeta apprennent à mêler le Super Saiyan à leur ki divin. Ils éveillent le Super Saiyan Blue et maîtrisent enfin cette énergie."],
+["Le retour de Trunks du futur","Goku Black","Un futur dévasté","Trunks revient d’un futur ravagé par un ennemi qui possède le visage de Goku. Il demande de l’aide pour sauver son monde."],
+["Goku contre Goku Black","Goku Black","Le visage volé","Goku affronte son double maléfique et découvre une puissance qui évolue pendant le combat. Trunks reconnaît le danger qui menace son époque."],
+["Vegeta affronte Goku Black","Goku Black","La riposte du prince","Vegeta retourne dans le futur pour affronter Goku Black. Sa maîtrise du Super Saiyan Blue lui permet de prendre l’avantage."],
+["L’éveil du Super Saiyan Rage","Goku Black","La détermination de Trunks","Face à la destruction de son monde, Trunks rassemble toute sa volonté et éveille le Super Saiyan Rage."],
+["Vegetto Blue contre Zamasu fusionné","Zamasu fusionné","La fusion des Potaras","Goku et Vegeta fusionnent avec les Potaras et deviennent Vegetto Blue. Ils affrontent Zamasu fusionné, dont l’immortalité menace les deux futurs."],
+["Goku face à Jiren","Jiren","Le premier éveil de l’Ultra Instinct","Au Tournoi du Pouvoir, Goku affronte Jiren. Sous une pression extrême, il commence à éveiller l’Ultra Instinct."],
+["Goku contre Kefla","Kefla","L’instinct en mouvement","Kefla pousse Goku dans ses derniers retranchements. Goku doit laisser son corps réagir instinctivement pour contrer la puissance de la fusion."],
+["L’Ultra Instinct maîtrisé contre Jiren","Jiren","Le dernier combat du tournoi","Goku maîtrise l’Ultra Instinct face à Jiren. Avec l’aide de ses alliés, il joue le tout pour le tout afin de sauver les univers."]
 ],
 heroes:[
 ["La prison planétaire","Cumber","Le Saiyan maléfique","Goku et ses alliés se retrouvent piégés dans une prison mystérieuse."],
@@ -463,22 +470,22 @@ heroes:[
 ["La fin de la crise temporelle","Fu","Le continuum restauré","La crise prend fin et les patrouilleurs restaurent l’équilibre du temps."]
 ],
 gt:[
-["Le souhait de Pilaf","Goku","Les Dragon Balls ultimes","Un souhait maladroit transforme Goku en enfant et disperse les Dragon Balls dans l’espace."],
-["Le départ dans l’espace","Rildo","Une planète hostile","Goku, Pan et Trunks découvrent une planète contrôlée par le général Rildo."],
-["Le général Rildo","Rildo","Le métal vivant","Rildo utilise ses pouvoirs métalliques pour piéger les voyageurs."],
-["La menace de Baby","Baby","Le dernier Tsuful","Baby cherche à se venger des Saiyans et prend le contrôle de nouveaux hôtes."],
-["Baby prend possession de Vegeta","Baby Vegeta","Le prince contrôlé","Baby s’empare du corps de Vegeta et devient un adversaire redoutable."],
-["La Terre sous l’emprise de Baby","Baby Vegeta","La planète infectée","Baby étend son influence et transforme la Terre en base pour son plan."],
-["Le Super Saiyan 4","Baby Vegeta","La puissance primordiale","Goku retrouve une puissance ancestrale et atteint le Super Saiyan 4."],
-["Gogeta Super Saiyan 4","Omega Shenron","La fusion ultime","Goku et Vegeta fusionnent en Super Saiyan 4 pour contrer la menace."],
-["Les sept dragons maléfiques","Nuova Shenron","Les Dragon Balls corrompues","Les Dragon Balls libèrent des dragons nés de l’énergie négative accumulée."],
-["Eis Shenron","Eis Shenron","Le dragon de glace","Goku affronte Eis Shenron et ses techniques glaciales."],
-["Nuova Shenron","Nuova Shenron","Le dragon du feu","Nuova se distingue des autres dragons et met Goku à l’épreuve."],
-["Syn Shenron","Syn Shenron","Le dragon suprême","Syn absorbe les Dragon Balls et devient une menace majeure."],
-["Omega Shenron","Omega Shenron","L’énergie négative","Omega Shenron utilise toute l’énergie négative des Dragon Balls."],
-["Le dernier Genkidama","Omega Shenron","L’univers répond","Goku rassemble l’énergie de l’univers pour préparer l’attaque décisive."],
-["La fusion des derniers instants","Omega Shenron","Le dernier espoir","Les Saiyans tentent une ultime stratégie pour vaincre Omega Shenron."],
-["La légende continue","Omega Shenron","L’héritage de Goku","La menace disparaît et la légende de Goku continue de vivre."]
+["Les Dragon Balls aux étoiles noires","Baby Vegeta","Le souhait de Pilaf","Pilaf fait un vœu imprudent avec les Dragon Balls aux étoiles noires. Goku retrouve un corps d’enfant et la Terre risque de disparaître si les sphères ne sont pas réunies à temps."],
+["Le compte à rebours de la Terre","Baby Vegeta","Un an pour sauver la planète","Les Dragon Balls se dispersent dans l’espace. Goku, Pan et Trunks doivent les retrouver avant l’échéance qui menace la Terre."],
+["Le départ de Goku, Pan et Trunks","Baby Vegeta","L’équipage improbable","Pan s’impose dans l’expédition et le trio quitte la Terre. Leur voyage les mène vers des planètes où les Dragon Balls sont gardées par des adversaires inattendus."],
+["La planète Imecka","Baby Vegeta","Les dettes de Don Kia","Le groupe découvre une planète dominée par Don Kia. Pan et Goku refusent de laisser ses habitants subir les abus de son pouvoir."],
+["La planète M-2","Baby Vegeta","Le piège des machines","Les héros découvrent les plans du docteur Myuu et affrontent les machines qui protègent ses recherches."],
+["La menace du docteur Myuu","Baby Vegeta","Le secret de Baby","Le docteur Myuu prépare le retour de Baby, un survivant tsuful animé par la vengeance contre les Saiyans."],
+["Baby arrive sur Terre","Baby Vegeta","La vengeance des Tsufuls","Baby atteint la Terre et commence à prendre le contrôle des habitants. Goku comprend que cette menace vise directement son peuple."],
+["Vegeta sous l’emprise de Baby","Baby Vegeta","Le prince possédé","Baby prend le contrôle de Vegeta et utilise sa puissance pour affronter Goku. Pan refuse d’abandonner son grand-père."],
+["Goku maîtrise le Super Saiyan 4","Baby Vegeta","La puissance primordiale","Goku retrouve la puissance du Super Saiyan 4 déjà éveillée et apprend à la maîtriser face à Baby. Cette forme lui permet de reprendre le contrôle du combat."],
+["Goku SSJ4 contre Baby Vegeta","Baby Vegeta","La revanche de Goku","Goku utilise sa nouvelle forme pour libérer Vegeta et mettre fin à la vengeance de Baby. Le combat atteint son point culminant."],
+["L’ouverture des portes de l’Enfer","Omega Shenron","Une alliance dangereuse","Une expérience liée au docteur Myuu provoque une brèche entre la Terre et l’Enfer. Les anciennes menaces peuvent revenir."],
+["La naissance de Super C-17","Omega Shenron","Le cyborg ultime","C-17 et son double de l’Enfer fusionnent pour devenir Super C-17. Goku doit trouver comment contourner son absorption d’énergie."],
+["La bataille contre Super C-17","Omega Shenron","L’union des cyborgs","Goku affronte Super C-17 tandis que les alliés cherchent une faille dans sa défense. La crise annonce déjà un déséquilibre plus profond."],
+["Les Dragon Balls maléfiques","Omega Shenron","Le prix des souhaits","Les Dragon Balls libèrent les conséquences de l’énergie négative accumulée au fil des souhaits. Les dragons maléfiques apparaissent."],
+["Vegeta atteint le Super Saiyan 4","Vegeta","Les ondes Blutz de Bulma","Bulma permet à Vegeta de retrouver une queue grâce aux ondes Blutz. Le prince atteint le Super Saiyan 4 et rejoint le combat contre les dragons maléfiques."],
+["Gogeta Super Saiyan 4 contre Omega Shenron","Omega Shenron","Le dernier Genkidama","Goku et Vegeta exécutent la danse de fusion et deviennent Gogeta Super Saiyan 4. Ils affrontent Omega Shenron tandis que l’univers rassemble son énergie pour l’ultime attaque."]
 ],
 af:[
 ["Le retour d’un Saiyan oublié","Bardock","Une anomalie temporelle","Une distorsion ramène un guerrier du passé et bouleverse la chronologie."],
@@ -535,6 +542,115 @@ films:[
 ["Le dernier souhait","Turles","La paix retrouvée","Les héros affrontent une dernière menace cinématographique avant de retrouver la paix."]
 ]
 };
+const STORY_DIALOGUE_VOICES={
+ Raditz:"Je suis venu chercher le dernier Saiyan. Tu ne peux pas échapper à ton héritage.",
+ "Roi Kaï":"Ton entraînement n'est pas terminé. Montre-moi que tu as compris la leçon.",
+ Nappa:"Je vais écraser tous ceux qui se dressent devant les Saiyans !",
+ Vegeta:"Ne me parle pas de limites. Je suis le prince des Saiyans !",
+ Yamcha:"Tu me prends pour un adversaire facile ? Tu vas vite changer d'avis.",
+ Oolong:"Je ne compte pas me laisser arrêter par un gamin et sa bande !",
+ "Muten Roshi":"La vraie force vient aussi de la maîtrise. Voyons ce que tu as appris.",
+ "Colonel Silver":"Au nom du Ruban Rouge, je ne laisserai personne toucher à nos plans.",
+ "Général White":"Cette tour est imprenable. Tu ne passeras pas mes défenses.",
+ "Ninja Murasaki":"Tu ne peux pas prévoir tous mes pièges. Reste sur tes gardes !",
+ "Android 8":"Je ne veux plus obéir à des ordres injustes. Je vais choisir mon propre chemin.",
+ "Général Blue":"Tu ne sais pas à qui tu as affaire. Ma technique va te surprendre.",
+ Tenshinhan:"Je me suis entraîné sans relâche. Cette fois, je veux gagner loyalement.",
+ "Piccolo Daimaô":"Le monde sera à moi. Aucun guerrier ne pourra arrêter mon règne.",
+ Piccolo:"Tu as du courage, mais il te manque encore l'expérience pour me vaincre.",
+ Dodoria:"Les ordres de Freezer sont absolus. Écarte-toi de mon chemin !",
+ Zarbon:"Tu as vu mon apparence. Tu vas maintenant découvrir ma véritable puissance.",
+ Recoome:"Prépare-toi ! Le commando Ginyu ne connaît pas la défaite !",
+ Burter:"Tu ne peux même pas suivre ma vitesse !",
+ "Capitaine Ginyu":"Mon corps est mon arme ultime. Tu ne sauras pas comment me contrer.",
+ Freezer:"Je suis l'empereur de l'univers. Votre résistance est inutile.",
+ Cell:"Je suis la forme parfaite. Ce monde existe pour admirer ma puissance.",
+ "Android 17":"Nous n'avons reçu aucun ordre de te laisser passer.",
+ "Android 18":"Je n'ai aucune raison de retenir mes coups.",
+ "Android 16":"Je protégerai la vie. Ne m'oblige pas à intervenir.",
+ "Majin Buu":"Buu va gagner ! Buu n'aime pas qu'on lui donne des ordres !",
+ "Super Buu":"Je vais absorber ta puissance et devenir encore plus fort.",
+ "Kid Buu":"Kiiii !",
+ Dabura:"Tu vas découvrir la puissance du royaume démoniaque.",
+ Gotenks:"Tu vas assister à la technique secrète du plus grand guerrier fusionné !",
+ Vegetto:"Tu as sous-estimé la fusion des deux Saiyans.",
+ Gomah:"Je suis le roi du royaume démoniaque. Personne ne renversera mon autorité.",
+ Glorio:"Je ne peux pas encore tout t'expliquer. Mais je ne te laisserai pas compromettre notre mission.",
+ Tamagami:"Seul un guerrier digne pourra franchir cette épreuve.",
+ Degesu:"Le pouvoir du royaume démoniaque ne sera pas partagé avec vous.",
+ "Baby Vegeta":"Les Saiyans ont détruit mon peuple. Je vais leur faire payer leur histoire.",
+ "Omega Shenron":"L'énergie négative des Dragon Balls va engloutir votre monde.",
+ Beerus:"Tu as troublé mon repos. Fais en sorte que ce combat en vaille la peine.",
+ Hit:"Chaque mouvement a un prix. Je vais arrêter le temps autour de toi.",
+ "Goku Black":"Les mortels sont une erreur. Je vais purifier cet univers.",
+ "Zamasu fusionné":"Ma justice est éternelle. Votre résistance ne changera rien.",
+ Jiren:"Ta volonté ne suffit pas. Prouve que ta force peut rivaliser avec la mienne.",
+ Kefla:"Je n'ai pas fusionné pour perdre contre toi !",
+ Toppo:"La justice ne reculera pas devant ta puissance.",
+ Cumber:"La rage qui m'habite ne peut pas être contenue !",
+ Hearts:"Les dieux ne sont pas intouchables. Mon plan va bouleverser cet ordre.",
+ "Xeno Goku":"Je protège les lignes temporelles. Je dois vérifier que tu n'es pas une menace.",
+ Cooler:"Je ne suis pas mon frère. Je vais prouver ma supériorité.",
+ "Android 13":"Je suis programmé pour éliminer Goku. Rien ne me détournera de ma cible.",
+ Janemba:"Gogogogogo !",
+ Broly:"Kakarot... ma puissance ne cesse de grandir !",
+ "Whis":"Vous avez progressé, mais votre maîtrise du ki divin doit encore s’améliorer.",
+ "Frost":"Je vais vous montrer que l’univers 6 possède aussi ses champions.",
+ "Panzy":"Je ne suis pas une princesse qui attend qu’on la sauve. Je peux me défendre !",
+ "Tamago":"Le roi Gomah ne tolérera aucune intrusion dans son palais.",
+ "Fu":"Les anomalies temporelles sont parfaites pour mes expériences. Essayez donc de m’arrêter.",
+ "Towa":"Le royaume démoniaque ne laissera pas vos interventions ruiner nos plans.",
+ "Whis":"Vous avez progressé, mais votre maîtrise du ki divin doit encore s’améliorer.",
+ "Frost":"Je vais vous montrer que l’univers 6 possède aussi ses champions.",
+ "Panzy":"Je ne suis pas une princesse qui attend qu’on la sauve. Je peux me défendre !",
+ "Tamago":"Le roi Gomah ne tolérera aucune intrusion dans son palais.",
+ "Fu":"Les anomalies temporelles sont parfaites pour mes expériences. Essayez donc de m’arrêter.",
+ "Towa":"Le royaume démoniaque ne laissera pas vos interventions ruiner nos plans.",
+ "Gamma 1":"Je suis un super-héros. Je ne laisserai pas cette menace gagner.",
+ "Gamma 2":"L'heure est venue de montrer ce que peut faire un véritable héros.",
+ "Cell Max":"GRAAAAAH !"
+};
+const STORY_HERO_LINES={
+ s0:["Je veux devenir plus fort, mais je veux surtout aider ceux que je rencontre.","Je ne sais pas ce qui m'attend au bout de cette route. Je vais continuer à avancer.","La force ne sert à rien si elle ne permet pas de protéger les autres.","Je vais donner tout ce que j'ai. C'est comme ça qu'on progresse."],
+ s1:["Je ne laisserai pas les Saiyans détruire la Terre. Je vais me battre jusqu'au bout.","Même si l'adversaire est plus fort, je trouverai une solution avec mes amis.","Je dois dépasser mes limites sans oublier ceux qui comptent sur moi.","Cette bataille décidera de l'avenir de la Terre. Je ne peux pas perdre."],
+ s2:["Les Dragon Balls ne doivent pas tomber entre les mains de Freezer.","Namek n'est pas votre terrain de chasse. Nous allons protéger ses habitants.","Vegeta, nous avons le même ennemi. Pour l'instant, concentrons-nous sur Freezer.","Je sens une puissance terrifiante, mais je ne reculerai pas."],
+ s3:["Les cyborgs ne doivent pas détruire notre avenir. Nous devons comprendre leur origine.","Cell absorbe les autres pour devenir plus fort. Nous devons l'arrêter avant sa forme parfaite.","L'entraînement ne servira à rien si nous oublions pourquoi nous nous battons.","Je vais protéger la Terre, même si je dois dépasser toutes mes limites."],
+ s4:["Buu ne comprend pas la gravité de ce qu'il fait. Nous devons protéger les habitants.","La fusion est notre dernier recours. Il faut que nous réussissions.","Je ne peux pas laisser cette menace absorber mes amis.","La Terre compte sur nous. Je vais trouver la force de terminer ce combat."],
+ daima:["Ce royaume est plein de pièges. Je dois rester attentif et protéger mes compagnons.","Glorio, nous avancerons ensemble, mais je veux connaître la vérité.","Les Dragon Balls de ce royaume ne doivent pas servir les ambitions de Gomah.","Je vais utiliser toute ma puissance pour libérer le royaume démoniaque."],
+ gt:["Pan, Trunks, restez près de moi. Les Dragon Balls doivent être retrouvées à temps.","Baby vise tous les Saiyans. Je ne le laisserai pas prendre le contrôle de Vegeta.","Je viens de retrouver une puissance incroyable. Je dois la maîtriser pour protéger mes proches.","Même face à Omega Shenron, nous ne devons pas abandonner l'espoir."],
+ super:["Cette puissance divine est nouvelle pour moi. Je dois apprendre à la maîtriser.","Vegeta, on a encore beaucoup à apprendre auprès de Whis.","Les univers sont en jeu. Je veux affronter les meilleurs sans mettre mes amis en danger.","Je vais dépasser mes limites, mais je ne combattrai jamais seul."],
+ heroes:["Cette faille menace plusieurs lignes temporelles. Nous devons agir ensemble.","Je ne sais pas d'où vient cette puissance maléfique, mais je vais protéger les mondes.","Les patrouilleurs du temps comptent sur nous. Aucun univers ne doit disparaître.","Même dans une autre ligne temporelle, je reste un Saiyan qui aime se battre."],
+ af:["Cette histoire prend une direction inattendue. Je vais découvrir qui tire les ficelles.","Je dois comprendre cette nouvelle puissance avant qu'elle ne menace les autres.","Je ne reculerai pas face à un adversaire qui dépasse les limites connues.","Je vais protéger mes amis, quelle que soit la dimension."],
+ kakumei:["Les dieux observent ce combat, mais ce sont nos choix qui comptent.","Je vais montrer que les mortels peuvent décider de leur propre avenir.","Cette épreuve dépasse un simple tournoi. Il faut empêcher les univers de sombrer.","Je vais me battre sans perdre de vue ceux que je protège."],
+ films:["Cette menace vient d'un autre monde, mais elle ne détruira pas la Terre.","Je vais protéger mes amis. Peu importe la puissance de cet ennemi.","Vegeta, couvrons-nous mutuellement et trouvons son point faible.","La bataille n'est pas terminée tant que le danger menace encore quelqu'un."],
+ superhero:["Piccolo et Pan comptent sur moi. Je ne peux pas ignorer ce qui se prépare.","Les Gammas se prennent pour des héros, mais quelqu'un les manipule.","Je dois protéger Piccolo. Je ne laisserai pas Cell Max détruire la ville.","Cette puissance est différente de tout ce que j'ai connu. Je vais la maîtriser."]
+};
+const STORY_CHAPTER_LEADS={
+ s1c1:'Goku',s1c2:'Goku',s1c3:'Piccolo',s1c4:'Goku',s1c5:'Goku',s1c6:'Goku',s1c7:'Goku',s1c8:'Gohan',s1c9:'Goku',s1c10:'Goku',s1c11:'Gohan',s1c12:'Goku',s1c13:'Vegeta',s1c14:'Gohan',s1c15:'Goku',s1c16:'Gohan',
+ s2c1:'Gohan',s2c2:'Vegeta',s2c3:'Vegeta',s2c4:'Vegeta',s2c5:'Vegeta',s2c6:'Vegeta',s2c7:'Goku',s2c8:'Vegeta',s2c9:'Goku',s2c10:'Goku',s2c11:'Goku',s2c12:'Goku',s2c13:'Goku',s2c14:'Goku',s2c15:'Goku',s2c16:'Goku',
+ cell1:'Trunks',cell2:'Goku',cell3:'Vegeta',s3c4:'Piccolo',s3c5:'Android 16',s3c6:'Piccolo',s3c7:'Android 16',s3c8:'Piccolo',s3c9:'Gohan',s3c10:'Vegeta',s3c11:'Trunks',s3c12:'Android 18',s3c13:'Goku',s3c14:'Gohan',s3c15:'Goku',s3c16:'Gohan',
+ buu1:'Gohan',s4c4:'Gohan',s4c5:'Vegeta',s4c6:'Goku',s4c7:'Goku',s4c8:'Gotenks',s4c9:'Gohan',s4c10:'Gotenks',s4c11:'Gotenks',buu2:'Gohan',s4c12:'Gohan',s4c13:'Gohan',s4c14:'Vegeta',buu3:'Vegetto',s4c15:'Goku',s4c16:'Goku',
+ da1:'Goku',da2:'Glorio',da3:'Goku',daimac4:'Goku',daimac5:'Panzy',daimac6:'Glorio',daimac7:'Goku',daimac8:'Goku',daimac9:'Goku',daimac10:'Glorio',daimac11:'Goku',daimac12:'Vegeta',daimac13:'Goku',daimac14:'Vegeta',daimac15:'Goku',daimac16:'Goku',
+ gt1:'Goku',gt2:'Pan',gtc3:'Trunks',gtc4:'Pan',gtc5:'Goku',gtc6:'Goku',gtc7:'Goku',gtc8:'Goku',gtc9:'Goku',gtc10:'Goku',gtc11:'Goku',gtc12:'Goku',gtc13:'Goku',gtc14:'Goku',gtc15:'Vegeta',gtc16:'Gogeta',
+ sup1:'Goku',sup2:'Goku',sup3:'Goku',sup4:'Goku',sup5:'Vegeta',superc6:'Goku',superc7:'Goku',superc8:'Goku',superc9:'Trunks',superc10:'Goku',superc11:'Vegeta',superc12:'Trunks',superc13:'Vegetto',superc14:'Goku',superc15:'Goku',superc16:'Goku',
+ superhero1:'Piccolo',superhero2:'Piccolo',superhero3:'Piccolo',superhero4:'Gohan',superhero5:'Gohan',superhero6:'Piccolo',superhero7:'Piccolo',superhero8:'Piccolo',superhero9:'Piccolo',superhero10:'Gamma 2',superhero11:'Piccolo',superhero12:'Gohan',superhero13:'Gohan',superhero14:'Gohan',superhero15:'Gohan',superhero16:'Gohan'
+};
+const STORY_LEADS={s0:'Goku',s1:'Goku',s2:'Gohan',s3:'Piccolo',s4:'Goku',daima:'Goku',gt:'Goku',super:'Goku',heroes:'Xeno Goku',af:'Goku',kakumei:'Goku',films:'Goku',superhero:'Piccolo'};
+const STORY_ENDINGS={
+ s0:"Le tournoi et les premières aventures ont forgé le caractère de Goku. Une menace bien plus grande se profile désormais.",
+ s1:"La Terre est sauvée, mais les survivants savent que les Dragon Balls de Namek représentent leur prochain espoir.",
+ s2:"Le combat sur Namek a changé le destin des Saiyans. Les conséquences de la défaite de Freezer se feront sentir longtemps.",
+ s3:"Cell est vaincu et la Terre est sauvée. La génération suivante a prouvé qu'elle pouvait prendre le relais.",
+ s4:"Kid Buu est vaincu. La paix revient, mais les guerriers savent que de nouveaux défis les attendent.",
+ daima:"Le royaume démoniaque retrouve un nouvel équilibre. Les héros peuvent enfin rentrer, avec une puissance qu'ils ne connaissaient pas auparavant.",
+ gt:"Les dragons maléfiques sont vaincus. Goku laisse derrière lui un héritage qui dépasse les générations.",
+ super:"Les univers sont sauvés après le Tournoi du Pouvoir. Les combattants ont découvert de nouvelles limites.",
+ heroes:"La faille temporelle est refermée. Les patrouilleurs peuvent reprendre leur mission de protection des lignes temporelles.",
+ af:"Cette aventure originale ouvre une nouvelle page pour les Saiyans et leurs alliés.",
+ kakumei:"Le jugement des dieux n'a pas effacé la volonté des mortels. Cette histoire alternative prend fin.",
+ films:"Les menaces des films ont été repoussées. Les héros peuvent souffler avant le prochain défi.",
+ superhero:"Cell Max est vaincu et la nouvelle génération a montré qu'elle pouvait défendre la Terre."
+};
 for(const [sagaId,chapters] of Object.entries(STORY_REWRITES)){
  const saga=SAGAS.find(x=>x.id===sagaId);if(!saga)continue;
  saga.ch.forEach((ch,i)=>{
@@ -543,16 +659,23 @@ for(const [sagaId,chapters] of Object.entries(STORY_REWRITES)){
   ch.t='Chapitre '+(i+1)+' : '+title;
   ch.sub=subtitle;
   if(CH.some(c=>c.n===enemy))ch.en=enemy;
-  ch.pre=[['Narration',summary], [enemy,'Tu as traversé tout ce chemin. Voyons si ta détermination est à la hauteur de ta réputation.'], ['Goku','Je ne laisserai personne mettre mes amis ou cette planète en danger. Prépare-toi !']];
-  ch.post=[['Narration','Le combat est terminé. '+summary+' Cette étape est franchie, mais la suite de l’histoire réserve encore une épreuve.']];
+  const lead=STORY_CHAPTER_LEADS[ch.id]||STORY_LEADS[sagaId]||'Goku';
+  const heroLines=STORY_HERO_LINES[sagaId]||STORY_HERO_LINES.super;
+  const heroLine=heroLines[i%heroLines.length];
+  const enemyLine=STORY_DIALOGUE_VOICES[enemy]||enemy+' : Tu ne passeras pas. Je défendrai mon objectif jusqu’au bout.';
+  const allyLine=(sagaId==='gt'&&i<3)?['Pan : On a promis de retrouver les Dragon Balls. Je ne rentrerai pas sans elles.','Trunks : Le vaisseau est prêt. On doit partir avant que le compte à rebours commence.','Pan : Je ne suis pas venue pour rester à l’arrière. Je peux me battre aussi.'][i]:(sagaId==='daima'&&i%3===1?'Glorio : Le royaume démoniaque cache encore beaucoup de secrets. Restez sur vos gardes.':null);
+  ch.pre=[['Narration',summary], [enemy,enemyLine], [lead,heroLine]];
+  if(allyLine)ch.pre.push([sagaId==='gt'&&i===0?'Pan':sagaId==='gt'&&i===1?'Trunks':'Glorio',allyLine]);
+  const reaction=enemy==='Goku'?"Je reconnais ta détermination. Ce duel m'a permis de mesurer ta force.":enemy+" : Ce n'est pas terminé...";
+  ch.post=[['Narration',summary+' Le chapitre « '+title+' » est terminé. '+(i===chapters.length-1?(STORY_ENDINGS[sagaId]||'La saga touche à sa conclusion.'):'Mais la suite de cette saga réserve encore une nouvelle épreuve.')], [enemy,reaction]];
   delete ch.rw;
  });
 }
 // Les transformations majeures sont annoncées dans leur chapitre narratif d’éveil.
 const STORY_FORM_UNLOCKS={
  s2c13:['Goku','Super Saiyan'],s3c14:['Gohan','Super Saiyan 2'],s4c9:['Gohan','Potentiel libéré (Ultimate)'],s4c7:['Goku','Super Saiyan 3'],s4c11:['Gotenks','Super Saiyan 3'],
- sup2:['Goku','Super Saiyan God'],superc8:['Goku','Super Saiyan Blue'],superc14:['Goku','Ultra Instinct'],superc16:['Goku','Ultra Instinct maîtrisé'],superhero3:['Piccolo','Piccolo Orange'],superhero13:['Gohan','Beast'],
- gtc9:['Goku','Super Saiyan 4'],gtc15:['Vegeta','Super Saiyan 4'],gtc16:['Gogeta','Super Saiyan 4'],superc12:['Trunks','Super Saiyan Rage'],s4c11:['Gotenks','Super Saiyan 3']
+ sup2:['Goku','Super Saiyan God'],sup5:['Vegeta','Super Saiyan God'],superc8:['Goku','Super Saiyan Blue'],superc14:['Goku','Ultra Instinct'],superc16:['Goku','Ultra Instinct maîtrisé'],superhero3:['Piccolo','Piccolo Orange'],superhero13:['Gohan','Beast'],
+ daimac16:['Goku','Super Saiyan 4'],gtc15:['Vegeta','Super Saiyan 4'],gtc16:['Gogeta','Super Saiyan 4'],superc12:['Trunks','Super Saiyan Rage'],s4c11:['Gotenks','Super Saiyan 3']
 };
 for(const [chapterId,unlock] of Object.entries(STORY_FORM_UNLOCKS)){
  const ch=SAGAS.flatMap(s=>s.ch).find(c=>c.id===chapterId);
@@ -621,7 +744,7 @@ const STORY_CHAPTER_RULE_GROUPS=[
  {ids:['superhero2'],players:['Piccolo','Gohan','Pan'],forms:{Piccolo:0,Gohan:3,Pan:0}},
  {ids:['superhero3'],players:['Piccolo'],forms:{Piccolo:1}},
  {ids:['superhero4'],players:['Piccolo','Gohan','Pan','Gamma 1','Gamma 2'],forms:{Piccolo:1,Gohan:3,Pan:0,'Gamma 1':0,'Gamma 2':0}},
- {ids:['superhero5'],players:['Gohan'],forms:{Gohan:4}},
+ {ids:['superhero5'],players:['Gohan'],forms:{Gohan:3}},
  {ids:['film1'],players:['Goku','Piccolo','Gohan','Krillin'],forms:{Goku:1,Piccolo:0,Gohan:1,Krillin:0}},
  {ids:['film2'],players:['Goku','Vegeta','Piccolo','Gohan','Krillin'],forms:{Goku:1,Vegeta:1,Piccolo:0,Gohan:1,Krillin:0}},
  {ids:['film3'],players:['Goku','Vegeta','Trunks','Piccolo','Gohan','Krillin'],forms:{Goku:1,Vegeta:1,Trunks:1,Piccolo:0,Gohan:1,Krillin:0}},
@@ -659,7 +782,16 @@ const STORY_CHAPTER_RULE_GROUPS=[
  {ids:['kak1','kakumeic3','kakumeic7','kakumeic12','kakumeic15'],players:['Goku','Vegeta','Gohan','Piccolo','Android 17','Broly','Beerus'],forms:{Goku:8,Vegeta:7,Gohan:3,Piccolo:0,'Android 17':0,Broly:2,Beerus:0}},
  {ids:['kak2','kakumeic4','kakumeic6','kakumeic10','kakumeic14'],players:['Goku','Vegeta','Jiren','Gohan','Piccolo','Android 17','Broly'],forms:{Goku:8,Vegeta:7,Jiren:1,Gohan:3,Piccolo:0,'Android 17':0,Broly:2}},
  {ids:['kakumeic5','kakumeic13'],players:['Vegeta','Jiren','Beerus','Gohan','Piccolo','Android 17','Broly'],forms:{Vegeta:7,Jiren:1,Beerus:0,Gohan:3,Piccolo:0,'Android 17':0,Broly:2}},
- {ids:['kakumeic8','kakumeic9','kakumeic11','kakumeic16'],players:['Goku','Vegeta','Jiren','Gohan','Piccolo','Android 17','Broly'],forms:{Goku:8,Vegeta:7,Jiren:1,Gohan:3,Piccolo:0,'Android 17':0,Broly:2}}
+ {ids:['kakumeic8','kakumeic9','kakumeic11','kakumeic16'],players:['Goku','Vegeta','Jiren','Gohan','Piccolo','Android 17','Broly'],forms:{Goku:8,Vegeta:7,Jiren:1,Gohan:3,Piccolo:0,'Android 17':0,Broly:2}},
+ {ids:['sup2'],players:['Goku'],forms:{Goku:5}},
+ {ids:['sup5'],players:['Vegeta'],forms:{Vegeta:4}},
+ {ids:['superc6'],players:['Goku','Vegeta'],forms:{Goku:5,Vegeta:4}},
+ {ids:['superc8'],players:['Goku','Vegeta'],forms:{Goku:6,Vegeta:5}},
+ {ids:['superc9'],players:['Goku','Vegeta','Trunks'],forms:{Goku:6,Vegeta:5,Trunks:1}},
+ {ids:['superc12'],players:['Trunks'],forms:{Trunks:2}},
+ {ids:['superc14'],players:['Goku'],forms:{Goku:7}},
+ {ids:['superc15'],players:['Goku'],forms:{Goku:7}},
+ {ids:['superc16'],players:['Goku','Vegeta'],forms:{Goku:8,Vegeta:6}}
 ];
 const vegitoChapter=SAGAS.flatMap(saga=>saga.ch).find(item=>item.id==='s4c15');
 if(vegitoChapter){vegitoChapter.en='Majin Buu';vegitoChapter.pre=[['Narration','Goku et Vegeta utilisent les Potaras. La fusion donne naissance à Vegetto, prêt à affronter Buu.'],['Vegetto','La fusion est terminée. Buu, je vais mettre fin à tes actes !']];vegitoChapter.post=[['Vegetto','Ce n’est pas encore terminé, mais nous avons repris l’avantage.'],['Narration','La puissance de Vegetto permet aux héros de reprendre espoir.']];}
@@ -710,6 +842,104 @@ const STORY_CHAPTER_TIMELINE_OVERRIDES={
  s2c16:{players:['Goku'],forms:{Goku:1}}
 };
 const findTimelineChapter=id=>SAGAS.flatMap(saga=>saga.ch).find(chapter=>chapter.id===id);
+const STORY_CHRONOLOGY_FIXES={
+ s4:{
+  buu1:{players:['Goku','Vegeta','Gohan','Piccolo','Krillin','Videl','Android 18'],forms:{Goku:2,Vegeta:2,Gohan:2,Piccolo:0,Krillin:0,Videl:0,'Android 18':0}},
+  s4c4:{players:['Gohan'],forms:{Gohan:2}},
+  s4c5:{players:['Goku','Vegeta'],forms:{Goku:2,Vegeta:2}},
+  s4c6:{players:['Goku','Vegeta','Gohan'],forms:{Goku:2,Vegeta:2,Gohan:2},scene:1},
+  s4c7:{players:['Goku'],forms:{Goku:3}},
+  s4c8:{players:['Goku'],forms:{Goku:2},scene:1},
+  s4c9:{players:['Gohan'],forms:{Gohan:3}},
+  s4c10:{players:['Gotenks'],forms:{Gotenks:1}},
+  s4c11:{players:['Gotenks'],forms:{Gotenks:2}},
+  buu2:{players:['Gohan'],forms:{Gohan:3},scene:1},
+  s4c12:{players:['Gohan'],forms:{Gohan:3}},
+  s4c13:{players:['Gohan','Piccolo'],forms:{Gohan:3,Piccolo:0}},
+  s4c14:{players:['Vegeta'],forms:{Vegeta:2},scene:1},
+  buu3:{players:['Vegetto'],forms:{Vegetto:1}},
+  s4c15:{players:['Goku','Vegeta'],forms:{Goku:3,Vegeta:2},scene:1},
+  s4c16:{players:['Goku'],forms:{Goku:3}}
+ },
+ daima:{
+  daimac16:{players:['Goku','Vegeta','Glorio'],forms:{Goku:4,Vegeta:2,Glorio:0},scene:0}
+ },
+ s3:{
+  cell1:{players:['Trunks'],forms:{Trunks:1},scene:1},
+  cell2:{players:['Goku'],forms:{Goku:0}},
+  cell3:{players:['Vegeta'],forms:{Vegeta:1}},
+  s3c4:{players:['Piccolo'],forms:{Piccolo:0}},
+  s3c5:{players:['Android 16','Android 17','Android 18'],forms:{'Android 16':0,'Android 17':0,'Android 18':0},scene:1},
+  s3c6:{players:['Piccolo'],forms:{Piccolo:0}},
+  s3c7:{players:['Android 16'],forms:{'Android 16':0},scene:1},
+  s3c8:{players:['Piccolo'],forms:{Piccolo:0}},
+  s3c9:{players:['Goku','Gohan'],forms:{Goku:1,Gohan:1},scene:1},
+  s3c10:{players:['Vegeta'],forms:{Vegeta:1}},
+  s3c11:{players:['Trunks'],forms:{Trunks:1},scene:1},
+  s3c12:{players:['Android 18','Cell'],forms:{'Android 18':0,Cell:0},scene:1},
+  s3c13:{players:['Goku'],forms:{Goku:1}},
+  s3c14:{players:['Gohan'],forms:{Gohan:2}},
+  s3c15:{players:['Goku'],forms:{Goku:1},scene:1},
+  s3c16:{players:['Gohan'],forms:{Gohan:2}}
+ },
+ gt:{
+  gt1:{players:['Goku'],forms:{Goku:3},scene:1},
+  gt2:{players:['Goku','Pan','Trunks'],forms:{Goku:3,Pan:1,Trunks:1},scene:1},
+  gtc3:{players:['Goku','Pan','Trunks'],forms:{Goku:3,Pan:1,Trunks:1},scene:1},
+  gtc4:{players:['Goku','Pan','Trunks'],forms:{Goku:3,Pan:1,Trunks:1},scene:1},
+  gtc5:{players:['Goku','Pan','Trunks'],forms:{Goku:3,Pan:1,Trunks:1},scene:1},
+  gtc6:{players:['Goku','Pan','Trunks'],forms:{Goku:3,Pan:1,Trunks:1},scene:1},
+  gtc7:{players:['Goku'],forms:{Goku:3},scene:0},
+  gtc8:{players:['Goku'],forms:{Goku:3},scene:0},
+  gtc9:{players:['Goku'],forms:{Goku:4},scene:1},
+  gtc10:{players:['Goku','Pan','Trunks'],forms:{Goku:4,Pan:1,Trunks:1},scene:0},
+  gtc11:{players:['Goku','Vegeta','Pan','Uub'],forms:{Goku:4,Vegeta:2,Pan:1,Uub:0},scene:1},
+  gtc12:{players:['Goku'],forms:{Goku:4},scene:1},
+  gtc13:{players:['Goku','Vegeta','Pan','Uub'],forms:{Goku:4,Vegeta:2,Pan:1,Uub:0},scene:1},
+  gtc14:{players:['Goku','Vegeta','Pan','Uub'],forms:{Goku:4,Vegeta:2,Pan:1,Uub:0},scene:1},
+  gtc15:{players:['Vegeta'],forms:{Vegeta:3},scene:1},
+  gtc16:{players:['Gogeta'],forms:{Gogeta:2},scene:0}
+ },
+ superhero:{
+  superhero1:{players:['Piccolo','Pan'],forms:{Piccolo:0,Pan:0}},
+  superhero2:{players:['Piccolo','Gohan','Pan'],forms:{Piccolo:0,Gohan:3,Pan:0}},
+  superhero3:{players:['Piccolo'],forms:{Piccolo:1}},
+  superhero4:{players:['Piccolo','Gohan','Pan','Gamma 1','Gamma 2'],forms:{Piccolo:1,Gohan:3,Pan:0,'Gamma 1':0,'Gamma 2':0}},
+  superhero5:{players:['Gohan'],forms:{Gohan:3}},
+  superhero6:{players:['Piccolo','Gohan','Pan'],forms:{Piccolo:1,Gohan:3,Pan:0}},
+  superhero7:{players:['Piccolo','Gohan','Pan'],forms:{Piccolo:1,Gohan:3,Pan:0}},
+  superhero8:{players:['Piccolo','Gamma 2'],forms:{Piccolo:1,'Gamma 2':0}},
+  superhero9:{players:['Piccolo','Gohan','Pan'],forms:{Piccolo:1,Gohan:3,Pan:0},scene:1},
+  superhero10:{players:['Piccolo','Gamma 2'],forms:{Piccolo:1,'Gamma 2':0},scene:1},
+  superhero11:{players:['Piccolo'],forms:{Piccolo:1}},
+  superhero12:{players:['Piccolo','Gohan','Pan'],forms:{Piccolo:1,Gohan:3,Pan:0}},
+  superhero13:{players:['Gohan'],forms:{Gohan:3},scene:1},
+  superhero14:{players:['Gohan'],forms:{Gohan:4}},
+  superhero15:{players:['Gohan','Piccolo'],forms:{Gohan:4,Piccolo:1}},
+  superhero16:{players:['Gohan','Piccolo','Pan'],forms:{Gohan:4,Piccolo:1,Pan:0}}
+ }
+};
+for(const [sagaId,chapters] of Object.entries(STORY_CHRONOLOGY_FIXES)){
+ for(const [chapterId,rule] of Object.entries(chapters)){
+  const chapter=findTimelineChapter(chapterId);if(!chapter)continue;
+  chapter.chapterPlayers=rule.players.filter(name=>CH.some(f=>f.n===name)&&name!==chapter.en);
+  chapter.formCaps=Object.fromEntries(Object.entries(rule.forms).filter(([name])=>CH.some(f=>f.n===name)));
+  if(rule.scene===1)chapter.scene=1;else if(rule.scene===0)delete chapter.scene;
+  if(chapterId==='gtc9')chapter.pre=[['Narration','Acculé par Baby, Goku maîtrise enfin la puissance du singe géant doré et atteint le Super Saiyan 4.'],['Goku','Cette puissance... je peux enfin la contrôler !'],['Baby Vegeta','Impossible ! Tu ne peux pas avoir dépassé ma puissance !']];
+  if(chapterId==='gtc15')chapter.pre=[['Narration','Bulma utilise les ondes Blutz pour permettre à Vegeta de retrouver sa queue et d’atteindre le Super Saiyan 4.'],['Vegeta','Je n’ai pas besoin de suivre Kakarot. Je vais atteindre cette puissance à ma manière.'],['Narration','Vegeta atteint le Super Saiyan 4 et rejoint le combat contre les dragons maléfiques.']];
+  if(chapterId==='gtc16')chapter.pre=[['Narration','Goku et Vegeta exécutent la danse de fusion et deviennent Gogeta Super Saiyan 4 pour affronter Omega Shenron.'],['Gogeta','Omega Shenron, ton règne s’arrête ici !'],['Omega Shenron','Vous ne pourrez pas effacer toute cette énergie négative !']];
+ }
+}
+const brolyMovieChapter=findTimelineChapter('filmsc10');if(brolyMovieChapter){brolyMovieChapter.formUnlocks=Array.from(new Set([...(brolyMovieChapter.formUnlocks||[]),'Broly']));brolyMovieChapter.rw='Transformations débloquées : Super Saiyan et Super Saiyan Full Power (Broly)';}
+const daimaSSJ4=findTimelineChapter('daimac16');
+if(daimaSSJ4){daimaSSJ4.formUnlocks=Array.from(new Set([...(daimaSSJ4.formUnlocks||[]),'Goku']));daimaSSJ4.rw='Transformation débloquée : Super Saiyan 4 (Goku)';}
+const gtFinal=findTimelineChapter('gtc16');
+if(gtFinal)gtFinal.rw='Transformation débloquée : Super Saiyan 4 (Gogeta)';
+const vegetaGT=findTimelineChapter('gtc15');
+if(vegetaGT)vegetaGT.rw='Transformation débloquée : Super Saiyan 4 (Vegeta)';
+const beastAwakening=findTimelineChapter('superhero13');
+if(beastAwakening){beastAwakening.formUnlocks=Array.from(new Set([...(beastAwakening.formUnlocks||[]),'Gohan']));beastAwakening.rw='Transformation débloquée : Gohan Beast';}
+
 for(const [chapterId,rule] of Object.entries(STORY_CHAPTER_TIMELINE_OVERRIDES)){
  const chapter=findTimelineChapter(chapterId);
  if(!chapter)continue;
@@ -749,7 +979,7 @@ const FORM_QUESTS=[
  {character:'Goku',index:1,name:'Super Saiyan',chapter:'s2c13'},
  {character:'Goku',index:2,name:'Super Saiyan 2',chapter:'s4c7'},
  {character:'Goku',index:3,name:'Super Saiyan 3',chapter:'s4c7'},
- {character:'Goku',index:4,name:'Super Saiyan 4',chapter:'gtc9'},
+ {character:'Goku',index:4,name:'Super Saiyan 4',chapter:'daimac16'},
  {character:'Goku',index:5,name:'Super Saiyan God',chapter:'sup2'},
  {character:'Goku',index:6,name:'Super Saiyan Blue',chapter:'superc8'},
  {character:'Goku',index:7,name:'Ultra Instinct',chapter:'superc14'},
@@ -767,8 +997,8 @@ const FORM_QUESTS=[
  {character:'Gohan',index:2,name:'Super Saiyan 2',chapter:'s3c14'},
  {character:'Gohan',index:3,name:'Ultimate',chapter:'s4c9'},
  {character:'Gohan',index:4,name:'Beast',chapter:'superhero13'},
- {character:'Broly',index:1,name:'Super Saiyan',chapter:'sup5'},
- {character:'Broly',index:2,name:'Super Saiyan Full Power',chapter:'sup5'},
+ {character:'Broly',index:1,name:'Super Saiyan',chapter:'filmsc10'},
+ {character:'Broly',index:2,name:'Super Saiyan Full Power',chapter:'filmsc10'},
  {character:'Piccolo',index:1,name:'Piccolo Orange',chapter:'superhero3'},
  {character:'Gogeta',index:1,name:'Super Saiyan',chapter:'film4'},
  {character:'Gogeta',index:2,name:'Super Saiyan 4',chapter:'gtc16'},
@@ -781,7 +1011,7 @@ const FORM_QUESTS=[
 
 // Complète automatiquement les quêtes pour toutes les formes réellement présentes dans le roster.
 const FORM_CHAPTER_BY_CHARACTER={
- 'Goku':'gtc9','Vegeta':'gtc15','Gogeta':'gtc16','Trunks':'s3','Gohan':'s4c9','Broly':'filmsc10',
+ 'Goku':'daimac16','Vegeta':'gtc15','Gogeta':'gtc16','Trunks':'s3','Gohan':'s4c9','Broly':'filmsc10',
  'Piccolo':'superhero3','Gogeta':'s4c15','Vegetto':'s4c15','Cell':'superhero4','Beerus':'super',
  'Jiren':'superc16','Gotenks':'s4c11','Majin Buu':'s4c16','Hit':'superc10','Goku Black':'superc14',
  'Cooler':'film2','Bardock':'s1c1','Android 13':'film3','Tapion':'film4',
@@ -802,7 +1032,7 @@ const chapterById=id=>{for(const sg of SAGAS){const c=sg.ch.find(x=>x.id===id);i
 const storyFormMax=name=>FORM_QUESTS.filter(q=>q.character===name&&Number(SS().forms?.[name]||0)>=q.index).reduce((m,q)=>Math.max(m,q.index),0);
 const SOON=[];
 let curCh=null,dlgNext=null;
-const SS=()=>{const z=sv.story||(sv.story={done:{},fl:{},forms:{}});z.done=z.done||{};z.fl=z.fl||{};z.forms=z.forms||{};if((Number(z.formOrderVersion)||0)<2){const bump=(n,from,max)=>{if(z.forms[n]!=null&&Number(z.forms[n])>=from)z.forms[n]=Math.min(max,Number(z.forms[n])+1)};bump('Goku',4,8);bump('Vegeta',3,7);bump('Gogeta',2,3);z.formOrderVersion=2;}if(z.forms['Gohan Beast']!=null){z.forms.Gohan=Math.max(Number(z.forms.Gohan)||0,Number(z.forms['Gohan Beast'])||0);delete z.forms['Gohan Beast'];}return z};
+const SS=()=>{const z=sv.story||(sv.story={done:{},fl:{},forms:{}});z.done=z.done||{};z.fl=z.fl||{};z.forms=z.forms||{};if((Number(z.formOrderVersion)||0)<2){const bump=(n,from,max)=>{if(z.forms[n]!=null&&Number(z.forms[n])>=from)z.forms[n]=Math.min(max,Number(z.forms[n])+1)};bump('Goku',4,8);bump('Vegeta',3,7);bump('Gogeta',2,3);z.formOrderVersion=2;}if(z.forms['Gohan Beast']!=null){z.forms.Gohan=Math.max(Number(z.forms.Gohan)||0,Number(z.forms['Gohan Beast'])||0);delete z.forms['Gohan Beast'];}if((Number(z.storyOrderVersion)||0)<1){const doneIds=Object.keys(z.done);const playedGT=doneIds.some(id=>id==='gt1'||id==='gt2'||id.startsWith('gtc'));const playedSuper=doneIds.some(id=>(id.startsWith('sup')&&!id.startsWith('superhero'))||id.startsWith('superc'));const markSaga=id=>{const saga=SAGAS.find(item=>item.id===id);if(saga)for(const chapter of saga.ch)if(!z.done[chapter.id])z.done[chapter.id]={s:1,clears:1,migrated:1};};if(playedGT||playedSuper)markSaga('daima');if(playedSuper)markSaga('gt');z.storyOrderVersion=1;}return z};
 function chOpen(c){const sg=SAGAS.find(x=>x.ch.includes(c)),gate=sg&&STORY_SAGA_REQ[sg.id];return (c.opt||!gate||!!SS().done[gate])&&(!c.req||!!SS().done[c.req])}
 function storyChapterLockReason(c){const sg=SAGAS.find(x=>x.ch.includes(c)),gate=sg&&STORY_SAGA_REQ[sg.id],need=(gate&&!SS().done[gate])?gate:(c.req&&!SS().done[c.req]?c.req:null);if(!need)return '';const p=chapterById(need);return 'À débloquer après : '+(p?p.t:need)}
 function collMenu(){dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>COLLECTION</h1>';const L=[];for(const sg of SAGAS)for(const c of sg.ch)if(c.rw)L.push([c.rw,!!SS().done[c.id]]);const d=document.createElement('div');d.style.cssText='width:min(92%,520px);text-align:left;font-size:14px';d.innerHTML=L.map(x=>'<div style="padding:4px 0;opacity:'+(x[1]?1:.35)+'">'+(x[1]?'\u2714 '+x[0]:'\u{1F512} ???')+'</div>').join('')+'<div style="padding:8px 0;opacity:.8">Personnages : '+CH.length+' \u00b7 Transformations : '+CH.reduce((a,c)=>a+c.fm.length-1,0)+'</div>';M.appendChild(d);M.appendChild(btn('\u2190 Retour',menu))}
