@@ -18,7 +18,10 @@ Object.assign(MVS,{
  'Xeno Goku':[mv('Xeno Kamehameha',20,26,16,32,'kamehameha','#f66','#fff',28,13,70,110),mv('Time Patrol Rush',26,32,10,34,'rush','#f66','#fff',36,16,38,130),Object.assign(mv('Super Dragon Fist',58,100,36,78,'dragon','#f44','#fff',66,15,42,260),{dash:1})],
  Shallot:[mv('Wild Cannon',19,25,14,30,'beam','#f84','#fff',26,13,70,100),mv('Rising Rush',24,30,10,32,'rush','#f84','#fff',34,16,36,120),Object.assign(mv('Godly Warrior Strike',56,95,34,72,'dragon','#f44','#fff',56,15,40,240),{dash:1})]
 });
-const MV=(f,i)=>MVS[f.c.n][i],mc=(f,i)=>Math.max(5,Math.min(100,Math.round(MV(f,i).k*(1-f.f$.kr)*(f.c.kiCostMult||1))));
+// Coups signature pour les deux personnages qui n'avaient pas encore de jeu de mouvements.
+MVS['Android 13']=[mv('S.S. Deadly Bomber',20,26,14,30,'sphere','#8cf','#fff',34,12,90,110),mv('Energy Crush',24,30,16,34,'rush','#8cf','#fff',38,14,40,130),mv('Full Power Energy Ball',58,96,38,78,'nova','#8cf','#fff',82,11,90,250)];
+MVS.Tapion=[mv('Brave Sword Attack',18,24,8,26,'sword','#f88','#fff',24,16,18,90),mv('Brave Cannon',24,30,16,34,'beam','#f88','#fff',30,13,70,130),mv('Hirudegarn Seal',54,92,34,70,'wave','#f88','#fff',60,12,80,240)];
+const MV=(f,i)=>{const list=MVS[f.c.n]||MVS.Goku;return list[Math.max(0,Math.min(list.length-1,i|0))]},mc=(f,i)=>Math.max(5,Math.min(100,Math.round(MV(f,i).k*(1-f.f$.kr)*(f.c.kiCostMult||1))));
 function fireMv(f){const m=f.mv;if(!m){f.st='i';return}const st=f.c.st||{},rate=Math.max(.68,Math.min(1.38,1+(st.te-50)*.0035+(st.en-50)*.0018+(st.in-50)*.0017)),launch=Math.max(4,Math.round(m.f/rate)),finish=Math.max(launch+8,Math.round(m.T/rate));if(f.t>=launch&&!f.mvFired){f.mvFired=1;const o2=f===G.a?G.b:G.a,sc=f.f$.sc*(f.c.lk.sc||1);let x=f.x+f.face*(m.sh==='sword'?70:40),y=f.y-70,vx=f.face*m.spd,vy=0,wait=0;if(m.st==='drop'){x=o2.x;y=-80;vx=0;vy=m.spd}else if(m.st==='pillar'){x=o2.x;y=o2.y-60;vx=0;wait=m.wt||22}else if(m.st==='arc'){y=f.y-150*sc;vy=(o2.y-60-y)/Math.max(1,Math.abs(o2.x-x)/m.spd)}G.pr.push({x,y,vx,vy,wait,o:f,l:m.l,d:m.d,ul:f.at==='ul'?1:0,m});G.ann={t:80,s:m.n,c:m.c,big:f.at==='ul'};sfxMv(m);shake=Math.max(shake,f.at==='ul'?18:6)}if(f.t>finish){f.st='i';f.at=null;f.mv=null;f.atk=null;f.mvFired=0}}
 function drawPj(p){const m=p.m,c=m.c,c2=m.c2||'#fff',d=p.o.face,t=G.tick,w=m.w,x=p.x,y=p.y,sh=m.sh;
  // Rendu léger des projectiles : évite les dizaines de dégradés et de tracés coûteux par image.
@@ -214,7 +217,10 @@ const EXTRA=[
  {n:'Pikkon',hair:'#b8c8a0',gi:'#3e805d',aura:'#9f8',tf:'Flamme du démon',fm:[['Base','#b8c8a0','#9f8'],['Flamme du démon','#b8c8a0','#fff']],st:[42,44,46,42,44,44,44,48,'Guerrier expérimenté, techniques et mobilité équilibrées.'],mv:[['Thunder Flash',20,26,14,30,'beam','#9f8'],['Hyper Tornado',24,32,12,34,'rush','#9f8'],['Flame of Justice',54,94,36,74,'nova','#fff']]}
 ];
 for(const e of EXTRA){
- CH.push({n:e.n,hair:e.hair,gi:e.gi,aura:e.aura,sp:5,pw:1,tf:e.tf,tH:e.hair,tA:e.aura,sn:e.mv[0][0],un:e.mv[2][0]});
+ // Réutilise la fiche déjà créée dans characters.js au lieu d'ajouter un doublon.
+ let c=CH.find(x=>x.n===e.n);
+ if(!c){c={n:e.n,hair:e.hair,gi:e.gi,aura:e.aura,sp:5,pw:1,tf:e.tf,tH:e.hair,tA:e.aura,sn:e.mv[0][0],un:e.mv[2][0]};CH.push(c)}
+ else Object.assign(c,{hair:c.hair||e.hair,gi:c.gi||e.gi,aura:c.aura||e.aura,sp:Number(c.sp)||5,pw:Number(c.pw)||1,tf:c.tf||e.tf,tH:c.tH||e.hair,tA:c.tA||e.aura,sn:c.sn||e.mv[0][0],un:c.un||e.mv[2][0]});
  FM[e.n]=e.fm.map((f,i)=>fm(f[0],f[1],f[2],i?{eye:'#fff',el:true}:{}));
  LOOK[e.n]={top:e.gi,und:'#20202a',pa:e.gi,sash:e.aura,bt:'#222',gl:e.gi,mus:1,hs:'goku',pc:e.aura};
  STT[e.n]={fo:e.st[0],vi:e.st[1],in:e.st[2],du:e.st[3],en:e.st[4],ed:e.st[5],ki:e.st[6],te:e.st[7],d:e.st[8]};
@@ -223,10 +229,21 @@ for(const e of EXTRA){
 }
 Object.assign(FS,{'Énergie infinie':[1.5,.15,0],'Puissance libérée':[2,.2,0],'Potentiel libéré':[2,.2,0],'Puissance maximale':[2,.2,0],'Max Power':[2.2,.2,0],'Mode combat':[1.4,.15,0],'Super Saiyan':[1.5,.1,0],'Super Saiyan 2':[2,.15,0],'Super Saiyan Berserk':[3,.25,1200],'Super Maximum Light Speed':[1.4,.25,0],'Dieu de la destruction':[4.5,.3,1200],'Corps immortel':[3,.3,1200],'Magie démoniaque':[2.5,.2,0],'Super Janemba':[3,.25,1200],'Énergie absorbée':[3,.25,1200],'Jeunesse absorbée':[4,.3,1200],'Œil éveillé':[2.5,.2,0],'Énergie de Majin Buu':[2.5,.2,0],'Potentiel éveillé':[1.8,.15,0],'Forme Majin':[2.5,.25,1200],'Flamme du démon':[2,.2,0]});
 Object.assign(HR,{'Énergie infinie':[1.3,.2],'Puissance libérée':[1.25,.18],'Potentiel libéré':[1.2,.15],'Puissance maximale':[1.2,.15],'Max Power':[1.3,.2],'Mode combat':[1.4,.25],'Super Saiyan':[1.5,.2],'Super Saiyan 2':[1.7,.25],'Super Saiyan Berserk':[1.5,.3],'Super Maximum Light Speed':[1.9,.35],'Dieu de la destruction':[1.7,.3],'Corps immortel':[1.8,.35],'Magie démoniaque':[1.5,.2],'Super Janemba':[1.8,.3],'Énergie absorbée':[1.8,.3],'Jeunesse absorbée':[2,.35],'Œil éveillé':[1.5,.25],'Énergie de Majin Buu':[1.5,.25],'Potentiel éveillé':[1.3,.2],'Forme Majin':[1.8,.3],'Flamme du démon':[1.5,.25]});
-for(const c of CH){const t=STT[c.n];for(const k of ['fo','vi','in','du','en','ed','ki','te'])t[k]=Math.max(10,Math.min(100,Math.round(t[k])));}
+for(const c of CH){
+ const t=STT[c.n]||(STT[c.n]={});
+ for(const k of ['fo','vi','in','du','en','ed','ki','te']){
+  const value=Number(t[k]??c.st?.[k]??75);
+  t[k]=Math.max(10,Math.min(100,Number.isFinite(value)?Math.round(value):75));
+ }
+ if(!t.d)t.d=c.st?.d||'Profil de combat : '+c.n;
+}
 for(const e of EXTRA){const c=CH.find(x=>x.n===e.n),tw=TW[c.n];c.fm=FM[c.n].map((x,i)=>{const q=FS[x.n]||[1+i*.5,.1,0],h=HR[x.n]||[1,0];return Object.assign(x,{pw:1+(q[0]-1)*tw.pw,kr:Math.min(.5,q[1]*tw.kr),dur:q[2],sp:1+.045*i*tw.sp,hm:1+(h[0]-1)*tw.hm,res:Math.min(.5,h[1]*tw.res)})});c.lk=LOOK[c.n];c.lk.pm=PM[c.n];}
 CH.forEach(c=>{
-  const raw=STT[c.n],t=c.st=Object.assign({},raw);for(const k of ['fo','vi','in','du','en','ed','ki','te'])t[k]=Math.round(44+(Number(raw[k]||44)-44)*.68);
+ const raw=STT[c.n]||{},previous=c.st||{},t=c.st=Object.assign({},previous,raw);
+ for(const k of ['fo','vi','in','du','en','ed','ki','te']){
+  const value=Number(raw[k]??previous[k]??75);
+  t[k]=Math.round(44+((Number.isFinite(value)?value:75)-44)*.68);
+ }
   // Vitesse (vi) : vitesse de déplacement, esquive et rapidité des attaques
   c.sp=+(2.6+t.vi*.036).toFixed(2);
   c.atkSpd=+(0.88+(t.vi/100)*0.36).toFixed(3);
