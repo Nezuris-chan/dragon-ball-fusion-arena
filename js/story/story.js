@@ -535,6 +535,7 @@ const STORY_FORM_UNLOCKS={
 for(const [chapterId,unlock] of Object.entries(STORY_FORM_UNLOCKS)){
  const ch=SAGAS.flatMap(s=>s.ch).find(c=>c.id===chapterId);
  if(!ch)continue;
+ ch.formUnlocks=ch.formUnlocks||[];if(!ch.formUnlocks.includes(unlock[0]))ch.formUnlocks.push(unlock[0]);
  ch.pre=ch.pre||[];
  ch.pre.push(['Narration','Éveil de transformation : '+unlock[1]+'. Cette forme est associée à ce chapitre de l’histoire.']);
  ch.rw='Transformation : '+unlock[1]+' (Histoire)';
