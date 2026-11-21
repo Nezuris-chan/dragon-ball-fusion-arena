@@ -156,13 +156,13 @@ s0:['Goku','Yamcha','Krillin','Tenshinhan','Muten Roshi','Piccolo'],
 s3:['Goku','Vegeta','Trunks','Gohan','Piccolo','Android 16','Android 17','Android 18'],
 s4:['Goku','Vegeta','Gohan','Gotenks','Piccolo','Majin Buu'],
 daima:['Goku','Vegeta','Glorio','Gomah','Tamagami'],
-super:['Goku','Vegeta','Gohan','Beerus','Hit','Jiren','Broly','Android 17','Kefla','Toppo','Dyspo','Zamasu fusionné'],
+super:['Goku','Vegeta','Gohan','Beerus','Hit','Jiren','Android 17','Kefla','Toppo','Dyspo','Zamasu fusionné'],
 heroes:['Xeno Goku','Goku','Vegeta','Cumber','Hearts','Gogeta','Vegetto'],
-gt:['Goku','Vegeta','Baby Vegeta','Omega Shenron','Pan','Uub'],
+gt:['Goku','Vegeta','Baby Vegeta','Omega Shenron','Pan','Trunks','Uub'],
 af:['Goku','Vegeta','Gohan','Gogeta','Vegetto','Shallot','Omega Shenron','Broly'],
 kakumei:['Goku','Vegeta','Jiren','Beerus','Gohan','Piccolo','Android 17','Broly'],
 custom:['Goku','Vegeta','Gohan','Piccolo','Trunks','Broly','Gogeta','Vegetto','Freezer','Cell','Beerus','Jiren','Gotenks','Hit','Android 17','Kefla','Shallot'],
-films:['Goku','Vegeta','Trunks','Piccolo','Tapion','Android 13','Cooler','Janemba']
+films:['Goku','Vegeta','Trunks','Piccolo','Broly','Tapion','Android 13','Cooler','Janemba']
 };
 const STORY_EXTRA={
 s1:[
@@ -594,7 +594,7 @@ const STORY_DIALOGUE_VOICES={
  "Android 13":"Je suis programmé pour éliminer Goku. Rien ne me détournera de ma cible.",
  Janemba:"Gogogogogo !",
  Broly:"Kakarot... ma puissance ne cesse de grandir !",
- "Gamma 1":"Je suis un super-héros. Je ne laisserai pas cette menace gagner.",
+ "Whis":"Vous avez progressé, mais votre maîtrise du ki divin doit encore s’améliorer.",\n "Frost":"Je vais vous montrer que l’univers 6 possède aussi ses champions.",\n "Panzy":"Je ne suis pas une princesse qui attend qu’on la sauve. Je peux me défendre !",\n "Tamago":"Le roi Gomah ne tolérera aucune intrusion dans son palais.",\n "Fu":"Les anomalies temporelles sont parfaites pour mes expériences. Essayez donc de m’arrêter.",\n "Towa":"Le royaume démoniaque ne laissera pas vos interventions ruiner nos plans.",\n "Gamma 1":"Je suis un super-héros. Je ne laisserai pas cette menace gagner.",
  "Gamma 2":"L'heure est venue de montrer ce que peut faire un véritable héros.",
  "Cell Max":"GRAAAAAH !"
 };
@@ -612,6 +612,16 @@ const STORY_HERO_LINES={
  kakumei:["Les dieux observent ce combat, mais ce sont nos choix qui comptent.","Je vais montrer que les mortels peuvent décider de leur propre avenir.","Cette épreuve dépasse un simple tournoi. Il faut empêcher les univers de sombrer.","Je vais me battre sans perdre de vue ceux que je protège."],
  films:["Cette menace vient d'un autre monde, mais elle ne détruira pas la Terre.","Je vais protéger mes amis. Peu importe la puissance de cet ennemi.","Vegeta, couvrons-nous mutuellement et trouvons son point faible.","La bataille n'est pas terminée tant que le danger menace encore quelqu'un."],
  superhero:["Piccolo et Pan comptent sur moi. Je ne peux pas ignorer ce qui se prépare.","Les Gammas se prennent pour des héros, mais quelqu'un les manipule.","Je dois protéger Piccolo. Je ne laisserai pas Cell Max détruire la ville.","Cette puissance est différente de tout ce que j'ai connu. Je vais la maîtriser."]
+};
+const STORY_CHAPTER_LEADS={
+ s1c1:'Goku',s1c2:'Goku',s1c3:'Piccolo',s1c4:'Goku',s1c5:'Goku',s1c6:'Goku',s1c7:'Goku',s1c8:'Gohan',s1c9:'Goku',s1c10:'Goku',s1c11:'Gohan',s1c12:'Goku',s1c13:'Vegeta',s1c14:'Gohan',s1c15:'Goku',s1c16:'Gohan',
+ s2c1:'Gohan',s2c2:'Vegeta',s2c3:'Vegeta',s2c4:'Vegeta',s2c5:'Vegeta',s2c6:'Vegeta',s2c7:'Goku',s2c8:'Vegeta',s2c9:'Goku',s2c10:'Goku',s2c11:'Goku',s2c12:'Goku',s2c13:'Goku',s2c14:'Goku',s2c15:'Goku',s2c16:'Goku',
+ cell1:'Trunks',cell2:'Goku',cell3:'Vegeta',s3c4:'Piccolo',s3c5:'Android 16',s3c6:'Piccolo',s3c7:'Android 16',s3c8:'Piccolo',s3c9:'Gohan',s3c10:'Vegeta',s3c11:'Trunks',s3c12:'Android 18',s3c13:'Goku',s3c14:'Gohan',s3c15:'Goku',s3c16:'Gohan',
+ buu1:'Gohan',s4c4:'Gohan',s4c5:'Vegeta',s4c6:'Goku',s4c7:'Goku',s4c8:'Gotenks',s4c9:'Gohan',s4c10:'Gotenks',s4c11:'Gotenks',buu2:'Gohan',s4c12:'Gohan',s4c13:'Gohan',s4c14:'Vegeta',buu3:'Vegetto',s4c15:'Goku',s4c16:'Goku',
+ da1:'Goku',da2:'Glorio',da3:'Goku',daimac4:'Goku',daimac5:'Panzy',daimac6:'Glorio',daimac7:'Goku',daimac8:'Goku',daimac9:'Goku',daimac10:'Glorio',daimac11:'Goku',daimac12:'Vegeta',daimac13:'Goku',daimac14:'Vegeta',daimac15:'Goku',daimac16:'Goku',
+ gt1:'Goku',gt2:'Pan',gtc3:'Trunks',gtc4:'Pan',gtc5:'Goku',gtc6:'Goku',gtc7:'Goku',gtc8:'Goku',gtc9:'Goku',gtc10:'Goku',gtc11:'Goku',gtc12:'Goku',gtc13:'Goku',gtc14:'Goku',gtc15:'Vegeta',gtc16:'Gogeta',
+ sup1:'Goku',sup2:'Goku',sup3:'Goku',sup4:'Goku',sup5:'Vegeta',superc6:'Goku',superc7:'Goku',superc8:'Goku',superc9:'Trunks',superc10:'Goku',superc11:'Vegeta',superc12:'Trunks',superc13:'Vegetto',superc14:'Goku',superc15:'Goku',superc16:'Goku',
+ superhero1:'Piccolo',superhero2:'Piccolo',superhero3:'Piccolo',superhero4:'Gohan',superhero5:'Gohan',superhero6:'Piccolo',superhero7:'Piccolo',superhero8:'Piccolo',superhero9:'Piccolo',superhero10:'Gamma 2',superhero11:'Piccolo',superhero12:'Gohan',superhero13:'Gohan',superhero14:'Gohan',superhero15:'Gohan',superhero16:'Gohan'
 };
 const STORY_LEADS={s0:'Goku',s1:'Goku',s2:'Gohan',s3:'Piccolo',s4:'Goku',daima:'Goku',gt:'Goku',super:'Goku',heroes:'Xeno Goku',af:'Goku',kakumei:'Goku',films:'Goku',superhero:'Piccolo'};
 const STORY_ENDINGS={
@@ -637,7 +647,7 @@ for(const [sagaId,chapters] of Object.entries(STORY_REWRITES)){
   ch.t='Chapitre '+(i+1)+' : '+title;
   ch.sub=subtitle;
   if(CH.some(c=>c.n===enemy))ch.en=enemy;
-  const lead=STORY_LEADS[sagaId]||'Goku';
+  const lead=STORY_CHAPTER_LEADS[ch.id]||STORY_LEADS[sagaId]||'Goku';
   const heroLines=STORY_HERO_LINES[sagaId]||STORY_HERO_LINES.super;
   const heroLine=heroLines[i%heroLines.length];
   const enemyLine=STORY_DIALOGUE_VOICES[enemy]||enemy+' : Tu ne passeras pas. Je défendrai mon objectif jusqu’au bout.';
