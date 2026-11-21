@@ -760,7 +760,16 @@ const STORY_CHAPTER_RULE_GROUPS=[
  {ids:['kak1','kakumeic3','kakumeic7','kakumeic12','kakumeic15'],players:['Goku','Vegeta','Gohan','Piccolo','Android 17','Broly','Beerus'],forms:{Goku:8,Vegeta:7,Gohan:3,Piccolo:0,'Android 17':0,Broly:2,Beerus:0}},
  {ids:['kak2','kakumeic4','kakumeic6','kakumeic10','kakumeic14'],players:['Goku','Vegeta','Jiren','Gohan','Piccolo','Android 17','Broly'],forms:{Goku:8,Vegeta:7,Jiren:1,Gohan:3,Piccolo:0,'Android 17':0,Broly:2}},
  {ids:['kakumeic5','kakumeic13'],players:['Vegeta','Jiren','Beerus','Gohan','Piccolo','Android 17','Broly'],forms:{Vegeta:7,Jiren:1,Beerus:0,Gohan:3,Piccolo:0,'Android 17':0,Broly:2}},
- {ids:['kakumeic8','kakumeic9','kakumeic11','kakumeic16'],players:['Goku','Vegeta','Jiren','Gohan','Piccolo','Android 17','Broly'],forms:{Goku:8,Vegeta:7,Jiren:1,Gohan:3,Piccolo:0,'Android 17':0,Broly:2}}
+ {ids:['kakumeic8','kakumeic9','kakumeic11','kakumeic16'],players:['Goku','Vegeta','Jiren','Gohan','Piccolo','Android 17','Broly'],forms:{Goku:8,Vegeta:7,Jiren:1,Gohan:3,Piccolo:0,'Android 17':0,Broly:2}},
+ {ids:['sup2'],players:['Goku'],forms:{Goku:5}},
+ {ids:['sup5'],players:['Vegeta'],forms:{Vegeta:4}},
+ {ids:['superc6'],players:['Goku','Vegeta'],forms:{Goku:5,Vegeta:4}},
+ {ids:['superc8'],players:['Goku','Vegeta'],forms:{Goku:6,Vegeta:5}},
+ {ids:['superc9'],players:['Goku','Vegeta','Trunks'],forms:{Goku:6,Vegeta:5,Trunks:1}},
+ {ids:['superc12'],players:['Trunks'],forms:{Trunks:2}},
+ {ids:['superc14'],players:['Goku'],forms:{Goku:7}},
+ {ids:['superc15'],players:['Goku'],forms:{Goku:7}},
+ {ids:['superc16'],players:['Goku','Vegeta'],forms:{Goku:8,Vegeta:6}}
 ];
 const vegitoChapter=SAGAS.flatMap(saga=>saga.ch).find(item=>item.id==='s4c15');
 if(vegitoChapter){vegitoChapter.en='Majin Buu';vegitoChapter.pre=[['Narration','Goku et Vegeta utilisent les Potaras. La fusion donne naissance à Vegetto, prêt à affronter Buu.'],['Vegetto','La fusion est terminée. Buu, je vais mettre fin à tes actes !']];vegitoChapter.post=[['Vegetto','Ce n’est pas encore terminé, mais nous avons repris l’avantage.'],['Narration','La puissance de Vegetto permet aux héros de reprendre espoir.']];}
@@ -812,6 +821,24 @@ const STORY_CHAPTER_TIMELINE_OVERRIDES={
 };
 const findTimelineChapter=id=>SAGAS.flatMap(saga=>saga.ch).find(chapter=>chapter.id===id);
 const STORY_CHRONOLOGY_FIXES={
+ s4:{
+  buu1:{players:['Goku','Vegeta','Gohan','Piccolo','Krillin','Videl','Android 18'],forms:{Goku:2,Vegeta:2,Gohan:2,Piccolo:0,Krillin:0,Videl:0,'Android 18':0}},
+  s4c4:{players:['Gohan'],forms:{Gohan:2}},
+  s4c5:{players:['Goku','Vegeta'],forms:{Goku:3,Vegeta:2}},
+  s4c6:{players:['Goku','Vegeta','Gohan'],forms:{Goku:3,Vegeta:2,Gohan:2},scene:1},
+  s4c7:{players:['Goku'],forms:{Goku:3}},
+  s4c8:{players:['Gotenks'],forms:{Gotenks:0},scene:1},
+  s4c9:{players:['Gohan'],forms:{Gohan:3}},
+  s4c10:{players:['Gotenks'],forms:{Gotenks:1}},
+  s4c11:{players:['Gotenks'],forms:{Gotenks:2}},
+  buu2:{players:['Gohan'],forms:{Gohan:3},scene:1},
+  s4c12:{players:['Gohan'],forms:{Gohan:3}},
+  s4c13:{players:['Gohan','Piccolo'],forms:{Gohan:3,Piccolo:0}},
+  s4c14:{players:['Vegeta'],forms:{Vegeta:2},scene:1},
+  buu3:{players:['Vegetto'],forms:{Vegetto:1}},
+  s4c15:{players:['Vegetto'],forms:{Vegetto:1},scene:1},
+  s4c16:{players:['Goku'],forms:{Goku:3}}
+ },
  daima:{
   daimac16:{players:['Goku','Vegeta','Glorio'],forms:{Goku:4,Vegeta:2,Glorio:0},scene:0}
  },
