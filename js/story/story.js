@@ -590,6 +590,7 @@ for(const group of STORY_CHAPTER_RULE_GROUPS){
   chapter.chapterPlayers=available;
   chapter.formCaps={};
   for(const name of available)chapter.formCaps[name]=Math.max(0,Number(group.forms[name])||0);
+  if(group.formWhitelist)chapter.formWhitelist=group.formWhitelist;
  }
 }
 
