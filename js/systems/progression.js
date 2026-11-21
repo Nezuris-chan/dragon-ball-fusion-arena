@@ -90,8 +90,9 @@ function recordAdventureBattle(won,mode,difficulty){
   q.lastMissionResult={id:q.activeMission,won:!!won,completed:false,xp:0,rp:0};
   if(won&&mission&&!already){
    q.completedMissions.push(mission.id);sv.xp=(Number(sv.xp)||0)+mission.xp;sv.rp=(Number(sv.rp)||0)+mission.rp;
-   q.lastMissionResult.completed=true;q.lastMissionResult.xp=mission.xp;q.lastMissionResult.rp=mission.rp;q.activeMission='';
+   q.lastMissionResult.completed=true;q.lastMissionResult.xp=mission.xp;q.lastMissionResult.rp=mission.rp;
   }
+  if(won)q.activeMission='';
  }
  save();
 }
