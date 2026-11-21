@@ -107,3 +107,22 @@ small{opacity:.7;max-width:90%}
  #m .fighter-tile{min-height:100px}
 }
 @media(prefers-reduced-motion:reduce){#m,#m>*{animation:none!important}#m button{transition:none!important}}
+
+
+/* Correctif lisibilité : aucun aplat sombre ni contour sur les textes de l'interface */
+#m, #m *{text-shadow:none!important;-webkit-text-stroke:0!important}
+#m p,#m span,#m small,#m label,#m b,#m strong,#m em{background-color:transparent!important;box-shadow:none!important}
+#m h1{color:#8eeaff!important;text-shadow:0 0 18px rgba(60,190,255,.24)!important}
+#m h2,#m h3{color:#d7f5ff!important}
+#m .select-layout{grid-template-columns:minmax(0,1.25fr) minmax(300px,.85fr);gap:18px}
+#m .select-roster{background:linear-gradient(145deg,rgba(9,22,45,.94),rgba(13,15,38,.94));border:1px solid rgba(104,205,255,.36);box-shadow:0 14px 35px rgba(0,0,0,.28)}
+#m .fighter-tile{position:relative;overflow:hidden;background:linear-gradient(145deg,#203b62,#111b35);border:1px solid rgba(130,190,235,.28);min-height:118px}
+#m .fighter-tile:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(92,210,255,.15),transparent 65%);pointer-events:none}
+#m .fighter-tile.selected{border-color:#8beaff;background:linear-gradient(145deg,#176080,#35245d);box-shadow:0 0 0 1px #8beaff55,0 0 22px #28cfff33}
+#m .select-details{background:linear-gradient(155deg,rgba(12,28,54,.97),rgba(17,17,44,.97));border:1px solid rgba(104,205,255,.38);box-shadow:0 14px 35px rgba(0,0,0,.24)}
+#m .fighter-preview{min-height:112px;background:linear-gradient(115deg,#16486a,#302452);border:1px solid rgba(120,220,255,.35)}
+#m .selection-section{padding:12px;background:linear-gradient(145deg,rgba(17,36,65,.94),rgba(18,20,47,.94))}
+#m .select-subtitle{font-size:14px;color:#c5e7ff}
+#m .fighter-tile span{color:#f0f7ff}
+#m button.on{color:#fff;border-color:#9af0ff;background:linear-gradient(135deg,#126080,#3b3675)}
+@media(max-width:760px){#m .select-layout{grid-template-columns:minmax(0,1fr)}#m .select-roster{max-height:44vh}}
