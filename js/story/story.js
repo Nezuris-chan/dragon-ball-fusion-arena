@@ -600,6 +600,12 @@ const STORY_DIALOGUE_VOICES={
  "Tamago":"Le roi Gomah ne tolérera aucune intrusion dans son palais.",
  "Fu":"Les anomalies temporelles sont parfaites pour mes expériences. Essayez donc de m’arrêter.",
  "Towa":"Le royaume démoniaque ne laissera pas vos interventions ruiner nos plans.",
+ "Whis":"Vous avez progressé, mais votre maîtrise du ki divin doit encore s’améliorer.",
+ "Frost":"Je vais vous montrer que l’univers 6 possède aussi ses champions.",
+ "Panzy":"Je ne suis pas une princesse qui attend qu’on la sauve. Je peux me défendre !",
+ "Tamago":"Le roi Gomah ne tolérera aucune intrusion dans son palais.",
+ "Fu":"Les anomalies temporelles sont parfaites pour mes expériences. Essayez donc de m’arrêter.",
+ "Towa":"Le royaume démoniaque ne laissera pas vos interventions ruiner nos plans.",
  "Gamma 1":"Je suis un super-héros. Je ne laisserai pas cette menace gagner.",
  "Gamma 2":"L'heure est venue de montrer ce que peut faire un véritable héros.",
  "Cell Max":"GRAAAAAH !"
@@ -924,6 +930,7 @@ for(const [sagaId,chapters] of Object.entries(STORY_CHRONOLOGY_FIXES)){
   if(chapterId==='gtc16')chapter.pre=[['Narration','Goku et Vegeta exécutent la danse de fusion et deviennent Gogeta Super Saiyan 4 pour affronter Omega Shenron.'],['Gogeta','Omega Shenron, ton règne s’arrête ici !'],['Omega Shenron','Vous ne pourrez pas effacer toute cette énergie négative !']];
  }
 }
+const brolyMovieChapter=findTimelineChapter('filmsc10');if(brolyMovieChapter){brolyMovieChapter.formUnlocks=Array.from(new Set([...(brolyMovieChapter.formUnlocks||[]),'Broly']));brolyMovieChapter.rw='Transformations débloquées : Super Saiyan et Super Saiyan Full Power (Broly)';}
 const daimaSSJ4=findTimelineChapter('daimac16');
 if(daimaSSJ4){daimaSSJ4.formUnlocks=Array.from(new Set([...(daimaSSJ4.formUnlocks||[]),'Goku']));daimaSSJ4.rw='Transformation débloquée : Super Saiyan 4 (Goku)';}
 const gtFinal=findTimelineChapter('gtc16');
@@ -1025,7 +1032,7 @@ const chapterById=id=>{for(const sg of SAGAS){const c=sg.ch.find(x=>x.id===id);i
 const storyFormMax=name=>FORM_QUESTS.filter(q=>q.character===name&&Number(SS().forms?.[name]||0)>=q.index).reduce((m,q)=>Math.max(m,q.index),0);
 const SOON=[];
 let curCh=null,dlgNext=null;
-const SS=()=>{const z=sv.story||(sv.story={done:{},fl:{},forms:{}});z.done=z.done||{};z.fl=z.fl||{};z.forms=z.forms||{};if((Number(z.formOrderVersion)||0)<2){const bump=(n,from,max)=>{if(z.forms[n]!=null&&Number(z.forms[n])>=from)z.forms[n]=Math.min(max,Number(z.forms[n])+1)};bump('Goku',4,8);bump('Vegeta',3,7);bump('Gogeta',2,3);z.formOrderVersion=2;}if(z.forms['Gohan Beast']!=null){z.forms.Gohan=Math.max(Number(z.forms.Gohan)||0,Number(z.forms['Gohan Beast'])||0);delete z.forms['Gohan Beast'];}if((Number(z.storyOrderVersion)||0)<1){const doneIds=Object.keys(z.done);const playedGT=doneIds.some(id=>id==='gt1'||id==='gt2'||id.startsWith('gtc'));const playedSuper=doneIds.some(id=>id.startsWith('sup')||id.startsWith('superc'));const markSaga=id=>{const saga=SAGAS.find(item=>item.id===id);if(saga)for(const chapter of saga.ch)if(!z.done[chapter.id])z.done[chapter.id]={s:1,clears:1,migrated:1};};if(playedGT||playedSuper)markSaga('daima');if(playedSuper)markSaga('gt');z.storyOrderVersion=1;}return z};
+const SS=()=>{const z=sv.story||(sv.story={done:{},fl:{},forms:{}});z.done=z.done||{};z.fl=z.fl||{};z.forms=z.forms||{};if((Number(z.formOrderVersion)||0)<2){const bump=(n,from,max)=>{if(z.forms[n]!=null&&Number(z.forms[n])>=from)z.forms[n]=Math.min(max,Number(z.forms[n])+1)};bump('Goku',4,8);bump('Vegeta',3,7);bump('Gogeta',2,3);z.formOrderVersion=2;}if(z.forms['Gohan Beast']!=null){z.forms.Gohan=Math.max(Number(z.forms.Gohan)||0,Number(z.forms['Gohan Beast'])||0);delete z.forms['Gohan Beast'];}if((Number(z.storyOrderVersion)||0)<1){const doneIds=Object.keys(z.done);const playedGT=doneIds.some(id=>id==='gt1'||id==='gt2'||id.startsWith('gtc'));const playedSuper=doneIds.some(id=>(id.startsWith('sup')&&!id.startsWith('superhero'))||id.startsWith('superc'));const markSaga=id=>{const saga=SAGAS.find(item=>item.id===id);if(saga)for(const chapter of saga.ch)if(!z.done[chapter.id])z.done[chapter.id]={s:1,clears:1,migrated:1};};if(playedGT||playedSuper)markSaga('daima');if(playedSuper)markSaga('gt');z.storyOrderVersion=1;}return z};
 function chOpen(c){const sg=SAGAS.find(x=>x.ch.includes(c)),gate=sg&&STORY_SAGA_REQ[sg.id];return (c.opt||!gate||!!SS().done[gate])&&(!c.req||!!SS().done[c.req])}
 function storyChapterLockReason(c){const sg=SAGAS.find(x=>x.ch.includes(c)),gate=sg&&STORY_SAGA_REQ[sg.id],need=(gate&&!SS().done[gate])?gate:(c.req&&!SS().done[c.req]?c.req:null);if(!need)return '';const p=chapterById(need);return 'À débloquer après : '+(p?p.t:need)}
 function collMenu(){dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>COLLECTION</h1>';const L=[];for(const sg of SAGAS)for(const c of sg.ch)if(c.rw)L.push([c.rw,!!SS().done[c.id]]);const d=document.createElement('div');d.style.cssText='width:min(92%,520px);text-align:left;font-size:14px';d.innerHTML=L.map(x=>'<div style="padding:4px 0;opacity:'+(x[1]?1:.35)+'">'+(x[1]?'\u2714 '+x[0]:'\u{1F512} ???')+'</div>').join('')+'<div style="padding:8px 0;opacity:.8">Personnages : '+CH.length+' \u00b7 Transformations : '+CH.reduce((a,c)=>a+c.fm.length-1,0)+'</div>';M.appendChild(d);M.appendChild(btn('\u2190 Retour',menu))}
