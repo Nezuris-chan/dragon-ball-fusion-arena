@@ -83,8 +83,23 @@ function menuBg(){const key=cfg.p1+'|'+cfg.p2+'|'+cfg.mode+'|'+cfg.cmp;if(!MG||M
 G=MG;try{MG.tick++;const a=MG.a,b=MG.b;a.fm=Math.min(cfg.sf|0,a.c.fm.length-1);a.face=1;b.face=-1;bg();body(a);body(b);const g=X.createLinearGradient(0,0,W,0);g.addColorStop(0,'rgba(0,0,10,.75)');g.addColorStop(.6,'rgba(0,0,10,.15)');g.addColorStop(1,'rgba(0,0,10,.4)');X.fillStyle=g;X.fillRect(0,0,W,540)}finally{G=null}}
 function rankingMenu(){const r=rankInfo();M.style.display='flex';M.style.background='';M.innerHTML='<h1>CLASSEMENT</h1><div style="width:min(92%,520px);text-align:left;line-height:1.9"><b>Rang local : '+r.name+'</b><br>Niveau : '+lvl()+' · XP : '+sv.xp+'<br>Points de classement : '+r.points+'<br>Victoires : '+sv.w+' · Défaites : '+sv.l+'<br><div style="height:12px;background:#18243d;border:1px solid #00c8ff;margin:8px 0"><div style="height:100%;width:'+r.progress+'%;background:linear-gradient(90deg,#00c8ff,#b6f)"></div></div>'+(r.next?'Prochain rang dans '+(r.next-r.points)+' points':'Rang maximal atteint')+'<p style="color:#9eabc8">Ce classement est enregistré dans ce navigateur. Il ne s’agit pas encore d’un classement mondial en ligne.</p></div>';M.appendChild(btn('← Retour',menu))}
 function openGuide(){window.open('guide.html','_blank','noopener')}
-function menu(){dlgNext=null;music(MU,'menu');M.style.display='flex';M.style.background='';const r=rankInfo();M.innerHTML='<h1 style="align-self:flex-start;margin-left:6%">FUSION ARENA</h1>';const playerLabel=document.createElement('small');playerLabel.style.cssText='align-self:flex-start;margin-left:6%';playerLabel.textContent='Joueur : '+(sv.pseudo||'Joueur')+' · Niveau '+lvl();M.appendChild(playerLabel);const col=mk('div');col.className='main-menu-actions';col.style.cssText='display:flex;flex-direction:column;align-self:flex-start;margin-left:6%;gap:3px;min-width:270px';
-[['★ MODE HISTOIRE',()=>storyMenu()],['AVENTURE — MISSIONS',adventureMapMenu],['VERSUS LOCAL',()=>selectScreen('versus')],['ENTRAÎNEMENT',()=>selectScreen('train')],['PROFIL RPG',profileMenu],['COMPTE EN LIGNE',accountOnlineMenu],['GUIDE DE COMBAT',openGuide],['PARAMÈTRES',()=>settingsMenu()]].forEach((x,i)=>col.appendChild(btn(x[0],x[1],0,'text-align:left;font-size:17px;padding:9px 18px;animation-delay:'+i*.04+'s')));M.appendChild(col)}
+function menu(){
+ dlgNext=null;music(MU,'menu');M.style.display='flex';M.style.background='';M.classList.remove('story-screen','mode-screen');M.innerHTML='';
+ const r=rankInfo(),xp=Math.max(0,Number(sv.xp)||0),wins=Math.max(0,Number(sv.w)||0);
+ const shell=mk('section');shell.className='menu-shell';
+ const hero=mk('header');hero.className='menu-hero';
+ const brand=mk('div');brand.className='menu-brand';brand.innerHTML='<span class="menu-brand-mark">龍</span><div><div class="menu-eyebrow">DRAGON BALL · 2D FIGHTING GAME</div><h1>FUSION ARENA</h1><p>Écris ta légende. Dépasse tes limites.</p></div>';hero.appendChild(brand);
+ const player=mk('div');player.className='menu-player-card';player.innerHTML='<div class="menu-player-avatar">★</div><div class="menu-player-info"><small>JOUEUR</small><strong></strong><span></span></div><div class="menu-player-rank"><small>RANG</small><strong></strong></div>';
+ player.querySelector('.menu-player-info strong').textContent=sv.pseudo||'Joueur';player.querySelector('.menu-player-info span').textContent='Niveau '+lvl()+' · '+xp.toLocaleString('fr-FR')+' XP';player.querySelector('.menu-player-rank strong').textContent=r.name;hero.appendChild(player);
+ const stats=mk('div');stats.className='menu-quick-stats';[['NIVEAU',String(lvl())],['VICTOIRES',String(wins)],['POINTS RP',String(Math.max(0,Number(sv.rp)||0))]].forEach(([label,value])=>{const item=mk('div');item.className='menu-quick-stat';item.append(mk('small',label),mk('strong',value));stats.appendChild(item)});hero.appendChild(stats);shell.appendChild(hero);
+ const section=mk('section');section.className='menu-section';const heading=mk('div');heading.className='menu-section-heading';heading.innerHTML='<div><small>CHOISIS TON DESTIN</small><h2>Modes de jeu</h2></div><span>SELECT MODE</span>';section.appendChild(heading);
+ const grid=mk('div');grid.className='main-menu-actions';
+ const actions=[['📖','MODE HISTOIRE','Revis les grandes sagas et débloque de nouvelles formes.',()=>storyMenu(),'menu-action-featured'],['🌍','MODE AVENTURE','Explore les zones, accepte des missions et progresse.',adventureMapMenu,''],['⚔️','VERSUS LOCAL','Affronte un ami sur le même écran.',()=>selectScreen('versus'),''],['🎯','ENTRAÎNEMENT','Teste tes combos, tes techniques et tes transformations.',()=>selectScreen('train'),''],['🌐','COMPTE EN LIGNE','Connecte-toi et retrouve ton profil en ligne.',accountOnlineMenu,'']];
+ actions.forEach(([icon,title,desc,fn,extra],i)=>{const b=btn(title,fn);b.className='menu-action '+extra;b.innerHTML='<span class="menu-action-icon" aria-hidden="true">'+icon+'</span><span class="menu-action-copy"><strong>'+title+'</strong><small>'+desc+'</small></span><span class="menu-action-arrow" aria-hidden="true">›</span>';b.style.animationDelay=(i*45)+'ms';grid.appendChild(b)});
+ section.appendChild(grid);shell.appendChild(section);
+ const utility=mk('footer');utility.className='menu-utility';[['👤','PROFIL RPG',profileMenu],['📘','GUIDE DE COMBAT',openGuide],['⚙️','PARAMÈTRES',()=>settingsMenu()]].forEach(([icon,label,fn])=>{const b=btn(label,fn);b.className='menu-utility-button';b.innerHTML='<span>'+icon+'</span><strong>'+label+'</strong>';utility.appendChild(b)});shell.appendChild(utility);
+ const foot=mk('div');foot.className='menu-footer-note';foot.textContent='FUSION ARENA · Choisis un mode et entre dans l’arène';shell.appendChild(foot);M.appendChild(shell);
+}
 
 function buildSelectionStats(index){
  const root=document.createElement('section');root.className='selection-section fighter-stats-card';root.style.cssText='display:block!important;visibility:visible!important;opacity:1!important;min-height:240px;width:100%;box-sizing:border-box;padding:14px;background:linear-gradient(145deg,#101e38,#21183c);border:1px solid #58cfff;border-radius:12px;color:#f4f8ff';
@@ -101,7 +116,7 @@ function buildSelectionStats(index){
 }
 function selectScreen(mode){
  if(mode&&mode!==cfg.mode){cfg.mode=mode;cfg.sel2=false}
- dlgNext=null;M.style.display='flex';M.style.background='';
+ dlgNext=null;M.style.display='flex';M.style.background='';M.classList.remove('story-screen');M.classList.add('mode-screen');
  const m=cfg.mode,T={versus:'VERSUS LOCAL',train:'ENTRAÎNEMENT',adventure:'AVENTURE'};
  const activeMission=m==='adventure'?adventureMissionById(adventureState().activeMission):null;
  const timeline=m==='adventure'?adventureTimelineForMission(activeMission?.id):null;
