@@ -644,7 +644,7 @@ for(const [sagaId,chapters] of Object.entries(STORY_REWRITES)){
   const allyLine=(sagaId==='gt'&&i<3)?['Pan : On a promis de retrouver les Dragon Balls. Je ne rentrerai pas sans elles.','Trunks : Le vaisseau est prêt. On doit partir avant que le compte à rebours commence.','Pan : Je ne suis pas venue pour rester à l’arrière. Je peux me battre aussi.'][i]:(sagaId==='daima'&&i%3===1?'Glorio : Le royaume démoniaque cache encore beaucoup de secrets. Restez sur vos gardes.':null);
   ch.pre=[['Narration',summary], [enemy,enemyLine], [lead,heroLine]];
   if(allyLine)ch.pre.push([sagaId==='gt'&&i===0?'Pan':sagaId==='gt'&&i===1?'Trunks':'Glorio',allyLine]);
-  const reaction=enemy==='Goku'?'Je reconnais ta détermination. Ce duel m'a permis de mesurer ta force.':enemy+' : Ce n'est pas terminé...';
+  const reaction=enemy==='Goku'?"Je reconnais ta détermination. Ce duel m'a permis de mesurer ta force.":enemy+" : Ce n'est pas terminé...";
   ch.post=[['Narration',summary+' Le chapitre « '+title+' » est terminé. '+(i===chapters.length-1?(STORY_ENDINGS[sagaId]||'La saga touche à sa conclusion.'):'Mais la suite de cette saga réserve encore une nouvelle épreuve.')], [enemy,reaction]];
   delete ch.rw;
  });
