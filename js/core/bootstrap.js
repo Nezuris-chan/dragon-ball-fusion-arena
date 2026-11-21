@@ -7,7 +7,17 @@ let onlineUser=null;
 let sv={xp:0,w:0,l:0};try{const raw=localStorage.getItem('fa');if(raw)sv=Object.assign(sv,JSON.parse(raw));}catch(e){try{const bak=localStorage.getItem('fa_backup');if(bak)sv=Object.assign(sv,JSON.parse(bak));}catch(_){}}
 sv._saveVersion=Math.max(1,Number(sv._saveVersion)||1);if(sv._saveVersion<3){sv.xp=0;sv.w=0;sv.l=0;sv.rp=0;sv.story={done:{},fl:{},forms:{}};sv.items=[];sv.equippedItem='';sv.daily={};sv._saveVersion=3;}sv.rp=Math.max(0,Number(sv.rp)||0);
 const save=()=>{try{const old=localStorage.getItem('fa');if(old)localStorage.setItem('fa_backup',old);sv.items=Array.isArray(sv.items)?sv.items:[];sv.equippedItem=sv.equippedItem||'';sv._saveVersion=3;localStorage.setItem('fa',JSON.stringify(sv));}catch(e){console.warn('Sauvegarde locale indisponible',e)}if(onlineUser&&sbClient)sbClient.from('profiles').update({xp:Math.max(0,Number(sv.xp)||0),player_level:Math.min(100,1+Math.floor((Math.sqrt(1+8*Math.max(0,Number(sv.xp)||0)/250)-1)/2)),...(sv.pseudo&&sv.pseudo!=='Joueur'&&!String(sv.pseudo).startsWith('Joueur-')?{username:String(sv.pseudo).slice(0,16)}:{})}).eq('id',onlineUser.id).then(({error})=>{if(error)console.warn('Synchronisation du profil impossible',error.message)})};
-const RELICS=[{id:'zenkai',name:'Armure Saiyan',desc:'Réduit légèrement les dégâts reçus',chapter:'s1c4',damage:1,resist:1.06},{id:'kai',name:'Sceau du Kaiô',desc:'Techniques énergétiques légèrement renforcées',chapter:'s2c3',damage:1.06,resist:1},{id:'god',name:'Insigne divin',desc:'Équilibre entre puissance et résistance',chapter:'film2',damage:1.035,resist:1.035}];
+const RELICS=[
+{id:'zenkai',name:'Armure Saiyan',desc:'Réduit les dégâts reçus de 6 %',chapter:'s1c4',damage:1,resist:1.06},
+{id:'kai',name:'Sceau du Kaiô',desc:'Augmente les dégâts de 6 %',chapter:'s2c3',damage:1.06,resist:1},
+{id:'god',name:'Insigne divin',desc:'Bonus équilibré : +3,5 % dégâts et résistance',chapter:'film2',damage:1.035,resist:1.035},
+{id:'potara',name:'Boucles Potara',desc:'+8 % dégâts, mais -2 % résistance',price:180,damage:1.08,resist:.98},
+{id:'scouter',name:'Scouter perfectionné',desc:'+6 % dégâts et +3 % résistance',price:160,damage:1.06,resist:1.03},
+{id:'senzu',name:'Haricot magique',desc:'+10 % résistance, +2 % dégâts',price:200,damage:1.02,resist:1.10},
+{id:'angel',name:'Bâton angélique',desc:'+5 % dégâts et +8 % résistance',price:260,damage:1.05,resist:1.08},
+{id:'destroyer',name:'Symbole du Dieu de la destruction',desc:'+12 % dégâts, mais -5 % résistance',price:320,damage:1.12,resist:.95},
+{id:'dragon',name:'Éclat de Dragon Ball',desc:'+7 % dégâts et +7 % résistance',price:280,damage:1.07,resist:1.07}
+];
 sv.items=Array.isArray(sv.items)?sv.items:[];sv.equippedItem=sv.equippedItem||'';
 const equippedRelic=()=>RELICS.find(x=>x.id===sv.equippedItem&&sv.items.includes(x.id))||null;
 const dailyDate=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
