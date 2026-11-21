@@ -15,7 +15,7 @@ function selectScreen(mode){
  if(mode&&mode!==cfg.mode){cfg.mode=mode;cfg.sel2=false}
  dlgNext=null;M.style.display='flex';M.style.background='';
  const m=cfg.mode,T={versus:'VERSUS LOCAL',train:'ENTRAÎNEMENT'};
- M.innerHTML='<h1>'+(T[m]||'PERSONNAGES')+'</h1><small class="select-subtitle">Choisis ton combattant · '+CH.length+' guerriers disponibles</small>';
+ M.innerHTML='<h1>'+(T[m]||'PERSONNAGES')+'</h1><small class="select-subtitle">Choisis ton combattant · '+new Set(CH.map(c=>c.n)).size+' guerriers disponibles</small>';
  const wrap=mk('div');wrap.className='select-layout';const left=mk('div');left.className='select-roster';const right=mk('div');right.className='select-details';
  const chosen=(m==='versus'||cfg.cmp)&&cfg.sel2?cfg.p2:cfg.p1;
  CH.forEach((c,i)=>{const b=document.createElement('button');b.className='fighter-tile'+(chosen===i?' selected':'');b.appendChild(portrait(i));b.appendChild(mk('span',c.n));if(chosen===i)b.appendChild(mk('small','SÉLECTIONNÉ'));b.onclick=()=>{snd(600,.06,'square',.03);if((m==='versus'||m==='online-ai'||cfg.cmp)&&cfg.sel2)cfg.p2=i;else cfg.p1=i;cfg.sf=0;selectScreen()};left.appendChild(b)});
