@@ -471,8 +471,8 @@ for(const [sagaId,chapters] of Object.entries(STORY_REWRITES)){
 // Les transformations majeures sont annoncées dans leur chapitre narratif d’éveil.
 const STORY_FORM_UNLOCKS={
  s2c13:['Goku','Super Saiyan'],s3c14:['Gohan','Super Saiyan 2'],s4c9:['Gohan','Potentiel libéré (Ultimate)'],s4c14:['Goku','Super Saiyan 3'],
- sup1:['Goku','Super Saiyan God'],sup4:['Goku','Ultra Instinct'],sup4:['Goku','Ultra Instinct'],superc16:['Goku','Ultra Instinct maîtrisé'],superhero3:['Piccolo','Piccolo Orange'],superhero5:['Gohan','Beast'],
- gtc8:['Goku','Super Saiyan 4'],superc14:['Trunks','Super Saiyan Rage'],s4c11:['Gotenks','Super Saiyan 3']
+ sup1:['Goku','Super Saiyan God'],sup4:['Goku','Ultra Instinct'],superc16:['Goku','Ultra Instinct maîtrisé'],superhero3:['Piccolo','Piccolo Orange'],superhero5:['Gohan','Beast'],
+ gtc9:['Goku','Super Saiyan 4'],gtc15:['Vegeta','Super Saiyan 4'],gtc16:['Gogeta','Super Saiyan 4'],superc14:['Trunks','Super Saiyan Rage'],s4c11:['Gotenks','Super Saiyan 3']
 };
 for(const [chapterId,unlock] of Object.entries(STORY_FORM_UNLOCKS)){
  const ch=SAGAS.flatMap(s=>s.ch).find(c=>c.id===chapterId);
@@ -630,7 +630,7 @@ const FORM_QUESTS=[
 
 // Complète automatiquement les quêtes pour toutes les formes réellement présentes dans le roster.
 const FORM_CHAPTER_BY_CHARACTER={
- 'Goku':'s2c13','Vegeta':'s1c4','Trunks':'s3','Gohan':'s4c9','Broly':'filmsc10',
+ 'Goku':'gtc9','Vegeta':'gtc15','Gogeta':'gtc16','Trunks':'s3','Gohan':'s4c9','Broly':'filmsc10',
  'Piccolo':'superhero3','Gogeta':'s4c15','Vegetto':'s4c15','Cell':'superhero4','Beerus':'super',
  'Jiren':'superc16','Gotenks':'s4c11','Majin Buu':'s4c16','Hit':'superc10','Goku Black':'superc14',
  'Cooler':'film2','Bardock':'s1c1','Android 13':'film3','Tapion':'film4',
