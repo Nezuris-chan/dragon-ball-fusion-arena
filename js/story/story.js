@@ -1,5 +1,5 @@
 // ---- MODE HISTOIRE ----
-const mfm=f=>f.mf==null?f.c.fm.length-1:f.mf;
+const mfm=f=>cfg.mode==='adventure'&&typeof adventureMaxFormIndex==='function'?Math.min(f.c.fm.length-1,adventureMaxFormIndex(f.c.n)):f.mf==null?f.c.fm.length-1:f.mf;
 const SAGAS=[{id:'s1',name:'Dragon Ball Z — Saiyans',ch:[
 {id:'s1c1',sub:'Raditz',t:'Chapitre 1 : L\'arrivée de Raditz',en:'Raditz',ar:2,df:0,xp:150,ob:{k:'hp',v:.4,txt:'Objectif : finir avec au moins 40 % de vie'},rw:'Illustration : Frères saiyans',
  pre:[['Narration','Un vaisseau s\'écrase près de la maison de Goku. Un guerrier à la longue chevelure en sort.'],['Raditz','Kakarot... Tu as oublié qui tu es ? Tu es un Saiyan, envoyé pour détruire cette planète !'],['Goku','Je m\'appelle Son Goku, et cette planète est la mienne. Rends-moi mon fils !'],['Piccolo','Je me bats à tes côtés, Goku. Mais ne sous-estime pas ce guerrier.'],['Raditz','Amusant. Venez donc, vermines !']],
