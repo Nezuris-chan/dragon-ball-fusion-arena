@@ -46,7 +46,7 @@ function redeemProgressCode(){
  alert('Code accepté ! Progression débloquée jusqu’au chapitre 1 de Dragon Ball Super.\n+'+gainedXP+' XP\nToutes les transformations du catalogue sont débloquées ('+formCount+' nouvelles formes).'+(unlockedItems.length?'\nObjets obtenus : '+unlockedItems.join(', '):''));
  settingsMenu();
 }
-function settingsMenu(){dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>PARAMÈTRES</h1>';M.appendChild(row([btn('PSEUDO : '+(sv.pseudo||'Joueur'),setPlayerPseudo),btn('Effets réduits : '+(LOW?'OUI':'NON'),()=>{LOW=!LOW;try{localStorage.setItem('falow',LOW?'1':'0')}catch(e){}settingsMenu()}),btn('Musique : '+(MU?'OUI':'NON'),()=>{MU=!MU;try{localStorage.setItem('famu',MU?'1':'0')}catch(e){}music(MU);settingsMenu()}),btn('⌨ COMMANDES',()=>ctlMenu())]));M.appendChild(row([btn('CODE DE PROGRESSION',redeemProgressCode),btn('EXPORTER MA SAUVEGARDE',exportPlayerSave),btn('IMPORTER UNE SAUVEGARDE',()=>{const f=document.createElement('input');f.type='file';f.accept='.json,application/json';f.onchange=()=>{if(f.files&&f.files[0])importPlayerSave(f.files[0])};f.click()})]));M.appendChild(mk('small','Progression conservée automatiquement sur ce navigateur. Exporte régulièrement une copie de sécurité.'));M.appendChild(btn('← Retour',menu))}
+function settingsMenu(){dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>PARAMÈTRES</h1>';M.appendChild(row([btn('PSEUDO : '+(sv.pseudo||'Joueur'),setPlayerPseudo),btn('Effets réduits : '+(LOW?'OUI':'NON'),()=>{LOW=!LOW;try{localStorage.setItem('falow',LOW?'1':'0')}catch(e){}settingsMenu()}),btn('Musique : '+(MU?'OUI':'NON'),()=>{MU=!MU;try{localStorage.setItem('famu',MU?'1':'0')}catch(e){}music(MU,G?'battle':'menu');settingsMenu()}),btn('Volume : '+Math.round(MUSIC_VOL*100)+'%',()=>{setMusicVolume(MUSIC_VOL>=.7?.22:MUSIC_VOL>=.35?.7:.42);settingsMenu()}),btn('⌨ COMMANDES',()=>ctlMenu())]));M.appendChild(row([btn('CODE DE PROGRESSION',redeemProgressCode),btn('EXPORTER MA SAUVEGARDE',exportPlayerSave),btn('IMPORTER UNE SAUVEGARDE',()=>{const f=document.createElement('input');f.type='file';f.accept='.json,application/json';f.onchange=()=>{if(f.files&&f.files[0])importPlayerSave(f.files[0])};f.click()})]));M.appendChild(mk('small','Progression conservée automatiquement sur ce navigateur. Exporte régulièrement une copie de sécurité.'));M.appendChild(btn('← Retour',menu))}
 
 
 function skillPointTotal(){return Math.max(0,(lvl()-1)*5)}
@@ -104,7 +104,7 @@ function adventureNpcMenu(zoneId){
  card.innerHTML='<div class="adventure-kicker">'+(done?'MISSION VALIDÉE':'MISSION PRINCIPALE')+'</div><h2>'+mission.title+'</h2><p>'+mission.brief+'</p><div class="adventure-mission-meta"><span>ADVERSAIRE : '+mission.enemy+'</span><span>DIFFICULTÉ : '+['FACILE','NORMALE','DIFFICILE'][mission.diff]+'</span></div><div class="adventure-reward">Récompense : <b>+'+mission.xp+' XP</b> · <b>+'+mission.rp+' RP</b></div><p class="adventure-npc-quote">« '+zone.npc+' : chaque combat te rapproche de ton objectif. »</p>';
  if(!open){card.appendChild(mk('small','Cette zone est verrouillée. Termine la mission précédente pour y accéder.'))}
  else card.appendChild(btn(done?'REJOUER LA MISSION':'COMMENCER LA MISSION',()=>startAdventureMission(mission.id)));
- M.appendChild(card);M.appendChild(btn('← Retour à la carte',adventureMapMenu));
+ M.appendChild(card);M.appendChild(row([btn('PARLER À '+zone.npc.toUpperCase(),()=>adventureDialogue(zoneId,'intro')),btn((adventureState().exploredZones||[]).includes(zoneId)?'RÉEXPLORER':'EXPLORER LA RÉGION',()=>adventureExplore(zoneId))]));M.appendChild(btn('← Retour à la carte',adventureMapMenu));
 }
 function startAdventureMission(id){
  const mission=adventureMissionById(id);if(!mission)return adventureMapMenu();
@@ -115,6 +115,47 @@ function startAdventureMission(id){
  cfg.mode='adventure';cfg.p2=enemy;cfg.p1=hero>=0?hero:0;cfg.diff=mission.diff;cfg.ar=mission.arena;cfg.sf=0;cfg.sel2=false;
  selectScreen('adventure');
 }
+
+const ADVENTURE_SCENES={
+ paozu:{intro:[['Goku','Je sens une énergie étrange… Elle vient de l’espace !'],['Narration','Un vaisseau vient de traverser l’atmosphère. Un guerrier inconnu approche du Mont Paozu.'],['Raditz','Kakarot ! Tu vas enfin découvrir la véritable puissance des Saiyans !']],victory:[['Goku','La Terre est en sécurité pour le moment. Mais cette arrivée n’était que le début…'],['Narration','Au loin, un signal mécanique s’active près de la Ville de l’Ouest.']],explore:'Tu retrouves les traces du premier entraînement de Goku. Une vieille note évoque une force venue des étoiles.'},
+ capsule:{intro:[['Bulma','Mes détecteurs ont repéré une signature artificielle. Elle se rapproche de la ville !'],['Trunks','Je connais ce genre de menace. Ne la laisse pas atteindre les habitants.'],['Android 13','Analyse terminée. Cible identifiée. Élimination en cours.']],victory:[['Bulma','Excellent ! J’ai récupéré des données très utiles sur cet androïde.'],['Trunks','Ce n’est pas fini. Une menace bien plus puissante nous attend sur Namek.']],explore:'Dans un laboratoire secondaire, tu découvres un prototype de radar capable de repérer les énergies lointaines.'},
+ namek:{intro:[['Piccolo','L’énergie de Freezer écrase cette planète. Reste concentré et protège les Nameks.'],['Freezer','Quelle insolence ! Vous allez tous regretter de vous opposer à moi.']],victory:[['Piccolo','Tu as tenu bon. Mais les combats à venir seront encore plus dangereux.'],['Narration','Une capsule de communication indique que des cyborgs sèment le chaos sur Terre.']],explore:'Tu découvres une source d’énergie cachée dans une grotte namekienne.'},
+ islands:{intro:[['Android 17','On dirait que les ennuis nous ont retrouvés.'],['Android 16','Ma mission est de protéger la nature. Je ne reculerai pas.']],victory:[['Android 17','Pas mal. Les machines ne sont pas invincibles, finalement.'],['Narration','Les données de combat révèlent une anomalie : Cell prépare un tournoi.']],explore:'Au bord de l’océan, tu trouves une capsule d’énergie oubliée.'},
+ cellgames:{intro:[['Gohan','Je ne veux plus voir personne souffrir à cause de Cell.'],['Cell','Prouve-moi donc que tu mérites de participer à mon tournoi !']],victory:[['Gohan','C’est terminé… La Terre peut enfin respirer.'],['Narration','Une énergie magique s’éveille dans le monde des Kaioshins.']],explore:'Tu retrouves une marque laissée dans l’arène par le combat.'},
+ buu:{intro:[['Vegeta','Je ne laisserai pas cette créature détruire encore une fois notre monde.'],['Majin Buu','Buu veut jouer ! Buu va gagner !']],victory:[['Vegeta','Hmph. Ce n’était qu’une étape.'],['Narration','Un portail dimensionnel s’ouvre vers le royaume des morts.']],explore:'Un ancien symbole des Kaioshins raconte comment une menace magique fut scellée.'},
+ otherworld:{intro:[['Pikkon','Cette dimension est instable. Le démon qui s’y cache doit être arrêté.'],['Janemba','Janemba !']],victory:[['Pikkon','Le passage se referme. L’équilibre est rétabli.'],['Narration','Une présence divine t’invite à rejoindre une planète lointaine.']],explore:'Dans les ruines de l’au-delà, tu trouves une inscription sur les guerriers aux pouvoirs extraordinaires.'},
+ beerus:{intro:[['Whis','Un petit test de rien du tout. Enfin… tout dépend de la personne qui vous attend.'],['Goku','Je suis prêt ! Je veux voir jusqu’où je peux progresser.'],['Beerus','Voyons si tu as enfin appris à te battre correctement.']],victory:[['Whis','Très intéressant. Votre potentiel continue de grandir.'],['Narration','Une faille temporelle vient de s’ouvrir. Une silhouette familière en sort.']],explore:'Tu découvres un jardin paisible où Whis conserve les traces d’anciens entraînements divins.'},
+ future:{intro:[['Trunks','Ce futur est le mien. Je ne laisserai pas Goku Black le détruire.'],['Goku Black','Votre résistance ne fait que retarder l’inévitable.']],victory:[['Trunks','Cette fois, j’ai réussi à protéger mon époque.'],['Narration','Un signal annonce le prochain tournoi entre les univers.']],explore:'Dans les ruines, tu retrouves le journal d’un survivant qui a continué à protéger les autres.'},
+ universe6:{intro:[['Vegeta','Ne crois pas que ton saut temporel suffira à me surprendre.'],['Hit','Le combat sera terminé avant que tu comprennes mon pouvoir.']],victory:[['Vegeta','Tu es rapide. Mais il faut plus que ça pour me battre.'],['Narration','Le Tournoi du Pouvoir approche. Tous les univers sont convoqués.']],explore:'Un ancien tableau du tournoi détaille les techniques de combat des guerriers de l’Univers 6.'},
+ tournament:{intro:[['Goku','Jiren ! Je vais dépasser mes limites et donner tout ce que j’ai !'],['Jiren','La volonté ne suffit pas. Montre-moi ta véritable force.']],victory:[['Goku','C’était incroyable ! Je sens que je peux encore progresser.'],['Narration','Une dernière perturbation magique secoue le Royaume des Démons.']],explore:'Au bord de l’arène, tu trouves un fragment d’énergie laissé par les combattants du tournoi.'},
+ demon:{intro:[['Glorio','Le royaume est en danger. Gomah doit être arrêté avant qu’il ne soit trop tard.'],['Gomah','Vous osez défier le roi du royaume des démons ?!'],['Narration','Le dernier combat de cette aventure commence.']],victory:[['Glorio','Le royaume est enfin libre. Tu as changé son destin.'],['Narration','Ton aventure restera gravée dans l’histoire des univers.']],explore:'Tu découvres une ancienne salle du trône. Une fresque raconte les origines du royaume.'}
+};
+function adventureDialogue(zoneId,scene='intro'){
+ const zone=ADVENTURE_ZONES.find(z=>z.id===zoneId);if(!zone)return adventureMapMenu();
+ const lines=ADVENTURE_SCENES[zoneId]?.[scene]||[[zone.npc,'Prépare-toi. Une nouvelle aventure nous attend.']];
+ let i=0;
+ const show=()=>{
+  const [speaker,line]=lines[i],idx=CH.findIndex(c=>c.n===speaker),box=mk('section');box.className='adventure-dialogue-card';
+  const portraitBox=mk('div');portraitBox.className='adventure-dialogue-portrait';
+  if(idx>=0&&typeof portrait==='function')portraitBox.appendChild(portrait(idx));else portraitBox.textContent=speaker[0];
+  const textBox=mk('div');textBox.className='adventure-dialogue-text';textBox.innerHTML='<small>'+speaker.toUpperCase()+' · '+zone.name.toUpperCase()+'</small><p>'+line+'</p><div class="adventure-dialogue-progress">'+(i+1)+' / '+lines.length+'</div>';
+  box.append(portraitBox,textBox);M.style.display='flex';M.style.background='';M.innerHTML='<h1>'+zone.name.toUpperCase()+'</h1>';M.appendChild(box);
+  const next=i===lines.length-1?(scene==='intro'?'COMMENCER LE COMBAT':scene==='explore'?'TERMINER L’EXPLORATION':'CONTINUER'):'SUIVANT ▶';
+  M.appendChild(btn(next,()=>{
+   if(i<lines.length-1){i++;show();return}
+   if(scene==='intro')startAdventureMission(zone.mission.id);
+   else if(scene==='explore'){
+    const q=adventureState();q.exploredZones=Array.isArray(q.exploredZones)?q.exploredZones:[];
+    if(!q.exploredZones.includes(zoneId)){q.exploredZones.push(zoneId);sv.xp=(Number(sv.xp)||0)+65;sv.rp=(Number(sv.rp)||0)+5;save()}
+    adventureNpcMenu(zoneId);
+   }else adventureMapMenu();
+  }));
+  M.appendChild(btn('PASSER',()=>scene==='intro'?startAdventureMission(zone.mission.id):scene==='explore'?adventureNpcMenu(zoneId):adventureMapMenu()));
+ };
+ M.style.display='flex';show();
+}
+function adventureExplore(zoneId){if(!ADVENTURE_ZONES.some(z=>z.id===zoneId))return adventureMapMenu();adventureDialogue(zoneId,'explore')}
+
 function adventureBattleAfter(){
  const q=adventureState(),result=q.lastMissionResult,mission=result&&adventureMissionById(result.id);
  if(!mission)return adventureMapMenu();
@@ -125,6 +166,7 @@ function adventureBattleAfter(){
  M.appendChild(card);
  if(!result.won)M.appendChild(btn('RÉESSAYER',()=>startAdventureMission(mission.id)));
  const next=ADVENTURE_ZONES[index+1];
+ if(result.won)M.appendChild(btn('SCÈNE DE VICTOIRE',()=>adventureDialogue(zone.id,'victory')));
  if(result.won&&next)M.appendChild(btn('MISSION SUIVANTE : '+next.name.toUpperCase(),()=>adventureNpcMenu(next.id)));
  M.appendChild(btn('CARTE DE L’AVENTURE',adventureMapMenu));M.appendChild(btn('MENU PRINCIPAL',menu));
 }
