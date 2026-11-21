@@ -552,6 +552,9 @@ for(const [chapterId,unlock] of Object.entries(STORY_FORM_UNLOCKS)){
  ch.rw='Transformation : '+unlock[1]+' (Histoire)';
 }
 
+const blueAwakeningChapter=SAGAS.flatMap(s=>s.ch).find(c=>c.id==='superc8');if(blueAwakeningChapter)blueAwakeningChapter.rw='Transformations débloquées : Super Saiyan Blue (Goku et Vegeta)';
+const superFinalChapter=SAGAS.flatMap(s=>s.ch).find(c=>c.id==='superc16');if(superFinalChapter)superFinalChapter.rw='Transformations débloquées : Ultra Instinct maîtrisé (Goku) et Blue Evolution (Vegeta)';
+
 const STORY_CHAPTER_RULES={
  s1c1:{players:['Goku','Piccolo','Gohan'],forms:{Goku:0,Piccolo:0,Gohan:0}},
  s1c2:{players:['Goku'],forms:{Goku:0}},
