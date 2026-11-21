@@ -262,3 +262,15 @@ small{opacity:.7;max-width:90%}
  #m .main-menu-actions button:first-child{grid-column:auto}
  #m .main-menu-actions button{min-height:48px}
 }
+
+/* Finition interface : contraste constant, navigation plus claire et boutons cohérents */
+#m{isolation:isolate}
+#m>h1{font-size:clamp(25px,4vw,43px);letter-spacing:clamp(1px,.28vw,3px);line-height:1.12}
+#m>p{max-width:min(92%,760px);line-height:1.55;color:#d7e8ff}
+#m button{min-height:42px;padding:10px 16px;border-radius:12px;font-weight:750;letter-spacing:.15px}
+#m button:focus-visible{outline:3px solid #e7fbff;outline-offset:3px}
+#m .story-saga-head{position:sticky;top:0;z-index:1}
+#m input,#m select,#m textarea{font:inherit;min-height:40px;box-sizing:border-box}
+#m .profile-panel,#m .select-roster,#m .select-details{backdrop-filter:blur(8px)}
+@media(max-width:620px){#m{padding:12px 8px 20px;gap:10px}#m button{max-width:100%;font-size:14px}#m .story-chapters{max-height:38vh}}
+@media(prefers-reduced-motion:reduce){#m button{transition:none!important;animation:none!important}}
