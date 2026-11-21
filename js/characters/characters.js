@@ -87,6 +87,16 @@ Object.assign(TW,{
 });
 Object.assign(FS,{'Super Baby 2':[4.5,.28,1200],'Omega Shenron':[5,.3,1200],'Super Saiyan maléfique':[3,.2,1200],'Saiyan maléfique libéré':[5,.3,1200],Godslayer:[4.5,.3,1200],'Roi démoniaque':[2.5,.15,0],'Gardien éveillé':[2.5,.15,0],'Super Saiyan 4':[5,.3,1200],'Super Saiyan God':[4,.25,1200]});
 Object.assign(HR,{'Super Baby 2':[1.6,.25],'Omega Shenron':[1.8,.3],'Super Saiyan maléfique':[1.4,.2],'Saiyan maléfique libéré':[1.7,.3],Godslayer:[1.5,.24],'Roi démoniaque':[1.2,.1],'Gardien éveillé':[1.4,.2],'Super Saiyan 4':[1.7,.28],'Super Saiyan God':[1.45,.2]});
+// Roster complémentaire : 26 personnages, avec profils de base dédiés.
+const EXTRA_ROSTER=[["Zamasu fusionné","#a7d","#536b",[140,124,130,140,138,132,140,136],1.18,4.8],["Moro","#5d6b79","#273746",[142,118,145,138,145,132,148,142],1.2,4.7],["Granolah","#c65b52","#3c4a62",[134,145,130,112,132,128,138,145],1.12,5.6],["Janemba","#a12d56","#3c164b",[138,132,118,142,132,130,130,128],1.16,5],["Toppo","#b9a8a0","#743b32",[134,102,112,140,126,130,118,116],1.12,4.2],["Uub","#4b3027","#a64b32",[112,126,108,108,112,116,108,118],1,5.1],["Kefla","#3b8b65","#4e245f",[136,142,108,120,126,124,122,128],1.14,5.5],["Caulifla","#3b8b65","#482d5b",[112,132,92,104,106,110,102,112],0.98,5.4],["Kale","#315d45","#3a4b37",[126,104,82,132,108,120,102,96],1.08,4.3],["Cabba","#9a9a9a","#344b6b",[104,118,98,100,104,108,100,108],0.96,5],["Dyspo","#6c3b9c","#31284f",[112,155,108,102,118,120,112,128],1.02,6],["Android 17","#d8d8d8","#344d64",[120,132,120,126,128,132,120,130],1.06,5.2],["Android 18","#e2d0b2","#4b586c",[118,128,116,120,124,126,116,126],1.04,5.1],["Android 16","#d7b78a","#536b57",[124,92,90,142,118,128,108,94],1.08,3.8],["Dabura","#9a2525","#3d2d32",[112,108,112,114,118,110,116,120],1,4.8],["Zarbon","#4c9b76","#3d5472",[100,112,100,102,104,106,100,108],0.98,4.9],["Dodoria","#c27caa","#8c3e52",[102,72,72,112,92,100,82,78],0.98,3.8],["King Cold","#9ab7cf","#394b68",[118,92,108,120,118,112,116,110],1.06,4],["Tenshinhan","#d4c6a0","#8a302c",[96,112,110,98,94,108,96,116],0.94,4.8],["Krillin","#e8d4b0","#d75b3b",[90,116,104,88,90,104,94,112],0.9,5],["Muten Roshi","#e7e0cf","#4e7d8a",[92,82,128,92,104,100,106,120],0.92,3.6],["Yamcha","#c88d55","#8b3b2b",[94,118,92,94,92,102,88,104],0.92,5],["Videl","#8b3328","#d2b8a1",[72,108,88,76,78,92,72,96],0.78,4.7],["Pan","#7b4b36","#d85b3b",[86,122,94,84,88,96,84,102],0.84,5.2],["Android 21","#d6b7a5","#b94d66",[132,126,140,128,138,126,140,142],1.12,5],["Pikkon","#3b7b7b","#c8a66a",[126,118,120,124,120,120,116,126],1.08,4.8]];
+for(const q of EXTRA_ROSTER){
+ const [n,hair,gi,stats,pw,sp]=q;
+ CH.push({n,hair,gi,aura:'#cfe',sp,pw,tf:'',tH:hair,tA:'#cfe',sn:'Attaque spéciale',un:'Technique ultime'});
+ FM[n]=[fm('Base',hair,'#cfe')];
+ LOOK[n]={top:gi,und:'#222',pa:gi,sash:'#ddd',bt:'#222',gl:gi,mus:1,hs:'goku',pc:'#cfe'};
+ PM[n]=1;
+ TW[n]={pw:1,hm:1,res:1,sp:1,kr:1};
+}
 // Statistiques de base harmonisées sur une échelle commune (40–150).
 // Les personnages divins et les combattants de fin de saga ont des valeurs supérieures,
 // sans rendre la vitesse ou la puissance seules décisives.
@@ -106,7 +116,33 @@ const BASE_STATS={
 'Omega Shenron':[142,118,112,145,140,132,142,126],'Cumber':[140,92,68,142,108,130,102,88],
 'Hearts':[130,136,142,112,132,118,138,146],'Glorio':[78,118,112,82,96,92,112,120],
 'Gomah':[72,82,96,78,108,86,112,98],'Tamagami':[110,98,104,120,108,116,112,108],
-'Xeno Goku':[132,132,112,122,126,124,126,132],'Shallot':[108,118,100,108,108,112,108,112]
+'Xeno Goku':[132,132,112,122,126,124,126,132],'Shallot':[108,118,100,108,108,112,108,112],
+'Zamasu fusionné':[140,124,130,140,138,132,140,136],
+'Moro':[142,118,145,138,145,132,148,142],
+'Granolah':[134,145,130,112,132,128,138,145],
+'Janemba':[138,132,118,142,132,130,130,128],
+'Toppo':[134,102,112,140,126,130,118,116],
+'Uub':[112,126,108,108,112,116,108,118],
+'Kefla':[136,142,108,120,126,124,122,128],
+'Caulifla':[112,132,92,104,106,110,102,112],
+'Kale':[126,104,82,132,108,120,102,96],
+'Cabba':[104,118,98,100,104,108,100,108],
+'Dyspo':[112,155,108,102,118,120,112,128],
+'Android 17':[120,132,120,126,128,132,120,130],
+'Android 18':[118,128,116,120,124,126,116,126],
+'Android 16':[124,92,90,142,118,128,108,94],
+'Dabura':[112,108,112,114,118,110,116,120],
+'Zarbon':[100,112,100,102,104,106,100,108],
+'Dodoria':[102,72,72,112,92,100,82,78],
+'King Cold':[118,92,108,120,118,112,116,110],
+'Tenshinhan':[96,112,110,98,94,108,96,116],
+'Krillin':[90,116,104,88,90,104,94,112],
+'Muten Roshi':[92,82,128,92,104,100,106,120],
+'Yamcha':[94,118,92,94,92,102,88,104],
+'Videl':[72,108,88,76,78,92,72,96],
+'Pan':[86,122,94,84,88,96,84,102],
+'Android 21':[132,126,140,128,138,126,140,142],
+'Pikkon':[126,118,120,124,120,120,116,126]
 };
 const STAT_KEYS=['fo','vi','in','du','en','ed','ki','te'];
 // Chaque combattant reçoit un profil complet. Les personnages sans fiche dédiée
@@ -119,6 +155,9 @@ CH.forEach(c=>{
  c.st=Object.fromEntries(STAT_KEYS.map((k,i)=>[k,Math.max(55,Math.min(155,a[i]))]));
  c.st.d='Profil de combat : '+c.n;
 });
+// Ajustement global selon le classement de puissance en forme de base.
+const BASE_POWER_ORDER=["Broly","Gogeta","Vegetto","Beerus","Zamasu fusionné","Jiren","Hit","Omega Shenron","Moro","Granolah","Xeno Goku","Goku Black","Cumber","Hearts","Baby Vegeta","Janemba","Toppo","Goku","Vegeta","Gohan","Gotenks","Uub","Kefla","Caulifla","Kale","Cabba","Dyspo","Bardock","Shallot","Majin Buu","Cell","Freezer","Cooler","Android 17","Android 18","Android 16","Android 13","Piccolo","Dabura","Tapion","Trunks","Glorio","Gomah","Tamagami","Raditz","Nappa","Ginyu","Zarbon","Dodoria","King Cold","Tenshinhan","Krillin","Muten Roshi","Yamcha","Videl","Pan","Android 21","Pikkon"];
+CH.forEach(c=>{const r=BASE_POWER_ORDER.indexOf(c.n);const mult=r<0?1:r<8?1.035:r<29?1:r<44?.94:.88;for(const k of STAT_KEYS)c.st[k]=Math.max(55,Math.min(155,Math.round(c.st[k]*mult)));});
 
 CH.forEach(c=>{const tw=TW[c.n];c.fm=FM[c.n].map((x,i)=>{const q=FS[x.n]||[1+i*.5,.1,0],h=HR[x.n]||[1,0];return Object.assign(x,{pw:1+(q[0]-1)*tw.pw,kr:Math.min(.5,q[1]*tw.kr),dur:q[2],sp:1+.045*i*tw.sp,hm:1+(h[0]-1)*tw.hm,res:Math.min(.5,h[1]*tw.res)})});c.lk=LOOK[c.n];c.lk.pm=PM[c.n]});
 const HS={goku:[[-14,-92],[-20,-100],[-17,-112],[-9,-107],[-8,-124],[-1,-112],[6,-130],[9,-112],[17,-124],[16,-106],[24,-110],[15,-92],[10,-100],[4,-103],[-4,-100],[-10,-98]],vegeta:[[-14,-92],[-16,-104],[-12,-118],[-6,-140],[-1,-122],[2,-148],[7,-124],[12,-136],[14,-116],[16,-104],[14,-92],[9,-104],[0,-98],[-9,-104]],gogeta:[[-14,-92],[-18,-106],[-14,-122],[-8,-134],[-2,-124],[2,-140],[8,-124],[14,-132],[16,-114],[17,-100],[14,-90],[11,-98],[5,-96],[0,-104],[-5,-96],[-11,-98]],vegetto:[[-14,-92],[-19,-104],[-16,-118],[-8,-112],[-5,-130],[0,-116],[6,-134],[10,-114],[18,-124],[16,-104],[15,-92],[9,-102],[0,-97],[-9,-102]],broly:[[-14,-92],[-22,-100],[-20,-116],[-12,-108],[-14,-128],[-5,-114],[0,-134],[6,-114],[16,-126],[14,-108],[22,-112],[16,-90],[10,-98],[0,-102],[-10,-98]],long:[[-14,-92],[-20,-100],[-28,-70],[-18,-96],[-20,-120],[-10,-110],[-9,-136],[0,-116],[8,-138],[10,-112],[22,-122],[18,-100],[30,-66],[16,-92],[11,-100],[0,-104],[-11,-100]]};
