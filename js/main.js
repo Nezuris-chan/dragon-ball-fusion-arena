@@ -88,7 +88,7 @@ function buildSelectionStats(index){
  const root=document.createElement('section');root.className='selection-section fighter-stats-card';root.style.cssText='display:block!important;visibility:visible!important;opacity:1!important;min-height:240px;width:100%;box-sizing:border-box;padding:14px;background:linear-gradient(145deg,#101e38,#21183c);border:1px solid #58cfff;border-radius:12px;color:#f4f8ff';
  const keys=[['fo','Force'],['vi','Vitesse'],['in','Intelligence'],['du','Durabilité'],['en','Énergie'],['ed','Endurance'],['ki','Ki'],['te','Technique']];
  const draw=()=>{
-  root.replaceChildren();const fighter=CH[index]||CH[0],forms=fighter.fm?.length?fighter.fm:[{n:'Base'}],fi=Math.max(0,Math.min(Number(cfg.sf)||0,forms.length-1));
+  root.replaceChildren();const fighter=CH[index]||CH[0],allForms=fighter.fm?.length?fighter.fm:[{n:'Base'}],maxForm=cfg.mode==='adventure'?adventureMaxFormIndex(fighter.n):allForms.length-1,forms=allForms.slice(0,Math.min(allForms.length-1,maxForm)+1),fi=Math.max(0,Math.min(Number(cfg.sf)||0,forms.length-1));
   let stats={...(fighter.st||{})};try{if(typeof stOf==='function')stats=stOf(fighter,fi,true)||stats}catch(e){console.warn('Stats:',e)}
   const title=document.createElement('h3');title.textContent='STATISTIQUES — '+fighter.n+' · '+(forms[fi].n||'Base');title.style.cssText='margin:0 0 10px;text-align:center;color:#8fe8ff;font-size:16px';root.appendChild(title);
   const formRow=document.createElement('div');formRow.style.cssText='display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-bottom:12px';
@@ -101,12 +101,21 @@ function selectScreen(mode){
  if(mode&&mode!==cfg.mode){cfg.mode=mode;cfg.sel2=false}
  dlgNext=null;M.style.display='flex';M.style.background='';
  const m=cfg.mode,T={versus:'VERSUS LOCAL',train:'ENTRAÎNEMENT',adventure:'AVENTURE'};
- M.innerHTML='<h1>'+(T[m]||'PERSONNAGES')+'</h1><small class="select-subtitle">Choisis ton combattant · '+new Set(CH.map(c=>c.n)).size+' guerriers disponibles</small>';
+ const activeMission=m==='adventure'?adventureMissionById(adventureState().activeMission):null;
+ const timeline=m==='adventure'?adventureTimelineForMission(activeMission?.id):null;
+ let visible=CH.map((c,i)=>({c,i}));
+ if(m==='adventure'){
+  visible=visible.filter(x=>timeline?timeline.fighters.includes(x.c.n):x.c.n===activeMission?.hero);
+  if(!visible.some(x=>x.i===cfg.p1)){const hero=CH.findIndex(c=>c.n===activeMission?.hero);cfg.p1=visible.some(x=>x.i===hero)?hero:(visible[0]?.i??0);cfg.sf=0}
+  if(activeMission){const enemyIndex=CH.findIndex(c=>c.n===activeMission.enemy);if(enemyIndex>=0)cfg.p2=enemyIndex}
+ }
+ const subtitle=m==='adventure'?'Choisis un combattant présent dans cet arc · '+visible.length+' combattants disponibles':'Choisis ton combattant · '+new Set(CH.map(c=>c.n)).size+' guerriers disponibles';
+ M.innerHTML='<h1>'+(T[m]||'PERSONNAGES')+'</h1><small class="select-subtitle">'+subtitle+'</small>';
  const wrap=mk('div');wrap.className='select-layout';const left=mk('div');left.className='select-roster';const right=mk('div');right.className='select-details';
- const chosen=(m==='versus'||cfg.cmp)&&cfg.sel2?cfg.p2:cfg.p1;
- CH.forEach((c,i)=>{const b=document.createElement('button');b.className='fighter-tile'+(chosen===i?' selected':'');b.appendChild(portrait(i));b.appendChild(mk('span',c.n));const kindTag=mk('small',fighterKind(c.n).label);kindTag.className='fighter-kind';b.appendChild(kindTag);if(chosen===i)b.appendChild(mk('small','SÉLECTIONNÉ'));b.onclick=()=>{snd(600,.06,'square',.03);if((m==='versus'||m==='online-ai'||cfg.cmp)&&cfg.sel2)cfg.p2=i;else cfg.p1=i;cfg.sf=0;selectScreen()};left.appendChild(b)});
- if(m==='versus'||cfg.cmp)right.appendChild(row([btn('Joueur 1',()=>{cfg.sel2=false;selectScreen()},!cfg.sel2),btn('Joueur 2',()=>{cfg.sel2=true;selectScreen()},!!cfg.sel2)]));
- if(m==='online-ai')right.appendChild(mk('small','Ton adversaire IA choisira automatiquement un combattant.'));if(m==='adventure'){const mission=adventureMissionById(adventureState().activeMission);if(mission)right.appendChild(mk('small','MISSION : '+mission.title+' · ADVERSAIRE : '+mission.enemy));}
+ const chosen=(m==='versus'||(cfg.cmp&&m!=='adventure'))&&cfg.sel2?cfg.p2:cfg.p1;
+ visible.forEach(({c,i})=>{const b=document.createElement('button');b.className='fighter-tile'+(chosen===i?' selected':'');b.appendChild(portrait(i));b.appendChild(mk('span',c.n));const kindTag=mk('small',fighterKind(c.n).label);kindTag.className='fighter-kind';b.appendChild(kindTag);if(chosen===i)b.appendChild(mk('small','SÉLECTIONNÉ'));b.onclick=()=>{snd(600,.06,'square',.03);if((m==='versus'||m==='online-ai'||(cfg.cmp&&m!=='adventure'))&&cfg.sel2)cfg.p2=i;else cfg.p1=i;cfg.sf=0;selectScreen()};left.appendChild(b)});
+ if(m==='versus'||(cfg.cmp&&m!=='adventure'))right.appendChild(row([btn('Joueur 1',()=>{cfg.sel2=false;selectScreen()},!cfg.sel2),btn('Joueur 2',()=>{cfg.sel2=true;selectScreen()},!!cfg.sel2)]));
+ if(m==='online-ai')right.appendChild(mk('small','Ton adversaire IA choisira automatiquement un combattant.'));if(m==='adventure'&&activeMission){right.appendChild(mk('small','ARC : '+(timeline?.arc||'Période inconnue')+' · MISSION : '+activeMission.title+' · ADVERSAIRE IMPOSÉ : '+activeMission.enemy));right.appendChild(mk('small','Les formes futures ne sont pas disponibles dans cette période.'));}
  const preview=mk('div');preview.className='fighter-preview';const large=portrait(chosen);large.className='fighter-portrait-large';preview.appendChild(large);const identity=mk('div');identity.innerHTML='<h2>'+CH[chosen].n+'</h2><p>'+fighterKind(CH[chosen].n).label+' · '+((CH[chosen].tf)||'Combattant')+'</p>';preview.appendChild(identity);
  right.appendChild(buildSelectionStats(chosen));right.appendChild(preview);
  const arena=mk('div');arena.className='selection-section';arena.appendChild(mk('b','ARÈNE'));arena.appendChild(row(AR.map((a,i)=>btn(a[0],()=>{cfg.ar=i;selectScreen()},cfg.ar===i,'background:linear-gradient(135deg,'+a[1][0]+','+a[1][1]+');color:#fff;text-shadow:0 0 4px #000;min-width:92px;font-size:12px'))));right.appendChild(arena);
