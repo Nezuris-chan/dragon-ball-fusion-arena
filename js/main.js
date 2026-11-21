@@ -32,7 +32,7 @@ function portrait(i){
  else if(kindInfo.feminine){g.beginPath();g.moveTo(24,42);g.lineTo(18,12);g.lineTo(34,25);g.lineTo(48,8);g.lineTo(63,24);g.lineTo(78,12);g.lineTo(72,58);g.lineTo(65,42);g.closePath();g.fill()}
  else{g.beginPath();g.moveTo(24,39);g.lineTo(18,19);g.lineTo(32,25);g.lineTo(38,7);g.lineTo(48,23);g.lineTo(60,5);g.lineTo(63,25);g.lineTo(79,17);g.lineTo(72,42);g.closePath();g.fill()}
  if(c.n==='Piccolo'){g.strokeStyle='#d9ef9a';g.lineWidth=3;g.beginPath();g.moveTo(39,18);g.lineTo(34,5);g.moveTo(57,18);g.lineTo(62,5);g.stroke()}
- if(kind==='female'){g.fillStyle=hair;g.beginPath();g.moveTo(24,32);g.quadraticCurveTo(10,55,23,78);g.lineTo(31,65);g.fill();g.beginPath();g.moveTo(72,32);g.quadraticCurveTo(86,55,73,78);g.lineTo(65,65);g.fill()}
+ if(kindInfo.feminine){g.fillStyle=hair;g.beginPath();g.moveTo(24,32);g.quadraticCurveTo(10,55,23,78);g.lineTo(31,65);g.fill();g.beginPath();g.moveTo(72,32);g.quadraticCurveTo(86,55,73,78);g.lineTo(65,65);g.fill()}
  g.strokeStyle='#8d4c45';g.lineWidth=2;g.beginPath();g.moveTo(42,63);g.quadraticCurveTo(48,67,54,63);g.stroke();g.strokeStyle=aura;g.lineWidth=2;g.beginPath();g.ellipse(48,47,24,29,0,0,Math.PI*2);g.stroke();g.restore();PF[i]=cv;return cv
 }
 let MG=null;
