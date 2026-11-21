@@ -1,5 +1,6 @@
 -- Secure, one-time redemption for the Fusion Arena progression code.
--- Apply this migration in the Supabase SQL editor before using the code in-game.
+-- The RPC runs as invoker; RLS permits only an authenticated user to insert
+-- a redemption row for their own auth.uid().
 create extension if not exists pgcrypto with schema extensions;
 
 create table if not exists public.progress_code_redemptions (
@@ -12,10 +13,18 @@ create table if not exists public.progress_code_redemptions (
 alter table public.progress_code_redemptions enable row level security;
 revoke all on public.progress_code_redemptions from anon, authenticated;
 
+create policy "Users can redeem their own progression code"
+on public.progress_code_redemptions
+for insert
+to authenticated
+with check ((select auth.uid()) = user_id);
+
+grant insert on public.progress_code_redemptions to authenticated;
+
 create or replace function public.redeem_progress_code(p_code text)
 returns jsonb
 language plpgsql
-security definer
+security invoker
 set search_path = ''
 as $$
 declare
