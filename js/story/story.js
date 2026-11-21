@@ -460,9 +460,9 @@ for(const [sagaId,chapters] of Object.entries(STORY_REWRITES)){
 }
 // Les transformations majeures sont annoncées dans leur chapitre narratif d’éveil.
 const STORY_FORM_UNLOCKS={
- s2c13:['Goku','Super Saiyan'],s3c14:['Gohan','Super Saiyan 2'],s4c14:['Goku','Super Saiyan 3'],
- sup1:['Goku','Super Saiyan God'],superc12:['Goku','Ultra Instinct'],
- gtc8:['Goku','Super Saiyan 4'],superc8:['Trunks','Super Saiyan Rage'],s4c9:['Gotenks','Super Saiyan 3']
+ s2c13:['Goku','Super Saiyan'],s3c14:['Gohan','Super Saiyan 2'],s4c9:['Gohan','Potentiel libéré (Ultimate)'],s4c14:['Goku','Super Saiyan 3'],
+ sup1:['Goku','Super Saiyan God'],superc16:['Goku','Ultra Instinct'],
+ gtc8:['Goku','Super Saiyan 4'],superc14:['Trunks','Super Saiyan Rage'],s4c11:['Gotenks','Super Saiyan 3']
 };
 for(const [chapterId,unlock] of Object.entries(STORY_FORM_UNLOCKS)){
  const ch=SAGAS.flatMap(s=>s.ch).find(c=>c.id===chapterId);
@@ -484,41 +484,88 @@ for(const [chapterId,rule] of Object.entries(STORY_CHAPTER_RULES)){
  if(chapter){chapter.chapterPlayers=rule.players.slice();chapter.formCaps=Object.assign({},rule.forms)}
 }
 
+
+const STORY_CHAPTER_RULE_GROUPS=[
+ {ids:['s2c2','s2c3','s2c4','s2c5','s2c6','s2c7','s2c8','s2c9','s2c10'],players:['Gohan','Krillin','Vegeta'],forms:{Gohan:0,Krillin:0,Vegeta:0}},
+ {ids:['s2c11','s2c12'],players:['Goku','Gohan','Krillin','Vegeta'],forms:{Goku:0,Gohan:0,Krillin:0,Vegeta:0}},
+ {ids:['s2c13','s2c14','s2c15','s2c16'],players:['Goku','Gohan','Krillin','Vegeta','Piccolo'],forms:{Goku:1,Gohan:0,Krillin:0,Vegeta:0,Piccolo:0}},
+ {ids:['cell1'],players:['Goku','Vegeta','Gohan','Piccolo','Krillin','Yamcha','Tenshinhan'],forms:{Goku:1,Vegeta:1,Gohan:1,Piccolo:0,Krillin:0,Yamcha:0,Tenshinhan:0}},
+ {ids:['cell2','s3c4','s3c5'],players:['Goku','Vegeta','Trunks','Gohan','Piccolo','Krillin','Yamcha','Tenshinhan','Android 17','Android 18'],forms:{Goku:1,Vegeta:1,Trunks:1,Gohan:1,Piccolo:0,Krillin:0,Yamcha:0,Tenshinhan:0,'Android 17':0,'Android 18':0}},
+ {ids:['cell3','s3c6'],players:['Goku','Vegeta','Trunks','Gohan','Piccolo','Krillin','Yamcha','Tenshinhan','Android 16','Android 17','Android 18'],forms:{Goku:1,Vegeta:1,Trunks:1,Gohan:1,Piccolo:0,Krillin:0,Yamcha:0,Tenshinhan:0,'Android 16':0,'Android 17':0,'Android 18':0}},
+ {ids:['s3c7'],players:['Goku','Vegeta','Trunks','Gohan','Piccolo','Krillin','Yamcha','Tenshinhan','Android 16','Android 18'],forms:{Goku:1,Vegeta:1,Trunks:1,Gohan:1,Piccolo:0,Krillin:0,Yamcha:0,Tenshinhan:0,'Android 16':0,'Android 18':0}},
+ {ids:['s3c8','s3c9','s3c10','s3c11','s3c12'],players:['Goku','Vegeta','Trunks','Gohan','Piccolo','Krillin','Yamcha','Tenshinhan','Android 16'],forms:{Goku:1,Vegeta:1,Trunks:1,Gohan:1,Piccolo:0,Krillin:0,Yamcha:0,Tenshinhan:0,'Android 16':0}},
+ {ids:['s3c13','s3c14','s3c15','s3c16'],players:['Goku','Vegeta','Trunks','Gohan','Piccolo','Krillin','Yamcha','Tenshinhan'],forms:{Goku:1,Vegeta:1,Trunks:1,Gohan:2,Piccolo:0,Krillin:0,Yamcha:0,Tenshinhan:0}},
+ {ids:['buu1','s4c4','s4c5','s4c6'],players:['Goku','Vegeta','Gohan','Piccolo','Krillin','Videl','Android 18'],forms:{Goku:2,Vegeta:2,Gohan:1,Piccolo:0,Krillin:0,Videl:0,'Android 18':0}},
+ {ids:['s4c7','s4c8'],players:['Goku','Vegeta','Gohan','Piccolo','Krillin','Videl','Android 18'],forms:{Goku:2,Vegeta:2,Gohan:1,Piccolo:0,Krillin:0,Videl:0,'Android 18':0}},
+ {ids:['s4c9'],players:['Gohan','Goku','Vegeta','Piccolo','Krillin','Videl','Android 18'],forms:{Gohan:3,Goku:2,Vegeta:2,Piccolo:0,Krillin:0,Videl:0,'Android 18':0}},
+ {ids:['buu2','s4c10'],players:['Goku','Vegeta','Gohan','Piccolo','Krillin','Videl'],forms:{Goku:2,Vegeta:2,Gohan:3,Piccolo:0,Krillin:0,Videl:0}},
+ {ids:['s4c11','s4c12','s4c13'],players:['Goku','Vegeta','Gohan','Gotenks','Piccolo','Krillin','Videl'],forms:{Goku:2,Vegeta:2,Gohan:3,Gotenks:2,Piccolo:0,Krillin:0,Videl:0}},
+ {ids:['s4c14','buu3'],players:['Goku','Vegeta','Gohan','Gotenks','Piccolo','Krillin'],forms:{Goku:3,Vegeta:2,Gohan:3,Gotenks:2,Piccolo:0,Krillin:0}},
+ {ids:['s4c15','s4c16'],players:['Vegetto','Goku','Vegeta','Gohan','Piccolo','Krillin'],forms:{Vegetto:1,Goku:3,Vegeta:2,Gohan:3,Piccolo:0,Krillin:0}},
+ {ids:['da1','da2','da3','daimac4','daimac5','daimac6','daimac7'],players:['Goku','Glorio'],forms:{Goku:3,Glorio:0}},
+ {ids:['daimac8','daimac9','daimac10','daimac11','daimac12','daimac13','daimac14','daimac15','daimac16'],players:['Goku','Vegeta','Glorio'],forms:{Goku:3,Vegeta:2,Glorio:0}},
+ {ids:['sup1'],players:['Goku','Vegeta','Gohan','Piccolo','Krillin','Yamcha','Tenshinhan','Muten Roshi','Videl','Android 18'],forms:{Goku:4,Vegeta:2,Gohan:3,Piccolo:0,Krillin:0,Yamcha:0,Tenshinhan:0,'Muten Roshi':0,Videl:0,'Android 18':0}},
+ {ids:['superc6'],players:['Goku','Vegeta','Gohan','Piccolo','Krillin','Yamcha','Tenshinhan','Muten Roshi','Videl','Android 18'],forms:{Goku:3,Vegeta:2,Gohan:3,Piccolo:0,Krillin:0,Yamcha:0,Tenshinhan:0,'Muten Roshi':0,Videl:0,'Android 18':0}},
+ {ids:['superc7'],players:['Goku','Vegeta','Gohan','Piccolo','Krillin','Yamcha','Tenshinhan','Muten Roshi','Videl','Android 18'],forms:{Goku:4,Vegeta:2,Gohan:3,Piccolo:0,Krillin:0,Yamcha:0,Tenshinhan:0,'Muten Roshi':0,Videl:0,'Android 18':0}},
+ {ids:['sup2','superc8','superc9','superc10'],players:['Goku','Vegeta','Piccolo','Hit','Cabba'],forms:{Goku:5,Vegeta:4,Piccolo:0,Hit:0,Cabba:1}},
+ {ids:['sup3','superc13','superc14'],players:['Goku','Vegeta','Trunks','Beerus'],forms:{Goku:5,Vegeta:4,Trunks:2,Beerus:0}},
+ {ids:['superc15'],players:['Goku','Vegeta','Trunks','Vegetto'],forms:{Goku:5,Vegeta:4,Trunks:2,Vegetto:2}},
+ {ids:['superc11','superc12'],players:['Goku','Vegeta','Gohan','Piccolo','Krillin','Tenshinhan','Muten Roshi'],forms:{Goku:5,Vegeta:4,Gohan:1,Piccolo:0,Krillin:0,Tenshinhan:0,'Muten Roshi':0}},
+ {ids:['sup4','superc16'],players:['Goku','Vegeta','Gohan','Piccolo','Android 17','Android 18','Krillin','Tenshinhan','Muten Roshi','Freezer','Hit','Kefla','Caulifla','Kale','Cabba','Toppo','Dyspo'],forms:{Goku:7,Vegeta:5,Gohan:3,Piccolo:0,'Android 17':0,'Android 18':0,Krillin:0,Tenshinhan:0,'Muten Roshi':0,Freezer:4,Hit:1,Kefla:1,Caulifla:1,Kale:1,Cabba:1,Toppo:1,Dyspo:0}},
+ {ids:['sup5'],players:['Goku','Vegeta','Freezer','Gogeta'],forms:{Goku:5,Vegeta:4,Freezer:4,Gogeta:2}}
+];
+const vegitoChapter=SAGAS.flatMap(saga=>saga.ch).find(item=>item.id==='s4c15');
+if(vegitoChapter){vegitoChapter.en='Majin Buu';vegitoChapter.pre=[['Narration','Goku et Vegeta utilisent les Potaras. La fusion donne naissance à Vegetto, prêt à affronter Buu.'],['Vegetto','La fusion est terminée. Buu, je vais mettre fin à tes actes !']];vegitoChapter.post=[['Vegetto','Ce n’est pas encore terminé, mais nous avons repris l’avantage.'],['Narration','La puissance de Vegetto permet aux héros de reprendre espoir.']];}
+const daimaFinalChapter=SAGAS.flatMap(saga=>saga.ch).find(item=>item.id==='daimac16');
+if(daimaFinalChapter){daimaFinalChapter.en='Gomah';daimaFinalChapter.pre=[['Narration','Le combat atteint son point culminant dans le royaume démoniaque. Goku doit arrêter Gomah.'],['Goku','Je vais protéger mes amis et mettre un terme à cette menace !']];}
+for(const group of STORY_CHAPTER_RULE_GROUPS){
+ for(const chapterId of group.ids){
+  const chapter=SAGAS.flatMap(saga=>saga.ch).find(item=>item.id===chapterId);
+  if(!chapter)continue;
+  const available=group.players.filter(name=>CH.some(fighter=>fighter.n===name)&&name!==chapter.en);
+  if(!available.length)continue;
+  chapter.chapterPlayers=available;
+  chapter.formCaps={};
+  for(const name of available)chapter.formCaps[name]=Math.max(0,Number(group.forms[name])||0);
+ }
+}
+
 const FORM_QUESTS=[
  {character:'Goku',index:1,name:'Super Saiyan',chapter:'s2c13'},
- {character:'Goku',index:2,name:'Super Saiyan 2',chapter:'cell3'},
- {character:'Goku',index:3,name:'Super Saiyan 3',chapter:'s4c15'},
+ {character:'Goku',index:2,name:'Super Saiyan 2',chapter:'s4c4'},
+ {character:'Goku',index:3,name:'Super Saiyan 3',chapter:'s4c14'},
  {character:'Goku',index:4,name:'Super Saiyan God',chapter:'superc7'},
  {character:'Goku',index:5,name:'Super Saiyan Blue',chapter:'sup2'},
  {character:'Goku',index:6,name:'Ultra Instinct',chapter:'superc16'},
- {character:'Goku',index:7,name:'Ultra Instinct maîtrisé',chapter:'filmsc10'},
+ {character:'Goku',index:7,name:'Ultra Instinct maîtrisé',chapter:'superc16'},
  {character:'Vegeta',index:1,name:'Super Saiyan',chapter:'cell2'},
- {character:'Vegeta',index:2,name:'Super Saiyan 2',chapter:'cell3'},
+ {character:'Vegeta',index:2,name:'Super Saiyan 2',chapter:'s4c7'},
  {character:'Vegeta',index:3,name:'Super Saiyan God',chapter:'sup1'},
  {character:'Vegeta',index:4,name:'Super Saiyan Blue',chapter:'sup2'},
- {character:'Vegeta',index:5,name:'Blue Evolution',chapter:'sup5'},
+ {character:'Vegeta',index:5,name:'Blue Evolution',chapter:'superc16'},
  {character:'Vegeta',index:6,name:'Ultra Ego',chapter:'kak2'},
  {character:'Trunks',index:1,name:'Super Saiyan',chapter:'s3'},
- {character:'Trunks',index:2,name:'Super Saiyan Rage',chapter:'cell3'},
+ {character:'Trunks',index:2,name:'Super Saiyan Rage',chapter:'superc14'},
  {character:'Gohan',index:1,name:'Super Saiyan',chapter:'cell2'},
- {character:'Gohan',index:2,name:'Super Saiyan 2',chapter:'cell3'},
- {character:'Gohan',index:3,name:'Beast',chapter:'sup5'},
+ {character:'Gohan',index:2,name:'Super Saiyan 2',chapter:'s3c14'},
+ {character:'Gohan',index:3,name:'Ultimate',chapter:'s4c9'},
+ {character:'Gohan',index:4,name:'Beast',chapter:'superhero1'},
  {character:'Broly',index:1,name:'Super Saiyan',chapter:'sup5'},
  {character:'Broly',index:2,name:'Super Saiyan Full Power',chapter:'sup5'},
- {character:'Piccolo',index:1,name:'Piccolo Orange',chapter:'sup5'},
- {character:'Gogeta',index:1,name:'Super Saiyan',chapter:'buu3'},
+ {character:'Piccolo',index:1,name:'Piccolo Orange',chapter:'superhero1'},
+ {character:'Gogeta',index:1,name:'Super Saiyan',chapter:'film4'},
  {character:'Gogeta',index:2,name:'Super Saiyan Blue',chapter:'sup5'},
  {character:'Vegetto',index:1,name:'Super Saiyan',chapter:'buu3'},
- {character:'Vegetto',index:2,name:'Super Saiyan Blue',chapter:'sup5'},
- {character:'Cell',index:1,name:'Cell Max',chapter:'cell3'},
+ {character:'Vegetto',index:2,name:'Super Saiyan Blue',chapter:'superc15'},
+ {character:'Cell',index:1,name:'Cell Max',chapter:'superhero1'},
  {character:'Beerus',index:1,name:'Destruction',chapter:'sup1'},
  {character:'Jiren',index:1,name:'Full Power',chapter:'sup4'}
 ];
 
 // Complète automatiquement les quêtes pour toutes les formes réellement présentes dans le roster.
 const FORM_CHAPTER_BY_CHARACTER={
- 'Goku':'s2c13','Vegeta':'s1c4','Trunks':'s3','Gohan':'s3c14','Broly':'filmsc10',
- 'Piccolo':'superc7','Gogeta':'s4c15','Vegetto':'s4c15','Cell':'s3c16','Beerus':'super',
+ 'Goku':'s2c13','Vegeta':'s1c4','Trunks':'s3','Gohan':'s4c9','Broly':'filmsc10',
+ 'Piccolo':'superhero1','Gogeta':'s4c15','Vegetto':'s4c15','Cell':'superhero1','Beerus':'super',
  'Jiren':'superc16','Gotenks':'s4c11','Majin Buu':'s4c16','Hit':'superc10','Goku Black':'superc14',
  'Cooler':'film2','Bardock':'s1c1','Android 13':'film3','Tapion':'film4',
  'Baby Vegeta':'gtc8','Omega Shenron':'gtc16','Cumber':'heroesc6','Hearts':'heroesc9',
