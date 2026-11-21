@@ -64,8 +64,29 @@ else if(e==='ginyu'){Pg([[-4,-108],[-12,-130],[2,-110]],'#e8e8f0',2);Pg([[6,-110
 else if(e==='nappa'){X.fillStyle='#111';X.fillRect(4,-91,11,3)}
 else if(e==='trunks'){L(-6,-86,-12,-98,5,'#6a3a1a');L(-12,-98,-28,-130,3,'#ddd')}}
 function cinBg(){if(!(G.cin>0))return;G.cin--;X.fillStyle='rgba(0,0,10,'+Math.min(.6,G.cin/30*.6+.25)+')';X.fillRect(0,0,W,540);X.save();X.globalCompositeOperation='lighter';X.strokeStyle=al(G.cinc,.3);X.lineWidth=3;for(let i=0;i<(LOW?8:24);i++){const a=i*(LOW?.785:.2618)+G.tick*.012;X.beginPath();X.moveTo(G.cinx,GY-60);X.lineTo(G.cinx+Math.cos(a)*900,GY-60+Math.sin(a)*900);X.stroke()}X.restore()}
-function dmgPop(v,d){const a=G.a,T=G.tr||(G.tr={last:0,pct:0,tot:0,cmb:0,hits:0,max:0}),bl=v.st==='b',fr=d/(v.mhp||HPB);T.last=Math.round(d);T.pct=fr*100;T.tot+=d;T.hits++;T.max=Math.max(T.max,d);if(!bl){if(a.combo<=1)T.cmb=0;T.cmb+=d}(G.dn||(G.dn=[])).push({x:v.x+(Math.random()-.5)*40,y:v.y-115,t:60,s:Math.round(d),c:bl?'#9ab':fr>.2?'#ff6a2a':fr>.08?'#ffe14a':'#ffffff',z:Math.min(22,fr*160),bl});if(G.dn.length>14)G.dn.shift()}
-function dnDraw(){if(cfg.mode!=='train')return;X.save();X.textAlign='center';X.lineJoin='round';for(const q of G.dn||[]){q.y-=.9;q.t--;X.globalAlpha=Math.min(1,q.t/20);X.font='900 '+(20+q.z)+'px sans-serif';X.lineWidth=5;X.strokeStyle='#000';const tx=(q.bl?'BLOQUÉ ':'')+q.s;X.strokeText(tx,q.x,q.y);X.fillStyle=q.c;X.fillText(tx,q.x,q.y)}X.globalAlpha=1;if(G.dn)G.dn=G.dn.filter(q=>q.t>0);const T=G.tr||{last:0,pct:0,tot:0,cmb:0,hits:0,max:0},x=W-262,y=124;X.fillStyle='rgba(0,0,10,.6)';X.fillRect(x,y,250,112);X.strokeStyle='#8cf';X.lineWidth=1.5;X.strokeRect(x,y,250,112);X.textAlign='left';X.font='bold 13px sans-serif';X.fillStyle='#8cf';X.fillText('DÉGÂTS INFLIGÉS',x+10,y+18);X.font='13px sans-serif';X.fillStyle='#fff';X.fillText('Dernier coup : '+T.last+' ('+T.pct.toFixed(1)+' %)',x+10,y+38);X.fillText('Combo : '+(G.a.combo>1?G.a.combo:0)+' coups · '+Math.round(T.cmb)+' dégâts',x+10,y+56);X.fillText('Meilleur coup : '+Math.round(T.max),x+10,y+74);X.fillText('Total : '+Math.round(T.tot)+' ('+T.hits+' coups)',x+10,y+92);X.font='11px sans-serif';X.fillStyle='#9ab';X.fillText('Retour arrière : remettre à zéro',x+10,y+107);X.restore()}
+function dmgPop(v,d){
+ const a=G.a,T=G.tr||(G.tr={last:0,pct:0,tot:0,cmb:0,hits:0,max:0}),bl=v.st==='b',fr=d/(v.mhp||HPB);
+ T.last=Math.round(d);T.pct=fr*100;T.tot+=d;T.hits++;T.max=Math.max(T.max,d);
+ if(!bl){if(a.combo<=1)T.cmb=0;T.cmb+=d}
+ (G.dn||(G.dn=[])).push({x:v.x+(Math.random()-.5)*40,y:v.y-115,t:68,s:Math.round(d),total:Math.round(T.cmb),c:bl?'#9ab':fr>.2?'#ff6a2a':fr>.08?'#ffe14a':'#ffffff',z:Math.min(22,fr*160),bl});
+ if(G.dn.length>14)G.dn.shift()
+}
+function dnDraw(){
+ if(cfg.mode!=='train'&&cfg.mode!=='story')return;
+ X.save();X.textAlign='center';X.lineJoin='round';
+ for(const q of G.dn||[]){
+  q.y-=.75;q.t--;X.globalAlpha=Math.min(1,q.t/18);
+  X.font='900 '+(20+q.z)+'px sans-serif';X.lineWidth=5;X.strokeStyle='#000';
+  const tx=(q.bl?'BLOQUÉ ':'')+q.s;X.strokeText(tx,q.x,q.y);X.fillStyle=q.c;X.fillText(tx,q.x,q.y);
+  if(!q.bl&&q.total>q.s){X.font='bold 14px sans-serif';X.lineWidth=4;X.strokeStyle='#000';X.strokeText('COMBO · '+q.total,q.x,q.y+20);X.fillStyle='#8ff';X.fillText('COMBO · '+q.total,q.x,q.y+20)}
+ }
+ X.globalAlpha=1;if(G.dn)G.dn=G.dn.filter(q=>q.t>0);
+ if(cfg.mode==='train'){
+  const T=G.tr||{last:0,pct:0,tot:0,cmb:0,hits:0,max:0},x=W-262,y=124;
+  X.fillStyle='rgba(0,0,10,.6)';X.fillRect(x,y,250,112);X.strokeStyle='#8cf';X.lineWidth=1.5;X.strokeRect(x,y,250,112);X.textAlign='left';X.font='bold 13px sans-serif';X.fillStyle='#8cf';X.fillText('DÉGÂTS INFLIGÉS',x+10,y+18);X.font='13px sans-serif';X.fillStyle='#fff';X.fillText('Dernier coup : '+T.last+' ('+T.pct.toFixed(1)+' %)',x+10,y+38);X.fillText('Combo : '+(G.a.combo>1?G.a.combo:0)+' coups · '+Math.round(T.cmb)+' dégâts',x+10,y+56);X.fillText('Meilleur coup : '+Math.round(T.max),x+10,y+74);X.fillText('Total : '+Math.round(T.tot)+' ('+T.hits+' coups)',x+10,y+92);X.font='11px sans-serif';X.fillStyle='#9ab';X.fillText('Retour arrière : remettre à zéro',x+10,y+107)
+ }
+ X.restore()
+}
 // ---- v14 : moteur d'animation par poses (idle, marche, course, saut, chute, atterrissage, coups, blocage...) ----
 let LN=[];
 Object.assign(LOOK.Goku,{an:{stance:'open',bounce:3}});Object.assign(LOOK.Vegeta,{an:{stance:'cross',bounce:1}});
