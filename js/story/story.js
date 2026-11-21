@@ -471,7 +471,7 @@ for(const [sagaId,chapters] of Object.entries(STORY_REWRITES)){
 // Les transformations majeures sont annoncées dans leur chapitre narratif d’éveil.
 const STORY_FORM_UNLOCKS={
  s2c13:['Goku','Super Saiyan'],s3c14:['Gohan','Super Saiyan 2'],s4c9:['Gohan','Potentiel libéré (Ultimate)'],s4c14:['Goku','Super Saiyan 3'],
- sup1:['Goku','Super Saiyan God'],sup4:['Goku','Ultra Instinct'],superc16:['Goku','Ultra Instinct maîtrisé'],superhero3:['Piccolo','Piccolo Orange'],superhero5:['Gohan','Beast'],
+ filmsc15:['Goku','Super Saiyan God'],sup4:['Goku','Ultra Instinct'],superc16:['Goku','Ultra Instinct maîtrisé'],superhero3:['Piccolo','Piccolo Orange'],superhero5:['Gohan','Beast'],
  gtc9:['Goku','Super Saiyan 4'],gtc15:['Vegeta','Super Saiyan 4'],gtc16:['Gogeta','Super Saiyan 4'],superc14:['Trunks','Super Saiyan Rage'],s4c11:['Gotenks','Super Saiyan 3']
 };
 for(const [chapterId,unlock] of Object.entries(STORY_FORM_UNLOCKS)){
@@ -598,15 +598,15 @@ const FORM_QUESTS=[
  {character:'Goku',index:1,name:'Super Saiyan',chapter:'s2c13'},
  {character:'Goku',index:2,name:'Super Saiyan 2',chapter:'s4c4'},
  {character:'Goku',index:3,name:'Super Saiyan 3',chapter:'s4c14'},
- {character:'Goku',index:4,name:'Super Saiyan God',chapter:'superc7'},
- {character:'Goku',index:5,name:'Super Saiyan Blue',chapter:'sup2'},
+ {character:'Goku',index:4,name:'Super Saiyan God',chapter:'filmsc15'},
+ {character:'Goku',index:5,name:'Super Saiyan Blue',chapter:'filmsc16'},
  {character:'Goku',index:6,name:'Ultra Instinct',chapter:'sup4'},
  {character:'Goku',index:7,name:'Ultra Instinct maîtrisé',chapter:'superc16'},
  {character:'Goku',index:8,name:'Super Saiyan 4',chapter:'gtc9'},
  {character:'Vegeta',index:1,name:'Super Saiyan',chapter:'cell2'},
  {character:'Vegeta',index:2,name:'Super Saiyan 2',chapter:'s4c7'},
- {character:'Vegeta',index:3,name:'Super Saiyan God',chapter:'sup1'},
- {character:'Vegeta',index:4,name:'Super Saiyan Blue',chapter:'sup2'},
+ {character:'Vegeta',index:3,name:'Super Saiyan God',chapter:'filmsc15'},
+ {character:'Vegeta',index:4,name:'Super Saiyan Blue',chapter:'filmsc16'},
  {character:'Vegeta',index:5,name:'Blue Evolution',chapter:'superc16'},
  {character:'Vegeta',index:6,name:'Ultra Ego',chapter:'kak2'},
  {character:'Vegeta',index:7,name:'Super Saiyan 4',chapter:'gtc15'},
