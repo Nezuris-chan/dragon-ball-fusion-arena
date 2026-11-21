@@ -36,7 +36,7 @@ if(a.at==='li'){a.chainStep=Math.max(1,a.comboStep||1);a.chainWindow=38;if(a.cha
 else if(a.at==='he'){if(a.finisher){v.vy=-5;v.stun+=5;shake=Math.max(shake,14);ring(v.x,v.y-60,'#fd6',82)}a.chainWindow=0;a.chainStep=0}
 else if(a.at==='sp'||a.at==='ul'){a.chainWindow=0;a.chainStep=0}
 if(a.cd2==undefined){}}
-if(!G.b.dummy||v!==G.b||!cfgNoDmg)v.hp=Math.max(0,v.hp-d);if(cfg.mode==='train'&&a===G.a)dmgPop(v,d);if(v.f$.ego)v.eg=(v.eg||0)+d;if(v.c.n==='Broly')v.rage=Math.min(100,(v.rage||0)+d*.008);if(a.c.n==='Broly')a.rage=Math.min(100,(a.rage||0)+d*.005);a.ki=Math.min(100,a.ki+(n>10?6:3));return true}
+if(!G.b.dummy||v!==G.b||!cfgNoDmg)v.hp=Math.max(0,v.hp-d);if((cfg.mode==='train'||cfg.mode==='story')&&a===G.a)dmgPop(v,d);if(v.f$.ego)v.eg=(v.eg||0)+d;if(v.c.n==='Broly')v.rage=Math.min(100,(v.rage||0)+d*.008);if(a.c.n==='Broly')a.rage=Math.min(100,(a.rage||0)+d*.005);a.ki=Math.min(100,a.ki+(n>10?6:3));return true}
 let cfgNoDmg=false;
 function ultFx(f){slow=70;flash=14;G.fz=60;shake=14;G.cin=80;G.cinc=f.mv?f.mv.c:'#ffffff';G.cinx=f.x}
 function ctrl(f,o,i){let c;if(cfg.mode==='online'){const local=(onlineLocalSide===0&&f===G.a)||(onlineLocalSide===1&&f===G.b);c=local?humIn(0):{...(onlineRemoteInput||{})}}else if(f.ai){c=aiIn(f,o)}else c=humIn(f===G.a?0:1);return c}
