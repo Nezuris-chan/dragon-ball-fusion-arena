@@ -59,7 +59,8 @@ function aiIn(f,o){
  f.aiPlanCd=Math.max(0,(f.aiPlanCd||0)-1);
  // Défense réactive : esquive les ultimes et projectiles, pare les coups proches.
  if(danger&&ready){
-  if(df>=1&&canDodge&&rand()<(.48+iq*.28+df*.06)){c.dgP=1;f.aiParryCd=3}
+  if(df===2&&canDodge&&d<88&&f.ki>=10&&rand()<.16){c.tpP=1;f.aiParryCd=3}
+  else if(df>=1&&canDodge&&rand()<(.48+iq*.28+df*.06)){c.dgP=1;f.aiParryCd=3}
   else if(df===2&&canDodge&&projectileThreat&&rand()<.72){c.dgP=1}
   else{c.b=1;if(!f.aiParryCd&&meleeThreat){c.bP=1;f.aiParryCd=3}}
   f.last=c;return c;
@@ -68,7 +69,7 @@ function aiIn(f,o){
  if(canUltimate&&d>95&&d<390&&ready&&(opponentRecovering||opponentBusy&&df===2||f.combo>=4)&&rand()<(.12+df*.19+iq*.2)){c.ulP=1;f.last=c;return c}
  if(f.ki<32&&d>205){c.ch=1;if(d>290)c[o.x>f.x?'r':'l']=1;f.last=c;return c}
  if(f.aiHeavyActive){
-  if(f.heReady)f.aiHeavyActive=0;
+  if(f.heReady){f.aiHeavyActive=0;c.he=0;f.last=c;return c}
   else{c.he=1;if(d>185)c[o.x>f.x?'r':'l']=1;f.last=c;return c}
  }
  if(!f.aiHeavyActive&&df>=1&&ground&&canDash&&d>125&&d<220&&(opponentRecovering||o.chg||o.ch)&&f.ki>20&&rand()<(.18+df*.18+iq*.16)){f.aiHeavyActive=1;c.he=1;f.last=c;return c}
