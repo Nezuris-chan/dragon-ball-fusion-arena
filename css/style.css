@@ -162,3 +162,15 @@ small{opacity:.7;max-width:90%}
 .adventure-sidequest-card p{margin:6px 0;color:#c6d7ef;font-size:13px}
 @media(max-width:620px){.adventure-map-grid{grid-template-columns:minmax(0,1fr);width:94%}.adventure-zone-card{min-height:150px}.adventure-mission-card,.adventure-result-card{padding:13px}}
 @media(prefers-reduced-motion:reduce){.adventure-zone-card{transition:none!important}}
+
+/* Menu principal et navigation générale */
+.main-menu-actions{width:min(500px,88vw);max-width:88vw;padding:14px;box-sizing:border-box;border:1px solid rgba(103,195,245,.28);border-radius:18px;background:linear-gradient(145deg,rgba(16,34,64,.94),rgba(14,14,38,.94));box-shadow:0 16px 40px rgba(0,0,0,.3),inset 0 1px rgba(255,255,255,.06)}
+.main-menu-actions button{width:100%;min-height:45px;display:flex;align-items:center;justify-content:flex-start;padding:10px 15px;border-radius:11px;background:linear-gradient(105deg,rgba(29,69,104,.92),rgba(30,30,67,.96));border-color:rgba(119,208,255,.3);font-size:15px;letter-spacing:.25px}
+.main-menu-actions button:hover:not(:disabled){background:linear-gradient(105deg,#17698a,#39316d);border-color:#9aeaff}
+.main-menu-actions button:first-child{border-color:rgba(255,214,112,.55);background:linear-gradient(105deg,#5a4720,#252346)}
+.main-menu-actions button:focus-visible,.adventure-zone-card:focus-visible{outline:2px solid #a6f0ff;outline-offset:3px}
+#m .adventure-map-grid{padding:2px 5px 8px;box-sizing:border-box}
+#m .adventure-zone-card{color:#f1f7ff}
+#m .adventure-mission-card h2,#m .adventure-result-card h2{color:#f4f8ff}
+#m .adventure-zone-card small{color:#b6cee8}
+@media(max-width:620px){.main-menu-actions{width:94vw;max-width:94vw;padding:10px}.main-menu-actions button{min-height:43px}}
