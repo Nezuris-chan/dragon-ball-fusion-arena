@@ -75,3 +75,17 @@ html,body,#w{background:#050914;color:var(--fa-text)}
 #m .adventure-fps-reticle{position:absolute;z-index:5;left:50%;top:50%;width:16px;height:16px;transform:translate(-50%,-50%);pointer-events:none;border:1px solid rgba(230,250,255,.9);border-radius:50%;box-shadow:0 0 8px rgba(50,205,255,.75)}
 #m .adventure-fps-reticle:before,#m .adventure-fps-reticle:after{content:'';position:absolute;background:rgba(235,250,255,.95);box-shadow:0 0 5px rgba(50,205,255,.8)}
 #m .adventure-fps-reticle:before{width:1px;height:24px;left:7px;top:-5px}#m .adventure-fps-reticle:after{height:1px;width:24px;top:7px;left:-5px}
+
+/* Exploration 3D : HUD compact, lisible et recentré sur le monde */
+#m .adventure-walk-shell{position:relative;width:min(1120px,96vw);display:grid;grid-template-columns:minmax(0,1fr) 180px;grid-template-areas:"hud map" "world map" "hint map" "near map";gap:10px;padding:14px!important;border:1px solid rgba(95,211,255,.3)!important;border-radius:18px!important;background:linear-gradient(145deg,rgba(8,20,39,.97),rgba(12,19,43,.96))!important;box-shadow:0 18px 55px #0008!important}
+#m .adventure-walk-hud{grid-area:hud;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 6px}
+#m .adventure-walk-hud h2{margin:4px 0;font-size:clamp(18px,2.5vw,26px);letter-spacing:.04em}
+#m .adventure-walk-hud small{color:#65dcff;letter-spacing:.16em;font-size:9px;font-weight:900}
+#m .adventure-walk-counter{font-size:12px;color:#ffe19a;white-space:nowrap}
+#m .adventure-walk-canvas{grid-area:world;width:100%;aspect-ratio:16/9;height:auto;max-height:62vh;object-fit:fill;border:1px solid #4d87a4;border-radius:12px;box-shadow:0 8px 25px #0008}
+#m .adventure-minimap{grid-area:map;width:100%;height:auto;align-self:start;border:1px solid #416e88;border-radius:10px;box-shadow:0 5px 18px #0006}
+#m .adventure-walk-hint{grid-area:hint;font-size:10px;line-height:1.5;color:#9ab9d2;text-align:left;padding:4px 6px}
+#m .adventure-walk-nearby{grid-area:near;padding:9px 12px;border:1px solid rgba(85,217,255,.2);border-radius:10px;background:rgba(25,56,82,.55);color:#e9f8ff;font-size:12px;text-align:left}
+#m .adventure-walk-header{width:min(1120px,96vw);display:flex;justify-content:space-between;align-items:center;color:#72ddff;font-size:11px;font-weight:900;letter-spacing:.16em}
+#m .adventure-fps-reticle{pointer-events:none}
+@media(max-width:720px){#m .adventure-walk-shell{grid-template-columns:1fr;grid-template-areas:"hud" "world" "near" "hint" "map";width:96vw;padding:8px!important}#m .adventure-minimap{width:150px;justify-self:end}#m .adventure-walk-canvas{max-height:54vh}}
