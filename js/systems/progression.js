@@ -182,7 +182,7 @@ function adventureWalkMenu(zoneId){
  const heading=mk('div');heading.innerHTML='<small>EXPLORATION LIBRE · '+zone.place.toUpperCase()+'</small><h2>'+zone.name+'</h2>';
  const counter=mk('strong');counter.className='adventure-walk-counter';
  top.append(heading,counter);wrap.append(top,canvas,miniCanvas);
- const hint=mk('div');hint.className='adventure-walk-hint';hint.textContent='Déplacement : ZQSD / WASD ou flèches · E : parler aux PNJ · Explore la carte pour atteindre 100 %';
+ const hint=mk('div');hint.className='adventure-walk-hint';hint.textContent='Déplacement : ZQSD / WASD ou flèches · E : parler aux PNJ · Explore la carte pour atteindre 100 % · Doré : PNJ / Bleu : lieux';
  const nearby=mk('div');nearby.className='adventure-walk-nearby';wrap.append(hint,nearby);
  M.style.display='flex';M.style.background='';M.classList.remove('story-screen','mode-screen');M.innerHTML='<div class="adventure-walk-header"><span>FUSION ARENA · EXPLORATION</span><button type="button" class="adventure-walk-exit">QUITTER</button></div>';M.appendChild(wrap);
  M.querySelector('.adventure-walk-exit').onclick=()=>{adventureWalkStop();adventureNpcMenu(zoneId)};
@@ -190,7 +190,7 @@ function adventureWalkMenu(zoneId){
  const points3d=data.spots.map((s,i)=>({x:210+(i%3)*570,y:260+Math.floor(i/3)*430,label:s.name,id:s.id}));
  const pickups3d=objects.map((o,i)=>({...o,x:160+(i*367+index*91)%(world3d.w-320),y:160+(i*241+index*67)%(world3d.h-320),taken:q.foundAdventureItems.includes(zoneId+':'+o.id)}));
  const walls3d=[{x:350,y:170,w:250,h:100},{x:1040,y:300,w:270,h:125},{x:620,y:700,w:230,h:120},{x:1400,y:780,w:190,h:90}];const npcNames=[...new Set(data.quests.map(x=>x.npc))],questNPCs=npcNames.map((name,i)=>{const quest=data.quests.find(x=>x.npc===name);return{name,questId:quest.id,x:300+(i%3)*570,y:820-Math.floor(i/3)*260}});if(!Array.isArray(q.exploredMap))q.exploredMap=[];
- const walk3d=typeof adventureWalk3D==='function'?adventureWalk3D({canvas,miniCanvas,exploredMap:q.exploredMap,world:world3d,walls:walls3d,points:points3d,pickups:pickups3d,questNPCs,onNpcTalk:questId=>{const quest=data.quests.find(x=>x.id===questId);if(quest)adventureRegionQuestTalk(zoneId,questId)},onMapExplore:id=>{if(!q.exploredMap.includes(id)){q.exploredMap.push(id);save()}},onMapProgress:percent=>{counter.textContent=pickups3d.filter(x=>x.taken).length+' / '+pickups3d.length+' objets · Carte '+percent+' %'},
+ const walk3d=typeof adventureWalk3D==='function'?adventureWalk3D({canvas,miniCanvas,exploredMap:q.exploredMap,world:world3d,walls:walls3d,points:points3d,pickups:pickups3d,questNPCs,onNpcTalk:questId=>{const quest=data.quests.find(x=>x.id===questId);if(quest){adventureWalkStop();adventureRegionQuestTalk(zoneId,questId)}},onMapExplore:id=>{if(!q.exploredMap.includes(id)){q.exploredMap.push(id);save()}},onMapProgress:percent=>{counter.textContent=pickups3d.filter(x=>x.taken).length+' / '+pickups3d.length+' objets · Carte '+percent+' %'},
   onPickup:item=>{const key=zoneId+':'+item.id;if(!q.foundAdventureItems.includes(key))q.foundAdventureItems.push(key);sv.xp=(Number(sv.xp)||0)+item.xp;sv.rp=(Number(sv.rp)||0)+item.rp;save();nearby.textContent='Objet trouvé : '+item.name+' · +'+item.xp+' XP · +'+item.rp+' RP'},
   onNear:t=>{nearby.textContent=t},onCounter:(f,n)=>{counter.textContent=f+' / '+n+' objets · Carte '+Math.round((q.exploredMap.length/96)*100)+' %'}}):null;
  if(walk3d){window.__fusionAdventureWalkStop=walk3d.stop;return}
@@ -324,7 +324,7 @@ function adventureRegionQuestTalk(zoneId,questId){
  box.append(portraitBox,textBox);M.appendChild(box);
  if(!accepted)M.appendChild(btn('ACCEPTER LA QUÊTE',()=>{const state=adventureState();if(!state.acceptedRegionQuests.includes(quest.id))state.acceptedRegionQuests.push(quest.id);save();adventureRegionQuestMenu(zoneId)}));
  else M.appendChild(btn('SUIVRE LA QUÊTE',()=>adventureRegionQuestMenu(zoneId)));
- M.appendChild(btn('← Retour aux quêtes',()=>adventureRegionQuestMenu(zoneId)));
+ M.appendChild(btn('← Retour aux quêtes',()=>adventureRegionQuestMenu(zoneId)));M.appendChild(btn('RETOURNER À L’EXPLORATION',()=>adventureWalkMenu(zoneId)));
 }
 function claimAdventureRegionQuest(zoneId,questId){
  const data=adventureZoneData(zoneId),quest=data.quests.find(x=>x.id===questId),q=adventureState();if(!quest||!q.acceptedRegionQuests.includes(questId)||q.claimedRegionQuests.includes(questId)||!quest.needs.every(id=>q.discoveredSpots.includes(zoneId+':'+id)))return adventureRegionQuestMenu(zoneId);
