@@ -40,9 +40,18 @@ Deno.serve(async (req: Request) => {
   if (body.action === "register") {
     const matchId = String(body.match_id || "");
     const player2 = String(body.player2 || "");
-    if (!matchId || !player2 || player2 === actor) {
+    const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+    if (!matchId || !uuidPattern.test(matchId) || !uuidPattern.test(player2) || player2 === actor) {
       return respond({ error: "Paramètres du match invalides" }, 400);
     }
+    const { data: opponentProfile, error: opponentError } = await admin
+      .from("profiles")
+      .select("id")
+      .eq("id", player2)
+      .maybeSingle();
+    if (opponentError) return respond({ error: "Vérification de l'adversaire impossible" }, 500);
+    if (!opponentProfile) return respond({ error: "Adversaire introuvable" }, 404);
+
     const { error } = await admin.rpc("register_online_match_secure", {
       p_match_id: matchId,
       p_player1: actor,

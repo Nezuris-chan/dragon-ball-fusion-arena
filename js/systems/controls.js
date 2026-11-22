@@ -2,11 +2,8 @@
 let AC;function snd(f,d,t='square',v=.05){try{AC=AC||new AudioContext();const o=AC.createOscillator(),g=AC.createGain();o.type=t;o.frequency.setValueAtTime(f,AC.currentTime);o.frequency.exponentialRampToValueAtTime(Math.max(30,f/3),AC.currentTime+d);g.gain.setValueAtTime(v,AC.currentTime);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+d);o.connect(g).connect(AC.destination);o.start();o.stop(AC.currentTime+d)}catch(e){}}
 // ---- Entrées ----
 const K={},P={};addEventListener('keydown',e=>{if(!K[e.code])P[e.code]=1;K[e.code]=1;if(e.code.startsWith('Arrow')||e.code=='Space')e.preventDefault()});addEventListener('keyup',e=>K[e.code]=0);C.addEventListener('contextmenu',e=>e.preventDefault());C.addEventListener('mousedown',e=>{if(M.style.display!=='none')return;const k=e.button===0?'Mouse0':e.button===2?'Mouse2':null;if(!k)return;e.preventDefault();if(!K[k])P[k]=1;K[k]=1});addEventListener('mouseup',e=>{if(e.button===0)K.Mouse0=0;if(e.button===2)K.Mouse2=0});addEventListener('blur',()=>{K.Mouse0=K.Mouse2=0});
-const KMold=[{l:'KeyA',r:'KeyD',d:'KeyS',j:'Space',b:'KeyF',li:'KeyJ',he:'KeyK',sp:'KeyL',ul:'KeyU',tr:'KeyT',dg:'KeyE'},
-{l:'ArrowLeft',r:'ArrowRight',d:'ArrowDown',j:'ArrowUp',b:'Numpad0',li:'Digit1',he:'Digit2',sp:'Digit3',ul:'Digit4',tr:'Digit5',dg:'Numpad1'}];
 // Note : "KeyA/KeyD" = positions physiques Q/D sur AZERTY ; Z = KeyW
 
-function humIn(i){const m=KM[i],o={};for(const k in m)o[k]=K[m[k]];for(const k of['j','li','he','sp','ul','tr','dg'])o[k+'P']=P[m[k]];if(i==0&&P.KeyW)o.jP=1;if(i==1){for(const [a,b] of[['li','Numpad1'],['he','Numpad2'],['sp','Numpad3'],['ul','Numpad4']]){if(P[b])o[a+'P']=1}}return o}
 // ---- Commandes personnalisables, options, rendu des cheveux ----
 let LOW=false,MU=true;try{LOW=localStorage.getItem('falow')==='1';MU=localStorage.getItem('famu')!=='0'}catch(e){}
 const KDEF=[{l:'KeyA',r:'KeyD',d:'KeyS',j:'Space',b:'KeyF',li:'KeyJ',he:'KeyK',sp:'KeyG',ul:'KeyV',tr:'KeyT',ch:'KeyC',tp:'KeyR',dg:'KeyE',ds:'KeyQ',kk:'KeyY'},{l:'ArrowLeft',r:'ArrowRight',d:'ArrowDown',j:'ArrowUp',b:'Numpad0',li:'Digit1',he:'Digit2',sp:'Digit3',ul:'Digit4',tr:'Digit5',ch:'Digit6',tp:'Digit7',dg:'Numpad1',ds:'Numpad5',kk:'Digit8'}];

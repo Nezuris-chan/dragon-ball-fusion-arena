@@ -30,7 +30,7 @@ function accountOnlineMenu(){
  M.appendChild(email);M.appendChild(password);M.appendChild(pseudo);
  const status=mk('small','');M.appendChild(status);
  const valid=()=>{const em=email.value.trim(),pw=password.value,un=pseudo.value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){status.textContent='Entre une adresse e-mail valide.';return null}if(pw.length<8){status.textContent='Le mot de passe doit contenir au moins 8 caractères.';return null}const clean=un.replace(/[\u0000-\u001f\u007f]/g,'').slice(0,16);if(clean.length<2){status.textContent='Le pseudo doit contenir 2 à 16 caractères.';return null}return {em,pw,clean}};
- const sync=async(user,username)=>{const {error}=await sbClient.from('profiles').upsert({id:user.id,username,xp:Math.max(0,Number(sv.xp)||0),player_level:lvl()},{onConflict:'id'});if(error)throw error;onlineUser=user;sv.pseudo=username;save()};
+ const sync=async(user,username)=>{const {error}=await sbClient.from('profiles').upsert({id:user.id,username},{onConflict:'id'});if(error)throw error;onlineUser=user;sv.pseudo=username;save()};
  M.appendChild(btn('MOT DE PASSE OUBLIÉ ?',async()=>{
   const em=email.value.trim();
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){status.textContent='Entre ton adresse e-mail pour recevoir le lien de réinitialisation.';return}
@@ -49,13 +49,15 @@ const onlineRankInfo=points=>{const r=Math.max(0,Number(points)||0),tiers=[['Bro
 async function globalRankingMenu(){
  dlgNext=null;M.style.display='flex';M.style.background='';M.innerHTML='<h1>CLASSEMENT MONDIAL</h1><small>Chargement…</small>';
  if(!sbClient){M.appendChild(btn('← Retour',accountOnlineMenu));return}
- try{if(onlineUser){const {error:ownError}=await sbClient.from('profiles').update({xp:Math.max(0,Number(sv.xp)||0),player_level:Math.min(100,1+Math.floor((Math.sqrt(1+8*Math.max(0,Number(sv.xp)||0)/250)-1)/2))}).eq('id',onlineUser.id);if(ownError)throw ownError}const {data,error}=await sbClient.from('profiles').select('id,username,xp,player_level,rating,wins,losses').order('rating',{ascending:false}).order('wins',{ascending:false}).limit(50);if(error)throw error;
+ try{
+  const {data,error}=await sbClient.from('profiles').select('id,username,verified_xp,verified_level,rating,wins,losses').order('rating',{ascending:false}).order('wins',{ascending:false}).limit(50);
+  if(error)throw error;
   M.innerHTML='<h1>CLASSEMENT MONDIAL</h1>';
   const list=mk('div');list.style.cssText='width:min(94%,650px);text-align:left;line-height:1.65;max-height:350px;overflow:auto';
   if(!data.length)list.textContent='Aucun joueur classé pour le moment.';
-  data.forEach((p,i)=>{const rank=onlineRankInfo(p.rating),playerLevel=Math.min(100,1+Math.floor((Math.sqrt(1+8*Math.max(0,Number(p.xp)||0)/250)-1)/2)),line=mk('div');line.style.cssText='padding:7px 9px;border-bottom:1px solid #28405d;'+(onlineUser&&p.id===onlineUser.id?'background:rgba(0,200,255,.13);':'');line.textContent='#'+(i+1)+'  '+p.username+' · Niveau '+playerLevel+' · '+rank.name+' · '+p.rating+' pts · '+p.wins+' V / '+p.losses+' D';list.appendChild(line)});
-  M.appendChild(list);M.appendChild(mk('small','Le niveau vient de ton XP de progression ; le rang et les points viennent des combats classés. Pseudo modifiable dans Paramètres.'));
- }catch(e){M.appendChild(mk('small','Impossible de charger le classement : '+e.message))}
+  data.forEach((p,i)=>{const rank=onlineRankInfo(p.rating),playerLevel=Math.max(1,Math.min(100,Number(p.verified_level)||1)),verifiedXP=Math.max(0,Number(p.verified_xp)||0),line=mk('div');line.style.cssText='padding:7px 9px;border-bottom:1px solid #28405d;'+(onlineUser&&p.id===onlineUser.id?'background:rgba(0,200,255,.13);':'');line.textContent='#'+(i+1)+'  '+p.username+' · Niveau en ligne '+playerLevel+' · '+verifiedXP+' XP vérifiés · '+rank.name+' · '+p.rating+' pts · '+p.wins+' V / '+p.losses+' D';list.appendChild(line)});
+  M.appendChild(list);M.appendChild(mk('small','L’XP et le niveau en ligne sont calculés par le serveur après un match classé confirmé par les deux joueurs. Ton XP d’histoire et d’aventure reste enregistré localement.'));
+ }catch(e){M.appendChild(mk('small','Impossible de charger le classement : '+String(e?.message||'Erreur inconnue.')))}
  M.appendChild(btn('← Retour',accountOnlineMenu));
 }
 const onlinePulseKeys=['jP','bP','liP','heP','spP','ulP','trP','tpP','dgP','dsP','kkP'];let onlineQueue=null,onlineRoomChannel=null,onlineRemoteInput={},onlinePendingPulses={},onlineInputSeq=0,onlineLastRemoteSeq=0,onlineLocalSide=0,onlineRoomReady=false,onlineOpponentName='Adversaire',onlineOpponentChar=1,onlineMatchId=null,onlineOpponentId=null,onlineMatchRecordId=null,onlineIsHost=false,onlinePicksStarted=false,onlineResultSubmitted=false;
@@ -88,7 +90,7 @@ async function joinOnlineRoom(room,opponentName,isHost,opponentId){
  const ch=sbClient.channel(room,{config:{presence:{key:onlineUser.id},broadcast:{self:false,ack:true}}});onlineRoomChannel=ch;
  ch.on('presence',{event:'sync'},async()=>{if(!onlineRoomReady||!onlineIsHost||onlinePicksStarted)return;const members=Object.values(ch.presenceState()).flat(),mine=members.find(p=>p.user_id===onlineUser.id),other=members.find(p=>p.user_id===onlineOpponentId);if(members.length<2||mine?.character==null||other?.character==null)return;onlinePicksStarted=true;onlineOpponentChar=Number(other.character);const arena=Math.floor(Math.random()*AR.length),matchId=crypto.randomUUID();const {error}=await sbClient.functions.invoke('online-match',{body:{action:'register',match_id:matchId,player2:onlineOpponentId}});if(error){onlinePicksStarted=false;onlineQueueMenu('Création du match impossible : '+error.message);return}onlineMatchRecordId=matchId;const payload={matchId,hostChar:Number(mine.character),guestChar:Number(other.character),arena};const sent=await ch.send({type:'broadcast',event:'start',payload});if(sent!=='ok'){onlineQueueMenu('Démarrage du match impossible. Réessaie.');return}beginOnlineBattle(payload.hostChar,payload.guestChar,matchId,arena,0)});
  ch.on('broadcast',{event:'input'},({payload})=>{if(payload?.from!==onlineUser.id&&payload?.input&&Number(payload.seq)>onlineLastRemoteSeq){onlineLastRemoteSeq=Number(payload.seq);onlineRemoteInput={...payload.input}}});
- ch.on('broadcast',{event:'leave'},()=>{if(G&&cfg.mode==='online'){G.over=1;G.win=G.a;G.ann={t:120,s:'ADVERSAIRE DÉCONNECTÉ',c:'#fd6'}}});
+ ch.on('broadcast',{event:'leave'},()=>{if(G&&cfg.mode==='online'){G.over=1;G.win=onlineLocalSide===0?G.a:G.b;G.ann={t:120,s:'ADVERSAIRE DÉCONNECTÉ',c:'#fd6'}}});
  ch.on('broadcast',{event:'start'},({payload})=>{if(!onlineIsHost&&payload?.matchId){onlineMatchRecordId=payload.matchId;beginOnlineBattle(Number(payload.hostChar),Number(payload.guestChar),payload.matchId,Number(payload.arena),1)}});
  ch.on('broadcast',{event:'result_validated'},()=>{if(cfg.mode==='online'){G.ann={t:200,s:'RÉSULTAT VALIDÉ · CLASSEMENT MIS À JOUR',c:'#6f9'};globalRankingMenu()}});
  ch.subscribe(async status=>{if(status==='SUBSCRIBED'){await ch.track({user_id:onlineUser.id,pseudo:sv.pseudo||'Joueur',character:null});onlineRoomReady=true;onlineCharacterSelect()}else if(status==='CHANNEL_ERROR'||status==='TIMED_OUT'){onlineRoomReady=false;onlineQueueMenu('Impossible de rejoindre le salon. Réessaie.')}});
@@ -109,7 +111,7 @@ async function onlineConfirmResult(winnerId){
   else if(resultStatus==='waiting_for_opponent'){M.innerHTML='<h1>EN ATTENTE</h1><small>Ton résultat est enregistré. Les points seront attribués après la confirmation de l’adversaire.</small>';M.appendChild(btn('Retour au menu',leaveOnlineBattle))}
   else if(resultStatus==='reports_disagree'){M.innerHTML='<h1>RÉSULTATS DIFFÉRENTS</h1><small>Les confirmations ne correspondent pas. Aucun point n’a été attribué.</small>';M.appendChild(btn('Retour au menu',leaveOnlineBattle))}
   else{M.innerHTML='<h1>RÉSULTAT DÉJÀ TRAITÉ</h1><small>Recharge le classement pour voir les points.</small>';M.appendChild(btn('Classement',globalRankingMenu))}
- }catch(e){onlineResultSubmitted=false;M.innerHTML='<h1>ERREUR DE VALIDATION</h1><small>'+e.message+'</small>';M.appendChild(btn('Réessayer',onlineResultConfirmMenu))}
+ }catch(e){onlineResultSubmitted=false;M.innerHTML='<h1>ERREUR DE VALIDATION</h1>';const message=document.createElement('small');message.textContent=String(e?.message||'Erreur inconnue.');M.appendChild(message);M.appendChild(btn('Réessayer',onlineResultConfirmMenu))}
 }
 function onlineResultConfirmMenu(){
  if(!G||!G.win)return;M.style.display='flex';M.style.background='';M.innerHTML='<h1>CONFIRMER LE RÉSULTAT</h1>';const resultHint=document.createElement('small');resultHint.textContent='Le jeu estime que '+(G.win===(onlineLocalSide===0?G.a:G.b)?(sv.pseudo||'Toi'):onlineOpponentName)+' a gagné. Choisis le résultat réel. Les points ne seront ajoutés qu’après l’accord des deux joueurs.';M.appendChild(resultHint);
