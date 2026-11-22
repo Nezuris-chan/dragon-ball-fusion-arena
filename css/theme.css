@@ -1,0 +1,16 @@
+:root{--fa-bg:#060b1a;--fa-panel:#0f1d3d;--fa-panel2:#15284f;--fa-line:rgba(120,200,255,.28);--fa-text:#e9f1ff;--fa-muted:#9fb6d6;--fa-accent:#44d4ff;--fa-purple:#a07bff;--fa-gold:#ffd27a}
+#m{font-family:system-ui,"Segoe UI",sans-serif;color:var(--fa-text);background:radial-gradient(ellipse at 50% -10%,rgba(68,212,255,.14),transparent 55%),linear-gradient(160deg,#060b1a,#0b1430)!important}
+#m h1{color:#fff;font-weight:850;letter-spacing:.14em;text-shadow:0 0 18px rgba(68,212,255,.4)}
+#m button{font:700 14px system-ui,sans-serif;color:var(--fa-text);background:linear-gradient(180deg,var(--fa-panel2),var(--fa-panel));border:1px solid rgba(120,200,255,.45);border-radius:10px;padding:10px 17px;min-height:40px;transition:.16s}
+#m button:hover:not(:disabled){border-color:var(--fa-accent);box-shadow:0 0 18px rgba(68,212,255,.2);filter:brightness(1.12)}
+#m button.on,#m button[aria-pressed=true]{background:linear-gradient(120deg,#1f6fa0,#4b3ba6);border-color:var(--fa-accent)}
+#m button:disabled{opacity:.45}
+.profile-panel,.selection-section,.menu-section,.story-saga,.story-quest-card,.adventure-event-card,.adventure-progress-card,.adventure-mission-card,.adventure-result-card,.adventure-sidequest-card,.adventure-dialogue-card,.relic-card,.fighter-stats-card,.fighter-preview,.menu-player-card,.menu-hero,.adventure-walk-shell{background:linear-gradient(155deg,var(--fa-panel2),var(--fa-panel))!important;border:1px solid var(--fa-line)!important;border-radius:14px!important;box-shadow:0 10px 30px #0005;color:var(--fa-text)}
+#m .menu-action,.adventure-zone-card{background:linear-gradient(155deg,var(--fa-panel2),var(--fa-panel))!important;border:1px solid var(--fa-line)!important;border-radius:14px!important;color:var(--fa-text)}
+#m .menu-action-featured{background:linear-gradient(120deg,#1f6fa0,#4b3ba6)!important;border-color:var(--fa-accent)!important}
+.story-saga-head{background:linear-gradient(100deg,#1b4f7e,#3a2a72)!important;color:#fff;border-radius:10px}
+.story-chapters button{background:#0c1834!important;border:1px solid var(--fa-line)!important;color:var(--fa-text)}
+.adventure-walk-counter{background:#081228!important;border:1px solid var(--fa-line);border-radius:9px;color:var(--fa-gold)!important}
+.adventure-walk-canvas{display:block;width:100%;max-width:960px;aspect-ratio:16/9;background:#183e43;border:1px solid var(--fa-line);border-radius:12px}
+@media(max-width:650px){#m{padding-left:10px;padding-right:10px}#m button{min-height:44px}}
+@media(prefers-reduced-motion:reduce){#m,#m *{animation:none!important;transition:none!important}}
