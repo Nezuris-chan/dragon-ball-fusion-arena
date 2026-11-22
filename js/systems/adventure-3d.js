@@ -22,7 +22,7 @@ function adventureWalk3D(opts){
  const path=new T.Mesh(new T.PlaneGeometry(145,world.h*1.08),pathMat);path.rotation.x=-Math.PI/2;path.position.set(-world.w*.12,.35,0);path.receiveShadow=true;scene.add(path);
  const path2=new T.Mesh(new T.PlaneGeometry(world.w*.82,105),pathMat);path2.rotation.x=-Math.PI/2;path2.position.set(0,.38,toZ(world.h*.56));path2.receiveShadow=true;scene.add(path2);
  const addMesh=(geo,material,x,y,z,shadow=true)=>{const m=new T.Mesh(geo,material);m.position.set(x,y,z);m.castShadow=shadow;m.receiveShadow=true;scene.add(m);return m};
- const hills=[[-760,90,-430,280,110,250],[-520,55,430,210,65,180],[660,70,-380,300,85,220],[720,80,410,270,100,240],[-40,48,-610,330,55,170]];
+ const hills=[[-760,90,-430,280,110,250],[-520,55,430,210,65,180],[660,70,-380,300,85,220],[720,80,410,270,100,240],[-40,48,-610,330,55,170],[-1240,80,-690,320,100,260],[1190,85,-720,360,120,280],[-1260,70,720,330,95,250],[1260,95,710,370,125,290],[0,60,880,420,75,240]];
  for(const [x,y,z,sx,sy,sz] of hills){const h=addMesh(new T.SphereGeometry(1,18,12),mat('#668d61'),x,y,z);h.scale.set(sx,sy,sz)}
  // Décor de région : petit lac, rochers de rive, cristaux et ruines anciennes.
  const lakeX=toX(world.w*.18),lakeZ=toZ(world.h*.72);
@@ -32,9 +32,9 @@ function adventureWalk3D(opts){
  const ruinX=toX(world.w*.42),ruinZ=toZ(world.h*.22);for(let i=0;i<4;i++){const col=addMesh(new T.CylinderGeometry(9,12,58,8),stoneMat,ruinX+(i%2)*62,29,ruinZ+Math.floor(i/2)*58);col.rotation.z=(i%2?-.06:.04)}
 
  const buildTree=(x,z,s=1)=>{const trunk=addMesh(new T.CylinderGeometry(8*s,13*s,66*s,8),woodMat,x,33*s,z);trunk.castShadow=true;for(let i=0;i<3;i++){const crown=addMesh(new T.SphereGeometry((34-i*4)*s,12,10),leafMats[i],x+(i%2?9:-8)*s,70*s+i*22*s,z);crown.scale.set(1,.85,1);crown.castShadow=true}};
- for(let i=0;i<(lowSpec?34:52);i++){let x=(rnd()-.5)*(world.w-120),z=(rnd()-.5)*(world.h-120);if(Math.abs(x+world.w*.12)<130||Math.abs(z-toZ(world.h*.56))<110)continue;if(walls.some(o=>Math.abs(x-toX(o.x+o.w/2))<o.w*.7&&Math.abs(z-toZ(o.y+o.h/2))<o.h*.7))continue;buildTree(x,z,.65+rnd()*.75)}
+ for(let i=0;i<(lowSpec?42:76);i++){let x=(rnd()-.5)*(world.w-120),z=(rnd()-.5)*(world.h-120);if(Math.abs(x+world.w*.12)<130||Math.abs(z-toZ(world.h*.56))<110)continue;if(walls.some(o=>Math.abs(x-toX(o.x+o.w/2))<o.w*.7&&Math.abs(z-toZ(o.y+o.h/2))<o.h*.7))continue;buildTree(x,z,.65+rnd()*.75)}
  const addRock=(x,z,s)=>{const r=addMesh(new T.DodecahedronGeometry(18*s,0),stoneMat,x,10*s,z);r.scale.y=.65;r.rotation.set(rnd(),rnd()*2,rnd())};
- for(let i=0;i<(lowSpec?18:30);i++)addRock((rnd()-.5)*(world.w-100),(rnd()-.5)*(world.h-100),.45+rnd()*.85);
+ for(let i=0;i<(lowSpec?24:40);i++)addRock((rnd()-.5)*(world.w-100),(rnd()-.5)*(world.h-100),.45+rnd()*.85);
  for(const o of walls){const x=toX(o.x+o.w/2),z=toZ(o.y+o.h/2);const base=addMesh(new T.BoxGeometry(o.w,76,o.h),mat('#78877c'),x,38,z);base.castShadow=true;const roof=addMesh(new T.ConeGeometry(Math.max(o.w,o.h)*.68,75,4),mat('#765c48'),x,113,z);roof.rotation.y=Math.PI/4;roof.castShadow=true}
  // Petit sanctuaire qui sert de point de repère au centre du monde
  const shrineX=toX(world.w*.76),shrineZ=toZ(world.h*.28);addMesh(new T.BoxGeometry(190,18,145),stoneMat,shrineX,9,shrineZ);

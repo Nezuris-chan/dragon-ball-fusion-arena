@@ -283,7 +283,7 @@ const ADVENTURE_SCENES={
 };
 
 function adventureZoneData(zoneId){return ADVENTURE_REGION_DATA[zoneId]||{spots:[],quests:[]}}
-function adventureSpotsMenu(zoneId){
+function adventureSpotsMenu(zoneId){return adventureWalkMenu(zoneId);
  const index=ADVENTURE_ZONES.findIndex(z=>z.id===zoneId);if(index<0||!adventureZoneOpen(index))return adventureMapMenu();
  const zone=ADVENTURE_ZONES[index],data=adventureZoneData(zoneId),q=adventureState(),found=data.spots.filter(p=>q.discoveredSpots.includes(zoneId+':'+p.id)).length;
  M.style.display='flex';M.style.background='';M.innerHTML='<h1>EXPLORATION — '+zone.name.toUpperCase()+'</h1><small>Visite les lieux de la région. Chaque découverte est conservée dans ta sauvegarde.</small>';
