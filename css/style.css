@@ -597,3 +597,38 @@ small{opacity:.7;max-width:90%}
 .adventure-walk-hint,.adventure-walk-nearby{padding:10px 12px;border-radius:10px;background:rgba(5,15,31,.55);color:#b8d6ec;text-align:left;font-size:11px}
 .adventure-walk-nearby{min-height:16px;color:#ffe29b}
 @media(max-width:650px){#m .menu-hero{grid-template-columns:1fr}#m .main-menu-actions{grid-template-columns:1fr}#m .menu-action-featured{grid-column:auto}.adventure-walk-shell{padding:8px}.adventure-walk-hud h2{font-size:17px}}
+
+
+/* Fusion Arena — finition visuelle du menu et fluidité */
+#m:not(.story-screen):not(.mode-screen) .menu-shell{isolation:isolate}
+#m .menu-hero{border:1px solid rgba(125,220,255,.2)}
+#m .menu-brand-mark{position:relative;overflow:hidden;isolation:isolate}
+#m .menu-brand-mark:after{content:"";position:absolute;inset:-70%;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.32) 50%,transparent 58%);transform:translateX(-55%) rotate(12deg);animation:arenaLogoShine 6s ease-in-out infinite}
+#m .menu-action{will-change:transform}
+#m .menu-action-icon{transition:transform .22s ease,background .22s ease,box-shadow .22s ease}
+#m .menu-action:hover .menu-action-icon{transform:translateY(-2px) scale(1.06);background:rgba(105,214,255,.22);box-shadow:0 0 20px rgba(65,205,255,.16)}
+#m .menu-action-featured .menu-action-icon{background:rgba(255,222,140,.14)}
+#m .menu-action-featured:hover .menu-action-icon{box-shadow:0 0 22px rgba(255,213,112,.2)}
+#m .menu-quick-stat{border:1px solid rgba(141,196,236,.09);transition:border-color .2s ease,background .2s ease}
+#m .menu-quick-stat:hover{border-color:rgba(120,220,255,.28);background:rgba(13,34,65,.55)}
+#m .menu-utility-button{transition:transform .18s ease,border-color .18s ease,background .18s ease}
+#m .menu-utility-button:hover{transform:translateY(-2px);border-color:rgba(120,220,255,.55)!important;background:rgba(27,53,87,.9)!important}
+#m.story-screen .story-saga{transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+#m.story-screen .story-saga:hover{border-color:rgba(115,225,255,.72);box-shadow:0 12px 28px rgba(0,0,0,.35),0 0 18px rgba(54,188,255,.09)}
+#m.story-screen .story-chapter-button{transition:background .16s ease,border-color .16s ease,transform .16s ease}
+#m.story-screen .story-chapter-button:not(:disabled):hover{transform:translateX(3px);border-color:rgba(130,225,255,.7)}
+@keyframes arenaLogoShine{0%,65%,100%{transform:translateX(-65%) rotate(12deg)}82%{transform:translateX(65%) rotate(12deg)}}
+@media(max-width:760px){
+ #m .menu-hero{grid-template-columns:minmax(0,1fr);gap:14px}
+ #m .menu-player-card{grid-template-columns:44px minmax(0,1fr) auto}
+ #m .menu-brand-mark{width:60px;height:60px;border-radius:17px;font-size:32px}
+ #m .main-menu-actions{grid-template-columns:minmax(0,1fr)}
+ #m .menu-action-featured{grid-column:auto}
+ #m .menu-action{min-height:82px;padding:13px!important}
+ #m .menu-utility{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #m .menu-footer-note{letter-spacing:1px;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+ #m .menu-brand-mark:after{animation:none}
+ #m .menu-action,#m .menu-action-icon,#m .menu-utility-button,#m.story-screen .story-saga,#m.story-screen .story-chapter-button{animation:none!important;transition:none!important;transform:none!important;will-change:auto}
+}
