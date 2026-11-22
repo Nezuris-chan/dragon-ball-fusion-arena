@@ -182,7 +182,7 @@ function adventureWalkMenu(zoneId){
  const heading=mk('div');heading.innerHTML='<small>EXPLORATION LIBRE · '+zone.place.toUpperCase()+'</small><h2>'+zone.name+'</h2>';
  const counter=mk('strong');counter.className='adventure-walk-counter';
  top.append(heading,counter);wrap.append(top,canvas,miniCanvas);
- const hint=mk('div');hint.className='adventure-walk-hint';hint.textContent='Déplacement : ZQSD / WASD ou flèches · E : parler aux PNJ · Explore la carte pour atteindre 100 % · Doré : PNJ / Bleu : lieux';
+ const reticle=mk('div');reticle.className='adventure-fps-reticle';reticle.setAttribute('aria-hidden','true');wrap.appendChild(reticle);const hint=mk('div');hint.className='adventure-walk-hint';hint.textContent='VUE À LA PREMIÈRE PERSONNE · Déplacement : ZQSD / WASD ou flèches · E : parler aux PNJ · Doré : PNJ / Bleu : lieux';
  const nearby=mk('div');nearby.className='adventure-walk-nearby';wrap.append(hint,nearby);
  M.style.display='flex';M.style.background='';M.classList.remove('story-screen','mode-screen');M.innerHTML='<div class="adventure-walk-header"><span>FUSION ARENA · EXPLORATION</span><button type="button" class="adventure-walk-exit">QUITTER</button></div>';M.appendChild(wrap);
  M.querySelector('.adventure-walk-exit').onclick=()=>{adventureWalkStop();adventureNpcMenu(zoneId)};

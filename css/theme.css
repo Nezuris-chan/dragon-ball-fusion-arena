@@ -70,3 +70,8 @@ html,body,#w{background:#050914;color:var(--fa-text)}
 .adventure-walk-shell{position:relative;}
 .adventure-minimap{position:absolute;z-index:4;top:76px;right:14px;width:180px;height:120px;border:2px solid rgba(135,220,255,.8);border-radius:12px;background:#071522;box-shadow:0 8px 28px rgba(0,0,0,.48);image-rendering:pixelated;}
 @media(max-width:680px){.adventure-minimap{width:132px;height:88px;top:62px;right:8px}.adventure-walk-canvas{max-width:100%;height:auto}}
+
+/* Vue subjective de l'exploration */
+#m .adventure-fps-reticle{position:absolute;z-index:5;left:50%;top:50%;width:16px;height:16px;transform:translate(-50%,-50%);pointer-events:none;border:1px solid rgba(230,250,255,.9);border-radius:50%;box-shadow:0 0 8px rgba(50,205,255,.75)}
+#m .adventure-fps-reticle:before,#m .adventure-fps-reticle:after{content:'';position:absolute;background:rgba(235,250,255,.95);box-shadow:0 0 5px rgba(50,205,255,.8)}
+#m .adventure-fps-reticle:before{width:1px;height:24px;left:7px;top:-5px}#m .adventure-fps-reticle:after{height:1px;width:24px;top:7px;left:-5px}
