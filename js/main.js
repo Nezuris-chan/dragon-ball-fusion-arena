@@ -14,7 +14,7 @@ function fighterKind(name){
  if(['Goku','Vegeta','Gogeta','Vegetto','Broly','Gohan','Trunks','Gotenks','Bardock','Raditz','Nappa','Cabba','Caulifla','Kale','Shallot','Cumber','Xeno Goku','Baby Vegeta','Uub','Pan','Kefla'].includes(n))return {id:'saiyan',label:'Saiyan'};
  return {id:'human',label:'Terrien'};
 }
-const PORTRAIT_STYLE={
+const PORTRAIT_STYLE={Saibaman:{skin:'#78b83d',hair:'#315b2b',out:'#477c32',kind:'alien',spikes:1,eyes:'#e33b2e'},
  Beerus:{skin:'#b77bd5',hair:'#382344',out:'#17142b',kind:'cat',ears:1,eyes:'#f4d35e'},
  Piccolo:{skin:'#79b94d',hair:'#315c3b',out:'#6b9b37',kind:'namek',antenna:1,eyes:'#d8f0a0'},
  'Majin Buu':{skin:'#e89ab5',hair:'#e89ab5',out:'#e8c7cf',kind:'majin',antenna:1,eyes:'#21172a'},

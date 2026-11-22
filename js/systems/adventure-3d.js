@@ -59,7 +59,7 @@ function adventureWalk3D(opts){
  for(let i=0;i<questNPCs.length;i++){
   const npc=questNPCs[i],x=toX(npc.x),z=toZ(npc.y),group=new T.Group(),pal=npcPalettes[i%npcPalettes.length],cloth=mat(pal[0]),skinNpc=mat(pal[1]),hairNpc=mat(pal[2]),trim=mat('#d8b65c'),boot=mat('#303a4b');
   group.position.set(x,0,z);scene.add(group);
-  const torso=new T.Mesh(new T.CapsuleGeometry(10,22,3,7),cloth);torso.position.y=38;group.add(torso);
+  const torso=new T.Mesh(new T.CylinderGeometry(9,11,34,8),cloth);torso.position.y=38;group.add(torso);
   const belt=new T.Mesh(new T.CylinderGeometry(10,10,4,9),trim);belt.position.y=27;group.add(belt);
   const head=new T.Mesh(new T.SphereGeometry(10,12,10),skinNpc);head.position.y=62;group.add(head);
   const hair=new T.Mesh(new T.SphereGeometry(10.6,10,7,0,Math.PI*2,0,Math.PI*.52),hairNpc);hair.position.y=67;group.add(hair);
@@ -75,7 +75,7 @@ function adventureWalk3D(opts){
 
  // Modèle 3D Saibaman : silhouette alien musclée, articulée et immédiatement reconnaissable.
  const mobObjects=[],mobSkin=mat('#78b83d'),mobLight=mat('#9bcf55'),mobDark=mat('#315b2b'),mobArmor=mat('#477c32'),mobEye=mat('#e33b2e'),mobClaw=mat('#d8e7a0');
- const mobSpots=[[toX(360),toZ(300)],[toX(2500),toZ(320)],[toX(430),toZ(1660)],[toX(2510),toZ(1640)],[toX(1510),toZ(340)]],capsule=new T.CapsuleGeometry(1,1,3,7);
+ const mobSpots=[[toX(360),toZ(300)],[toX(2500),toZ(320)],[toX(430),toZ(1660)],[toX(2510),toZ(1640)],[toX(1510),toZ(340)]],capsule=new T.CylinderGeometry(1,1,2,8);
  for(let i=0;i<mobSpots.length;i++){
   const group=new T.Group();scene.add(group);group.position.set(mobSpots[i][0],0,mobSpots[i][1]);
   const part=(geo,m,x,y,z,scale)=>{const o=new T.Mesh(geo,m);o.position.set(x,y,z);if(scale)o.scale.set(...scale);o.castShadow=true;group.add(o);return o};

@@ -187,7 +187,7 @@ function adventureWalkMenu(zoneId){
  M.style.display='flex';M.style.background='';M.classList.remove('story-screen','mode-screen');M.innerHTML='<div class="adventure-walk-header"><span>FUSION ARENA · EXPLORATION</span><button type="button" class="adventure-walk-exit">QUITTER</button></div>';M.appendChild(wrap);
  M.querySelector('.adventure-walk-exit').onclick=()=>{adventureWalkStop();adventureNpcMenu(zoneId)};
  const world3d={w:3000,h:2000};
- const points3d=data.spots.map((s,i)=>({x:420+(i%3)*1040,y:360+Math.floor(i/3)*620,label:s.name,id:s.id}));
+ const points3d=data.spots.map((s,i)=>({x:420+(i%3)*1040,y:360+Math.floor(i/3)*620,label:s.name,id:zoneId+':'+s.id}));
  const pickups3d=objects.map((o,i)=>({...o,x:260+(i*617+index*191)%(world3d.w-520),y:240+(i*431+index*137)%(world3d.h-480),taken:q.foundAdventureItems.includes(zoneId+':'+o.id)}));
  const walls3d=[{x:350,y:170,w:250,h:100},{x:1040,y:300,w:270,h:125},{x:620,y:700,w:230,h:120},{x:1400,y:780,w:190,h:90}];const npcNames=[...new Set(data.quests.map(x=>x.npc))],questNPCs=npcNames.map((name,i)=>{const quest=data.quests.find(x=>x.npc===name);return{name,questId:quest.id,x:520+(i%3)*950,y:1500-Math.floor(i/3)*570}});if(!Array.isArray(q.exploredMap))q.exploredMap=[];
  const walk3d=typeof adventureWalk3D==='function'?adventureWalk3D({onMobEncounter:()=>{
