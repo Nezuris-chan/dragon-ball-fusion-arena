@@ -10,7 +10,7 @@ Depuis la racine du dépôt :
 python -m http.server 8000
 ```
 
-Ouvre ensuite http://localhost:8000 dans ton navigateur. Utilise un serveur HTTP local plutôt que d'ouvrir directement `index.html`.
+Ouvre ensuite https://nezuris-chan.github.io/dragon-ball-fusion-arena/ dans ton navigateur. Utilise un serveur HTTP local plutôt que d'ouvrir directement `index.html`.
 
 ## Organisation
 
