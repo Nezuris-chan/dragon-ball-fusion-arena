@@ -65,3 +65,8 @@ html,body,#w{background:#050914;color:var(--fa-text)}
 @media(max-width:760px){#m .menu-hero{grid-template-columns:1fr}#m .main-menu-actions{grid-template-columns:1fr}#m .menu-action-featured{grid-column:auto}#m .select-layout{grid-template-columns:1fr}#m .select-roster{max-height:36vh}#m .menu-brand-mark{width:58px;height:58px;font-size:30px}}
 @media(max-width:480px){#m{padding:10px!important}#m .menu-hero,#m .menu-section{padding:12px!important}#m .menu-brand{gap:10px}#m .menu-brand h1{font-size:24px!important}#m .menu-player-card{grid-template-columns:40px minmax(0,1fr) auto}#m .menu-quick-stat{padding:7px}#m .menu-quick-stat strong{font-size:14px}#m .menu-action{grid-template-columns:38px minmax(0,1fr) 12px;min-height:76px;padding:10px!important}#m .menu-action-icon{width:36px;height:36px;font-size:19px}}
 @media(prefers-reduced-motion:reduce){#m *,#m *:before,#m *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Exploration : mini-carte et progression de découverte */
+.adventure-walk-shell{position:relative;}
+.adventure-minimap{position:absolute;z-index:4;top:76px;right:14px;width:180px;height:120px;border:2px solid rgba(135,220,255,.8);border-radius:12px;background:#071522;box-shadow:0 8px 28px rgba(0,0,0,.48);image-rendering:pixelated;}
+@media(max-width:680px){.adventure-minimap{width:132px;height:88px;top:62px;right:8px}.adventure-walk-canvas{max-width:100%;height:auto}}
