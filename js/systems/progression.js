@@ -186,21 +186,20 @@ function adventureWalkMenu(zoneId){
  const nearby=mk('div');nearby.className='adventure-walk-nearby';wrap.append(hint,nearby);
  M.style.display='flex';M.style.background='';M.classList.remove('story-screen','mode-screen');M.innerHTML='<div class="adventure-walk-header"><span>FUSION ARENA · EXPLORATION</span><button type="button" class="adventure-walk-exit">QUITTER</button></div>';M.appendChild(wrap);
  M.querySelector('.adventure-walk-exit').onclick=()=>{adventureWalkStop();adventureNpcMenu(zoneId)};
- const world3d={w:1800,h:1100};
- const points3d=data.spots.map((s,i)=>({x:210+(i%3)*570,y:260+Math.floor(i/3)*430,label:s.name,id:s.id}));
- const pickups3d=objects.map((o,i)=>({...o,x:160+(i*367+index*91)%(world3d.w-320),y:160+(i*241+index*67)%(world3d.h-320),taken:q.foundAdventureItems.includes(zoneId+':'+o.id)}));
- const walls3d=[{x:350,y:170,w:250,h:100},{x:1040,y:300,w:270,h:125},{x:620,y:700,w:230,h:120},{x:1400,y:780,w:190,h:90}];const npcNames=[...new Set(data.quests.map(x=>x.npc))],questNPCs=npcNames.map((name,i)=>{const quest=data.quests.find(x=>x.npc===name);return{name,questId:quest.id,x:300+(i%3)*570,y:820-Math.floor(i/3)*260}});if(!Array.isArray(q.exploredMap))q.exploredMap=[];
+ const world3d={w:3000,h:2000};
+ const points3d=data.spots.map((s,i)=>({x:420+(i%3)*1040,y:360+Math.floor(i/3)*620,label:s.name,id:s.id}));
+ const pickups3d=objects.map((o,i)=>({...o,x:260+(i*617+index*191)%(world3d.w-520),y:240+(i*431+index*137)%(world3d.h-480),taken:q.foundAdventureItems.includes(zoneId+':'+o.id)}));
+ const walls3d=[{x:350,y:170,w:250,h:100},{x:1040,y:300,w:270,h:125},{x:620,y:700,w:230,h:120},{x:1400,y:780,w:190,h:90}];const npcNames=[...new Set(data.quests.map(x=>x.npc))],questNPCs=npcNames.map((name,i)=>{const quest=data.quests.find(x=>x.npc===name);return{name,questId:quest.id,x:520+(i%3)*950,y:1500-Math.floor(i/3)*570}});if(!Array.isArray(q.exploredMap))q.exploredMap=[];
  const walk3d=typeof adventureWalk3D==='function'?adventureWalk3D({onMobEncounter:()=>{
   adventureWalkStop();
-  let mobIndex=CH.findIndex(c=>c.n==='Saibaman');
-  if(mobIndex<0){const base=CH[0],mob=Object.assign({},base,{n:'Saibaman',pw:.78,sp:.72,ki:0,desc:'Créature bio-guerrière',fm:[Object.assign({},base.fm[0],{name:'Base',pw:.78,sp:.72})]});CH.push(mob);mobIndex=CH.length-1}
+  const mobIndex=CH.findIndex(c=>c.n==='Saibaman');if(mobIndex<0)throw new Error('Fiche de combat Saibaman manquante');
   cfg.mode='mob';cfg.p2=mobIndex;cfg.diff=1;cfg.sel2=false;
   M.style.display='flex';M.innerHTML='<h1>SAIBAMAN !</h1><p>Un Saibaman t’a repéré. Choisis ton combattant pour lancer le combat.</p>';
   M.appendChild(btn('COMBATTRE',()=>selectScreen('mob')));
   M.appendChild(btn('FUIR ET REPRENDRE L’EXPLORATION',()=>adventureWalkMenu(zoneId)));
- },canvas,miniCanvas,exploredMap:q.exploredMap,world:world3d,walls:walls3d,points:points3d,pickups:pickups3d,questNPCs,onNpcTalk:questId=>{const quest=data.quests.find(x=>x.id===questId);if(quest){adventureWalkStop();adventureRegionQuestTalk(zoneId,questId)}},onMapExplore:id=>{if(!q.exploredMap.includes(id)){q.exploredMap.push(id);save()}},onMapProgress:percent=>{counter.textContent=pickups3d.filter(x=>x.taken).length+' / '+pickups3d.length+' objets · Carte '+percent+' %'},
+ },canvas,miniCanvas,exploredMap:q.exploredMap,discoveredSpots:q.discoveredSpots||[],world:world3d,walls:walls3d,points:points3d,pickups:pickups3d,questNPCs,onNpcTalk:questId=>{const quest=data.quests.find(x=>x.id===questId);if(quest){adventureWalkStop();adventureRegionQuestTalk(zoneId,questId)}},onMapExplore:id=>{if(!q.exploredMap.includes(id)){q.exploredMap.push(id);save()}},onSpotDiscover:spot=>{if(!q.discoveredSpots.includes(spot.id)){q.discoveredSpots.push(spot.id);save();nearby.textContent='Lieu exploré : '+spot.label}},onMapProgress:percent=>{counter.textContent=pickups3d.filter(x=>x.taken).length+' / '+pickups3d.length+' objets · Carte '+percent+' %'},
   onPickup:item=>{const key=zoneId+':'+item.id;if(!q.foundAdventureItems.includes(key))q.foundAdventureItems.push(key);sv.xp=(Number(sv.xp)||0)+item.xp;sv.rp=(Number(sv.rp)||0)+item.rp;save();nearby.textContent='Objet trouvé : '+item.name+' · +'+item.xp+' XP · +'+item.rp+' RP'},
-  onNear:t=>{nearby.textContent=t},onCounter:(f,n)=>{counter.textContent=f+' / '+n+' objets · Carte '+Math.round((q.exploredMap.length/96)*100)+' %'}}):null;
+  onNear:t=>{nearby.textContent=t},onCounter:(f,n)=>{counter.textContent=f+' / '+n+' objets · Carte '+Math.round((q.exploredMap.filter(x=>typeof x==='string'&&x.startsWith('v2:')).length/150)*100)+' %'}}):null;
  if(walk3d){window.__fusionAdventureWalkStop=walk3d.stop;return}
  const ctx=canvas.getContext('2d'),keys=new Set(),W=960,H=540,world={w:1800,h:1100},player={x:world.w/2,y:world.h/2,r:17,face:0};
  const points=data.spots.map((s,i)=>({x:210+(i%3)*570,y:260+Math.floor(i/3)*430,label:s.name,id:s.id}));
@@ -253,8 +252,8 @@ function adventureNpcMenu(zoneId){
  M.appendChild(card);
  const activity=mk('section');activity.className='adventure-activity-summary';activity.innerHTML='<b>VIE DE LA RÉGION</b><span>'+found+' / '+data.spots.length+' lieux découverts</span><span>'+claimed+' / '+data.quests.length+' quêtes locales terminées</span>';
  M.appendChild(activity);
- M.appendChild(row([btn('LIEUX À EXPLORER',()=>adventureSpotsMenu(zoneId)),btn('QUÊTES LOCALES',()=>adventureRegionQuestMenu(zoneId))]));
- M.appendChild(btn('SE DÉPLACER ET CHERCHER DES OBJETS',()=>adventureWalkMenu(zoneId)));
+ M.appendChild(row([btn('QUÊTES LOCALES',()=>adventureRegionQuestMenu(zoneId)),btn('ENTRER DANS LA RÉGION 3D',()=>adventureWalkMenu(zoneId))]));
+
  M.appendChild(row([btn('PARLER À '+zone.npc.toUpperCase(),()=>adventureDialogue(zoneId,'intro')),btn((q.exploredZones||[]).includes(zoneId)?'REVOIR LE SOUVENIR':'SOUVENIR DE LA RÉGION',()=>adventureExplore(zoneId))]));
  M.appendChild(btn('← Retour à la carte',adventureMapMenu));
 }
