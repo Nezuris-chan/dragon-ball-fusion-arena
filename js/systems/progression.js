@@ -190,7 +190,7 @@ function adventureWalkMenu(zoneId){
  const points3d=data.spots.map((s,i)=>({x:420+(i%3)*1040,y:360+Math.floor(i/3)*620,label:s.name,id:zoneId+':'+s.id}));
  const pickups3d=objects.map((o,i)=>({...o,x:260+(i*617+index*191)%(world3d.w-520),y:240+(i*431+index*137)%(world3d.h-480),taken:q.foundAdventureItems.includes(zoneId+':'+o.id)}));
  const walls3d=[{x:350,y:170,w:250,h:100},{x:1040,y:300,w:270,h:125},{x:620,y:700,w:230,h:120},{x:1400,y:780,w:190,h:90}];const npcNames=[...new Set(data.quests.map(x=>x.npc))],questNPCs=npcNames.map((name,i)=>{const quest=data.quests.find(x=>x.npc===name);return{name,questId:quest.id,x:520+(i%3)*950,y:1500-Math.floor(i/3)*570}});if(!Array.isArray(q.exploredMap))q.exploredMap=[];
- const walk3d=typeof adventureWalk3D==='function'?adventureWalk3D({onMobEncounter:()=>{
+ const walk3d=typeof adventureWalk3D==='function'?adventureWalk3D({zoneId,onMobEncounter:()=>{
   adventureWalkStop();
   const mobIndex=CH.findIndex(c=>c.n==='Saibaman');if(mobIndex<0)throw new Error('Fiche de combat Saibaman manquante');
   cfg.mode='mob';cfg.p2=mobIndex;cfg.diff=1;cfg.sel2=false;
@@ -199,7 +199,7 @@ function adventureWalkMenu(zoneId){
   M.appendChild(btn('FUIR ET REPRENDRE L’EXPLORATION',()=>adventureWalkMenu(zoneId)));
  },canvas,miniCanvas,exploredMap:q.exploredMap,discoveredSpots:q.discoveredSpots||[],world:world3d,walls:walls3d,points:points3d,pickups:pickups3d,questNPCs,onNpcTalk:questId=>{const quest=data.quests.find(x=>x.id===questId);if(quest){adventureWalkStop();adventureRegionQuestTalk(zoneId,questId)}},onMapExplore:id=>{if(!q.exploredMap.includes(id)){q.exploredMap.push(id);save()}},onSpotDiscover:spot=>{if(!q.discoveredSpots.includes(spot.id)){q.discoveredSpots.push(spot.id);save();nearby.textContent='Lieu exploré : '+spot.label}},onMapProgress:percent=>{counter.textContent=pickups3d.filter(x=>x.taken).length+' / '+pickups3d.length+' objets · Carte '+percent+' %'},
   onPickup:item=>{const key=zoneId+':'+item.id;if(!q.foundAdventureItems.includes(key))q.foundAdventureItems.push(key);sv.xp=(Number(sv.xp)||0)+item.xp;sv.rp=(Number(sv.rp)||0)+item.rp;save();nearby.textContent='Objet trouvé : '+item.name+' · +'+item.xp+' XP · +'+item.rp+' RP'},
-  onNear:t=>{nearby.textContent=t},onCounter:(f,n)=>{counter.textContent=f+' / '+n+' objets · Carte '+Math.round((q.exploredMap.filter(x=>typeof x==='string'&&x.startsWith('v2:')).length/150)*100)+' %'}}):null;
+  onNear:t=>{nearby.textContent=t},onCounter:(f,n)=>{counter.textContent=f+' / '+n+' objets · Carte '+Math.round((q.exploredMap.filter(x=>typeof x==='string'&&x.startsWith('v3:')).length/150)*100)+' %'}}):null;
  if(walk3d){window.__fusionAdventureWalkStop=walk3d.stop;return}
  const ctx=canvas.getContext('2d'),keys=new Set(),W=960,H=540,world={w:1800,h:1100},player={x:world.w/2,y:world.h/2,r:17,face:0};
  const points=data.spots.map((s,i)=>({x:210+(i%3)*570,y:260+Math.floor(i/3)*430,label:s.name,id:s.id}));
