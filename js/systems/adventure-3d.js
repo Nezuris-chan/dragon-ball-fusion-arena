@@ -13,22 +13,43 @@ function adventureWalk3D(opts){
  const toX=x=>x-world.w/2,toZ=y=>y-world.h/2,clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
  const hemi=new T.HemisphereLight('#e8f8ff','#304a35',1.35);scene.add(hemi);
  const sun=new T.DirectionalLight('#fff0d1',2.1);sun.position.set(-360,760,420);sun.castShadow=true;sun.shadow.mapSize.set(lowSpec?512:1024,lowSpec?512:1024);sun.shadow.camera.left=-1150;sun.shadow.camera.right=1150;sun.shadow.camera.top=900;sun.shadow.camera.bottom=-900;sun.shadow.bias=-.00025;sun.shadow.radius=4;scene.add(sun);
- const groundCanvas=document.createElement('canvas');groundCanvas.width=512;groundCanvas.height=512;const gx=groundCanvas.getContext('2d');gx.fillStyle=biome.grass;gx.fillRect(0,0,512,512);
+ const groundCanvas=document.createElement('canvas');groundCanvas.width=1024;groundCanvas.height=768;const gx=groundCanvas.getContext('2d');gx.fillStyle=biome.grass;gx.fillRect(0,0,1024,768);
  let seed=173;const rnd=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296};
- for(let i=0;i<9000;i++){const x=rnd()*512,y=rnd()*512,r=1+rnd()*2.8;gx.fillStyle=rnd()>.5?'rgba(181,190,105,.17)':'rgba(20,62,48,.2)';gx.beginPath();gx.ellipse(x,y,r,r*.55,rnd(),0,Math.PI*2);gx.fill()}
- // Texture de sol procédurale : petites zones de terre et de végétation.
- for(let i=0;i<95;i++){const x=rnd()*512,y=rnd()*512,r=5+rnd()*17;gx.fillStyle=rnd()>.5?'rgba(204,190,139,.10)':'rgba(26,67,47,.12)';gx.beginPath();gx.ellipse(x,y,r,r*.42,rnd()*Math.PI,0,Math.PI*2);gx.fill()}
- for(let i=0;i<420;i++){const x=rnd()*512,y=rnd()*512;gx.strokeStyle=rnd()>.5?'rgba(222,224,168,.18)':'rgba(29,64,43,.2)';gx.lineWidth=.7+rnd()*1.1;gx.beginPath();gx.moveTo(x,y);gx.lineTo(x-2-rnd()*5,y-3-rnd()*7);gx.stroke()}
- const groundTex=new T.CanvasTexture(groundCanvas);groundTex.wrapS=groundTex.wrapT=T.RepeatWrapping;groundTex.repeat.set(8,6);groundTex.anisotropy=Math.min(4,renderer.capabilities.getMaxAnisotropy());
- const ground=new T.Mesh(new T.PlaneGeometry(world.w,world.h),new T.MeshStandardMaterial({map:groundTex,color:biome.ground,roughness:1}));ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;scene.add(ground);
+ // Carte de terrain peinte procéduralement : prairies, forêt, désert, reliefs et littoral.
+ const blob=(pts,color)=>{gx.beginPath();gx.moveTo(pts[0][0],pts[0][1]);for(let i=1;i<pts.length;i++)gx.quadraticCurveTo(pts[i-1][0],pts[i-1][1],pts[i][0],pts[i][1]);gx.closePath();gx.fillStyle=color;gx.fill()};
+ blob([[0,0],[330,30],[390,220],[250,410],[0,480]],'#477a4d');blob([[0,130],[180,80],[310,210],[250,420],[70,470],[0,350]],'#315f43');
+ blob([[390,0],[1024,0],[1024,290],[890,360],[710,300],[570,380],[420,230]],'#b8c5bb');blob([[430,0],[1024,0],[1024,210],[840,270],[690,190],[540,260]],'#e2e8df');
+ blob([[370,390],[520,330],[710,380],[770,550],[630,650],[430,610],[320,500]],'#b7a47b');blob([[440,450],[600,390],[720,470],[690,620],[520,690],[390,590]],'#d2b36c');
+ blob([[0,600],[210,520],[370,610],[350,768],[0,768]],'#9d9d72');blob([[690,560],[850,500],[1024,570],[1024,768],[760,768]],'#3b9eae');
+ gx.fillStyle='#4ba9bd';gx.beginPath();gx.moveTo(640,690);gx.bezierCurveTo(740,620,810,660,850,700);gx.bezierCurveTo(930,750,980,680,1024,690);gx.lineTo(1024,768);gx.lineTo(600,768);gx.closePath();gx.fill();
+ gx.fillStyle='#d7c58e';for(const [x,y,rx,ry] of [[740,690,42,18],[850,735,52,16],[950,700,30,13],[680,750,22,10]]){gx.beginPath();gx.ellipse(x,y,rx,ry,-.2,0,Math.PI*2);gx.fill()}
+ gx.strokeStyle='#54b8c9';gx.lineWidth=22;gx.lineCap='round';gx.beginPath();gx.moveTo(270,0);gx.bezierCurveTo(350,130,300,220,440,300);gx.bezierCurveTo(540,370,510,460,620,520);gx.stroke();
+ gx.strokeStyle='rgba(226,207,157,.9)';gx.lineWidth=15;gx.beginPath();gx.moveTo(90,520);gx.bezierCurveTo(260,430,350,510,470,440);gx.bezierCurveTo(610,350,690,410,860,330);gx.stroke();
+ gx.strokeStyle='rgba(245,224,173,.65)';gx.lineWidth=5;gx.beginPath();gx.moveTo(90,520);gx.bezierCurveTo(260,430,350,510,470,440);gx.bezierCurveTo(610,350,690,410,860,330);gx.stroke();
+ for(let i=0;i<12500;i++){const x=rnd()*1024,y=rnd()*768,r=1+rnd()*3;gx.fillStyle=rnd()>.5?'rgba(198,203,128,.20)':'rgba(22,65,44,.22)';gx.beginPath();gx.ellipse(x,y,r,r*.55,rnd(),0,Math.PI*2);gx.fill()}
+ for(let i=0;i<1100;i++){const x=rnd()*1024,y=rnd()*768;gx.strokeStyle=rnd()>.5?'rgba(229,235,201,.18)':'rgba(25,62,43,.22)';gx.lineWidth=.7+rnd()*1.1;gx.beginPath();gx.moveTo(x,y);gx.lineTo(x-2-rnd()*5,y-3-rnd()*7);gx.stroke()}
+ const groundTex=new T.CanvasTexture(groundCanvas);groundTex.wrapS=groundTex.wrapT=T.ClampToEdgeWrapping;groundTex.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());
+ const ground=new T.Mesh(new T.PlaneGeometry(world.w,world.h),new T.MeshStandardMaterial({map:groundTex,color:'#ffffff',roughness:1}));ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;scene.add(ground);
  const mat=(color,roughness=.88,metalness=0)=>new T.MeshStandardMaterial({color,roughness,metalness});
  const grassMats=[biome.grass,'#6d985d','#47784f','#86a66a'].map(c=>mat(c));
  const pathMat=mat(biome.path),stoneMat=mat(biome.rock),woodMat=mat(zoneId==='future'?'#4d5158':'#75543b'),leafMats=['#326c50','#47845a','#6b9857'].map(c=>mat(c));
  const path=new T.Mesh(new T.PlaneGeometry(145,world.h*1.08),pathMat);path.rotation.x=-Math.PI/2;path.position.set(-world.w*.12,.35,0);path.receiveShadow=true;scene.add(path);
  const path2=new T.Mesh(new T.PlaneGeometry(world.w*.82,105),pathMat);path2.rotation.x=-Math.PI/2;path2.position.set(0,.38,toZ(world.h*.56));path2.receiveShadow=true;scene.add(path2);
+ // Route principale courbe qui relie les différentes zones du monde.
+ const roadCurve=new T.CatmullRomCurve3([new T.Vector3(-world.w*.43,1.8,world.h*.22),new T.Vector3(-world.w*.28,1.8,world.h*.08),new T.Vector3(-world.w*.08,1.8,world.h*.02),new T.Vector3(world.w*.08,1.8,-world.h*.12),new T.Vector3(world.w*.27,1.8,-world.h*.2),new T.Vector3(world.w*.43,1.8,-world.h*.34)]);
+ const road=new T.Mesh(new T.TubeGeometry(roadCurve,90,31,8,false),new T.MeshStandardMaterial({color:'#c9ad79',roughness:1}));road.scale.y=.045;road.receiveShadow=true;scene.add(road);
  const addMesh=(geo,material,x,y,z,shadow=true)=>{const m=new T.Mesh(geo,material);m.position.set(x,y,z);m.castShadow=shadow;m.receiveShadow=true;scene.add(m);return m};
  const hills=[[-760,90,-430,280,110,250],[-520,55,430,210,65,180],[660,70,-380,300,85,220],[720,80,410,270,100,240],[-40,48,-610,330,55,170],[-1240,80,-690,320,100,260],[1190,85,-720,360,120,280],[-1260,70,720,330,95,250],[1260,95,710,370,125,290],[0,60,880,420,75,240]];
  for(const [x,y,z,sx,sy,sz] of hills){const h=addMesh(new T.SphereGeometry(1,18,12),mat('#668d61'),x,y,z);h.scale.set(sx,sy,sz)}
+ // Chaînes de montagnes au nord et à l'est, avec des sommets enneigés.
+ const snowMat=mat('#e5edf0',.92),mountainMat=mat(zoneId==='vampa'?'#9b785c':'#7d8984',.98);
+ for(let i=0;i<17;i++){const x=-world.w*.42+i*(world.w*.052),z=-world.h*.43+(i%3)*54,base=90+(i%4)*24,height=190+(i%5)*48;const peak=addMesh(new T.ConeGeometry(base,height,7),mountainMat,x,height*.43,z,false);peak.rotation.z=(i%2?-.08:.07);if(i%2===0){const cap=addMesh(new T.ConeGeometry(base*.43,height*.34,7),snowMat,x,height*.78,z,false);cap.rotation.z=peak.rotation.z}}
+ for(let i=0;i<10;i++){const x=world.w*.39+(i%2)*110,z=-world.h*.35+i*world.h*.075,peak=addMesh(new T.ConeGeometry(105,260+(i%3)*45,7),mountainMat,x,112,z,false);peak.rotation.z=.05;addMesh(new T.ConeGeometry(46,92,7),snowMat,x,242,z,false)}
+ // Falaises et buttes de grès dans la zone désertique au sud.
+ for(let i=0;i<13;i++){const x=-world.w*.18+i*78,z=world.h*.34+(i%3)*42,mesa=addMesh(new T.CylinderGeometry(48,68,70+(i%4)*18,7),mat('#b18a58'),x,36,z,false);mesa.rotation.y=i*.4}
+ // Îlots tropicaux au sud-est, avec sable clair et palmiers.
+ const islandMat=mat('#dfcb91'),seaMat=new T.MeshStandardMaterial({color:'#3b9fb4',roughness:.24,metalness:.08});
+ for(const [x,z,rx,rz] of [[world.w*.72,world.h*.91,160,78],[world.w*.84,world.h*.86,115,54],[world.w*.93,world.h*.92,90,46]]){const sea=addMesh(new T.SphereGeometry(1,24,16),seaMat,toX(x),-1,toZ(z),false);sea.scale.set(rx*1.35,2,rz*1.35);const sand=addMesh(new T.SphereGeometry(1,24,16),islandMat,toX(x),.8,toZ(z),false);sand.scale.set(rx,1.8,rz)}
  // Reliefs de bordure hors de la zone jouable pour fermer l'horizon.
  const rimMat=mat(biome.rock,.96);for(let i=0;i<18;i++){const u=i/17,x=-world.w/2-105+u*(world.w+210);for(const z of[-world.h/2-105,world.h/2+105]){const ridge=addMesh(new T.SphereGeometry(1,12,9),rimMat,x,20+(i%4)*9,z,false);ridge.scale.set(72+(i%3)*18,45+(i%4)*12,95)}}for(let i=1;i<10;i++){const z=-world.h/2+i/10*world.h;for(const x of[-world.w/2-105,world.w/2+105]){const ridge=addMesh(new T.SphereGeometry(1,12,9),rimMat,x,24+(i%3)*10,z,false);ridge.scale.set(100,52+(i%4)*10,72)}}
  // Décor de région : petit lac, rochers de rive, cristaux et ruines anciennes.
@@ -39,7 +60,11 @@ function adventureWalk3D(opts){
  const ruinX=toX(world.w*.42),ruinZ=toZ(world.h*.22);for(let i=0;i<4;i++){const col=addMesh(new T.CylinderGeometry(9,12,58,8),stoneMat,ruinX+(i%2)*62,29,ruinZ+Math.floor(i/2)*58);col.rotation.z=(i%2?-.06:.04)}
 
  const buildTree=(x,z,s=1)=>{const trunk=addMesh(new T.CylinderGeometry(8*s,13*s,66*s,8),woodMat,x,33*s,z);trunk.castShadow=true;for(let i=0;i<3;i++){const crown=addMesh(new T.SphereGeometry((34-i*4)*s,12,10),leafMats[i],x+(i%2?9:-8)*s,70*s+i*22*s,z);crown.scale.set(1,.85,1);crown.castShadow=true}};
- for(let i=0;i<(lowSpec?42:76);i++){let x=(rnd()-.5)*(world.w-120),z=(rnd()-.5)*(world.h-120);if(Math.abs(x+world.w*.12)<130||Math.abs(z-toZ(world.h*.56))<110)continue;if(walls.some(o=>Math.abs(x-toX(o.x+o.w/2))<o.w*.7&&Math.abs(z-toZ(o.y+o.h/2))<o.h*.7))continue;buildTree(x,z,.65+rnd()*.75)}
+ // Forêt dense à l'ouest, bosquets au centre et palmiers sur les îles.
+ for(let i=0;i<(lowSpec?64:112);i++){const x=-world.w*.43+rnd()*world.w*.34,z=-world.h*.34+rnd()*world.h*.72;if(walls.some(o=>Math.abs(x-toX(o.x+o.w/2))<o.w*.7&&Math.abs(z-toZ(o.y+o.h/2))<o.h*.7))continue;buildTree(x,z,.62+rnd()*.72)}
+ for(let i=0;i<(lowSpec?18:32);i++){const x=-world.w*.04+rnd()*world.w*.46,z=-world.h*.3+rnd()*world.h*.58;if(Math.abs(z)>world.h*.27)continue;if(walls.some(o=>Math.abs(x-toX(o.x+o.w/2))<o.w*.7&&Math.abs(z-toZ(o.y+o.h/2))<o.h*.7))continue;buildTree(x,z,.48+rnd()*.62)}
+ const palm=(x,z,scale)=>{const trunk=addMesh(new T.CylinderGeometry(5*scale,9*scale,92*scale,8),woodMat,x,46*scale,z);trunk.rotation.z=-.12;for(let k=0;k<7;k++){const leaf=addMesh(new T.ConeGeometry(8*scale,65*scale,5),leafMats[k%leafMats.length],x+Math.cos(k*Math.PI/3.5)*24*scale,90*scale,z+Math.sin(k*Math.PI/3.5)*24*scale,false);leaf.rotation.z=Math.PI*.48;leaf.rotation.x=Math.sin(k*Math.PI/3.5)*.3}};
+ for(let i=0;i<(lowSpec?8:15);i++)palm(toX(world.w*.7+rnd()*world.w*.22),toZ(world.h*.84+rnd()*world.h*.13),.65+rnd()*.35);
  const addRock=(x,z,s)=>{const r=addMesh(new T.DodecahedronGeometry(18*s,0),stoneMat,x,10*s,z);r.scale.y=.65;r.rotation.set(rnd(),rnd()*2,rnd())};
  for(let i=0;i<(lowSpec?24:40);i++)addRock((rnd()-.5)*(world.w-100),(rnd()-.5)*(world.h-100),.45+rnd()*.85);
  for(const o of walls){const x=toX(o.x+o.w/2),z=toZ(o.y+o.h/2),edgeMat=mat('#a7b4a1',.86);const base=addMesh(new T.BoxGeometry(o.w,76,o.h),mat('#78877c',.94),x,38,z);base.castShadow=true;const roof=addMesh(new T.ConeGeometry(Math.max(o.w,o.h)*.68,75,4),mat('#765c48'),x,113,z);roof.rotation.y=Math.PI/4;roof.castShadow=true;const cap=addMesh(new T.BoxGeometry(o.w+9,5,o.h+9),edgeMat,x,77,z,false);cap.castShadow=false;for(const sx of[-1,1])for(const sz of[-1,1]){const post=addMesh(new T.BoxGeometry(8,82,8),edgeMat,x+sx*(o.w/2-5),41,z+sz*(o.h/2-5),false);post.castShadow=false}}
@@ -65,6 +90,12 @@ function adventureWalk3D(opts){
   else if(i%4===1){const t=new T.Mesh(new T.CylinderGeometry(27,34,105,8),wall);t.position.y=52;group.add(t);const r=new T.Mesh(new T.ConeGeometry(37,38,8),roofM);r.position.y=122;group.add(r);for(let k=0;k<4;k++){const w=new T.Mesh(new T.BoxGeometry(10,20,3),glass);w.position.set(Math.sin(k*Math.PI/2)*29,55,Math.cos(k*Math.PI/2)*29);group.add(w)}}
   else if(i%4===2){for(let s=-1;s<=1;s+=2){const c=new T.Mesh(new T.CylinderGeometry(5,7,72,8),trim);c.position.set(s*30,36,0);group.add(c)}const l=new T.Mesh(new T.BoxGeometry(88,13,26),roofM);l.position.y=75;group.add(l);const sign=new T.Mesh(new T.BoxGeometry(24,13,3),glass);sign.position.set(0,50,15);group.add(sign)}
   else{const base=new T.Mesh(new T.BoxGeometry(92,9,60),wall);base.position.y=5;group.add(base);for(let k=0;k<3;k++){const c=new T.Mesh(new T.CylinderGeometry(5,7,46,7),wall);c.position.set((k-1)*28,28,-8);c.rotation.z=(k-1)*.1;group.add(c)}}
+  // Silhouette dédiée selon le nom du lieu : tour, ville, dôme ou arène.
+  const placeName=String(p.label||'').toLowerCase();
+  if(/tour|tower|muscle|pilaf/.test(placeName)){const tower=new T.Mesh(new T.CylinderGeometry(24,38,190,12),wall);tower.position.y=100;group.add(tower);const crown=new T.Mesh(new T.ConeGeometry(42,48,10),roofM);crown.position.y=218;group.add(crown);for(let k=0;k<5;k++){const band=new T.Mesh(new T.TorusGeometry(29+k*1.5,3,6,24),trim);band.position.y=35+k*31;group.add(band)}}
+  if(/ville|city|village|capitale|mansion|quartier/.test(placeName)){for(let k=0;k<5;k++){const h=38+(k%3)*22,b=new T.Mesh(new T.BoxGeometry(34,h,30),wall);b.position.set((k-2)*48,h/2,Math.sin(k*2)*35);group.add(b);const cap=new T.Mesh(new T.ConeGeometry(27,h*.36,4),roofM);cap.position.set((k-2)*48,h+8,Math.sin(k*2)*35);cap.rotation.y=Math.PI/4;group.add(cap)}}
+  if(/capsule|maison|laboratoire|base/.test(placeName)){const dome=new T.Mesh(new T.SphereGeometry(43,16,12,0,Math.PI*2,0,Math.PI/2),glass);dome.position.y=18;group.add(dome);const base=new T.Mesh(new T.CylinderGeometry(48,48,12,20),trim);base.position.y=8;group.add(base)}
+  if(/tournoi|arene|arène|arena|cell/.test(placeName)){const arena=new T.Mesh(new T.CylinderGeometry(78,82,12,32),trim);arena.position.y=7;group.add(arena);const floor=new T.Mesh(new T.CylinderGeometry(67,67,2,32),roofM);floor.position.y=14;group.add(floor);for(let k=0;k<8;k++){const post=new T.Mesh(new T.CylinderGeometry(3,3,28,7),wall);post.position.set(Math.cos(k*Math.PI/4)*78,24,Math.sin(k*Math.PI/4)*78);group.add(post)}}
   const ring=addMesh(new T.RingGeometry(34,43,36),new T.MeshBasicMaterial({color:'#69e4ff',transparent:true,opacity:.82,side:T.DoubleSide}),x,.8,z,false);ring.rotation.x=-Math.PI/2;
   addMesh(new T.SphereGeometry(7,12,10),mat('#fff0a7',.25,.3),x,29,z,false);
   const tag=label(p.label);tag.position.set(x,145,z);scene.add(tag);
