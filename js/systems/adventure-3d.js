@@ -44,6 +44,14 @@ function adventureWalk3D(opts){
  const roof=addMesh(new T.BoxGeometry(220,16,175),mat('#b74d39'),shrineX,125,shrineZ);roof.rotation.y=.08;
  const label=(txt)=>{const c=document.createElement('canvas');c.width=512;c.height=112;const g=c.getContext('2d');g.fillStyle='rgba(5,13,25,.78)';g.strokeStyle='rgba(116,220,255,.72)';g.lineWidth=5;g.beginPath();if(typeof g.roundRect==='function')g.roundRect(4,4,504,104,18);else g.rect(4,4,504,104);g.fill();g.stroke();g.fillStyle='#effaff';g.font='bold 34px Arial';g.textAlign='center';g.textBaseline='middle';g.fillText(txt.slice(0,22),256,56);const texture=new T.CanvasTexture(c);const sprite=new T.Sprite(new T.SpriteMaterial({map:texture,transparent:true,depthWrite:false}));sprite.scale.set(170,37,1);return sprite};
 
+ 
+ const dustCount=lowSpec?72:168,dustPositions=new Float32Array(dustCount*3);
+ for(let i=0;i<dustCount;i++){dustPositions[i*3]=(rnd()-.5)*world.w;dustPositions[i*3+1]=18+rnd()*155;dustPositions[i*3+2]=(rnd()-.5)*world.h}
+ const dustGeometry=new T.BufferGeometry();dustGeometry.setAttribute('position',new T.BufferAttribute(dustPositions,3));
+ const dustMaterial=new T.PointsMaterial({color:'#d9f5ff',size:lowSpec?2:3,transparent:true,opacity:.48,depthWrite:false,sizeAttenuation:true});
+ const ambientDust=new T.Points(dustGeometry,dustMaterial);scene.add(ambientDust);
+ const crystalGlow=new T.PointLight('#72d7ff',lowSpec?1.1:1.8,520,2);crystalGlow.position.set(toX(world.w*.78),95,toZ(world.h*.76));scene.add(crystalGlow);
+
  const spotObjects=[];
  for(let i=0;i<points.length;i++){
   const p=points[i],x=toX(p.x),z=toZ(p.y),group=new T.Group();group.position.set(x,0,z);scene.add(group);
@@ -113,7 +121,7 @@ function adventureWalk3D(opts){
  let yaw=0,pitch=0,lastMini=0;const lockMouse=()=>{if(document.pointerLockElement!==canvas&&canvas.requestPointerLock)canvas.requestPointerLock()};const mouseMove=e=>{if(document.pointerLockElement!==canvas)return;yaw+=e.movementX*.0022;pitch=clamp(pitch-e.movementY*.0018,-.72,.72)};const clearKeys=()=>keys.clear();canvas.addEventListener('click',lockMouse);window.addEventListener('mousemove',mouseMove);window.addEventListener('blur',clearKeys);const down=e=>{const k=e.key.toLowerCase();if(['arrowup','arrowdown','arrowleft','arrowright','w','a','s','d','z','q','e'].includes(k)){e.preventDefault();keys.add(k)}},up=e=>keys.delete(e.key.toLowerCase());
  window.addEventListener('keydown',down);window.addEventListener('keyup',up);
  const tick=t=>{if(!active)return;const dt=Math.min(.04,(t-last)/1000||0);last=t;let forward=0,side=0;if(keys.has('arrowup')||keys.has('w')||keys.has('z'))forward++;if(keys.has('arrowdown')||keys.has('s'))forward--;if(keys.has('arrowleft')||keys.has('a')||keys.has('q'))side--;if(keys.has('arrowright')||keys.has('d'))side++;const moving=!!(forward||side);if(moving){const n=Math.hypot(forward,side);forward/=n;side/=n;const vx=(Math.sin(yaw)*forward+Math.cos(yaw)*side)*250*dt,vy=(-Math.cos(yaw)*forward+Math.sin(yaw)*side)*250*dt,nx=clamp(state.x+vx,28,world.w-28),ny=clamp(state.y+vy,28,world.h-28);if(!collides(nx,state.y))state.x=nx;if(!collides(state.x,ny))state.y=ny;player.rotation.y=yaw}
- const bob=moving?Math.sin(t*.018)*1.1:Math.sin(t*.002)*.35;player.position.set(toX(state.x),bob,toZ(state.y));player.children.forEach(o=>{if(o.geometry&&o.geometry.type==='CylinderGeometry'&&o.position.y<20)o.rotation.x=moving?Math.sin(t*.018)*.3:0});aura.material.opacity=.18+Math.sin(t*.006)*.07;
+ const bob=moving?Math.sin(t*.018)*1.1:Math.sin(t*.002)*.35;player.position.set(toX(state.x),bob,toZ(state.y));player.children.forEach(o=>{if(o.geometry&&o.geometry.type==='CylinderGeometry'&&o.position.y<20)o.rotation.x=moving?Math.sin(t*.018)*.3:0});aura.material.opacity=.16+Math.sin(t*.006)*.09;ambientDust.rotation.y+=dt*.008;ambientDust.position.y=8+Math.sin(t*.0007)*7;crystalGlow.intensity=(lowSpec?1.0:1.55)+Math.sin(t*.0018)*.38;lake.material.opacity=.82+Math.sin(t*.0012)*.07;
  for(const n of npcObjects){const phase=t*.00055+n.phase,walk=Math.sin(phase*.8);n.data.x=clamp(n.baseX+Math.cos(phase)*n.walkRadius,35,world.w-35);n.data.y=clamp(n.baseY+Math.sin(phase)*n.walkRadius,35,world.h-35);n.group.position.set(toX(n.data.x),Math.abs(walk)*1.3,toZ(n.data.y));n.group.rotation.y=Math.atan2(-Math.sin(phase),Math.cos(phase));n.ring.position.set(n.group.position.x,.9,n.group.position.z);n.tag.position.set(n.group.position.x,100+Math.abs(walk)*2,n.group.position.z);n.arms.forEach((arm,j)=>arm.rotation.z=(j?1:-1)*(.28+Math.sin(t*.004+n.phase+j)*.16));n.legs.forEach((leg,j)=>leg.rotation.x=Math.sin(t*.004+n.phase+j)*.12)}
  for(const mob of mobObjects){
   const dx=player.position.x-mob.group.position.x,dz=player.position.z-mob.group.position.z,dist=Math.hypot(dx,dz),chase=dist<250;

@@ -94,3 +94,30 @@ html,body,#w{background:#050914;color:var(--fa-text)}
 #m .adventure-walk-canvas{max-height:72vh;min-height:360px}
 #m .adventure-walk-header{width:min(1380px,98vw)}
 #m .adventure-walk-nearby{min-height:38px}
+
+/* Nouvelle couche UI : chapitres d'aventure et écrans narratifs */
+#m .adventure-chapter-panel{width:min(1120px,96%);display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;padding:16px;border:1px solid rgba(95,211,255,.24);border-radius:18px;background:linear-gradient(145deg,rgba(14,34,62,.96),rgba(12,18,42,.97));box-shadow:0 14px 34px rgba(0,0,0,.24);text-align:left}
+#m .adventure-chapter-panel>.adventure-kicker,#m .adventure-chapter-panel>h3,#m .adventure-chapter-panel>p{grid-column:1/-1;margin:0}
+#m .adventure-chapter-panel>h3{font-size:20px;color:#fff}
+#m .adventure-chapter-panel>p{font-size:12px;color:#9fb8d4}
+#m .adventure-chapter-entry{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0;padding:14px;border:1px solid rgba(120,190,235,.18);border-radius:14px;background:linear-gradient(150deg,rgba(22,44,74,.9),rgba(9,19,38,.96));transition:transform .18s,border-color .18s,box-shadow .18s}
+#m .adventure-chapter-entry:hover{transform:translateY(-3px);border-color:rgba(85,217,255,.55);box-shadow:0 10px 24px rgba(0,0,0,.25)}
+#m .adventure-chapter-entry.is-done{border-color:rgba(100,230,165,.45)}
+#m .adventure-chapter-entry.is-locked{opacity:.62}
+#m .adventure-chapter-index{font-size:9px;font-weight:900;letter-spacing:.16em;color:#73dfff}
+#m .adventure-chapter-entry>b{font-size:15px;color:#fff}
+#m .adventure-chapter-entry>p{margin:0;color:#a9bfd7;font-size:12px;line-height:1.55}
+#m .adventure-chapter-entry>small{color:#ffdb91;font-size:10px}
+#m .adventure-chapter-entry>button{width:100%;margin-top:auto}
+#m.story-screen .story-saga{backdrop-filter:blur(12px)}
+#m.story-screen .story-saga-head{min-height:52px}
+#m.story-screen .story-chapters{max-height:430px}
+#m.story-screen .story-chapter-button{display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:10px;min-height:58px;padding:10px 12px!important;border:1px solid rgba(100,190,255,.15)!important;border-radius:12px!important;background:linear-gradient(110deg,rgba(17,39,67,.92),rgba(15,24,48,.96))!important}
+#m.story-screen .story-chapter-button:disabled{opacity:.48}
+#m.story-screen .story-chapter-number{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:rgba(80,190,235,.12);color:#8de8ff;font-weight:900}
+#m.story-screen .story-chapter-copy{display:grid;gap:4px;min-width:0}
+#m.story-screen .story-chapter-copy strong{color:#f5f9ff;font-size:12px;line-height:1.35}
+#m.story-screen .story-chapter-copy small{color:#8faac8;font-size:9px;line-height:1.4}
+#m.story-screen .story-chapter-status{font-size:8px;letter-spacing:.08em;color:#8fe8ff;font-weight:900}
+#m.story-screen .story-chapter.is-done .story-chapter-status{color:#8af0b8}
+@media(max-width:640px){#m .adventure-chapter-panel{grid-template-columns:1fr;padding:11px}#m.story-screen .story-chapter-button{grid-template-columns:30px minmax(0,1fr);gap:8px}#m.story-screen .story-chapter-status{grid-column:2}}
